@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA | Biology - Reproduction</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    background:
+    radial-gradient(circle at 10% 10%,rgba(139,92,246,.16),transparent 30%),
+    radial-gradient(circle at 90% 20%,rgba(236,72,153,.14),transparent 30%),
+    #070711;
+}
+
+.lesson-page{
+    width:92%;
+    max-width:1100px;
+    margin:50px auto 80px;
+}
+
+.lesson-hero{
+    text-align:center;
+    padding:45px 20px;
+}
+
+.lesson-badge{
+    display:inline-block;
+    padding:8px 17px;
+    border-radius:30px;
+    background:rgba(139,92,246,.12);
+    border:1px solid rgba(139,92,246,.3);
+    color:#c4b5fd;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.lesson-hero h1{
+    font-size:48px;
+    margin:0 0 15px;
+}
+
+.lesson-hero h1 span{
+    background:linear-gradient(135deg,#8b5cf6,#ec4899);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.lesson-hero p{
+    max-width:720px;
+    margin:auto;
+    color:#85859b;
+    line-height:1.7;
+}
+
+.lesson-card{
+    padding:30px;
+    margin-bottom:22px;
+    border-radius:24px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);
+    backdrop-filter:blur(15px);
+}
+
+.lesson-card h2{
+    margin-top:0;
+    font-size:25px;
+}
+
+.lesson-card p{
+    color:#c7c7d5;
+    line-height:1.8;
+}
+
+.lesson-card li{
+    color:#c7c7d5;
+    line-height:1.8;
+    margin-bottom:8px;
+}
+
+.reproduction-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin-top:20px;
+}
+
+.reproduction-box{
+    padding:23px;
+    border-radius:18px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.reproduction-box h3{
+    margin-top:0;
+}
+
+.reproduction-box p{
+    font-size:14px;
+}
+
+.info-box{
+    margin-top:20px;
+    padding:22px;
+    border-radius:18px;
+    background:rgba(139,92,246,.08);
+    border:1px solid rgba(139,92,246,.2);
+}
+
+.info-box strong{
+    color:#c4b5fd;
+}
+
+.challenge{
+    text-align:center;
+    padding:35px;
+    border-radius:25px;
+    background:linear-gradient(
+        135deg,
+        rgba(139,92,246,.1),
+        rgba(236,72,153,.08)
+    );
+    border:1px solid rgba(139,92,246,.2);
+}
+
+.answer-btn{
+    padding:12px 22px;
+    margin:7px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,#8b5cf6,#ec4899);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.answer-btn:hover{
+    transform:translateY(-2px);
+}
+
+#quizResult{
+    margin-top:18px;
+    font-weight:bold;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:12px 20px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+@media(max-width:750px){
+
+    .reproduction-grid{
+        grid-template-columns:1fr;
+    }
+
+    .lesson-hero h1{
+        font-size:38px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+<div class="logo">
+ZYNTRA<span>●</span>
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+<a href="study.html">Study</a>
+<a href="ai.html">AI</a>
+<a href="planner.html">Planner</a>
+<a href="challenge.html">Challenges</a>
+<a href="profile.html">Profile</a>
+
+</nav>
+
+<a href="profile.html" class="nav-button">
+My Profile
+</a>
+
+</header>
+
+
+
+<main class="lesson-page">
+
+
+<section class="lesson-hero">
+
+<div class="lesson-badge">
+🧬 BIOLOGY • REPRODUCTION
+</div>
+
+<h1>
+Continue <span>Life.</span>
+</h1>
+
+<p>
+Learn how organisms produce new individuals and how
+reproduction ensures the continuation of species.
+</p>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>🌱 What is Reproduction?</h2>
+
+<p>
+Reproduction is the biological process by which living
+organisms produce new individuals of the same species.
+</p>
+
+<p>
+Reproduction is important because it ensures the
+continuity and survival of species.
+</p>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>🔬 Types of Reproduction</h2>
+
+<div class="reproduction-grid">
+
+<div class="reproduction-box">
+
+<h3>🌿 Asexual Reproduction</h3>
+
+<p>
+Asexual reproduction involves one parent and does not
+involve the fusion of male and female gametes.
+</p>
+
+<ul>
+<li>Only one parent is involved.</li>
+<li>Usually produces genetically similar offspring.</li>
+<li>It can occur relatively quickly.</li>
+</ul>
+
+</div>
+
+
+<div class="reproduction-box">
+
+<h3>🧬 Sexual Reproduction</h3>
+
+<p>
+Sexual reproduction involves the fusion of male and
+female gametes to form a zygote.
+</p>
+
+<ul>
+<li>Male and female gametes are involved.</li>
+<li>Fertilisation occurs.</li>
+<li>Offspring show genetic variation.</li>
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>🌸 Reproduction in Plants</h2>
+
+<p>
+Flowering plants reproduce sexually through flowers.
+The flower contains reproductive structures that
+produce male and female gametes.
+</p>
+
+<div class="reproduction-grid">
+
+<div class="reproduction-box">
+
+<h3>🌼 Male Part</h3>
+
+<p>
+The <strong>stamen</strong> is the male reproductive
+part of a flower. It consists mainly of the
+<strong>anther</strong> and <strong>filament</strong>.
+</p>
+
+</div>
+
+
+<div class="reproduction-box">
+
+<h3>🌺 Female Part</h3>
+
+<p>
+The <strong>carpel</strong> or pistil is the female
+reproductive part. It includes the stigma, style and
+ovary.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>🐝 Pollination</h2>
+
+<p>
+Pollination is the transfer of pollen grains from the
+anther to the stigma of a flower.
+</p>
+
+<div class="info-box">
+
+<strong>Types of pollination:</strong>
+
+<ul>
+
+<li>
+Self-pollination — pollen is transferred to the stigma
+of the same flower or another flower on the same plant.
+</li>
+
+<li>
+Cross-pollination — pollen is transferred from a flower
+on one plant to a flower on another plant of the same species.
+</li>
+
+</ul>
+
+</div>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>🧬 Fertilisation</h2>
+
+<p>
+Fertilisation is the fusion of the male and female
+gametes to form a zygote.
+</p>
+
+<p>
+The zygote develops into an embryo and eventually
+forms a new organism.
+</p>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>👨‍👩‍👧 Human Reproduction</h2>
+
+<p>
+In humans, reproduction involves male and female
+reproductive systems. The male produces sperm cells,
+while the female produces ova (egg cells).
+</p>
+
+<div class="reproduction-grid">
+
+<div class="reproduction-box">
+
+<h3>♂ Male Reproductive System</h3>
+
+<ul>
+
+<li>Testes produce sperm cells.</li>
+
+<li>Sperm are male gametes.</li>
+
+<li>The reproductive system transports sperm.</li>
+
+</ul>
+
+</div>
+
+
+<div class="reproduction-box">
+
+<h3>♀ Female Reproductive System</h3>
+
+<ul>
+
+<li>Ovaries produce ova.</li>
+
+<li>Ova are female gametes.</li>
+
+<li>The reproductive system provides the environment
+for development after fertilisation.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>🧠 Role of Hormones</h2>
+
+<p>
+Hormones help control reproductive processes and
+changes during puberty.
+</p>
+
+<ul>
+
+<li>
+<strong>Testosterone</strong> is an important male
+reproductive hormone involved in development of male
+secondary sexual characteristics and sperm production.
+</li>
+
+<li>
+<strong>Oestrogen</strong> is an important female
+reproductive hormone involved in development of female
+secondary sexual characteristics and the menstrual cycle.
+</li>
+
+<li>
+<strong>Progesterone</strong> helps maintain the lining
+of the uterus during the menstrual cycle and pregnancy.
+</li>
+
+</ul>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>📌 Quick Revision</h2>
+
+<ul>
+
+<li>Reproduction produces new individuals.</li>
+
+<li>Asexual reproduction involves one parent.</li>
+
+<li>Sexual reproduction involves male and female gametes.</li>
+
+<li>Stamen is the male part of a flower.</li>
+
+<li>Carpel is the female part of a flower.</li>
+
+<li>Pollination is the transfer of pollen to the stigma.</li>
+
+<li>Fertilisation is the fusion of male and female gametes.</li>
+
+<li>Testes produce sperm.</li>
+
+<li>Ovaries produce ova.</li>
+
+</ul>
+
+</section>
+
+
+
+<section class="challenge">
+
+<h2>🧠 ZYNTRA Quick Challenge</h2>
+
+<p>
+What is the transfer of pollen grains from the anther
+to the stigma called?
+</p>
+
+<button class="answer-btn"
+onclick="checkAnswer('A')">
+A. Fertilisation
+</button>
+
+<button class="answer-btn"
+onclick="checkAnswer('B')">
+B. Pollination
+</button>
+
+<button class="answer-btn"
+onclick="checkAnswer('C')">
+C. Germination
+</button>
+
+<button class="answer-btn"
+onclick="checkAnswer('D')">
+D. Respiration
+</button>
+
+<div id="quizResult"></div>
+
+</section>
+
+
+
+<a href="biology.html" class="back-btn">
+← Back to Biology
+</a>
+
+
+</main>
+
+
+
+<script>
+
+function checkAnswer(answer){
+
+    let result =
+        document.getElementById("quizResult");
+
+    if(answer === "B"){
+
+        result.textContent =
+        "✅ Correct! Pollination is the transfer of pollen from the anther to the stigma.";
+
+    }else{
+
+        result.textContent =
+        "❌ Not quite. The correct answer is B. Pollination.";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>ZYNTRA - Forces</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+    .lesson-page {
+        max-width: 1000px;
+        margin: auto;
+        padding: 70px 20px;
+    }
+
+    .lesson-hero {
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .lesson-badge {
+        display: inline-block;
+        padding: 10px 18px;
+        border-radius: 30px;
+        background: rgba(139, 92, 246, 0.12);
+        color: #a78bfa;
+        font-weight: bold;
+    }
+
+    .lesson-hero h1 {
+        font-size: 55px;
+        margin: 20px 0 10px;
+    }
+
+    .lesson-hero p {
+        color: #9999ad;
+        font-size: 18px;
+    }
+
+    .lesson-card {
+        margin-top: 25px;
+        padding: 30px;
+        border-radius: 22px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .lesson-card h2 {
+        margin-bottom: 15px;
+    }
+
+    .lesson-card p,
+    .lesson-card li {
+        color: #c5c5d5;
+        line-height: 1.8;
+    }
+
+    .lesson-card ul {
+        padding-left: 25px;
+        margin-top: 10px;
+    }
+
+    .formula-box {
+        margin-top: 20px;
+        padding: 25px;
+        text-align: center;
+        border-radius: 18px;
+        background: rgba(139,92,246,0.08);
+        border: 1px solid rgba(167,139,250,0.2);
+    }
+
+    .formula-box strong {
+        display: block;
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .quiz-option {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 14px;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px;
+        background: rgba(255,255,255,0.08);
+        color: white;
+        text-align: left;
+        cursor: pointer;
+        font-size: 16px;
+        transition: .25s;
+    }
+
+    .quiz-option:hover {
+        background: rgba(139,92,246,0.25);
+        border-color: rgba(139,92,246,.5);
+    }
+
+    .quiz-option.correct {
+        background: rgba(34,197,94,.15);
+        border-color: #22c55e;
+    }
+
+    .quiz-option.wrong {
+        background: rgba(239,68,68,.15);
+        border-color: #ef4444;
+    }
+
+    .quiz-option:disabled {
+        cursor: not-allowed;
+        opacity: .9;
+    }
+
+    #quizResult {
+        margin-top: 15px;
+        font-weight: bold;
+        line-height: 1.6;
+    }
+
+    #progressMessage {
+        margin-top: 10px;
+        color: #a78bfa;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .back-btn {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 12px 20px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+
+        .lesson-hero h1 {
+            font-size: 40px;
+        }
+
+        .lesson-card {
+            padding: 22px;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="lesson-page">
+
+```
+<!-- HERO -->
+
+<section class="lesson-hero">
+
+    <div class="lesson-badge">
+        💪 PHYSICS • FORCES
+    </div>
+
+    <h1>Understanding Forces</h1>
+
+    <p>
+        Discover how pushes and pulls affect the motion of objects.
+    </p>
+
+</section>
+
+
+<!-- FORCE -->
+
+<div class="lesson-card">
+
+    <h2>💪 What is Force?</h2>
+
+    <p>
+        A force is a push or a pull that can change the state of
+        motion or shape of an object.
+    </p>
+
+    <p>
+        Force can make an object start moving, stop moving,
+        change direction or change shape.
+    </p>
+
+    <ul>
+        <li>Force is a vector quantity.</li>
+        <li>The SI unit of force is the Newton (N).</li>
+        <li>Force has both magnitude and direction.</li>
+    </ul>
+
+</div>
+
+
+<!-- TYPES -->
+
+<div class="lesson-card">
+
+    <h2>🧲 Types of Forces</h2>
+
+    <ul>
+
+        <li>
+            <strong>Gravitational force</strong>
+            — attraction between masses.
+        </li>
+
+        <li>
+            <strong>Frictional force</strong>
+            — opposes motion between surfaces.
+        </li>
+
+        <li>
+            <strong>Magnetic force</strong>
+            — attraction or repulsion involving magnets.
+        </li>
+
+        <li>
+            <strong>Electrostatic force</strong>
+            — force between electric charges.
+        </li>
+
+        <li>
+            <strong>Upthrust</strong>
+            — upward force exerted by a fluid.
+        </li>
+
+    </ul>
+
+</div>
+
+
+<!-- NEWTON -->
+
+<div class="lesson-card">
+
+    <h2>🍎 Newton's Second Law</h2>
+
+    <p>
+        Newton's Second Law states that the acceleration of an object
+        depends on the force applied and its mass.
+    </p>
+
+    <div class="formula-box">
+
+        <strong>F = ma</strong>
+
+        <p>
+            F = force in Newtons (N)<br>
+            m = mass in kilograms (kg)<br>
+            a = acceleration in metres per second squared (m/s²)
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- EXAMPLE -->
+
+<div class="lesson-card">
+
+    <h2>🧮 Worked Example</h2>
+
+    <p>
+        A force of 20 N acts on an object of mass 5 kg.
+        Find its acceleration.
+    </p>
+
+    <div class="formula-box">
+
+        <strong>a = F ÷ m</strong>
+
+        <p>
+            a = 20 ÷ 5
+        </p>
+
+        <p>
+            <strong>Acceleration = 4 m/s²</strong>
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- FRICTION -->
+
+<div class="lesson-card">
+
+    <h2>🛑 Friction</h2>
+
+    <p>
+        Friction is a force that opposes relative motion between
+        surfaces in contact.
+    </p>
+
+    <p>
+        Friction can be useful. For example, it helps us walk,
+        stop vehicles and hold objects.
+    </p>
+
+</div>
+
+
+<!-- QUIZ -->
+
+<div class="lesson-card">
+
+    <h2>🧠 ZYNTRA Quick Challenge</h2>
+
+    <p>
+        A force of 30 N acts on a mass of 10 kg.
+        What is the acceleration?
+    </p>
+
+
+    <button
+        class="quiz-option"
+        onclick="checkAnswer('A', this)">
+        A. 2 m/s²
+    </button>
+
+
+    <button
+        class="quiz-option"
+        onclick="checkAnswer('B', this)">
+        B. 3 m/s²
+    </button>
+
+
+    <button
+        class="quiz-option"
+        onclick="checkAnswer('C', this)">
+        C. 10 m/s²
+    </button>
+
+
+    <button
+        class="quiz-option"
+        onclick="checkAnswer('D', this)">
+        D. 30 m/s²
+    </button>
+
+
+    <p id="quizResult"></p>
+
+    <p id="progressMessage"></p>
+
+</div>
+
+
+<a href="physics.html" class="back-btn">
+    ← Back to Physics
+</a>
+```
+
+</div>
+
+<script>
+
+/* =====================================================
+   ZYNTRA PROGRESS SYSTEM
+   Forces = Physics
+===================================================== */
+
+const SUBJECT = "Physics";
+
+
+/* -----------------------------------------------------
+   USER
+----------------------------------------------------- */
+
+function getUser(){
+
+    try{
+
+        const stored =
+            localStorage.getItem("zyntraUser");
+
+        if(!stored){
+
+            return null;
+
+        }
+
+        return JSON.parse(stored);
+
+    }catch(error){
+
+        console.error(
+            "Could not read user:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+/* -----------------------------------------------------
+   USERNAME
+----------------------------------------------------- */
+
+function getUsername(){
+
+    const user = getUser();
+
+    if(user){
+
+        return (
+            user.username ||
+            user.email ||
+            user.name ||
+            user.fullName ||
+            "student"
+        );
+
+    }
+
+    return (
+        localStorage.getItem("zyntraUsername") ||
+        localStorage.getItem("zyntraEmail") ||
+        "student"
+    );
+
+}
+
+
+/* -----------------------------------------------------
+   PROGRESS KEY
+----------------------------------------------------- */
+
+function getProgressKey(){
+
+    return "zyntraProgress_" + getUsername();
+
+}
+
+
+/* -----------------------------------------------------
+   DEFAULT PROGRESS
+----------------------------------------------------- */
+
+function defaultProgress(){
+
+    return {
+
+        xp: 0,
+
+        streak: 0,
+
+        questions: 0,
+
+        achievements: 0,
+
+        subjects: {
+
+            Mathematics: 0,
+
+            Chemistry: 0,
+
+            Physics: 0,
+
+            Biology: 0,
+
+            "Computer-Studies": 0,
+
+            English: 0
+
+        },
+
+        lastStudyDate: ""
+
+    };
+
+}
+
+
+/* -----------------------------------------------------
+   LOAD PROGRESS
+----------------------------------------------------- */
+
+function loadProgress(){
+
+    const saved =
+        localStorage.getItem(
+            getProgressKey()
+        );
+
+
+    if(!saved){
+
+        return defaultProgress();
+
+    }
+
+
+    try{
+
+        const progress =
+            JSON.parse(saved);
+
+        const defaults =
+            defaultProgress();
+
+
+        return {
+
+            ...defaults,
+
+            ...progress,
+
+            subjects:{
+
+                ...defaults.subjects,
+
+                ...(progress.subjects || {})
+
+            }
+
+        };
+
+    }catch(error){
+
+        console.error(
+            "Progress loading error:",
+            error
+        );
+
+        return defaultProgress();
+
+    }
+
+}
+
+
+/* -----------------------------------------------------
+   SAVE
+----------------------------------------------------- */
+
+function saveProgress(progress){
+
+    localStorage.setItem(
+
+        getProgressKey(),
+
+        JSON.stringify(progress)
+
+    );
+
+}
+
+
+/* -----------------------------------------------------
+   TODAY
+----------------------------------------------------- */
+
+function getToday(){
+
+    return new Date()
+        .toISOString()
+        .split("T")[0];
+
+}
+
+
+/* -----------------------------------------------------
+   STREAK
+----------------------------------------------------- */
+
+function updateStreak(progress){
+
+    const today =
+        getToday();
+
+
+    if(progress.lastStudyDate === today){
+
+        return;
+
+    }
+
+
+    if(!progress.lastStudyDate){
+
+        progress.streak = 1;
+
+    }else{
+
+        const previous =
+            new Date(
+                progress.lastStudyDate
+            );
+
+        const current =
+            new Date(today);
+
+
+        const difference =
+            Math.floor(
+
+                (current - previous) /
+                (1000 * 60 * 60 * 24)
+
+            );
+
+
+        if(difference === 1){
+
+            progress.streak += 1;
+
+        }else if(difference > 1){
+
+            progress.streak = 1;
+
+        }
+
+    }
+
+
+    progress.lastStudyDate = today;
+
+}
+
+
+/* -----------------------------------------------------
+   ACHIEVEMENTS
+----------------------------------------------------- */
+
+function updateAchievements(progress){
+
+    let achievements = 0;
+
+
+    if(progress.xp >= 10){
+
+        achievements++;
+
+    }
+
+
+    if(progress.xp >= 100){
+
+        achievements++;
+
+    }
+
+
+    if(progress.questions >= 10){
+
+        achievements++;
+
+    }
+
+
+    if(progress.streak >= 7){
+
+        achievements++;
+
+    }
+
+
+    progress.achievements =
+        achievements;
+
+}
+
+
+/* =====================================================
+   COMPLETE FORCES CHALLENGE
+===================================================== */
+
+function completeForcesChallenge(correct){
+
+    const progress =
+        loadProgress();
+
+
+    /*
+       IMPORTANT:
+
+       This lesson has ONE challenge.
+
+       Completing the challenge gives
+       EXACTLY 10 XP total.
+
+       It does NOT give 10 XP every time
+       the student clicks an answer.
+    */
+
+
+    const alreadyCompleted =
+        localStorage.getItem(
+            "zyntraCompleted_forces_" +
+            getUsername()
+        );
+
+
+    if(alreadyCompleted === "true"){
+
+        return {
+
+            progress: progress,
+
+            alreadyCompleted: true
+
+        };
+
+    }
+
+
+    /* One question completed */
+
+    progress.questions += 1;
+
+
+    /* Exactly 10 XP */
+
+    progress.xp += 10;
+
+
+    /* Physics progress */
+
+    progress.subjects.Physics =
+        Math.min(
+
+            100,
+
+            (progress.subjects.Physics || 0) + 5
+
+        );
+
+
+    /* Streak */
+
+    updateStreak(progress);
+
+
+    /* Achievements */
+
+    updateAchievements(progress);
+
+
+    /* Save */
+
+    saveProgress(progress);
+
+
+    /* Mark this challenge completed */
+
+    localStorage.setItem(
+
+        "zyntraCompleted_forces_" +
+        getUsername(),
+
+        "true"
+
+    );
+
+
+    return {
+
+        progress: progress,
+
+        alreadyCompleted: false
+
+    };
+
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+let answered = false;
+
+
+function checkAnswer(answer, button){
+
+    if(answered){
+
+        return;
+
+    }
+
+
+    answered = true;
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".quiz-option"
+        );
+
+
+    /* Disable all answers */
+
+    buttons.forEach(function(btn){
+
+        btn.disabled = true;
+
+    });
+
+
+    const result =
+        document.getElementById(
+            "quizResult"
+        );
+
+
+    const progressMessage =
+        document.getElementById(
+            "progressMessage"
+        );
+
+
+    const correct =
+        answer === "B";
+
+
+    /* Highlight correct answer */
+
+    buttons[1].classList.add(
+        "correct"
+    );
+
+
+    /* If wrong, highlight selected */
+
+    if(!correct){
+
+        button.classList.add(
+            "wrong"
+        );
+
+    }
+
+
+    /* Record progress */
+
+    const outcome =
+        completeForcesChallenge(
+            correct
+        );
+
+
+    /* -------------------------------------------------
+       RESULT
+    ------------------------------------------------- */
+
+    if(correct){
+
+        result.textContent =
+            "✅ Correct! a = F ÷ m = 30 ÷ 10 = 3 m/s².";
+
+        result.style.color =
+            "#6ee7a0";
+
+    }else{
+
+        result.textContent =
+            "❌ Not quite. The correct answer is 3 m/s².";
+
+        result.style.color =
+            "#ff9696";
+
+    }
+
+
+    /* -------------------------------------------------
+       XP MESSAGE
+    ------------------------------------------------- */
+
+    if(outcome.alreadyCompleted){
+
+        progressMessage.textContent =
+            "This challenge was already completed. Your previous 10 XP has already been saved.";
+
+    }else{
+
+        progressMessage.textContent =
+            "🎉 +10 XP earned • Physics progress +5% • Question completed";
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

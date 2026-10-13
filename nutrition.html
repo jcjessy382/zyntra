@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA | Biology - Nutrition</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    background:
+    radial-gradient(circle at 10% 10%,rgba(34,197,94,.15),transparent 30%),
+    radial-gradient(circle at 90% 20%,rgba(6,182,212,.14),transparent 30%),
+    #070711;
+}
+
+.lesson-page{
+    width:92%;
+    max-width:1100px;
+    margin:50px auto 80px;
+}
+
+.lesson-hero{
+    text-align:center;
+    padding:45px 20px;
+}
+
+.lesson-badge{
+    display:inline-block;
+    padding:8px 17px;
+    border-radius:30px;
+    background:rgba(34,197,94,.12);
+    border:1px solid rgba(34,197,94,.3);
+    color:#86efac;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.lesson-hero h1{
+    font-size:48px;
+    margin:0 0 15px;
+}
+
+.lesson-hero h1 span{
+    background:linear-gradient(135deg,#22c55e,#06b6d4);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.lesson-hero p{
+    max-width:700px;
+    margin:auto;
+    color:#85859b;
+    line-height:1.7;
+}
+
+
+/* LESSON CARDS */
+
+.lesson-card{
+    padding:30px;
+    margin-bottom:22px;
+    border-radius:24px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);
+    backdrop-filter:blur(15px);
+}
+
+.lesson-card h2{
+    margin-top:0;
+    font-size:25px;
+}
+
+.lesson-card p{
+    color:#c7c7d5;
+    line-height:1.8;
+}
+
+.lesson-card li{
+    color:#c7c7d5;
+    line-height:1.8;
+    margin-bottom:7px;
+}
+
+
+/* NUTRIENTS */
+
+.nutrients{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.nutrient{
+    padding:20px;
+    border-radius:18px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.nutrient h3{
+    margin-top:0;
+}
+
+.nutrient p{
+    font-size:14px;
+    margin-bottom:0;
+}
+
+
+/* TABLE */
+
+.food-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.food-table th,
+.food-table td{
+    padding:14px;
+    text-align:left;
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.food-table th{
+    color:#86efac;
+}
+
+.food-table td{
+    color:#c7c7d5;
+}
+
+
+/* CHALLENGE */
+
+.challenge{
+    text-align:center;
+    padding:35px;
+    border-radius:25px;
+    background:linear-gradient(
+        135deg,
+        rgba(34,197,94,.1),
+        rgba(6,182,212,.08)
+    );
+    border:1px solid rgba(34,197,94,.2);
+}
+
+.answer-btn{
+    padding:12px 22px;
+    margin:7px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,#22c55e,#06b6d4);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.answer-btn:hover{
+    transform:translateY(-2px);
+}
+
+#quizResult{
+    margin-top:18px;
+    font-weight:bold;
+}
+
+
+/* BACK BUTTON */
+
+.back-btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:12px 20px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#22c55e,#06b6d4);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .nutrients{
+        grid-template-columns:1fr;
+    }
+
+    .lesson-hero h1{
+        font-size:38px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+<div class="logo">
+ZYNTRA<span>●</span>
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+<a href="study.html">Study</a>
+<a href="ai.html">AI</a>
+<a href="planner.html">Planner</a>
+<a href="challenge.html">Challenges</a>
+<a href="profile.html">Profile</a>
+
+</nav>
+
+<a href="profile.html" class="nav-button">
+My Profile
+</a>
+
+</header>
+
+
+
+<main class="lesson-page">
+
+
+<section class="lesson-hero">
+
+<div class="lesson-badge">
+🧬 BIOLOGY • NUTRITION
+</div>
+
+<h1>
+Understand <span>Nutrition.</span>
+</h1>
+
+<p>
+Learn how living organisms obtain and use nutrients
+for energy, growth, repair and healthy functioning.
+</p>
+
+</section>
+
+
+
+<!-- DEFINITION -->
+
+<section class="lesson-card">
+
+<h2>🍎 What is Nutrition?</h2>
+
+<p>
+Nutrition is the process by which living organisms
+obtain and use nutrients needed for energy, growth,
+repair and maintenance of the body.
+</p>
+
+</section>
+
+
+
+<!-- MODES -->
+
+<section class="lesson-card">
+
+<h2>🌱 Modes of Nutrition</h2>
+
+<p>
+There are two main modes of nutrition:
+</p>
+
+<ul>
+
+<li>
+<strong>Autotrophic nutrition</strong> — organisms
+make their own food. Green plants make food through
+photosynthesis.
+</li>
+
+<li>
+<strong>Heterotrophic nutrition</strong> — organisms
+obtain food from other organisms.
+</li>
+
+</ul>
+
+</section>
+
+
+
+<!-- NUTRIENTS -->
+
+<section class="lesson-card">
+
+<h2>🥗 Main Nutrients</h2>
+
+<div class="nutrients">
+
+
+<div class="nutrient">
+
+<h3>🍞 Carbohydrates</h3>
+
+<p>
+Provide energy for activities and body processes.
+Examples include rice, bread, maize and potatoes.
+</p>
+
+</div>
+
+
+<div class="nutrient">
+
+<h3>🥩 Proteins</h3>
+
+<p>
+Used for growth and repair of body tissues.
+Examples include beans, eggs, fish and meat.
+</p>
+
+</div>
+
+
+<div class="nutrient">
+
+<h3>🥑 Fats</h3>
+
+<p>
+Provide energy and help with insulation and protection
+of body organs.
+</p>
+
+</div>
+
+
+<div class="nutrient">
+
+<h3>🍊 Vitamins</h3>
+
+<p>
+Needed in small amounts to keep the body healthy
+and support normal body functions.
+</p>
+
+</div>
+
+
+<div class="nutrient">
+
+<h3>💧 Water</h3>
+
+<p>
+Important for chemical reactions, transport of
+substances and temperature regulation.
+</p>
+
+</div>
+
+
+<div class="nutrient">
+
+<h3>🧂 Mineral Salts</h3>
+
+<p>
+Needed for healthy growth and proper functioning
+of the body.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- BALANCED DIET -->
+
+<section class="lesson-card">
+
+<h2>🍽️ Balanced Diet</h2>
+
+<p>
+A balanced diet contains all the essential nutrients
+in the correct proportions to meet the body's needs.
+</p>
+
+<p>
+A healthy diet should contain appropriate amounts of
+carbohydrates, proteins, fats, vitamins, mineral salts,
+water and fibre.
+</p>
+
+</section>
+
+
+
+<!-- FOOD SOURCES -->
+
+<section class="lesson-card">
+
+<h2>📚 Examples of Nutrients and Sources</h2>
+
+<table class="food-table">
+
+<tr>
+<th>Nutrient</th>
+<th>Examples of Sources</th>
+</tr>
+
+<tr>
+<td>Carbohydrates</td>
+<td>Maize, rice, bread, potatoes</td>
+</tr>
+
+<tr>
+<td>Proteins</td>
+<td>Beans, eggs, fish, meat</td>
+</tr>
+
+<tr>
+<td>Fats</td>
+<td>Oils, nuts, seeds</td>
+</tr>
+
+<tr>
+<td>Vitamins</td>
+<td>Fruits and vegetables</td>
+</tr>
+
+<tr>
+<td>Mineral salts</td>
+<td>Milk, vegetables, fruits</td>
+</tr>
+
+<tr>
+<td>Water</td>
+<td>Drinking water, fruits and vegetables</td>
+</tr>
+
+</table>
+
+</section>
+
+
+
+<!-- IMPORTANCE -->
+
+<section class="lesson-card">
+
+<h2>⚡ Importance of Nutrition</h2>
+
+<ul>
+
+<li>Provides energy.</li>
+
+<li>Promotes growth.</li>
+
+<li>Repairs damaged tissues.</li>
+
+<li>Helps maintain healthy body functions.</li>
+
+<li>Supports the immune system.</li>
+
+<li>Helps regulate body processes.</li>
+
+</ul>
+
+</section>
+
+
+
+<!-- CHALLENGE -->
+
+<section class="challenge">
+
+<h2>🧠 ZYNTRA Quick Challenge</h2>
+
+<p>
+Which nutrient is mainly responsible for growth
+and repair of body tissues?
+</p>
+
+<button class="answer-btn"
+onclick="checkAnswer('A')">
+A. Carbohydrates
+</button>
+
+<button class="answer-btn"
+onclick="checkAnswer('B')">
+B. Proteins
+</button>
+
+<button class="answer-btn"
+onclick="checkAnswer('C')">
+C. Water
+</button>
+
+<button class="answer-btn"
+onclick="checkAnswer('D')">
+D. Vitamins
+</button>
+
+<div id="quizResult"></div>
+
+</div>
+
+</section>
+
+
+
+<a href="biology.html" class="back-btn">
+← Back to Biology
+</a>
+
+
+</main>
+
+
+
+<script>
+
+function checkAnswer(answer){
+
+    let result =
+        document.getElementById("quizResult");
+
+    if(answer === "B"){
+
+        result.textContent =
+        "✅ Correct! Proteins are important for growth and repair.";
+
+    }else{
+
+        result.textContent =
+        "❌ Not quite. The correct answer is B. Proteins.";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Music</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070711;--card:#111124;--border:#292743;--purple:#8b5cf6;--blue:#3b82f6;--text:#f5f3ff;--muted:#aaa7c5}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+header{position:sticky;top:0;z-index:5;background:#0b0b19ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 5%}
+nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:23px;font-weight:900;color:#a78bfa;text-decoration:none;letter-spacing:1px}
+.navlinks{display:flex;gap:9px;flex-wrap:wrap}
+.navlinks a{color:#e9e5ff;text-decoration:none;padding:8px 12px;border-radius:9px;background:#17162a;font-size:13px}
+main{max-width:1200px;margin:auto;padding:25px 5% 55px}
+.hero{text-align:center;padding:35px 10px}
+.tag{display:inline-block;background:#241843;color:#c4b5fd;padding:5px 13px;border-radius:20px;font-size:12px;margin-bottom:12px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.2;margin-bottom:12px}
+.gradient{background:linear-gradient(90deg,#c4b5fd,#60a5fa);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero p,.muted{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.stat,.panel,.topic,.lessonbox,.quizbox{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:17px}
+.stat{text-align:center}.stat strong{display:block;font-size:24px;color:#c4b5fd}.stat span{font-size:12px;color:var(--muted)}
+.progress-track{height:8px;background:#27243b;border-radius:20px;overflow:hidden;margin-top:10px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--blue));transition:width .3s}
+.section-title{font-size:22px;margin:28px 0 13px}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.topic{cursor:pointer;transition:.2s}.topic:hover,.topic.active{border-color:var(--purple);transform:translateY(-2px)}
+.topic .emoji{font-size:26px}.topic h3{font-size:16px;margin:4px 0}.topic p{font-size:13px;color:var(--muted)}.topic small{display:block;color:#c4b5fd;margin-top:8px}
+.lesson-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:14px;margin-top:20px}
+.lesson-list{display:grid;gap:8px;margin-top:12px}
+.lesson-btn{background:#17162a;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:10px;text-align:left;cursor:pointer;width:100%}
+.lesson-btn.active{border-color:var(--purple);background:#241843}.lesson-btn.done{border-color:#166534}
+.lesson-btn small{display:block;color:var(--muted)}
+.lessonbox h2{font-size:23px;margin:8px 0}.lessonbox h3{font-size:17px;color:#c4b5fd;margin:17px 0 6px}
+.lessonbox p{margin:9px 0}.lessonbox ul,.lessonbox ol{padding-left:22px;margin:8px 0}
+.example{background:#19162d;border-left:3px solid var(--purple);padding:12px;border-radius:6px;margin:12px 0}
+button{font:inherit}.primary,.secondary{border:0;border-radius:10px;padding:11px 14px;cursor:pointer;font-weight:bold}
+.primary{background:linear-gradient(100deg,var(--purple),var(--blue));color:white}
+.primary:disabled{opacity:.65;cursor:default}.secondary{background:#24213a;color:white;border:1px solid var(--border)}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+.quiz-question{padding:14px;background:#17162a;border:1px solid var(--border);border-radius:12px;margin:12px 0}
+.quiz-question p{font-weight:bold;margin-bottom:8px}.quiz-question label{display:block;padding:6px 0;cursor:pointer}
+.quiz-question input{margin-right:8px;accent-color:var(--purple)}
+#quizResult{margin-top:13px;font-weight:bold}.notice{font-size:13px;color:var(--muted);margin-top:12px}
+footer{text-align:center;color:var(--muted);padding:23px;border-top:1px solid var(--border)}
+@media(max-width:700px){.lesson-layout{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:11px}.stat strong{font-size:21px}main{padding-left:4%;padding-right:4%}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a class="logo" href="index.html">ZYNTRA</a>
+<div class="navlinks"><a href="index.html">Home</a><a href="study.html">Study</a><a href="profile.html">Profile</a></div>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<span class="tag">LISTEN • LEARN • PERFORM</span>
+<h1>Discover <span class="gradient">Music</span></h1>
+<p>Explore music theory, rhythm, melody, instruments, composition, and Kenyan musical traditions.</p>
+</section>
+
+<section class="stats">
+<div class="stat"><strong id="completedCount">0</strong><span>Lessons completed</span></div>
+<div class="stat"><strong id="xpCount">0</strong><span>XP earned</span></div>
+<div class="stat"><strong id="progressPercent">0%</strong><span>Progress</span></div>
+</section>
+<div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+
+<h2 class="section-title">Choose a topic</h2>
+<section class="topics" id="topicGrid"></section>
+
+<div class="lesson-layout">
+<section class="panel">
+<h2 class="section-title" style="margin-top:0">Lessons</h2>
+<p class="muted" id="topicDescription">Choose a topic to begin.</p>
+<div class="lesson-list" id="lessonList"></div>
+</section>
+<section class="lessonbox" id="lessonContent">
+<span class="tag">WELCOME TO ZYNTRA MUSIC</span>
+<h2>Music starts with listening</h2>
+<p>Music is an organised combination of sounds and silences. It can express feelings, tell stories, preserve traditions, and bring communities together.</p>
+<div class="example">Start practising by listening carefully to a song. Notice its beat, rhythm, melody, instruments, and changes in volume.</div>
+<p>Select a topic and lesson to begin.</p>
+</section>
+</div>
+
+<section class="quizbox" style="margin-top:25px">
+<h2 class="section-title" style="margin-top:0">Music Revision Quiz</h2>
+<p class="muted">Answer all six questions to test your knowledge.</p>
+<form id="quizForm"></form>
+<div class="actions"><button class="primary" type="button" id="checkQuiz">Check answers</button><button class="secondary" type="button" id="resetQuiz">Try again</button></div>
+<p id="quizResult" aria-live="polite"></p>
+<p class="notice">Score at least 4 out of 6 to earn 5 bonus XP once per page session.</p>
+</section>
+</main>
+
+<footer>© 2026 ZYNTRA • Learn something new every day.</footer>
+
+<script>
+const topics=[
+{title:"Elements of Music",emoji:"🎼",description:"Understand the building blocks of music.",lessons:[
+{title:"Pitch, Melody and Harmony",content:`
+<h3>Pitch</h3>
+<p>Pitch describes how high or low a musical sound is. It depends mainly on the frequency of the sound wave.</p>
+<h3>Melody</h3>
+<p>A melody is a sequence of musical notes that listeners often recognise as the main tune of a song.</p>
+<h3>Harmony</h3>
+<p>Harmony occurs when different notes sound together to support or enrich a melody.</p>
+<div class="example">Practice: Sing a simple tune. Then ask a classmate to hold a different suitable note while you sing the tune, with teacher guidance. Listen to how the sounds combine.</div>`},
+{title:"Dynamics, Tempo and Timbre",content:`
+<h3>Dynamics</h3>
+<p>Dynamics refer to how loud or soft music is performed. A gradual increase in loudness is called a crescendo; a gradual decrease is a diminuendo.</p>
+<h3>Tempo</h3>
+<p>Tempo is the speed of a piece of music. It may be slow, moderate, or fast.</p>
+<h3>Timbre</h3>
+<p>Timbre is the tone quality that helps distinguish one instrument or voice from another, even when they perform the same note.</p>
+<h3>Texture</h3>
+<p>Musical texture describes how different musical parts are combined, such as one melody alone or several parts sounding together.</p>
+<div class="example">Practice: Listen to two different instruments playing the same note. Describe how their tone qualities differ.</div>`}
+]},
+{title:"Rhythm and Notation",emoji:"🥁",description:"Learn beats, note values, rests, and time signatures.",lessons:[
+{title:"Beat, Rhythm and Time Signature",content:`
+<h3>Beat</h3>
+<p>The beat is the regular pulse that listeners may tap along with in music.</p>
+<h3>Rhythm</h3>
+<p>Rhythm is the arrangement of sounds and silences over time. Different note lengths create different rhythmic patterns.</p>
+<h3>Time signature</h3>
+<p>A time signature appears at the beginning of a notated piece. In a simple time signature such as 4/4, the top number indicates four beats in each bar, while the bottom number identifies the note value used as the beat unit.</p>
+<div class="example">Practice: Listen to a song and tap a steady pulse. Then clap a rhythm over that pulse. Notice that rhythm and beat are related but not identical.</div>`},
+{title:"Note Values and Rests",content:`
+<h3>Note values</h3>
+<p>In common introductory notation, a semibreve (whole note) lasts four crotchet beats in 4/4 time, a minim (half note) lasts two, and a crotchet (quarter note) lasts one.</p>
+<p>A quaver (eighth note) lasts half a crotchet beat, and a semiquaver (sixteenth note) lasts a quarter of a crotchet beat.</p>
+<h3>Rests</h3>
+<p>A rest represents a period of silence. Different rests have durations corresponding to different note values.</p>
+<div class="example">Practice in 4/4: Count “1, 2, 3, 4” steadily. Clap once per count, then try clapping twice evenly per count. Keep the pulse steady.</div>
+<p>Actual durations depend on the tempo and the time signature.</p>`}
+]},
+{title:"Musical Instruments",emoji:"🎹",description:"Identify instrument families and playing methods.",lessons:[
+{title:"String and Wind Instruments",content:`
+<h3>String instruments</h3>
+<p>String instruments produce sound through vibrating strings. Depending on the instrument, the strings may be plucked, bowed, or struck.</p>
+<p>Examples include the violin, guitar, cello, and harp.</p>
+<h3>Wind instruments</h3>
+<p>Wind instruments produce sound when air vibrates within or across part of the instrument.</p>
+<p>Examples include the flute, trumpet, clarinet, and saxophone.</p>
+<h3>Instrument identification</h3>
+<p>Listen for tone quality, pitch range, articulation, and the way notes begin and end.</p>
+<div class="example">Practice: Listen to a short instrumental recording and write down which instruments you recognise and what clues helped you identify them.</div>`},
+{title:"Percussion and Keyboard Instruments",content:`
+<h3>Percussion</h3>
+<p>Percussion instruments commonly produce sound when struck, shaken, or scraped. Examples include drums, tambourines, shakers, and xylophones.</p>
+<h3>Keyboard instruments</h3>
+<p>A piano produces sound when hammers strike strings. An electronic keyboard generates sound electronically.</p>
+<h3>Ensembles</h3>
+<p>An ensemble is a group of performers playing or singing together. Instruments may provide melody, harmony, bass, or rhythm.</p>
+<div class="example">Practice: Make a simple rhythm by clapping or tapping a desk gently. Keep the volume comfortable and repeat the pattern steadily.</div>`}
+]},
+{title:"Voice and Performance",emoji:"🎤",description:"Explore singing, vocal care, and ensemble skills.",lessons:[
+{title:"The Human Voice",content:`
+<h3>How the voice works</h3>
+<p>Air from the lungs causes the vocal folds in the larynx to vibrate. The mouth and other vocal spaces help shape the sound.</p>
+<h3>Vocal techniques</h3>
+<ul><li>Breathing: use comfortable, controlled breathing.</li><li>Pitch: aim to sing the intended notes.</li><li>Diction: pronounce words clearly.</li><li>Posture: maintain a relaxed, balanced position.</li><li>Expression: communicate the meaning and mood of the music.</li></ul>
+<h3>Vocal care</h3>
+<p>Warm up gently, drink water, avoid forcing the voice, and rest when it feels strained. Seek advice from a qualified teacher if problems persist.</p>
+<div class="example">Practice: Sing a short, comfortable melody softly and clearly. Focus on accurate notes rather than volume.</div>`},
+{title:"Choirs and Group Performance",content:`
+<h3>Choirs</h3>
+<p>A choir is a group of singers performing together. Choirs may sing in unison, where everyone sings the same melody, or in parts with different notes.</p>
+<h3>Ensemble skills</h3>
+<ul><li>Follow the conductor or agreed musical cues.</li><li>Keep a steady tempo.</li><li>Listen to other performers.</li><li>Begin and finish together.</li><li>Balance volume so every part can be heard appropriately.</li></ul>
+<h3>Rehearsal</h3>
+<p>Rehearsals help performers learn their parts, improve timing, correct mistakes, and prepare for a performance.</p>
+<div class="example">Practice: Sing a familiar school song with a group. Agree on the starting pitch, tempo, and ending before beginning.</div>`}
+]},
+{title:"Kenyan Music and Traditions",emoji:"🇰🇪",description:"Explore musical traditions across Kenyan communities.",lessons:[
+{title:"Traditional Music in Kenya",content:`
+<h3>Music and community</h3>
+<p>Music in Kenya reflects many communities, languages, histories, and social occasions. It may accompany celebrations, ceremonies, storytelling, work, worship, and dance.</p>
+<h3>Examples of instruments</h3>
+<ul><li>Nyatiti: a traditional lyre associated with the Luo community.</li><li>Orutu: a traditional one-stringed bowed instrument associated with Luo musical traditions.</li><li>Isukuti drums: associated with musical and dance traditions among the Luhya communities of western Kenya.</li><li>Various drums, rattles, flutes, lyres, and other instruments are used across different Kenyan traditions.</li></ul>
+<h3>Learning respectfully</h3>
+<p>Traditions vary within communities and change over time. Listen to knowledgeable performers and learn the cultural context of the music.</p>
+<div class="example">Practice: Choose a Kenyan musical tradition, identify its instruments and performance setting, and explain how music supports community life.</div>`},
+{title:"Contemporary Kenyan Music",content:`
+<h3>Modern musical styles</h3>
+<p>Contemporary Kenyan music includes many styles, such as gospel, hip-hop, gengetone, benga, Afro-pop, reggae, and fusion music.</p>
+<h3>Musical influences</h3>
+<p>Artists may combine local languages, traditional rhythms, electronic production, acoustic instruments, and influences from music around the world.</p>
+<h3>Listening analysis</h3>
+<p>When analysing a song, consider its lyrics, rhythm, melody, instruments, structure, intended audience, and social message.</p>
+<div class="example">Practice: Select a Kenyan song. Describe its musical style, identify the instruments or sounds you hear, and explain the message or mood it communicates.</div>`}
+]},
+{title:"Composition and Music Appreciation",emoji:"🎶",description:"Create simple music and listen critically.",lessons:[
+{title:"Creating a Simple Composition",content:`
+<h3>Composition</h3>
+<p>Composition is the process of creating and organising music. A composition can be a melody, rhythm, song, or instrumental piece.</p>
+<h3>Steps for beginners</h3>
+<ol><li>Choose a mood or idea.</li><li>Create a short rhythmic pattern.</li><li>Sing or play a simple melody.</li><li>Repeat or vary the melody to develop the idea.</li><li>Decide how the piece will begin and end.</li><li>Perform it and make improvements.</li></ol>
+<h3>Musical structure</h3>
+<p>Repetition helps listeners recognise an idea. Contrast introduces a different idea. Verse and chorus are common sections in songs.</p>
+<div class="example">Practice: Create a four-beat rhythm using claps and rests. Repeat it twice, then change the last beat to make a variation.</div>`},
+{title:"Listening and Music Appreciation",content:`
+<h3>Active listening</h3>
+<p>Music appreciation involves listening carefully, describing what you hear, and considering how the music creates meaning or emotion.</p>
+<h3>What to listen for</h3>
+<ul><li>Tempo and rhythm.</li><li>Melody and harmony.</li><li>Instrument and vocal timbres.</li><li>Changes in dynamics.</li><li>Structure, repetition, and contrast.</li><li>Cultural context and purpose.</li></ul>
+<h3>Writing a short review</h3>
+<p>Introduce the piece, describe its main musical features, give examples of what you hear, and explain your response with reasons.</p>
+<div class="example">Practice: Listen to a song from beginning to end. Write five sentences about its tempo, instruments, melody, mood, and overall effect.</div>`}
+]}
+];
+
+const questions=[
+{q:"What does pitch describe?",a:["How high or low a sound is","How expensive an instrument is","How long a concert lasts"],c:0},
+{q:"What is the regular pulse of music called?",a:["Timbre","Beat","Harmony"],c:1},
+{q:"Which instrument is a percussion instrument?",a:["Flute","Violin","Drum"],c:2},
+{q:"What is a choir?",a:["A group of singers","A type of time signature","A single musical note"],c:0},
+{q:"The nyatiti is traditionally associated with which Kenyan community?",a:["Luo","Maasai only","Swahili only"],c:0},
+{q:"What does tempo describe?",a:["The speed of music","The colour of an instrument","The words in a song"],c:0}
+];
+
+const username=localStorage.getItem("zyntraUser")||"guest";
+const userKey=username.toLowerCase().replace(/[^a-z0-9_-]/g,"_");
+const completedKey="zyntraMusicCompleted_"+userKey;
+const xpKey="zyntraMusicXP_"+userKey;
+let completed=JSON.parse(localStorage.getItem(completedKey)||"[]");
+let xp=Number(localStorage.getItem(xpKey)||0);
+let currentTopic=0,currentLesson=0,quizRewarded=false;
+
+const topicGrid=document.getElementById("topicGrid");
+const lessonList=document.getElementById("lessonList");
+const lessonContent=document.getElementById("lessonContent");
+const lessonId=(t,l)=>t+"-"+l;
+const isDone=(t,l)=>completed.includes(lessonId(t,l));
+
+function updateStats(){
+ const total=topics.reduce((sum,t)=>sum+t.lessons.length,0);
+ const percent=Math.round(completed.length/total*100);
+ document.getElementById("completedCount").textContent=completed.length;
+ document.getElementById("xpCount").textContent=xp;
+ document.getElementById("progressPercent").textContent=percent+"%";
+ document.getElementById("progressBar").style.width=percent+"%";
+ topicGrid.querySelectorAll(".topic").forEach((el,i)=>{
+  const count=topics[i].lessons.filter((_,j)=>isDone(i,j)).length;
+  el.querySelector("small").textContent=count+"/"+topics[i].lessons.length+" lessons completed";
+ });
+}
+function renderTopics(){
+ topicGrid.innerHTML="";
+ topics.forEach((t,i)=>{
+  const el=document.createElement("div");
+  el.className="topic"+(i===currentTopic?" active":"");
+  el.tabIndex=0;
+  el.innerHTML=`<div class="emoji">${t.emoji}</div><h3>${t.title}</h3><p>${t.description}</p><small></small>`;
+  el.onclick=()=>{currentTopic=i;currentLesson=0;renderTopics();renderLessons();renderLesson()};
+  el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();el.click()}};
+  topicGrid.appendChild(el);
+ });
+ updateStats();
+}
+function renderLessons(){
+ const t=topics[currentTopic];
+ document.getElementById("topicDescription").textContent=t.description;
+ lessonList.innerHTML="";
+ t.lessons.forEach((lesson,i)=>{
+  const btn=document.createElement("button");
+  btn.className="lesson-btn"+(i===currentLesson?" active":"")+(isDone(currentTopic,i)?" done":"");
+  btn.innerHTML=(isDone(currentTopic,i)?"✓ ":"")+lesson.title+"<small>"+(isDone(currentTopic,i)?"Completed • +10 XP":"Lesson "+(i+1))+"</small>";
+  btn.onclick=()=>{currentLesson=i;renderLessons();renderLesson()};
+  lessonList.appendChild(btn);
+ });
+}
+function renderLesson(){
+ const t=topics[currentTopic],l=t.lessons[currentLesson],done=isDone(currentTopic,currentLesson);
+ lessonContent.innerHTML=`
+ <span class="tag">${t.emoji} ${t.title}</span>
+ <h2>${l.title}</h2><p class="muted">Lesson ${currentLesson+1} of ${t.lessons.length}</p>
+ ${l.content}
+ <div class="actions"><button class="primary" id="completeLesson" ${done?"disabled":""}>${done?"✓ Lesson Completed":"Mark Lesson Complete (+10 XP)"}</button><button class="secondary" id="nextLesson">Next Lesson →</button></div>
+ ${done?'<p class="notice">XP for this lesson has already been awarded.</p>':""}`;
+ document.getElementById("completeLesson").onclick=()=>{
+  if(!isDone(currentTopic,currentLesson)){
+   completed.push(lessonId(currentTopic,currentLesson));xp+=10;
+   localStorage.setItem(completedKey,JSON.stringify(completed));
+   localStorage.setItem(xpKey,String(xp));
+   renderTopics();renderLessons();renderLesson();
+  }
+ };
+ document.getElementById("nextLesson").onclick=()=>{
+  if(currentLesson<topics[currentTopic].lessons.length-1)currentLesson++;
+  else if(currentTopic<topics.length-1){currentTopic++;currentLesson=0}
+  else{alert("Well done! You have reached the final Music lesson.");return}
+  renderTopics();renderLessons();renderLesson();
+ };
+}
+function renderQuiz(){
+ const form=document.getElementById("quizForm");form.innerHTML="";
+ questions.forEach((q,i)=>{
+  const box=document.createElement("div");box.className="quiz-question";
+  const p=document.createElement("p");p.textContent=(i+1)+". "+q.q;box.appendChild(p);
+  q.a.forEach((answer,j)=>{
+   const label=document.createElement("label");
+   const input=document.createElement("input");input.type="radio";input.name="q"+i;input.value=j;
+   label.appendChild(input);label.appendChild(document.createTextNode(answer));box.appendChild(label);
+  });
+  form.appendChild(box);
+ });
+}
+document.getElementById("checkQuiz").onclick=()=>{
+ let score=0,answered=0;
+ questions.forEach((q,i)=>{
+  const selected=document.querySelector('input[name="q'+i+'"]:checked');
+  if(selected){answered++;if(Number(selected.value)===q.c)score++}
+ });
+ const result=document.getElementById("quizResult");
+ if(answered<questions.length){result.textContent="Please answer all six questions first.";return}
+ result.textContent="Your score: "+score+"/"+questions.length+". "+(score===6?"Excellent work!":score>=4?"Good work! Keep practising.":"Review the lessons and try again.");
+ if(score>=4&&!quizRewarded){xp+=5;quizRewarded=true;localStorage.setItem(xpKey,String(xp));result.textContent+=" You earned 5 bonus XP!";updateStats()}
+};
+document.getElementById("resetQuiz").onclick=()=>{renderQuiz();document.getElementById("quizResult").textContent=""};
+renderTopics();renderLessons();renderLesson();renderQuiz();
+</script>
+</body>
+</html>

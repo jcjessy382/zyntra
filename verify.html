@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA | Verify Email</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial,sans-serif;
+    background:
+        radial-gradient(circle at top left,rgba(139,92,246,.25),transparent 35%),
+        radial-gradient(circle at bottom right,rgba(59,130,246,.20),transparent 35%),
+        #070711;
+    color:white;
+    padding:25px;
+}
+
+.container{
+    width:100%;
+    max-width:470px;
+    background:rgba(13,13,27,.94);
+    border:1px solid rgba(139,92,246,.3);
+    border-radius:24px;
+    padding:38px;
+    box-shadow:0 20px 70px rgba(0,0,0,.45);
+}
+
+.logo{
+    text-align:center;
+    font-size:36px;
+    font-weight:900;
+    letter-spacing:3px;
+    background:linear-gradient(90deg,#8b5cf6,#3b82f6,#06b6d4);
+    -webkit-background-clip:text;
+    color:transparent;
+    margin-bottom:10px;
+}
+
+.icon{
+    width:75px;
+    height:75px;
+    margin:10px auto 20px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    background:rgba(139,92,246,.12);
+    border:1px solid rgba(139,92,246,.3);
+}
+
+h1{
+    text-align:center;
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#aaa;
+    line-height:1.5;
+    margin-bottom:25px;
+}
+
+.email-display{
+    text-align:center;
+    color:#8b5cf6;
+    font-weight:bold;
+    word-break:break-word;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    color:#ddd;
+    font-size:14px;
+    margin-bottom:8px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #292943;
+    background:#090914;
+    color:white;
+    outline:none;
+    font-size:17px;
+}
+
+input:focus{
+    border-color:#8b5cf6;
+    box-shadow:0 0 0 3px rgba(139,92,246,.12);
+}
+
+#code{
+    text-align:center;
+    letter-spacing:8px;
+    font-size:25px;
+    font-weight:bold;
+}
+
+button{
+    width:100%;
+    border:none;
+    padding:15px;
+    border-radius:13px;
+    background:linear-gradient(90deg,#8b5cf6,#3b82f6);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+button:hover{
+    opacity:.92;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.resend{
+    margin-top:18px;
+    text-align:center;
+}
+
+.resend button{
+    width:auto;
+    padding:0;
+    background:none;
+    color:#8b5cf6;
+    font-size:14px;
+    margin:0;
+}
+
+.resend button:disabled{
+    color:#777;
+}
+
+.change-email{
+    text-align:center;
+    margin-top:18px;
+}
+
+.change-email a{
+    color:#aaa;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.change-email a:hover{
+    color:#8b5cf6;
+}
+
+.status{
+    display:none;
+    margin-top:17px;
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+    font-size:14px;
+    line-height:1.4;
+}
+
+.status.success{
+    display:block;
+    background:rgba(34,197,94,.12);
+    border:1px solid rgba(34,197,94,.3);
+    color:#86efac;
+}
+
+.status.error{
+    display:block;
+    background:rgba(239,68,68,.12);
+    border:1px solid rgba(239,68,68,.3);
+    color:#fca5a5;
+}
+
+.info{
+    margin-top:22px;
+    padding:13px;
+    border-radius:10px;
+    background:rgba(59,130,246,.08);
+    border:1px solid rgba(59,130,246,.2);
+    color:#aaa;
+    font-size:12px;
+    line-height:1.5;
+    text-align:center;
+}
+
+@media(max-width:500px){
+
+    .container{
+        padding:28px 20px;
+    }
+
+    .logo{
+        font-size:30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">ZYNTRA</div>
+
+    <div class="icon">
+        ✉️
+    </div>
+
+    <h1>Verify Your Email</h1>
+
+    <p class="subtitle">
+        We sent a 6-digit verification code to:
+    </p>
+
+    <div class="email-display" id="emailDisplay">
+        Loading...
+    </div>
+
+    <form id="verifyForm">
+
+        <div class="form-group">
+
+            <label for="email">
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="code">
+                Verification Code
+            </label>
+
+            <input
+                type="text"
+                id="code"
+                placeholder="000000"
+                maxlength="6"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                required
+            >
+
+        </div>
+
+        <button
+            type="submit"
+            id="verifyButton"
+        >
+            Verify Account
+        </button>
+
+        <div
+            id="status"
+            class="status"
+        ></div>
+
+    </form>
+
+    <div class="resend">
+
+        <button
+            type="button"
+            id="resendButton"
+        >
+            Resend Code
+        </button>
+
+        <div
+            id="countdown"
+            style="color:#777;font-size:12px;margin-top:7px;"
+        ></div>
+
+    </div>
+
+    <div class="change-email">
+        <a href="create-account.html">
+            ← Create a different account
+        </a>
+    </div>
+
+    <div class="info">
+        The verification code expires after 10 minutes.
+        Never share your verification code with anyone.
+    </div>
+
+</div>
+
+<script src="auth.js"></script>
+
+<script>
+
+const emailInput =
+    document.getElementById("email");
+
+const codeInput =
+    document.getElementById("code");
+
+const emailDisplay =
+    document.getElementById("emailDisplay");
+
+const verifyForm =
+    document.getElementById("verifyForm");
+
+const verifyButton =
+    document.getElementById("verifyButton");
+
+const resendButton =
+    document.getElementById("resendButton");
+
+const countdown =
+    document.getElementById("countdown");
+
+const statusBox =
+    document.getElementById("status");
+
+
+// =====================================================
+// LOAD PENDING EMAIL
+// =====================================================
+
+const savedEmail =
+    sessionStorage.getItem("zyntraPendingEmail");
+
+if(savedEmail){
+
+    emailInput.value = savedEmail;
+
+    emailDisplay.textContent = savedEmail;
+
+}else{
+
+    emailDisplay.textContent =
+        "Enter the email used to create your account.";
+
+}
+
+
+// =====================================================
+// STATUS MESSAGE
+// =====================================================
+
+function showStatus(message,type){
+
+    statusBox.textContent = message;
+
+    statusBox.className =
+        "status " + type;
+}
+
+
+// =====================================================
+// ONLY ALLOW NUMBERS
+// =====================================================
+
+codeInput.addEventListener("input",function(){
+
+    this.value =
+        this.value.replace(/\D/g,"").slice(0,6);
+
+});
+
+
+// =====================================================
+// VERIFY ACCOUNT
+// =====================================================
+
+verifyForm.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+        const email =
+            emailInput.value.trim();
+
+        const code =
+            codeInput.value.trim();
+
+
+        if(!email){
+
+            showStatus(
+                "Please enter your email address.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if(!/^\d{6}$/.test(code)){
+
+            showStatus(
+                "Please enter the 6-digit verification code.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        verifyButton.disabled = true;
+
+        verifyButton.textContent =
+            "Verifying...";
+
+
+        showStatus(
+            "Checking your verification code...",
+            "success"
+        );
+
+
+        try{
+
+            const response =
+                await fetch(
+                    "http://localhost:3000/api/register/verify",
+                    {
+                        method:"POST",
+
+                        headers:{
+                            "Content-Type":"application/json"
+                        },
+
+                        body:JSON.stringify({
+                            email:email,
+                            code:code
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if(!response.ok || !data.success){
+
+                throw new Error(
+                    data.message ||
+                    "Verification failed."
+                );
+
+            }
+
+
+            // =========================================
+            // ACCOUNT IS NOW VERIFIED
+            // =========================================
+
+            const user =
+                data.user ||
+                data.student;
+
+
+            if(!user){
+
+                throw new Error(
+                    "Account verified, but user information was not returned."
+                );
+
+            }
+
+
+            // Save login ONLY after verification
+            localStorage.setItem(
+                "zyntraUser",
+                JSON.stringify(user)
+            );
+
+
+            if(user.grade || user.class){
+
+                localStorage.setItem(
+                    "zyntraClass",
+                    user.grade || user.class
+                );
+
+            }
+
+
+            sessionStorage.removeItem(
+                "zyntraPendingEmail"
+            );
+
+
+            showStatus(
+                "Email verified successfully! Welcome to ZYNTRA.",
+                "success"
+            );
+
+
+            verifyButton.textContent =
+                "Verified ✓";
+
+
+            // =========================================
+            // OPEN SMART STUDY
+            // =========================================
+
+            setTimeout(function(){
+
+                window.location.href =
+                    "study.html";
+
+            },1200);
+
+
+        }catch(error){
+
+            console.error(
+                "ZYNTRA verification error:",
+                error
+            );
+
+
+            showStatus(
+                error.message ||
+                "Could not connect to ZYNTRA server.",
+                "error"
+            );
+
+
+            verifyButton.disabled = false;
+
+            verifyButton.textContent =
+                "Verify Account";
+
+        }
+
+    }
+);
+
+
+// =====================================================
+// RESEND CODE
+// =====================================================
+
+let resendTimer = null;
+
+function startResendCountdown(seconds){
+
+    clearInterval(resendTimer);
+
+    resendButton.disabled = true;
+
+    let remaining = seconds;
+
+    countdown.textContent =
+        "You can request another code in " +
+        remaining +
+        " seconds.";
+
+    resendTimer = setInterval(function(){
+
+        remaining--;
+
+        if(remaining <= 0){
+
+            clearInterval(resendTimer);
+
+            resendButton.disabled = false;
+
+            countdown.textContent =
+                "You can request a new code now.";
+
+            return;
+
+        }
+
+        countdown.textContent =
+            "You can request another code in " +
+            remaining +
+            " seconds.";
+
+    },1000);
+}
+
+
+resendButton.addEventListener(
+    "click",
+    async function(){
+
+        const email =
+            emailInput.value.trim();
+
+
+        if(!email){
+
+            showStatus(
+                "Please enter your email address.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        resendButton.disabled = true;
+
+        resendButton.textContent =
+            "Sending...";
+
+
+        try{
+
+            const response =
+                await fetch(
+                    "http://localhost:3000/api/register/resend",
+                    {
+                        method:"POST",
+
+                        headers:{
+                            "Content-Type":"application/json"
+                        },
+
+                        body:JSON.stringify({
+                            email:email
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if(!response.ok || !data.success){
+
+                throw new Error(
+                    data.message ||
+                    "Could not resend the verification code."
+                );
+
+            }
+
+
+            showStatus(
+                "A new verification code has been sent to your email.",
+                "success"
+            );
+
+
+            startResendCountdown(60);
+
+
+        }catch(error){
+
+            console.error(
+                "ZYNTRA resend error:",
+                error
+            );
+
+
+            showStatus(
+                error.message ||
+                "Could not resend the code.",
+                "error"
+            );
+
+
+            resendButton.disabled = false;
+
+        }
+
+
+        resendButton.textContent =
+            "Resend Code";
+
+    }
+);
+
+
+// =====================================================
+// START INITIAL RESEND TIMER
+// =====================================================
+
+startResendCountdown(60);
+
+</script>
+
+</body>
+</html>
+
+

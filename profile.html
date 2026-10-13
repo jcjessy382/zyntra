@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA | Profile</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#070711;
+    --bg2:#0d0d1b;
+    --purple:#8b5cf6;
+    --blue:#3b82f6;
+    --pink:#ec4899;
+    --cyan:#06b6d4;
+    --green:#22c55e;
+    --red:#ef4444;
+    --text:#ffffff;
+    --muted:#a1a1b5;
+    --border:rgba(255,255,255,.09);
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(139,92,246,.16),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(59,130,246,.14),
+            transparent 30%
+        ),
+        var(--bg);
+
+    color:var(--text);
+}
+
+
+/* =====================================================
+   NAVBAR
+   ===================================================== */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 6%;
+
+    background:rgba(7,7,17,.88);
+
+    border-bottom:1px solid var(--border);
+
+    backdrop-filter:blur(18px);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:white;
+    text-decoration:none;
+}
+
+.brand-icon{
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    font-size:19px;
+    font-weight:900;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+}
+
+.brand-name{
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.nav-links a{
+    padding:10px 13px;
+
+    border-radius:10px;
+
+    color:#aaaabd;
+    text-decoration:none;
+
+    font-size:14px;
+
+    transition:.2s;
+}
+
+.nav-links a:hover{
+    color:white;
+    background:rgba(139,92,246,.13);
+}
+
+.profile-link{
+    width:38px;
+    height:38px;
+
+    padding:0 !important;
+
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50% !important;
+
+    color:white !important;
+
+    font-weight:bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        ) !important;
+}
+
+
+/* =====================================================
+   MAIN
+   ===================================================== */
+
+.container{
+    width:90%;
+    max-width:900px;
+
+    margin:auto;
+
+    padding:45px 0 70px;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.page-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.page-header h1{
+    font-size:38px;
+    margin-bottom:9px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #b9a4ff,
+            #78a7ff
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+}
+
+.page-header p{
+    color:var(--muted);
+    font-size:15px;
+}
+
+
+/* =====================================================
+   PROFILE CARD
+   ===================================================== */
+
+.profile-card{
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    background:rgba(13,13,27,.88);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.35);
+
+    backdrop-filter:blur(18px);
+}
+
+
+/* =====================================================
+   PROFILE TOP
+   ===================================================== */
+
+.profile-top{
+    position:relative;
+
+    padding:38px 30px 30px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.12),
+            rgba(59,130,246,.08)
+        );
+}
+
+.avatar{
+    width:92px;
+    height:92px;
+
+    margin:0 auto 16px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:36px;
+    font-weight:900;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+    box-shadow:
+        0 15px 40px
+        rgba(99,102,241,.30);
+
+    border:
+        4px solid
+        rgba(255,255,255,.10);
+}
+
+.profile-top h2{
+    font-size:25px;
+    margin-bottom:6px;
+}
+
+.profile-top p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+
+/* =====================================================
+   INFORMATION
+   ===================================================== */
+
+.info-section{
+    padding:28px 30px;
+}
+
+.info-title{
+    font-size:18px;
+    margin-bottom:18px;
+}
+
+.info-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+}
+
+.info-box{
+    padding:17px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.035);
+
+    transition:.2s;
+}
+
+.info-box:hover{
+    transform:translateY(-2px);
+
+    border-color:
+        rgba(139,92,246,.35);
+
+    background:
+        rgba(139,92,246,.06);
+}
+
+.info-box span{
+    display:block;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-bottom:7px;
+}
+
+.info-box strong{
+    display:block;
+
+    font-size:15px;
+
+    word-break:break-word;
+}
+
+
+/* =====================================================
+   GRADE
+   ===================================================== */
+
+.grade-section{
+    padding:0 30px 28px;
+}
+
+.grade-section label{
+    display:block;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-bottom:8px;
+}
+
+.grade-select{
+    width:100%;
+
+    padding:13px 14px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    outline:none;
+
+    background:#111121;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.grade-select:focus{
+    border-color:var(--purple);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.12);
+}
+
+.grade-select option{
+    background:#111121;
+    color:white;
+}
+
+
+/* =====================================================
+   SAVE MESSAGE
+   ===================================================== */
+
+.save-message{
+    margin-top:10px;
+
+    font-size:13px;
+
+    color:var(--green);
+
+    opacity:0;
+
+    transform:translateY(-4px);
+
+    transition:.25s;
+}
+
+.save-message.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+
+.actions{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+    padding:0 30px 30px;
+}
+
+.action-btn{
+    padding:13px 15px;
+
+    border:0;
+
+    border-radius:12px;
+
+    color:white;
+
+    font-size:14px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    text-align:center;
+
+    transition:.2s;
+}
+
+.study-btn{
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+}
+
+.saved-btn{
+    background:
+        rgba(139,92,246,.12);
+
+    border:
+        1px solid
+        rgba(139,92,246,.30);
+
+    color:#d8c9ff;
+}
+
+.logout-btn{
+    background:
+        rgba(239,68,68,.12);
+
+    border:
+        1px solid
+        rgba(239,68,68,.28);
+
+    color:#fca5a5;
+}
+
+.action-btn:hover{
+    transform:translateY(-2px);
+}
+
+
+/* =====================================================
+   NOT LOGGED IN
+   ===================================================== */
+
+.not-logged-in{
+    display:none;
+
+    text-align:center;
+
+    padding:50px 25px;
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    background:rgba(13,13,27,.88);
+}
+
+.not-logged-in h2{
+    margin-bottom:10px;
+}
+
+.not-logged-in p{
+    color:var(--muted);
+
+    margin-bottom:22px;
+}
+
+.login-btn{
+    display:inline-block;
+
+    padding:12px 22px;
+
+    border-radius:11px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media(max-width:700px){
+
+    .nav-links a:not(.profile-link){
+        display:none;
+    }
+
+    .container{
+        width:94%;
+        padding-top:30px;
+    }
+
+    .page-header h1{
+        font-size:31px;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .actions{
+        grid-template-columns:1fr;
+    }
+
+    .profile-top,
+    .info-section{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .grade-section,
+    .actions{
+        padding-left:20px;
+        padding-right:20px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<nav class="navbar">
+
+
+<a href="index.html" class="brand">
+
+    <div class="brand-icon">
+        Z
+    </div>
+
+    <span class="brand-name">
+        ZYNTRA
+    </span>
+
+</a>
+
+
+<div class="nav-links">
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="study.html">
+        Study
+    </a>
+
+    <a href="ai.html">
+        AI
+    </a>
+
+    <a href="planner.html">
+        Planner
+    </a>
+
+    <a href="challenge.html">
+        Challenges
+    </a>
+
+    <a
+        href="profile.html"
+        class="profile-link"
+        id="profileLetter"
+    >
+        S
+    </a>
+
+</div>
+
+
+</nav>
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main class="container">
+
+
+<div class="page-header">
+
+    <h1>
+        My Profile
+    </h1>
+
+    <p>
+        Manage your ZYNTRA student profile.
+    </p>
+
+</div>
+
+
+<!-- =================================================
+     LOGGED-IN PROFILE
+     ================================================= -->
+
+<div
+    class="profile-card"
+    id="profileCard"
+>
+
+    <div class="profile-top">
+
+        <div
+            class="avatar"
+            id="avatar"
+        >
+            S
+        </div>
+
+        <h2 id="profileName">
+            Student
+        </h2>
+
+        <p id="profileUsername">
+            @student
+        </p>
+
+    </div>
+
+
+    <!-- ACCOUNT INFORMATION -->
+
+    <div class="info-section">
+
+        <h3 class="info-title">
+            Account Information
+        </h3>
+
+
+        <div class="info-grid">
+
+            <div class="info-box">
+
+                <span>
+                    Full Name
+                </span>
+
+                <strong id="fullName">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    Username
+                </span>
+
+                <strong id="username">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    Email
+                </span>
+
+                <strong id="email">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    Current Class
+                </span>
+
+                <strong id="currentGrade">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CLASS / GRADE
+         ================================================= -->
+
+    <div class="grade-section">
+
+        <label for="gradeSelect">
+            Change Class / Grade
+        </label>
+
+        <select
+            id="gradeSelect"
+            class="grade-select"
+        >
+
+            <option value="Form One">
+                Form One
+            </option>
+
+            <option value="Form Two">
+                Form Two
+            </option>
+
+            <option value="Form Three">
+                Form Three
+            </option>
+
+            <option value="Form Four">
+                Form Four
+            </option>
+
+            <option value="Grade 10">
+                Grade 10
+            </option>
+
+            <option value="Grade 11">
+                Grade 11
+            </option>
+
+            <option value="Grade 12">
+                Grade 12
+            </option>
+
+        </select>
+
+        <div
+            class="save-message"
+            id="saveMessage"
+        >
+            ✓ Class updated successfully
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ACTIONS
+         ================================================= -->
+
+    <div class="actions">
+
+        <a
+            href="study.html"
+            class="action-btn study-btn"
+        >
+            📚 Smart Study
+        </a>
+
+
+        <a
+            href="saved.html"
+            class="action-btn saved-btn"
+        >
+            🔖 Saved Posts
+        </a>
+
+
+        <button
+            type="button"
+            class="action-btn logout-btn"
+            id="logoutButton"
+        >
+            🚪 Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     NOT LOGGED IN
+     ================================================= -->
+
+<div
+    class="not-logged-in"
+    id="notLoggedIn"
+>
+
+    <h2>
+        You are not logged in
+    </h2>
+
+    <p>
+        Please log in to view your ZYNTRA profile.
+    </p>
+
+    <a
+        href="login.html"
+        class="login-btn"
+    >
+        Login
+    </a>
+
+</div>
+
+
+</main>
+
+<!-- =====================================================
+     ZYNTRA AUTH
+     ===================================================== -->
+
+<script src="auth.js"></script>
+
+<script>
+
+/* =====================================================
+   ELEMENTS
+   ===================================================== */
+
+const profileCard =
+    document.getElementById("profileCard");
+
+const notLoggedIn =
+    document.getElementById("notLoggedIn");
+
+const logoutButton =
+    document.getElementById("logoutButton");
+
+const gradeSelect =
+    document.getElementById("gradeSelect");
+
+const saveMessage =
+    document.getElementById("saveMessage");
+
+
+/* =====================================================
+   CHECK LOGIN
+   ===================================================== */
+
+const user =
+    getZyntraUser();
+
+
+if(!user){
+
+    profileCard.style.display =
+        "none";
+
+    notLoggedIn.style.display =
+        "block";
+
+}else{
+
+    profileCard.style.display =
+        "block";
+
+    notLoggedIn.style.display =
+        "none";
+
+
+    /* =================================================
+       USER DATA
+       ================================================= */
+
+    const name =
+        user.name ||
+        user.fullName ||
+        user.username ||
+        "Student";
+
+
+    const username =
+        user.username ||
+        user.name ||
+        "student";
+
+
+    const email =
+        user.email ||
+        "Not available";
+
+
+    const grade =
+        getZyntraGrade();
+
+
+    /* =================================================
+       NAME
+       ================================================= */
+
+    document.getElementById(
+        "profileName"
+    ).textContent = name;
+
+
+    document.getElementById(
+        "fullName"
+    ).textContent =
+        user.fullName ||
+        user.name ||
+        "Not available";
+
+
+    /* =================================================
+       USERNAME
+       ================================================= */
+
+    document.getElementById(
+        "profileUsername"
+    ).textContent =
+        "@" + username;
+
+
+    document.getElementById(
+        "username"
+    ).textContent =
+        username;
+
+
+    /* =================================================
+       EMAIL
+       ================================================= */
+
+    document.getElementById(
+        "email"
+    ).textContent =
+        email;
+
+
+    /* =================================================
+       GRADE
+       ================================================= */
+
+    document.getElementById(
+        "currentGrade"
+    ).textContent =
+        grade;
+
+
+    /* =================================================
+       SELECT CURRENT GRADE
+       ================================================= */
+
+    const gradeExists =
+        Array.from(
+            gradeSelect.options
+        ).some(
+            option =>
+                option.value === grade
+        );
+
+
+    if(gradeExists){
+
+        gradeSelect.value =
+            grade;
+
+    }
+
+
+    /* =================================================
+       AVATAR
+       ================================================= */
+
+    const letter =
+        name
+            .trim()
+            .charAt(0)
+            .toUpperCase() ||
+        "S";
+
+
+    document.getElementById(
+        "avatar"
+    ).textContent =
+        letter;
+
+
+    document.getElementById(
+        "profileLetter"
+    ).textContent =
+        letter;
+
+
+    /* =================================================
+       CHANGE CLASS
+       ================================================= */
+
+    gradeSelect.addEventListener(
+        "change",
+        function(){
+
+            const selectedGrade =
+                this.value;
+
+
+            localStorage.setItem(
+                "zyntraClass",
+                selectedGrade
+            );
+
+
+            document.getElementById(
+                "currentGrade"
+            ).textContent =
+                selectedGrade;
+
+
+            saveMessage.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                function(){
+
+                    saveMessage.classList.remove(
+                        "show"
+                    );
+
+                },
+                2000
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   LOGOUT
+   ===================================================== */
+
+logoutButton.addEventListener(
+    "click",
+    function(){
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to log out of ZYNTRA?"
+            );
+
+
+        if(!confirmed){
+            return;
+        }
+
+
+        logoutZyntra();
+
+    }
+);
+
+</script>
+
+</body>
+</html>

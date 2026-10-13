@@ -1,0 +1,1035 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA | Just for Fun</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#070711;
+    --bg2:#0d0d1b;
+    --card:rgba(255,255,255,0.06);
+    --border:rgba(255,255,255,0.10);
+    --purple:#8b5cf6;
+    --blue:#3b82f6;
+    --pink:#ec4899;
+    --cyan:#06b6d4;
+    --green:#22c55e;
+    --yellow:#facc15;
+    --text:#ffffff;
+    --muted:#a8a8bd;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at 15% 10%,rgba(139,92,246,.18),transparent 28%),
+        radial-gradient(circle at 85% 20%,rgba(59,130,246,.14),transparent 28%),
+        var(--bg);
+    color:var(--text);
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    background:rgba(7,7,17,.82);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:1px;
+    text-decoration:none;
+    color:white;
+}
+
+.logo span{
+    background:linear-gradient(90deg,var(--purple),var(--blue));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.nav-links a{
+    color:#bdbdd0;
+    text-decoration:none;
+    padding:10px 13px;
+    border-radius:10px;
+    font-size:14px;
+    transition:.25s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:white;
+    background:rgba(139,92,246,.15);
+}
+
+.profile{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--purple),var(--blue));
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+    width:min(1200px,92%);
+    margin:auto;
+    padding:45px 0 70px;
+}
+
+.hero{
+    text-align:center;
+    padding:25px 10px 40px;
+}
+
+.hero .emoji{
+    font-size:55px;
+    margin-bottom:12px;
+}
+
+.hero h1{
+    font-size:clamp(34px,6vw,60px);
+    font-weight:900;
+    margin-bottom:12px;
+    background:linear-gradient(90deg,var(--purple),var(--blue),var(--pink));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    color:var(--muted);
+    font-size:17px;
+    max-width:650px;
+    margin:auto;
+    line-height:1.6;
+}
+
+/* ================= SCORE ================= */
+
+.score-box{
+    width:max-content;
+    margin:0 auto 35px;
+    padding:12px 24px;
+    border:1px solid var(--border);
+    background:var(--card);
+    border-radius:30px;
+    box-shadow:0 10px 35px rgba(0,0,0,.2);
+}
+
+.score-box span{
+    color:var(--yellow);
+    font-size:20px;
+    font-weight:bold;
+}
+
+/* ================= GRID ================= */
+
+.games-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:25px;
+    backdrop-filter:blur(12px);
+    transition:.3s;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(139,92,246,.4);
+    box-shadow:0 18px 45px rgba(139,92,246,.12);
+}
+
+.card-icon{
+    font-size:35px;
+    margin-bottom:12px;
+}
+
+.card h2{
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.card-description{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom:18px;
+}
+
+/* ================= BUTTON ================= */
+
+button{
+    border:none;
+    cursor:pointer;
+    color:white;
+    font-weight:bold;
+    border-radius:12px;
+    padding:12px 17px;
+    background:linear-gradient(135deg,var(--purple),var(--blue));
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    opacity:.92;
+}
+
+button:active{
+    transform:scale(.97);
+}
+
+/* ================= GAME AREA ================= */
+
+.game-result{
+    min-height:48px;
+    margin-top:16px;
+    padding:12px;
+    border-radius:12px;
+    background:rgba(0,0,0,.2);
+    color:#ddd;
+    line-height:1.5;
+}
+
+input{
+    width:100%;
+    padding:12px 14px;
+    margin-bottom:10px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:rgba(0,0,0,.3);
+    color:white;
+    outline:none;
+}
+
+input:focus{
+    border-color:var(--purple);
+}
+
+/* ================= REACTION ================= */
+
+.reaction-box{
+    height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:15px;
+    background:#17172a;
+    margin-top:12px;
+    cursor:pointer;
+    font-weight:bold;
+    user-select:none;
+    text-align:center;
+    padding:15px;
+}
+
+.reaction-box.ready{
+    background:#7f1d1d;
+}
+
+.reaction-box.go{
+    background:#166534;
+}
+
+/* ================= RIDDLE ================= */
+
+.riddle-question{
+    color:#ddd;
+    line-height:1.6;
+    min-height:60px;
+}
+
+/* ================= FACT ================= */
+
+.fact{
+    min-height:100px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#ddd;
+    line-height:1.6;
+}
+
+/* ================= DAILY ================= */
+
+.daily{
+    margin-top:25px;
+    padding:28px;
+    border-radius:22px;
+    border:1px solid rgba(236,72,153,.25);
+    background:
+        linear-gradient(135deg,rgba(139,92,246,.12),rgba(236,72,153,.08));
+    text-align:center;
+}
+
+.daily h2{
+    margin-bottom:10px;
+}
+
+.daily p{
+    color:var(--muted);
+    margin-bottom:18px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    border-top:1px solid var(--border);
+    padding:25px;
+    text-align:center;
+    color:#77778e;
+    font-size:13px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:950px){
+    .games-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .nav-links a{
+        padding:8px;
+        font-size:12px;
+    }
+}
+
+@media(max-width:650px){
+    .navbar{
+        padding:0 4%;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .games-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <a href="index.html" class="logo">
+        ZYNTRA<span>.</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="study.html">Study</a>
+        <a href="ai.html">AI</a>
+        <a href="community.html">Community</a>
+        <a href="planner.html">Planner</a>
+        <a href="challenge.html">Challenges</a>
+        <a href="fun.html" class="active">Fun</a>
+    </div>
+
+    <a href="profile.html" class="profile" id="profileCircle">B</a>
+
+</nav>
+
+
+<main class="container">
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="emoji">🎮</div>
+
+        <h1>JUST FOR FUN</h1>
+
+        <p>
+            Take a break from studying. Play quick games,
+            solve riddles, discover surprising facts and
+            challenge your brain.
+        </p>
+
+    </section>
+
+
+    <!-- ================= SCORE ================= -->
+
+    <div class="score-box">
+        🏆 Fun Points: <span id="score">0</span>
+    </div>
+
+
+    <!-- ================= GAMES ================= -->
+
+    <section class="games-grid">
+
+
+        <!-- NUMBER GAME -->
+
+        <div class="card">
+
+            <div class="card-icon">🔢</div>
+
+            <h2>Guess the Number</h2>
+
+            <p class="card-description">
+                I'm thinking of a number between 1 and 20.
+                Can you guess it?
+            </p>
+
+            <input
+                type="number"
+                id="guessInput"
+                min="1"
+                max="20"
+                placeholder="Enter your guess"
+            >
+
+            <button onclick="guessNumber()">
+                Guess
+            </button>
+
+            <div class="game-result" id="guessResult">
+                Make your first guess!
+            </div>
+
+        </div>
+
+
+        <!-- RIDDLE -->
+
+        <div class="card">
+
+            <div class="card-icon">🧠</div>
+
+            <h2>Brain Riddle</h2>
+
+            <p class="card-description">
+                Test your thinking with a quick riddle.
+            </p>
+
+            <div class="riddle-question" id="riddleQuestion">
+                What has keys but cannot open locks?
+            </div>
+
+            <br>
+
+            <button onclick="showRiddleAnswer()">
+                Reveal Answer
+            </button>
+
+            <button onclick="newRiddle()">
+                New Riddle
+            </button>
+
+            <div class="game-result" id="riddleResult">
+                Think carefully...
+            </div>
+
+        </div>
+
+
+        <!-- REACTION -->
+
+        <div class="card">
+
+            <div class="card-icon">⚡</div>
+
+            <h2>Reaction Test</h2>
+
+            <p class="card-description">
+                Wait for the box to turn green, then click
+                as quickly as possible.
+            </p>
+
+            <button onclick="startReaction()">
+                Start Test
+            </button>
+
+            <div
+                class="reaction-box"
+                id="reactionBox"
+                onclick="reactionClick()"
+            >
+                Press Start
+            </div>
+
+            <div class="game-result" id="reactionResult">
+                Your reaction time will appear here.
+            </div>
+
+        </div>
+
+
+        <!-- FUN FACT -->
+
+        <div class="card">
+
+            <div class="card-icon">🌍</div>
+
+            <h2>Fun Fact</h2>
+
+            <p class="card-description">
+                Discover something interesting.
+            </p>
+
+            <div class="fact" id="fact">
+                Click below to discover a fact!
+            </div>
+
+            <button onclick="newFact()">
+                ✨ Show Fact
+            </button>
+
+        </div>
+
+
+        <!-- QUICK QUIZ -->
+
+        <div class="card">
+
+            <div class="card-icon">❓</div>
+
+            <h2>Quick Quiz</h2>
+
+            <p class="card-description">
+                One question. One chance. Let's see what
+                you know.
+            </p>
+
+            <div id="quizQuestion">
+                Which planet is known as the Red Planet?
+            </div>
+
+            <br>
+
+            <button onclick="quizAnswer('Mars')">
+                Mars
+            </button>
+
+            <button onclick="quizAnswer('Venus')">
+                Venus
+            </button>
+
+            <button onclick="quizAnswer('Jupiter')">
+                Jupiter
+            </button>
+
+            <div class="game-result" id="quizResult">
+                Choose an answer.
+            </div>
+
+        </div>
+
+
+        <!-- RANDOM CHALLENGE -->
+
+        <div class="card">
+
+            <div class="card-icon">🎲</div>
+
+            <h2>Random Challenge</h2>
+
+            <p class="card-description">
+                Get a random challenge and try it!
+            </p>
+
+            <div class="game-result" id="challengeResult">
+                Ready for a challenge?
+            </div>
+
+            <br>
+
+            <button onclick="randomChallenge()">
+                🎲 Give Me One
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DAILY CHALLENGE ================= -->
+
+    <section class="daily">
+
+        <h2>🔥 Today's Fun Challenge</h2>
+
+        <p>
+            Can you name 5 computer-related words in
+            20 seconds?
+        </p>
+
+        <button onclick="dailyChallenge()">
+            I Accept!
+        </button>
+
+        <div class="game-result" id="dailyResult">
+            Your challenge starts here.
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    © 2026 ZYNTRA — Learn. Connect. Challenge. Have Fun.
+</footer>
+
+
+<script>
+
+/* ======================================================
+   SCORE SYSTEM
+====================================================== */
+
+let score = Number(localStorage.getItem("zyntraFunScore")) || 0;
+
+function updateScore(points){
+
+    score += points;
+
+    localStorage.setItem(
+        "zyntraFunScore",
+        score
+    );
+
+    document.getElementById("score").textContent = score;
+}
+
+document.getElementById("score").textContent = score;
+
+
+/* ======================================================
+   GUESS THE NUMBER
+====================================================== */
+
+let secretNumber =
+    Math.floor(Math.random() * 20) + 1;
+
+function guessNumber(){
+
+    const input =
+        document.getElementById("guessInput");
+
+    const result =
+        document.getElementById("guessResult");
+
+    const guess =
+        Number(input.value);
+
+    if(!guess || guess < 1 || guess > 20){
+
+        result.textContent =
+            "Please enter a number from 1 to 20.";
+
+        return;
+    }
+
+    if(guess === secretNumber){
+
+        result.textContent =
+            "🎉 Correct! You guessed it! +10 points";
+
+        updateScore(10);
+
+        secretNumber =
+            Math.floor(Math.random() * 20) + 1;
+
+    }
+    else if(guess < secretNumber){
+
+        result.textContent =
+            "📈 Too low! Try again.";
+
+    }
+    else{
+
+        result.textContent =
+            "📉 Too high! Try again.";
+
+    }
+}
+
+
+/* ======================================================
+   RIDDLES
+====================================================== */
+
+const riddles = [
+
+    {
+        question:
+        "What has keys but cannot open locks?",
+
+        answer:
+        "A keyboard ⌨️"
+    },
+
+    {
+        question:
+        "What has a head and a tail but no body?",
+
+        answer:
+        "A coin 🪙"
+    },
+
+    {
+        question:
+        "What gets wetter the more it dries?",
+
+        answer:
+        "A towel 🧻"
+    },
+
+    {
+        question:
+        "What has many teeth but cannot bite?",
+
+        answer:
+        "A comb 🪮"
+    },
+
+    {
+        question:
+        "What can travel around the world while staying in one corner?",
+
+        answer:
+        "A stamp ✉️"
+    }
+
+];
+
+let currentRiddle = 0;
+
+function showRiddleAnswer(){
+
+    document.getElementById("riddleResult")
+        .textContent =
+        riddles[currentRiddle].answer;
+
+    updateScore(2);
+}
+
+function newRiddle(){
+
+    currentRiddle =
+        Math.floor(Math.random() * riddles.length);
+
+    document.getElementById("riddleQuestion")
+        .textContent =
+        riddles[currentRiddle].question;
+
+    document.getElementById("riddleResult")
+        .textContent =
+        "Think carefully...";
+
+}
+
+
+/* ======================================================
+   REACTION TEST
+====================================================== */
+
+let reactionStart = 0;
+let reactionTimer = null;
+let reactionReady = false;
+
+function startReaction(){
+
+    const box =
+        document.getElementById("reactionBox");
+
+    const result =
+        document.getElementById("reactionResult");
+
+    clearTimeout(reactionTimer);
+
+    reactionReady = false;
+
+    box.className = "reaction-box ready";
+
+    box.textContent =
+        "WAIT FOR GREEN...";
+
+    result.textContent =
+        "Get ready!";
+
+    const delay =
+        Math.floor(Math.random() * 3000) + 1500;
+
+    reactionTimer =
+        setTimeout(() => {
+
+            reactionReady = true;
+
+            reactionStart =
+                performance.now();
+
+            box.className =
+                "reaction-box go";
+
+            box.textContent =
+                "CLICK NOW! ⚡";
+
+        }, delay);
+}
+
+function reactionClick(){
+
+    const box =
+        document.getElementById("reactionBox");
+
+    const result =
+        document.getElementById("reactionResult");
+
+    if(!reactionReady){
+
+        if(box.classList.contains("ready")){
+
+            clearTimeout(reactionTimer);
+
+            box.className =
+                "reaction-box";
+
+            box.textContent =
+                "Too early!";
+
+            result.textContent =
+                "😅 Too early! Start again.";
+
+        }
+
+        return;
+    }
+
+    const reaction =
+        Math.round(
+            performance.now() - reactionStart
+        );
+
+    reactionReady = false;
+
+    box.className =
+        "reaction-box";
+
+    box.textContent =
+        "Click Start to try again";
+
+    result.textContent =
+        "⚡ Your reaction time: " +
+        reaction +
+        " ms";
+
+    if(reaction < 400){
+
+        updateScore(10);
+
+        result.textContent +=
+            " — Amazing! +10 points";
+
+    }
+    else if(reaction < 700){
+
+        updateScore(5);
+
+        result.textContent +=
+            " — Nice reaction! +5 points";
+
+    }
+}
+
+
+/* ======================================================
+   FUN FACTS
+====================================================== */
+
+const facts = [
+
+    "💻 The first computer mouse was made of wood.",
+
+    "🌍 Earth is the only planet not named after a Greek or Roman god.",
+
+    "🐙 Octopuses have three hearts.",
+
+    "⚡ Lightning can heat the air around it to temperatures hotter than the surface of the Sun.",
+
+    "🧠 The human brain contains billions of neurons.",
+
+    "🌌 There are more stars in the observable universe than grains of sand on Earth's beaches.",
+
+    "🐝 Bees can recognize human faces.",
+
+    "🚀 Space is completely silent because there is no air to carry sound."
+
+];
+
+function newFact(){
+
+    const random =
+        Math.floor(Math.random() * facts.length);
+
+    document.getElementById("fact")
+        .textContent =
+        facts[random];
+
+    updateScore(1);
+}
+
+
+/* ======================================================
+   QUICK QUIZ
+====================================================== */
+
+function quizAnswer(answer){
+
+    const result =
+        document.getElementById("quizResult");
+
+    if(answer === "Mars"){
+
+        result.textContent =
+            "🎉 Correct! Mars is known as the Red Planet. +5 points";
+
+        updateScore(5);
+
+    }
+    else{
+
+        result.textContent =
+            "❌ Not quite. The correct answer is Mars.";
+
+    }
+}
+
+
+/* ======================================================
+   RANDOM CHALLENGES
+====================================================== */
+
+const challenges = [
+
+    "🧮 Solve 25 × 4 in your head.",
+
+    "🧠 Name 5 programming languages.",
+
+    "🌍 Name 5 countries in Africa.",
+
+    "💻 Name 5 computer components.",
+
+    "⚡ Name 5 things that use electricity.",
+
+    "📚 Explain one thing you learned today in 30 seconds.",
+
+    "🔤 Find 5 words that start with the letter Z.",
+
+    "🎯 Count backwards from 50 to 1 as quickly as you can."
+
+];
+
+function randomChallenge(){
+
+    const random =
+        Math.floor(Math.random() * challenges.length);
+
+    document.getElementById("challengeResult")
+        .textContent =
+        challenges[random];
+
+    updateScore(1);
+}
+
+
+/* ======================================================
+   DAILY CHALLENGE
+====================================================== */
+
+function dailyChallenge(){
+
+    document.getElementById("dailyResult")
+        .textContent =
+        "🚀 GO! You have 20 seconds. Name 5 computer-related words!";
+
+    updateScore(3);
+
+    setTimeout(() => {
+
+        document.getElementById("dailyResult")
+            .textContent =
+            "⏰ Time! Did you manage to name five?";
+
+    },20000);
+}
+
+
+/* ======================================================
+   PROFILE INITIAL
+====================================================== */
+
+const savedName =
+    localStorage.getItem("zyntraUsername");
+
+if(savedName){
+
+    const firstLetter =
+        savedName.charAt(0).toUpperCase();
+
+    document.getElementById("profileCircle")
+        .textContent =
+        firstLetter;
+}
+
+</script>
+
+</body>
+</html>
+

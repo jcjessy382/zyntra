@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZYNTRA - Light</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .lesson-page {
+            max-width: 1000px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .lesson-hero {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .lesson-badge {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 30px;
+            background: rgba(236, 72, 153, 0.12);
+            color: #f472b6;
+            font-weight: bold;
+        }
+
+        .lesson-hero h1 {
+            font-size: 55px;
+            margin: 20px 0 10px;
+        }
+
+        .lesson-hero p {
+            color: #9999ad;
+            font-size: 18px;
+        }
+
+        .lesson-card {
+            margin-top: 25px;
+            padding: 30px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .lesson-card h2 {
+            margin-bottom: 15px;
+        }
+
+        .lesson-card p,
+        .lesson-card li {
+            color: #c5c5d5;
+            line-height: 1.8;
+        }
+
+        .formula-box {
+            margin-top: 20px;
+            padding: 25px;
+            text-align: center;
+            border-radius: 18px;
+            background: rgba(236,72,153,0.08);
+            border: 1px solid rgba(236,72,153,0.2);
+        }
+
+        .formula-box strong {
+            display: block;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .quiz-option:hover {
+            background: rgba(236,72,153,0.25);
+        }
+
+        .quiz-option:disabled {
+            cursor: not-allowed;
+            opacity: 0.85;
+        }
+
+        .correct-answer {
+            background: rgba(34,197,94,0.25) !important;
+            border: 1px solid rgba(34,197,94,0.5);
+        }
+
+        .wrong-answer {
+            background: rgba(239,68,68,0.25) !important;
+            border: 1px solid rgba(239,68,68,0.5);
+        }
+
+        #quizResult {
+            margin-top: 15px;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+
+        .progress-message {
+            margin-top: 12px;
+            padding: 14px;
+            border-radius: 12px;
+            background: rgba(139,92,246,0.12);
+            color: #c4b5fd;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+
+            .lesson-hero h1 {
+                font-size: 40px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="lesson-page">
+
+
+    <section class="lesson-hero">
+
+        <div class="lesson-badge">
+            💡 PHYSICS • LIGHT
+        </div>
+
+        <h1>Explore the World of Light</h1>
+
+        <p>
+            Learn about reflection, refraction, mirrors, lenses and the properties of light.
+        </p>
+
+    </section>
+
+
+    <div class="lesson-card">
+
+        <h2>💡 What is Light?</h2>
+
+        <p>
+            Light is a form of energy that enables us to see objects.
+            It is electromagnetic radiation and can travel through a vacuum.
+        </p>
+
+        <p>
+            In a vacuum, light travels at approximately
+            3.0 × 10⁸ m/s.
+        </p>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🔦 Sources of Light</h2>
+
+        <p>
+            Objects that produce their own light are called luminous objects.
+        </p>
+
+        <ul>
+
+            <li>
+                <strong>Natural source:</strong> the Sun.
+            </li>
+
+            <li>
+                <strong>Artificial sources:</strong> electric bulbs, candles and lamps.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🪞 Reflection of Light</h2>
+
+        <p>
+            Reflection is the bouncing back of light when it strikes
+            a surface.
+        </p>
+
+        <p>
+            The law of reflection states that the angle of incidence
+            is equal to the angle of reflection.
+        </p>
+
+        <div class="formula-box">
+
+            <strong>i = r</strong>
+
+            <p>
+                i = angle of incidence<br>
+                r = angle of reflection
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🔍 Refraction of Light</h2>
+
+        <p>
+            Refraction is the change in direction of light when it
+            passes from one transparent medium to another because
+            its speed changes.
+        </p>
+
+        <p>
+            For example, a pencil partly immersed in water may appear
+            bent because of refraction.
+        </p>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🪞 Plane Mirrors</h2>
+
+        <p>
+            A plane mirror has a flat reflecting surface.
+        </p>
+
+        <ul>
+
+            <li>The image is upright.</li>
+
+            <li>The image is virtual.</li>
+
+            <li>The image is the same size as the object.</li>
+
+            <li>The image is laterally inverted.</li>
+
+            <li>
+                The image is the same distance behind the mirror
+                as the object is in front.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🔎 Lenses</h2>
+
+        <p>
+            A lens is a transparent material with curved surfaces
+            that refracts light.
+        </p>
+
+        <ul>
+
+            <li>
+                <strong>Convex lens</strong> — thicker at the centre
+                and can converge parallel rays of light.
+            </li>
+
+            <li>
+                <strong>Concave lens</strong> — thinner at the centre
+                and diverges parallel rays of light.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🌈 Dispersion of Light</h2>
+
+        <p>
+            Dispersion is the splitting of white light into its
+            different colours.
+        </p>
+
+        <p>
+            A prism can separate white light into the colours of
+            the visible spectrum.
+        </p>
+
+        <div class="formula-box">
+
+            <strong>VIBGYOR</strong>
+
+            <p>
+                Violet • Indigo • Blue • Green • Yellow • Orange • Red
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🧠 ZYNTRA Quick Challenge</h2>
+
+        <p>
+            According to the law of reflection, if the angle of
+            incidence is 40°, what is the angle of reflection?
+        </p>
+
+
+        <button class="quiz-option" onclick="checkAnswer('A', this)">
+            A. 20°
+        </button>
+
+        <button class="quiz-option" onclick="checkAnswer('B', this)">
+            B. 40°
+        </button>
+
+        <button class="quiz-option" onclick="checkAnswer('C', this)">
+            C. 80°
+        </button>
+
+        <button class="quiz-option" onclick="checkAnswer('D', this)">
+            D. 90°
+        </button>
+
+        <p id="quizResult"></p>
+
+        <div id="progressMessage" class="progress-message"></div>
+
+    </div>
+
+
+    <a href="physics.html" class="back-btn">
+        ← Back to Physics
+    </a>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   ZYNTRA PROGRESS SYSTEM
+   ===================================================== */
+
+const SUBJECT = "Physics";
+
+const username =
+    localStorage.getItem("zyntraUsername") ||
+    localStorage.getItem("username") ||
+    "guest";
+
+const progressKey =
+    "zyntraProgress_" + username;
+
+const completionKey =
+    "zyntraCompleted_light_" + username;
+
+
+/* =====================================================
+   DEFAULT PROGRESS
+   ===================================================== */
+
+function getDefaultProgress() {
+
+    return {
+
+        xp: 0,
+
+        streak: 0,
+
+        questions: 0,
+
+        achievements: 0,
+
+        subjects: {
+
+            Mathematics: 0,
+
+            Chemistry: 0,
+
+            Physics: 0,
+
+            Biology: 0,
+
+            "Computer-Studies": 0,
+
+            English: 0
+
+        },
+
+        lastStudyDate: ""
+
+    };
+
+}
+
+
+/* =====================================================
+   LOAD PROGRESS
+   ===================================================== */
+
+function getProgress() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(progressKey);
+
+        if (!saved) {
+
+            return getDefaultProgress();
+
+        }
+
+        const progress =
+            JSON.parse(saved);
+
+        const defaults =
+            getDefaultProgress();
+
+
+        progress.subjects =
+            progress.subjects || defaults.subjects;
+
+        progress.xp =
+            Number(progress.xp) || 0;
+
+        progress.streak =
+            Number(progress.streak) || 0;
+
+        progress.questions =
+            Number(progress.questions) || 0;
+
+        progress.achievements =
+            Number(progress.achievements) || 0;
+
+        progress.subjects[SUBJECT] =
+            Number(progress.subjects[SUBJECT]) || 0;
+
+
+        return progress;
+
+    } catch (error) {
+
+        return getDefaultProgress();
+
+    }
+
+}
+
+
+/* =====================================================
+   SAVE PROGRESS
+   ===================================================== */
+
+function saveProgress(progress) {
+
+    localStorage.setItem(
+        progressKey,
+        JSON.stringify(progress)
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE STREAK
+   ===================================================== */
+
+function updateStreak(progress) {
+
+    const today =
+        new Date().toISOString().split("T")[0];
+
+    const last =
+        progress.lastStudyDate;
+
+
+    if (!last) {
+
+        progress.streak = 1;
+
+    } else {
+
+        const lastDate =
+            new Date(last);
+
+        const todayDate =
+            new Date(today);
+
+        const difference =
+            Math.floor(
+                (todayDate - lastDate) /
+                (1000 * 60 * 60 * 24)
+            );
+
+
+        if (difference === 1) {
+
+            progress.streak += 1;
+
+        } else if (difference > 1) {
+
+            progress.streak = 1;
+
+        }
+
+    }
+
+
+    progress.lastStudyDate =
+        today;
+
+}
+
+
+/* =====================================================
+   UPDATE ACHIEVEMENTS
+   ===================================================== */
+
+function updateAchievements(progress) {
+
+    let achievements = 0;
+
+
+    // First Step
+    if (progress.xp >= 10) {
+
+        achievements++;
+
+    }
+
+
+    // Active Learner
+    if (progress.xp >= 100) {
+
+        achievements++;
+
+    }
+
+
+    // Question Master
+    if (progress.questions >= 10) {
+
+        achievements++;
+
+    }
+
+
+    // Consistent
+    if (progress.streak >= 7) {
+
+        achievements++;
+
+    }
+
+
+    progress.achievements =
+        achievements;
+
+}
+
+
+/* =====================================================
+   COMPLETE LIGHT CHALLENGE
+   ===================================================== */
+
+function completeLightChallenge() {
+
+    /*
+       This challenge gives exactly 10 XP TOTAL.
+
+       It can only award XP once for this user.
+
+       Refreshing the page or trying the challenge
+       again will not award another 10 XP.
+    */
+
+    if (
+        localStorage.getItem(completionKey)
+    ) {
+
+        return false;
+
+    }
+
+
+    const progress =
+        getProgress();
+
+
+    // Count the completed challenge
+    progress.questions += 1;
+
+
+    // Award exactly 10 XP
+    progress.xp += 10;
+
+
+    // Increase Physics progress by 5%
+    progress.subjects[SUBJECT] =
+        Math.min(
+            100,
+            progress.subjects[SUBJECT] + 5
+        );
+
+
+    // Update daily streak
+    updateStreak(progress);
+
+
+    // Update achievements
+    updateAchievements(progress);
+
+
+    // Save progress
+    saveProgress(progress);
+
+
+    // Prevent duplicate XP
+    localStorage.setItem(
+        completionKey,
+        "true"
+    );
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   CHECK ANSWER
+   ===================================================== */
+
+function checkAnswer(answer, button) {
+
+    const buttons =
+        document.querySelectorAll(
+            ".quiz-option"
+        );
+
+    const result =
+        document.getElementById(
+            "quizResult"
+        );
+
+    const progressMessage =
+        document.getElementById(
+            "progressMessage"
+        );
+
+
+    // Prevent multiple answers
+    buttons.forEach(function(btn) {
+
+        btn.disabled = true;
+
+    });
+
+
+    // Highlight the correct answer
+    buttons.forEach(function(btn) {
+
+        if (
+            btn.textContent
+                .trim()
+                .startsWith("B.")
+        ) {
+
+            btn.classList.add(
+                "correct-answer"
+            );
+
+        }
+
+    });
+
+
+    const correct =
+        answer === "B";
+
+
+    // Highlight selected wrong answer
+    if (!correct) {
+
+        button.classList.add(
+            "wrong-answer"
+        );
+
+    }
+
+
+    // Complete the challenge
+    const newCompletion =
+        completeLightChallenge();
+
+
+    if (correct) {
+
+        result.textContent =
+            "✅ Correct! The angle of incidence equals the angle of reflection, so r = 40°.";
+
+    } else {
+
+        result.textContent =
+            "❌ Not quite. The correct answer is 40°.";
+
+    }
+
+
+    if (newCompletion) {
+
+        progressMessage.style.display =
+            "block";
+
+        progressMessage.textContent =
+            "🎉 Challenge completed! +10 XP earned. Physics progress +5%.";
+
+    } else {
+
+        progressMessage.style.display =
+            "block";
+
+        progressMessage.textContent =
+            "This challenge was already completed. No additional XP was awarded.";
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

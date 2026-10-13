@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA | Create Account</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial,sans-serif;
+    background:
+        radial-gradient(circle at top left,rgba(139,92,246,.25),transparent 35%),
+        radial-gradient(circle at bottom right,rgba(59,130,246,.20),transparent 35%),
+        #070711;
+    color:white;
+    padding:25px;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+    background:rgba(13,13,27,.94);
+    border:1px solid rgba(139,92,246,.3);
+    border-radius:24px;
+    padding:35px;
+    box-shadow:0 20px 70px rgba(0,0,0,.45);
+}
+
+.logo{
+    text-align:center;
+    font-size:36px;
+    font-weight:900;
+    letter-spacing:3px;
+    background:linear-gradient(90deg,#8b5cf6,#3b82f6,#06b6d4);
+    -webkit-background-clip:text;
+    color:transparent;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#aaa;
+    margin-bottom:30px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:17px;
+}
+
+label{
+    display:block;
+    margin-bottom:7px;
+    font-size:14px;
+    color:#ddd;
+}
+
+input,
+select{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #292943;
+    background:#090914;
+    color:white;
+    outline:none;
+    font-size:15px;
+}
+
+input:focus,
+select:focus{
+    border-color:#8b5cf6;
+    box-shadow:0 0 0 3px rgba(139,92,246,.12);
+}
+
+select option{
+    background:#090914;
+    color:white;
+}
+
+button{
+    width:100%;
+    border:none;
+    padding:15px;
+    border-radius:13px;
+    background:linear-gradient(90deg,#8b5cf6,#3b82f6);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:8px;
+}
+
+button:hover{
+    opacity:.92;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.status{
+    margin-top:16px;
+    padding:12px;
+    border-radius:10px;
+    display:none;
+    text-align:center;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.status.success{
+    display:block;
+    background:rgba(34,197,94,.12);
+    border:1px solid rgba(34,197,94,.3);
+    color:#86efac;
+}
+
+.status.error{
+    display:block;
+    background:rgba(239,68,68,.12);
+    border:1px solid rgba(239,68,68,.3);
+    color:#fca5a5;
+}
+
+.links{
+    text-align:center;
+    margin-top:22px;
+    color:#aaa;
+    font-size:14px;
+    line-height:2;
+}
+
+.links a{
+    color:#8b5cf6;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.links a:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:550px){
+
+    .container{
+        padding:25px 20px;
+    }
+
+    .logo{
+        font-size:30px;
+    }
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+<div class="logo">ZYNTRA</div>
+
+<div class="subtitle">
+    Learn. Connect. Grow.
+</div>
+
+<h2>Create Your Account</h2>
+
+<form id="registerForm">
+
+    <div class="form-group">
+
+        <label for="name">
+            Full Name
+        </label>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter your full name"
+            required
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="username">
+            Username
+        </label>
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Choose a username"
+            required
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="email">
+            Email Address
+        </label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="example@gmail.com"
+            required
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="grade">
+            Class / Grade
+        </label>
+
+        <select id="grade" required>
+
+            <option value="">
+                Select your class
+            </option>
+
+            <option value="Form One">
+                Form One
+            </option>
+
+            <option value="Form Two">
+                Form Two
+            </option>
+
+            <option value="Form Three">
+                Form Three
+            </option>
+
+            <option value="Form Four">
+                Form Four
+            </option>
+
+            <option value="Grade 10">
+                Grade 10
+            </option>
+
+            <option value="Grade 11">
+                Grade 11
+            </option>
+
+            <option value="Grade 12">
+                Grade 12
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="password">
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Create a password"
+            minlength="6"
+            required
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="confirmPassword">
+            Confirm Password
+        </label>
+
+        <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Repeat your password"
+            minlength="6"
+            required
+        >
+
+    </div>
+
+
+    <button
+        type="submit"
+        id="createButton"
+    >
+        Create Account
+    </button>
+
+
+    <div
+        id="status"
+        class="status"
+    ></div>
+
+</form>
+
+
+<div class="links">
+
+    Already have an account?
+    <a href="login.html">
+        Login
+    </a>
+
+    <br>
+
+    <a href="index.html">
+        ← Back to Home
+    </a>
+
+</div>
+
+
+</div>
+
+<script>
+
+const registerForm =
+    document.getElementById("registerForm");
+
+const createButton =
+    document.getElementById("createButton");
+
+const statusBox =
+    document.getElementById("status");
+
+
+function showStatus(message,type){
+
+    statusBox.textContent = message;
+
+    statusBox.className =
+        "status " + type;
+}
+
+
+registerForm.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("name")
+            .value
+            .trim();
+
+        const username =
+            document.getElementById("username")
+            .value
+            .trim();
+
+        const email =
+            document.getElementById("email")
+            .value
+            .trim();
+
+        const grade =
+            document.getElementById("grade")
+            .value;
+
+        const password =
+            document.getElementById("password")
+            .value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword")
+            .value;
+
+
+        // ==========================================
+        // VALIDATION
+        // ==========================================
+
+        if(
+            !name ||
+            !username ||
+            !email ||
+            !grade ||
+            !password ||
+            !confirmPassword
+        ){
+
+            showStatus(
+                "Please fill in all fields.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if(password.length < 6){
+
+            showStatus(
+                "Password must contain at least 6 characters.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if(password !== confirmPassword){
+
+            showStatus(
+                "Passwords do not match.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        // ==========================================
+        // BUTTON
+        // ==========================================
+
+        createButton.disabled = true;
+
+        createButton.textContent =
+            "Creating Account...";
+
+
+        showStatus(
+            "Creating your ZYNTRA account...",
+            "success"
+        );
+
+
+        try{
+
+            // ======================================
+            // CREATE ACCOUNT
+            // ======================================
+
+            const response =
+                await fetch(
+                    "http://localhost:3000/api/register",
+                    {
+                        method:"POST",
+
+                        headers:{
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:JSON.stringify({
+
+                            name:name,
+
+                            fullName:name,
+
+                            username:username,
+
+                            email:email,
+
+                            grade:grade,
+
+                            class:grade,
+
+                            password:password
+
+                        })
+                    }
+                );
+
+
+            // ======================================
+            // READ SERVER RESPONSE
+            // ======================================
+
+            const responseText =
+                await response.text();
+
+            let data = {};
+
+            try{
+
+                data =
+                    JSON.parse(responseText);
+
+            }catch(parseError){
+
+                console.error(
+                    "Invalid server response:",
+                    responseText
+                );
+
+            }
+
+
+            console.log(
+                "Registration response:",
+                response.status,
+                data
+            );
+
+
+            // ======================================
+            // SERVER ERROR
+            // ======================================
+
+            if(!response.ok){
+
+                throw new Error(
+
+                    data.error ||
+                    data.message ||
+                    "Server returned HTTP " +
+                    response.status
+
+                );
+
+            }
+
+
+            if(!data.success){
+
+                throw new Error(
+
+                    data.error ||
+                    data.message ||
+                    "The server rejected the registration."
+
+                );
+
+            }
+
+
+            // ======================================
+            // SUCCESS
+            // ======================================
+
+            showStatus(
+                "Account created successfully! Redirecting to login...",
+                "success"
+            );
+
+
+            createButton.textContent =
+                "Account Created ✓";
+
+
+            // ======================================
+            // GO TO LOGIN
+            // ======================================
+
+            setTimeout(function(){
+
+                window.location.href =
+                    "login.html";
+
+            },1200);
+
+
+        }catch(error){
+
+            console.error(
+                "ZYNTRA registration error:",
+                error
+            );
+
+
+            let message =
+                error.message ||
+                "";
+
+
+            // ======================================
+            // CONNECTION ERROR
+            // ======================================
+
+            if(
+                error.name === "TypeError" &&
+                (
+                    message.includes("fetch") ||
+                    message.includes("Failed")
+                )
+            ){
+
+                message =
+                    "Cannot connect to ZYNTRA backend. Make sure node server.js is running.";
+
+            }
+
+
+            showStatus(
+                message ||
+                "Registration failed. Please try again.",
+                "error"
+            );
+
+
+            createButton.disabled = false;
+
+            createButton.textContent =
+                "Create Account";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

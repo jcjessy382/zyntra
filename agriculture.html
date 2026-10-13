@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Agriculture</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070711;--card:#111124;--border:#292743;--purple:#8b5cf6;--blue:#3b82f6;--green:#22c55e;--muted:#aaa7c5}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#f5f3ff;line-height:1.65}
+header{position:sticky;top:0;z-index:5;background:#090916f5;border-bottom:1px solid var(--border);padding:15px 5%;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px}.logo span{color:var(--purple)}
+nav{display:flex;gap:16px;flex-wrap:wrap}a{color:#c4b5fd;text-decoration:none}a:hover{color:white}
+main{max-width:1100px;margin:auto;padding:25px 18px 60px}
+.hero{padding:45px 22px;text-align:center;border:1px solid var(--border);border-radius:22px;background:linear-gradient(135deg,#153c29,#11152f,#101020);margin-bottom:28px}
+.tag{display:inline-block;padding:5px 12px;border-radius:20px;background:#22c55e20;color:#86efac;font-size:13px}
+h1{font-size:clamp(30px,6vw,46px);margin:12px 0}.hero p{max-width:650px;color:var(--muted);margin:0 auto 20px}
+.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.stat{padding:10px 16px;background:#ffffff0b;border:1px solid var(--border);border-radius:12px}.stat strong{color:#86efac}
+.progress-wrap{text-align:left;margin-top:20px}.progress-label{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:7px}.progress{height:9px;background:#292743;border-radius:20px;overflow:hidden}.progress div{height:100%;width:0;background:linear-gradient(90deg,#22c55e,var(--blue));transition:width .3s}
+.section-title{font-size:25px;margin:28px 0 15px}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.topic{padding:18px;background:var(--card);border:1px solid var(--border);border-radius:16px;cursor:pointer;transition:.2s}
+.topic:hover,.topic.active{border-color:#22c55e;transform:translateY(-2px)}
+.emoji{font-size:27px}.topic h3{margin:7px 0}.topic p{font-size:14px;color:var(--muted)}.topic small{color:#86efac}
+.panel{margin-top:22px;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:18px}
+.panel h2{margin-bottom:10px}.panel h3{color:#86efac;margin:18px 0 8px}.panel p,.panel li{color:#dedbed}.panel ul{padding-left:23px}
+.note{margin:14px 0;padding:13px;border-left:3px solid #22c55e;background:#22c55e12;border-radius:8px}
+button{border:0;border-radius:10px;padding:11px 16px;background:linear-gradient(135deg,#16a34a,var(--blue));color:white;font-weight:bold;cursor:pointer;font-size:14px}
+button:hover{filter:brightness(1.12)}button:disabled{opacity:.5;cursor:not-allowed}
+.secondary{background:#211d39;border:1px solid var(--border)}
+.lesson-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:15px 0}
+.lesson-button{text-align:left;background:#17172b;border:1px solid var(--border)}.lesson-button.selected{border-color:#22c55e}.lesson-button.done{border-color:var(--green)}
+.quiz-question{padding:15px 0;border-bottom:1px solid var(--border)}.quiz-question p{font-weight:bold;margin-bottom:8px}.option{display:block;margin:8px 0;color:#dedbed}.option input{margin-right:8px;accent-color:#22c55e}
+.result{display:none;margin-top:15px;padding:14px;border-radius:10px}
+footer{text-align:center;padding:24px;color:var(--muted);border-top:1px solid var(--border)}
+@media(max-width:550px){header{justify-content:center}nav{justify-content:center}.hero{padding:30px 14px}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">ZYNTRA<span>.</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="study.html">Study</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <span class="tag">AGRICULTURE • FARMING</span>
+  <h1>Grow Your Knowledge 🌱</h1>
+  <p>Learn about soil, crops, livestock, farm management and sustainable agriculture through simple revision notes and quizzes.</p>
+  <div class="stats">
+    <div class="stat">Completed: <strong id="completedCount">0/12</strong></div>
+    <div class="stat">Agriculture XP: <strong id="xp">0</strong></div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-label"><span>Your progress</span><span id="progressText">0%</span></div>
+    <div class="progress"><div id="progressBar"></div></div>
+  </div>
+</section>
+
+<h2 class="section-title">📚 Choose a Topic</h2>
+<div class="topics">
+  <div class="topic active" data-topic="0"><div class="emoji">🌍</div><h3>1. Soil Science</h3><p>Soil formation, properties and conservation.</p><small>Understand the soil</small></div>
+  <div class="topic" data-topic="1"><div class="emoji">🌽</div><h3>2. Crop Production</h3><p>Planting, crop care and harvesting.</p><small>Grow healthy crops</small></div>
+  <div class="topic" data-topic="2"><div class="emoji">🐄</div><h3>3. Livestock Production</h3><p>Animal care, feeding and housing.</p><small>Manage farm animals</small></div>
+  <div class="topic" data-topic="3"><div class="emoji">🌿</div><h3>4. Farm Tools and Equipment</h3><p>Common tools, uses and maintenance.</p><small>Work safely</small></div>
+  <div class="topic" data-topic="4"><div class="emoji">💧</div><h3>5. Water and Soil Conservation</h3><p>Protect natural resources on the farm.</p><small>Farm sustainably</small></div>
+  <div class="topic" data-topic="5"><div class="emoji">📊</div><h3>6. Farm Management</h3><p>Records, budgeting and farm planning.</p><small>Run a farm efficiently</small></div>
+</div>
+
+<section class="panel" id="lessonArea">
+  <h2 id="topicTitle">1. Soil Science</h2>
+  <p id="topicDescription">Understand soil properties and why soil matters in farming.</p>
+  <h3>Choose a lesson</h3>
+  <div class="lesson-list" id="lessonList"></div>
+  <div id="lessonContent"></div>
+  <button id="completeButton" onclick="completeLesson()">✓ Mark Lesson Complete (+10 XP)</button>
+  <button class="secondary" onclick="nextLesson()">Next Lesson →</button>
+</section>
+
+<section class="panel">
+  <h2>🧠 Agriculture Quick Quiz</h2>
+  <p>Answer all six questions, then check your score.</p>
+  <form id="quizForm">
+    <div class="quiz-question"><p>1. Which soil type generally has the largest particles?</p>
+      <label class="option"><input type="radio" name="q1" value="a"> Clay soil</label>
+      <label class="option"><input type="radio" name="q1" value="b"> Sandy soil</label>
+      <label class="option"><input type="radio" name="q1" value="c"> Loam soil</label>
+    </div>
+    <div class="quiz-question"><p>2. Which plant part mainly absorbs water and minerals?</p>
+      <label class="option"><input type="radio" name="q2" value="a"> Flower</label>
+      <label class="option"><input type="radio" name="q2" value="b"> Fruit</label>
+      <label class="option"><input type="radio" name="q2" value="c"> Roots</label>
+    </div>
+    <div class="quiz-question"><p>3. Why should livestock have clean drinking water?</p>
+      <label class="option"><input type="radio" name="q3" value="a"> To support health and normal body functions</label>
+      <label class="option"><input type="radio" name="q3" value="b"> To replace all animal feed</label>
+      <label class="option"><input type="radio" name="q3" value="c"> To prevent the need for shelter</label>
+    </div>
+    <div class="quiz-question"><p>4. Which practice can help reduce soil erosion on slopes?</p>
+      <label class="option"><input type="radio" name="q4" value="a"> Removing all vegetation</label>
+      <label class="option"><input type="radio" name="q4" value="b"> Contour farming</label>
+      <label class="option"><input type="radio" name="q4" value="c"> Leaving soil bare</label>
+    </div>
+    <div class="quiz-question"><p>5. What is the main purpose of a farm record?</p>
+      <label class="option"><input type="radio" name="q5" value="a"> To make all crops grow faster</label>
+      <label class="option"><input type="radio" name="q5" value="b"> To eliminate all farm expenses</label>
+      <label class="option"><input type="radio" name="q5" value="c"> To track farm activities, costs and returns</label>
+    </div>
+    <div class="quiz-question"><p>6. Which is an example of organic manure?</p>
+      <label class="option"><input type="radio" name="q6" value="a"> Well-decomposed animal manure</label>
+      <label class="option"><input type="radio" name="q6" value="b"> Plastic waste</label>
+      <label class="option"><input type="radio" name="q6" value="c"> Engine oil</label>
+    </div>
+    <button type="submit">Check My Answers</button>
+  </form>
+  <div class="result" id="quizResult"></div>
+</section>
+</main>
+<footer>ZYNTRA • Learn. Practice. Progress.</footer>
+
+<script>
+const topicsData = [
+{
+title:"1. Soil Science",
+description:"Learn how soil forms and how its properties affect crop growth.",
+lessons:[
+{title:"Soil Formation and Types",content:`
+<h3>What is soil?</h3>
+<p>Soil is the upper layer of the Earth's surface that supports plant growth. It contains mineral particles, organic matter, water, air and living organisms.</p>
+<h3>How soil forms</h3><ul>
+<li>Weathering breaks rocks into smaller particles.</li>
+<li>Organic materials decompose and add humus.</li>
+<li>Climate, organisms, relief, parent material and time influence soil development.</li>
+</ul>
+<h3>Common soil types</h3><ul>
+<li><b>Sandy:</b> coarse particles and rapid drainage.</li>
+<li><b>Clay:</b> very fine particles and high water retention.</li>
+<li><b>Loam:</b> a mixture of sand, silt and clay that can be suitable for many crops.</li>
+</ul>`},
+{title:"Soil Fertility and pH",content:`
+<h3>Soil fertility</h3><p>Soil fertility is the ability of soil to supply plants with the nutrients they need in suitable amounts.</p>
+<ul><li>Organic matter improves soil structure and may supply nutrients.</li><li>Crop rotation can help maintain soil health.</li><li>Soil testing helps farmers make informed fertilizer decisions.</li></ul>
+<h3>Soil pH</h3><p>Soil pH indicates how acidic or alkaline the soil is. Different crops grow best within different pH ranges.</p>
+<div class="note"><b>Remember:</b> Fertilizer recommendations should consider the crop, soil condition and local guidance.</div>`}
+]},
+{
+title:"2. Crop Production",
+description:"Understand the main stages of growing and caring for crops.",
+lessons:[
+{title:"Land Preparation and Planting",content:`
+<h3>Preparing land</h3><ul><li>Clear unwanted vegetation where appropriate.</li><li>Prepare a suitable seedbed.</li><li>Plan drainage and soil conservation measures.</li><li>Select healthy seeds suited to local conditions.</li></ul>
+<h3>Planting</h3><p>Correct planting depth, spacing and timing help crops establish well. The best practices depend on the crop and local climate.</p>`},
+{title:"Crop Care and Harvesting",content:`
+<h3>Crop management</h3><ul><li>Control weeds to reduce competition.</li><li>Supply water when necessary.</li><li>Monitor pests and diseases.</li><li>Maintain soil fertility appropriately.</li></ul>
+<h3>Harvesting and storage</h3><p>Harvest crops at the appropriate maturity stage. Handle produce carefully and store it under suitable conditions to reduce losses.</p>
+<div class="note"><b>Exam tip:</b> Explain how each crop-care practice improves plant growth or yield.</div>`}
+]},
+{
+title:"3. Livestock Production",
+description:"Learn the basics of feeding, housing and caring for farm animals.",
+lessons:[
+{title:"Animal Nutrition",content:`
+<h3>Why animals need feed</h3><p>Animals need balanced feed to provide energy, support growth, maintain health and produce milk, eggs, meat or other products.</p>
+<ul><li>Carbohydrates and fats supply energy.</li><li>Proteins support growth and tissue repair.</li><li>Minerals and vitamins support normal body functions.</li><li>Clean water is essential for health.</li></ul>
+<p>Feed requirements vary by animal species, age, size and production stage.</p>`},
+{title:"Housing and Health",content:`
+<h3>Good animal housing</h3><ul><li>Provides appropriate shelter and space.</li><li>Allows adequate ventilation.</li><li>Protects animals from harsh weather and predators.</li><li>Supports cleaning and waste management.</li></ul>
+<h3>Animal health</h3><p>Farmers should monitor animals regularly, maintain hygiene and seek veterinary advice when animals appear unwell.</p>
+<div class="note"><b>Remember:</b> Prevention, good nutrition and suitable housing support animal welfare.</div>`}
+]},
+{
+title:"4. Farm Tools and Equipment",
+description:"Recognize common farm tools and learn safe maintenance practices.",
+lessons:[
+{title:"Common Farm Tools",content:`
+<h3>Examples and uses</h3><ul><li><b>Jembe (hoe):</b> loosening soil and weeding.</li><li><b>Panga (machete):</b> cutting vegetation where suitable.</li><li><b>Rake:</b> gathering debris and levelling soil.</li><li><b>Spade:</b> digging and moving soil.</li><li><b>Watering can:</b> applying water to plants.</li></ul>
+<p>Choose a tool suitable for the task and the user's ability.</p>`},
+{title:"Care and Safety",content:`
+<h3>Maintaining tools</h3><ul><li>Clean tools after use.</li><li>Dry and store them properly.</li><li>Keep cutting edges in suitable condition.</li><li>Inspect handles and fastenings for damage.</li></ul>
+<h3>Farm safety</h3><p>Use protective equipment where needed, follow instructions and keep tools away from children and unauthorized users.</p>`}
+]},
+{
+title:"5. Water and Soil Conservation",
+description:"Learn methods for protecting soil and managing water resources.",
+lessons:[
+{title:"Preventing Soil Erosion",content:`
+<h3>Soil erosion</h3><p>Soil erosion is the removal of topsoil by agents such as water and wind. It can reduce fertility and damage farmland.</p>
+<h3>Conservation methods</h3><ul><li>Contour farming on suitable slopes.</li><li>Terracing where appropriate.</li><li>Cover crops and mulching.</li><li>Maintaining vegetation strips.</li><li>Planting trees and protecting ground cover.</li></ul>`},
+{title:"Water Management",content:`
+<h3>Managing farm water</h3><ul><li>Harvest rainwater where safe and practical.</li><li>Use suitable irrigation methods.</li><li>Maintain drainage to reduce waterlogging.</li><li>Reduce unnecessary water loss.</li><li>Protect streams and other water sources from contamination.</li></ul>
+<div class="note"><b>Key idea:</b> Good water management supplies crops while protecting the environment.</div>`}
+]},
+{
+title:"6. Farm Management",
+description:"Understand planning, budgeting and the importance of farm records.",
+lessons:[
+{title:"Farm Planning and Budgeting",content:`
+<h3>Farm management</h3><p>Farm management involves planning and organizing resources such as land, labour, capital and equipment to achieve farm objectives.</p>
+<h3>Budgeting</h3><p>A farm budget estimates expected income and expenses for a particular activity or period.</p>
+<ul><li>Estimate seed, feed, labour and other costs.</li><li>Estimate likely sales and other income.</li><li>Compare expected costs and returns.</li><li>Review the plan as conditions change.</li></ul>`},
+{title:"Farm Records",content:`
+<h3>Why keep records?</h3><ul><li>Track farm income and expenditure.</li><li>Monitor crop yields and animal production.</li><li>Plan purchases and future activities.</li><li>Help assess whether an enterprise is profitable.</li><li>Provide information for decision-making.</li></ul>
+<h3>Examples</h3><p>Cashbooks, sales records, inventory records, labour records and production records.</p>
+<div class="note"><b>Remember:</b> Accurate and up-to-date records help farmers make better decisions.</div>`}
+]}
+];
+
+let currentTopic=0;
+let currentLesson=0;
+
+const userKey=(()=>{
+try{
+const raw=localStorage.getItem("zyntraUser");
+if(!raw)return "guest";
+const user=JSON.parse(raw);
+return String(user.username||user.email||user.name||"guest").replace(/[^a-zA-Z0-9_-]/g,"_");
+}catch(e){return "guest";}
+})();
+
+const completedKey="zyntraAgricultureCompleted_"+userKey;
+const xpKey="zyntraAgricultureXP_"+userKey;
+
+function getCompleted(){
+try{
+const data=JSON.parse(localStorage.getItem(completedKey)||"[]");
+return Array.isArray(data)?data:[];
+}catch(e){return [];}
+}
+function getXP(){return Number(localStorage.getItem(xpKey)||0);}
+function lessonId(t,l){return t+"-"+l;}
+
+function updateProgress(){
+const completed=getCompleted();
+const total=topicsData.reduce((sum,t)=>sum+t.lessons.length,0);
+const percent=Math.round(completed.length/total*100);
+document.getElementById("completedCount").textContent=completed.length+"/"+total;
+document.getElementById("xp").textContent=getXP();
+document.getElementById("progressText").textContent=percent+"%";
+document.getElementById("progressBar").style.width=percent+"%";
+}
+
+function renderTopics(){
+document.querySelectorAll(".topic").forEach(card=>{
+card.classList.toggle("active",Number(card.dataset.topic)===currentTopic);
+});
+}
+
+function renderLessonList(){
+const topic=topicsData[currentTopic];
+const completed=getCompleted();
+document.getElementById("topicTitle").textContent=topic.title;
+document.getElementById("topicDescription").textContent=topic.description;
+document.getElementById("lessonList").innerHTML=topic.lessons.map((lesson,index)=>{
+const done=completed.includes(lessonId(currentTopic,index));
+return `<button class="lesson-button ${done?"done":""} ${index===currentLesson?"selected":""}" onclick="selectLesson(${index})">${done?"✓ ":""}${lesson.title}</button>`;
+}).join("");
+renderLessonContent();
+}
+
+function renderLessonContent(){
+const lesson=topicsData[currentTopic].lessons[currentLesson];
+const done=getCompleted().includes(lessonId(currentTopic,currentLesson));
+document.getElementById("lessonContent").innerHTML=`<h3>${lesson.title}</h3>${lesson.content}`;
+const button=document.getElementById("completeButton");
+button.disabled=done;
+button.textContent=done?"✓ Lesson Completed":"✓ Mark Lesson Complete (+10 XP)";
+}
+
+function selectLesson(index){
+currentLesson=index;
+renderLessonList();
+}
+
+function completeLesson(){
+const completed=getCompleted();
+const id=lessonId(currentTopic,currentLesson);
+if(completed.includes(id))return;
+completed.push(id);
+localStorage.setItem(completedKey,JSON.stringify(completed));
+localStorage.setItem(xpKey,String(getXP()+10));
+renderLessonList();
+updateProgress();
+}
+
+function nextLesson(){
+const topic=topicsData[currentTopic];
+if(currentLesson<topic.lessons.length-1){
+currentLesson++;
+}else if(currentTopic<topicsData.length-1){
+currentTopic++;
+currentLesson=0;
+}else{
+alert("You have reached the final lesson. Great work!");
+return;
+}
+renderTopics();
+renderLessonList();
+document.getElementById("lessonArea").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+document.querySelectorAll(".topic").forEach(card=>{
+card.addEventListener("click",()=>{
+currentTopic=Number(card.dataset.topic);
+currentLesson=0;
+renderTopics();
+renderLessonList();
+document.getElementById("lessonArea").scrollIntoView({behavior:"smooth",block:"start"});
+});
+});
+
+document.getElementById("quizForm").addEventListener("submit",function(event){
+event.preventDefault();
+const answers={q1:"b",q2:"c",q3:"a",q4:"b",q5:"c",q6:"a"};
+let score=0;
+for(const question in answers){
+const selected=this.querySelector(`input[name="${question}"]:checked`);
+if(selected&&selected.value===answers[question])score++;
+}
+const result=document.getElementById("quizResult");
+result.style.display="block";
+result.style.background=score>=5?"#22c55e20":"#8b5cf620";
+result.style.border="1px solid "+(score>=5?"#22c55e":"#8b5cf6");
+result.innerHTML=`<b>Your score: ${score}/6</b><p>${score>=5?"Excellent work! Keep revising.":"Good effort! Review the notes and try again."}</p>`;
+});
+
+renderTopics();
+renderLessonList();
+updateProgress();
+</script>
+</body>
+</html>

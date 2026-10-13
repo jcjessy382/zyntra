@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>ZYNTRA | Saved Posts</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+
+    --bg:#070711;
+    --bg2:#0d0d1b;
+
+    --card:rgba(255,255,255,.05);
+
+    --border:rgba(255,255,255,.09);
+
+    --purple:#8b5cf6;
+    --blue:#3b82f6;
+    --pink:#ec4899;
+    --cyan:#06b6d4;
+    --green:#22c55e;
+    --red:#ef4444;
+
+    --text:#fff;
+    --muted:#a1a1b5;
+
+}
+
+body{
+
+    min-height:100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:var(--text);
+
+    background:
+
+        radial-gradient(
+            circle at top left,
+            rgba(139,92,246,.16),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            rgba(59,130,246,.10),
+            transparent 35%
+        ),
+
+        var(--bg);
+
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+
+    height:70px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    background:
+        rgba(7,7,17,.86);
+
+    backdrop-filter:
+        blur(20px);
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+.logo{
+
+    font-size:25px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--blue),
+            var(--pink)
+        );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+}
+
+.navlinks{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:22px;
+
+}
+
+.navlinks a{
+
+    color:#aaa;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    transition:.2s;
+
+}
+
+.navlinks a:hover{
+
+    color:#fff;
+
+}
+
+.navlinks a.active{
+
+    color:#fff;
+
+}
+
+.profile{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+/* ================= PAGE ================= */
+
+.page{
+
+    width:min(
+        900px,
+        calc(100% - 30px)
+    );
+
+    margin:0 auto;
+
+    padding:35px 0 60px;
+
+}
+
+.page-header{
+
+    margin-bottom:25px;
+
+}
+
+.page-header h1{
+
+    font-size:34px;
+
+    margin-bottom:8px;
+
+}
+
+.page-header p{
+
+    color:var(--muted);
+
+}
+
+
+/* ================= TOP CARD ================= */
+
+.saved-info{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:18px 20px;
+
+    margin-bottom:20px;
+
+    border-radius:16px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+}
+
+.saved-count{
+
+    font-size:14px;
+
+    color:#bbb;
+
+}
+
+.refresh-btn{
+
+    border:1px solid var(--border);
+
+    background:rgba(255,255,255,.05);
+
+    color:white;
+
+    border-radius:9px;
+
+    padding:9px 14px;
+
+    cursor:pointer;
+
+}
+
+.refresh-btn:hover{
+
+    background:rgba(255,255,255,.09);
+
+}
+
+
+/* ================= POST ================= */
+
+.post-card{
+
+    padding:20px;
+
+    margin-bottom:18px;
+
+    border-radius:18px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(15px);
+
+}
+
+.post-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+}
+
+.user-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.avatar{
+
+    width:43px;
+
+    height:43px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+    font-weight:bold;
+
+}
+
+.username{
+
+    font-weight:bold;
+
+}
+
+.time{
+
+    color:#777;
+
+    font-size:12px;
+
+    margin-top:4px;
+
+}
+
+.category-tag{
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    color:#c4b5fd;
+
+    background:
+        rgba(139,92,246,.15);
+
+}
+
+.post-content{
+
+    margin:18px 0;
+
+    color:#ddd;
+
+    line-height:1.7;
+
+    white-space:pre-wrap;
+
+    word-break:break-word;
+
+}
+
+
+/* ================= ACTIONS ================= */
+
+.actions{
+
+    display:flex;
+
+    gap:8px;
+
+    padding-top:13px;
+
+    border-top:
+        1px solid var(--border);
+
+}
+
+.action-btn{
+
+    border:none;
+
+    background:transparent;
+
+    color:#999;
+
+    padding:8px 10px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.action-btn:hover{
+
+    color:white;
+
+    background:
+        rgba(255,255,255,.06);
+
+}
+
+.action-btn.liked{
+
+    color:var(--red);
+
+}
+
+.action-btn.saved{
+
+    color:#f59e0b;
+
+}
+
+.action-btn.shared{
+
+    color:var(--cyan);
+
+}
+
+.action-btn span{
+
+    margin-left:4px;
+
+}
+
+
+/* ================= COMMENTS ================= */
+
+.comments{
+
+    display:none;
+
+    margin-top:15px;
+
+    padding-top:15px;
+
+    border-top:
+        1px solid var(--border);
+
+}
+
+.comments.open{
+
+    display:block;
+
+}
+
+.comment{
+
+    padding:10px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.05);
+
+}
+
+.comment:last-child{
+
+    border-bottom:none;
+
+}
+
+.comment-name{
+
+    font-size:13px;
+
+    font-weight:bold;
+
+}
+
+.comment-text{
+
+    color:#bbb;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    margin-top:4px;
+
+}
+
+.comment-form{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-top:12px;
+
+}
+
+.comment-input{
+
+    flex:1;
+
+    min-width:0;
+
+    padding:10px;
+
+    color:white;
+
+    background:#11111f;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    outline:none;
+
+}
+
+.comment-input:focus{
+
+    border-color:var(--purple);
+
+}
+
+.comment-submit{
+
+    border:none;
+
+    background:var(--purple);
+
+    color:white;
+
+    padding:0 15px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+}
+
+
+/* ================= EMPTY ================= */
+
+.empty{
+
+    padding:65px 20px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+}
+
+.empty-icon{
+
+    font-size:50px;
+
+    margin-bottom:15px;
+
+}
+
+.empty h2{
+
+    margin-bottom:8px;
+
+}
+
+.empty p{
+
+    color:#888;
+
+    line-height:1.6;
+
+}
+
+.study-btn{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:11px 18px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-weight:bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+}
+
+
+/* ================= STATUS ================= */
+
+.status{
+
+    display:none;
+
+    margin-bottom:15px;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+}
+
+.status.show{
+
+    display:block;
+
+}
+
+.status.success{
+
+    color:#86efac;
+
+    background:
+        rgba(34,197,94,.12);
+
+}
+
+.status.error{
+
+    color:#fca5a5;
+
+    background:
+        rgba(239,68,68,.12);
+
+}
+
+
+/* ================= LOADING ================= */
+
+.loading{
+
+    padding:50px;
+
+    text-align:center;
+
+    color:#888;
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+    .navbar{
+
+        padding:0 15px;
+
+    }
+
+    .navlinks{
+
+        display:none;
+
+    }
+
+    .page{
+
+        width:
+            calc(100% - 20px);
+
+        padding-top:25px;
+
+    }
+
+    .page-header h1{
+
+        font-size:28px;
+
+    }
+
+    .saved-info{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+    .refresh-btn{
+
+        width:100%;
+
+    }
+
+    .post-header{
+
+        align-items:flex-start;
+
+    }
+
+    .category-tag{
+
+        font-size:10px;
+
+    }
+
+    .actions{
+
+        flex-wrap:wrap;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        ZYNTRA
+    </div>
+
+
+    <div class="navlinks">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="study.html">
+            Study
+        </a>
+
+        <a href="ai.html">
+            AI
+        </a>
+
+        <a href="community.html">
+            Community
+        </a>
+
+        <a href="planner.html">
+            Planner
+        </a>
+
+        <a href="challenge.html">
+            Challenges
+        </a>
+
+    </div>
+
+
+    <div
+        class="profile"
+        id="profileAvatar"
+        onclick="window.location.href='profile.html'"
+    >
+        ?
+    </div>
+
+</nav>
+
+
+<!-- ================= PAGE ================= -->
+
+<main class="page">
+
+
+    <div class="page-header">
+
+        <h1>
+            🔖 Saved Posts
+        </h1>
+
+        <p>
+            Posts you saved from the ZYNTRA Community.
+        </p>
+
+    </div>
+
+
+    <div
+        id="status"
+        class="status"
+    ></div>
+
+
+    <div class="saved-info">
+
+        <div class="saved-count">
+
+            <strong id="savedCount">
+                0
+            </strong>
+
+            saved posts
+
+        </div>
+
+
+        <button
+            class="refresh-btn"
+            onclick="loadSavedPosts()"
+        >
+            🔄 Refresh
+        </button>
+
+    </div>
+
+
+    <div id="postsContainer">
+
+        <div class="loading">
+            Loading saved posts...
+        </div>
+
+    </div>
+
+
+</main>
+
+
+<script src="auth.js"></script>
+
+
+<script>
+
+/* ======================================================
+   ZYNTRA SAVED POSTS
+====================================================== */
+
+
+/* ================= LOGIN ================= */
+
+try{
+
+    if(
+        typeof requireZyntraLogin ===
+        "function"
+    ){
+
+        requireZyntraLogin();
+
+    }
+
+}catch(error){
+
+    console.error(
+        "Login protection error:",
+        error
+    );
+
+}
+
+
+/* ================= USER ================= */
+
+let currentUser = null;
+
+
+function getUser(){
+
+    try{
+
+        if(
+            typeof getZyntraUser ===
+            "function"
+        ){
+
+            const user =
+                getZyntraUser();
+
+            if(user){
+
+                return user;
+
+            }
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+
+    try{
+
+        const stored =
+            localStorage.getItem(
+                "zyntraUser"
+            );
+
+        if(stored){
+
+            return JSON.parse(
+                stored
+            );
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+
+    return {
+
+        name:"Student",
+
+        username:"Student",
+
+        email:""
+
+    };
+
+}
+
+
+currentUser =
+    getUser();
+
+
+function getUsername(){
+
+    return String(
+
+        currentUser?.username ||
+        currentUser?.email ||
+        currentUser?.name ||
+        "Student"
+
+    ).trim();
+
+}
+
+
+function getName(){
+
+    return String(
+
+        currentUser?.name ||
+        currentUser?.username ||
+        "Student"
+
+    ).trim();
+
+}
+
+
+document.getElementById(
+    "profileAvatar"
+).textContent =
+    getName()
+        .charAt(0)
+        .toUpperCase();
+
+
+/* ================= DATA ================= */
+
+let savedPosts = [];
+
+
+/* ================= STATUS ================= */
+
+function showStatus(
+    message,
+    type="success"
+){
+
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+    status.textContent =
+        message;
+
+    status.className =
+        "status show " +
+        type;
+
+
+    setTimeout(
+        () => {
+
+            status.className =
+                "status";
+
+        },
+        3000
+    );
+
+}
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHTML(
+    value
+){
+
+    return String(
+        value || ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* ================= ESCAPE JS ================= */
+
+function escapeJS(
+    value
+){
+
+    return String(
+        value || ""
+    )
+    .replace(
+        /\\/g,
+        "\\\\"
+    )
+    .replace(
+        /'/g,
+        "\\'"
+    )
+    .replace(
+        /"/g,
+        '\\"'
+    )
+    .replace(
+        /\n/g,
+        "\\n"
+    )
+    .replace(
+        /\r/g,
+        "\\r"
+    );
+
+}
+
+
+/* ================= TIME ================= */
+
+function timeAgo(
+    date
+){
+
+    if(!date){
+
+        return "";
+
+    }
+
+
+    const timestamp =
+        new Date(date).getTime();
+
+
+    if(
+        Number.isNaN(
+            timestamp
+        )
+    ){
+
+        return "";
+
+    }
+
+
+    const seconds =
+        Math.floor(
+            (
+                Date.now() -
+                timestamp
+            ) / 1000
+        );
+
+
+    if(seconds < 60){
+
+        return "Just now";
+
+    }
+
+
+    const minutes =
+        Math.floor(
+            seconds / 60
+        );
+
+
+    if(minutes < 60){
+
+        return minutes +
+            " min ago";
+
+    }
+
+
+    const hours =
+        Math.floor(
+            minutes / 60
+        );
+
+
+    if(hours < 24){
+
+        return hours +
+            " hr ago";
+
+    }
+
+
+    const days =
+        Math.floor(
+            hours / 24
+        );
+
+
+    if(days < 7){
+
+        return days +
+            " day" +
+            (
+                days === 1
+                    ? ""
+                    : "s"
+            ) +
+            " ago";
+
+    }
+
+
+    return new Date(
+        date
+    ).toLocaleDateString();
+
+}
+
+
+/* ======================================================
+   LOAD SAVED POSTS
+====================================================== */
+
+async function loadSavedPosts(){
+
+    const container =
+        document.getElementById(
+            "postsContainer"
+        );
+
+
+    container.innerHTML = `
+
+        <div class="loading">
+            Loading saved posts...
+        </div>
+
+    `;
+
+
+    try{
+
+        const username =
+            encodeURIComponent(
+                getUsername()
+            );
+
+
+        const response =
+            await fetch(
+                "http://localhost:3000/api/community/saved?username=" +
+                username
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data.error ||
+                "Could not load saved posts."
+            );
+
+        }
+
+
+        savedPosts =
+            Array.isArray(
+                data.posts
+            )
+                ? data.posts
+                : [];
+
+
+        document.getElementById(
+            "savedCount"
+        ).textContent =
+            savedPosts.length;
+
+
+        renderSavedPosts();
+
+
+    }catch(error){
+
+        console.error(
+            "Saved posts error:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ⚠️
+                </div>
+
+                <h2>
+                    Could not load saved posts
+                </h2>
+
+                <p>
+                    Make sure your ZYNTRA backend
+                    is running on port 3000.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* ======================================================
+   RENDER SAVED POSTS
+====================================================== */
+
+function renderSavedPosts(){
+
+    const container =
+        document.getElementById(
+            "postsContainer"
+        );
+
+
+    if(!savedPosts.length){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🔖
+                </div>
+
+                <h2>
+                    No saved posts yet
+                </h2>
+
+                <p>
+                    When you save a post from Community,
+                    it will appear here.
+                </p>
+
+                <a
+                    href="community.html"
+                    class="study-btn"
+                >
+                    Explore Community
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        savedPosts
+            .map(
+                post =>
+                    createPostHTML(
+                        post
+                    )
+            )
+            .join("");
+
+}
+
+
+/* ======================================================
+   CREATE POST HTML
+====================================================== */
+
+function createPostHTML(
+    post
+){
+
+    const name =
+        post.name ||
+        post.username ||
+        "Student";
+
+
+    const initial =
+        String(name)
+            .charAt(0)
+            .toUpperCase();
+
+
+    const comments =
+        Array.isArray(
+            post.comments
+        )
+            ? post.comments
+            : [];
+
+
+    return `
+
+        <article
+            class="post-card"
+            id="post-${escapeHTML(post.id)}"
+        >
+
+            <div class="post-header">
+
+                <div class="user-info">
+
+                    <div class="avatar">
+
+                        ${escapeHTML(
+                            initial
+                        )}
+
+                    </div>
+
+                    <div>
+
+                        <div class="username">
+
+                            ${escapeHTML(
+                                name
+                            )}
+
+                        </div>
+
+                        <div class="time">
+
+                            ${escapeHTML(
+                                timeAgo(
+                                    post.createdAt ||
+                                    post.created_at
+                                )
+                            )}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="category-tag">
+
+                    ${escapeHTML(
+                        post.category ||
+                        "Community"
+                    )}
+
+                </div>
+
+            </div>
+
+
+            <div class="post-content">
+
+                ${escapeHTML(
+                    post.content
+                )}
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    class="action-btn ${
+                        post.liked
+                            ? "liked"
+                            : ""
+                    }"
+                    onclick="
+                        toggleLike(
+                            '${escapeJS(post.id)}'
+                        )
+                    "
+                >
+
+                    ${
+                        post.liked
+                            ? "❤️"
+                            : "🤍"
+                    }
+
+                    <span>
+                        ${Number(
+                            post.likes || 0
+                        )}
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="action-btn"
+                    onclick="
+                        toggleComments(
+                            '${escapeJS(post.id)}'
+                        )
+                    "
+                >
+
+                    💬
+
+                    <span>
+                        ${comments.length}
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="action-btn saved"
+                    onclick="
+                        unsavePost(
+                            '${escapeJS(post.id)}'
+                        )
+                    "
+                >
+
+                    🔖
+
+                    <span>
+                        ${Number(
+                            post.saves || 0
+                        )}
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="action-btn ${
+                        post.shared
+                            ? "shared"
+                            : ""
+                    }"
+                    onclick="
+                        sharePost(
+                            '${escapeJS(post.id)}'
+                        )
+                    "
+                >
+
+                    ↗️
+
+                    <span>
+                        ${Number(
+                            post.shares || 0
+                        )}
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="comments"
+                id="comments-${escapeHTML(post.id)}"
+            >
+
+                <div
+                    id="comment-list-${escapeHTML(post.id)}"
+                >
+
+                    ${renderComments(
+                        comments
+                    )}
+
+                </div>
+
+
+                <div class="comment-form">
+
+                    <input
+                        class="comment-input"
+                        id="comment-input-${escapeHTML(post.id)}"
+                        maxlength="500"
+                        placeholder="Write a comment..."
+                        onkeydown="
+                            commentKey(
+                                event,
+                                '${escapeJS(post.id)}'
+                            )
+                        "
+                    >
+
+
+                    <button
+                        class="comment-submit"
+                        onclick="
+                            addComment(
+                                '${escapeJS(post.id)}'
+                            )
+                        "
+                    >
+                        Send
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* ======================================================
+   COMMENTS
+====================================================== */
+
+function renderComments(
+    comments
+){
+
+    if(!comments.length){
+
+        return `
+
+            <div
+                style="
+                    color:#777;
+                    font-size:13px;
+                "
+            >
+                No comments yet.
+            </div>
+
+        `;
+
+    }
+
+
+    return comments
+        .map(
+            comment => `
+
+                <div class="comment">
+
+                    <div class="comment-name">
+
+                        ${escapeHTML(
+                            comment.name ||
+                            comment.username ||
+                            "Student"
+                        )}
+
+                    </div>
+
+                    <div class="comment-text">
+
+                        ${escapeHTML(
+                            comment.text ||
+                            comment.content ||
+                            ""
+                        )}
+
+                    </div>
+
+                </div>
+
+            `
+        )
+        .join("");
+
+}
+
+
+/* ======================================================
+   LIKE
+====================================================== */
+
+async function toggleLike(
+    postId
+){
+
+    try{
+
+        const response =
+            await fetch(
+                "http://localhost:3000/api/community/posts/" +
+                encodeURIComponent(
+                    postId
+                ) +
+                "/like",
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            username:
+                                getUsername(),
+
+                            email:
+                                currentUser?.email ||
+                                ""
+
+                        })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data.error ||
+                "Could not update like."
+            );
+
+        }
+
+
+        updatePost(
+            data.post
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showStatus(
+            error.message ||
+            "Could not update like.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ======================================================
+   UNSAVE
+====================================================== */
+
+async function unsavePost(
+    postId
+){
+
+    try{
+
+        const response =
+            await fetch(
+                "http://localhost:3000/api/community/posts/" +
+                encodeURIComponent(
+                    postId
+                ) +
+                "/save",
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            username:
+                                getUsername(),
+
+                            email:
+                                currentUser?.email ||
+                                ""
+
+                        })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data.error ||
+                "Could not remove saved post."
+            );
+
+        }
+
+
+        if(
+            data.saved === false
+        ){
+
+            savedPosts =
+                savedPosts.filter(
+                    post =>
+                        String(
+                            post.id
+                        ) !==
+                        String(
+                            postId
+                        )
+                );
+
+
+            document.getElementById(
+                "savedCount"
+            ).textContent =
+                savedPosts.length;
+
+
+            renderSavedPosts();
+
+
+            showStatus(
+                "Post removed from Saved Posts."
+            );
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        showStatus(
+            error.message ||
+            "Could not remove saved post.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ======================================================
+   UPDATE POST
+====================================================== */
+
+function updatePost(
+    updatedPost
+){
+
+    if(!updatedPost){
+
+        return;
+
+    }
+
+
+    const index =
+        savedPosts.findIndex(
+            post =>
+                String(
+                    post.id
+                ) ===
+                String(
+                    updatedPost.id
+                )
+        );
+
+
+    if(index === -1){
+
+        return;
+
+    }
+
+
+    savedPosts[index] =
+        updatedPost;
+
+
+    renderSavedPosts();
+
+}
+
+
+/* ======================================================
+   COMMENTS TOGGLE
+====================================================== */
+
+function toggleComments(
+    postId
+){
+
+    const box =
+        document.getElementById(
+            "comments-" +
+            postId
+        );
+
+
+    if(box){
+
+        box.classList.toggle(
+            "open"
+        );
+
+    }
+
+}
+
+
+/* ======================================================
+   ADD COMMENT
+====================================================== */
+
+async function addComment(
+    postId
+){
+
+    const input =
+        document.getElementById(
+            "comment-input-" +
+            postId
+        );
+
+
+    if(!input){
+
+        return;
+
+    }
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text){
+
+        showStatus(
+            "Write a comment first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                "http://localhost:3000/api/community/posts/" +
+                encodeURIComponent(
+                    postId
+                ) +
+                "/comments",
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            username:
+                                getUsername(),
+
+                            name:
+                                getName(),
+
+                            text:
+                                text
+
+                        })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data.error ||
+                "Could not add comment."
+            );
+
+        }
+
+
+        const post =
+            savedPosts.find(
+                item =>
+                    String(
+                        item.id
+                    ) ===
+                    String(
+                        postId
+                    )
+            );
+
+
+        if(post){
+
+            if(
+                !Array.isArray(
+                    post.comments
+                )
+            ){
+
+                post.comments = [];
+
+            }
+
+
+            post.comments.push(
+                data.comment
+            );
+
+        }
+
+
+        renderSavedPosts();
+
+
+        setTimeout(
+            () => {
+
+                const box =
+                    document.getElementById(
+                        "comments-" +
+                        postId
+                    );
+
+                if(box){
+
+                    box.classList.add(
+                        "open"
+                    );
+
+                }
+
+            },
+            20
+        );
+
+
+        showStatus(
+            "Comment added 💬"
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showStatus(
+            error.message ||
+            "Could not add comment.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ======================================================
+   COMMENT ENTER
+====================================================== */
+
+function commentKey(
+    event,
+    postId
+){
+
+    if(
+        event.key ===
+        "Enter"
+    ){
+
+        event.preventDefault();
+
+        addComment(
+            postId
+        );
+
+    }
+
+}
+
+
+/* ======================================================
+   SHARE
+====================================================== */
+
+async function sharePost(
+    postId
+){
+
+    const post =
+        savedPosts.find(
+            item =>
+                String(
+                    item.id
+                ) ===
+                String(
+                    postId
+                )
+        );
+
+
+    if(!post){
+
+        return;
+
+    }
+
+
+    const text =
+        (
+            post.name ||
+            post.username ||
+            "Student"
+        ) +
+        " posted on ZYNTRA Community:\n\n" +
+        post.content;
+
+
+    try{
+
+        let copied =
+            false;
+
+
+        if(
+            navigator.share
+        ){
+
+            try{
+
+                await navigator.share({
+
+                    title:
+                        "ZYNTRA Community",
+
+                    text:
+                        text
+
+                });
+
+                copied = true;
+
+            }catch(error){
+
+                if(
+                    error.name ===
+                    "AbortError"
+                ){
+
+                    return;
+
+                }
+
+            }
+
+        }
+
+
+        if(!copied){
+
+            if(
+                navigator.clipboard
+            ){
+
+                await navigator.clipboard.writeText(
+                    text
+                );
+
+            }else{
+
+                const temp =
+                    document.createElement(
+                        "textarea"
+                    );
+
+                temp.value =
+                    text;
+
+                document.body.appendChild(
+                    temp
+                );
+
+                temp.select();
+
+                document.execCommand(
+                    "copy"
+                );
+
+                temp.remove();
+
+            }
+
+        }
+
+
+        const response =
+            await fetch(
+                "http://localhost:3000/api/community/posts/" +
+                encodeURIComponent(
+                    postId
+                ) +
+                "/share",
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            username:
+                                getUsername(),
+
+                            email:
+                                currentUser?.email ||
+                                ""
+
+                        })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data.error ||
+                "Could not record share."
+            );
+
+        }
+
+
+        updatePost(
+            data.post
+        );
+
+
+        showStatus(
+            data.shared
+                ? "Post shared ↗️"
+                : "Share removed."
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showStatus(
+            "Could not share post.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ======================================================
+   START
+====================================================== */
+
+loadSavedPosts();
+
+</script>
+
+</body>
+
+</html>

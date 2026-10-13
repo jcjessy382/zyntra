@@ -1,0 +1,908 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZYNTRA | Advanced Mathematics</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #070711;
+            color: white;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #8b5cf6;
+            filter: blur(180px);
+            opacity: 0.12;
+            top: -200px;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #3b82f6;
+            filter: blur(180px);
+            opacity: 0.10;
+            bottom: -200px;
+            right: -150px;
+            z-index: -1;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            width: 100%;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(7,7,17,0.88);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #cfcfe4;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-links a.active {
+            color: white;
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 90px 20px 60px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(139,92,246,0.12);
+            border: 1px solid rgba(139,92,246,0.3);
+            color: #c4b5fd;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(
+                135deg,
+                #ffffff,
+                #a78bfa,
+                #60a5fa
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin: auto;
+            color: #9999b0;
+            font-size: 17px;
+        }
+
+        /* MATH ORB */
+
+        .math-orb {
+            width: 260px;
+            height: 260px;
+            margin: 55px auto 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(139,92,246,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow:
+                0 0 60px rgba(139,92,246,0.18),
+                inset 0 0 60px rgba(59,130,246,0.08);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .formula-main {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .symbol {
+            position: absolute;
+            color: #a78bfa;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .s1 {
+            top: 25px;
+            left: 105px;
+        }
+
+        .s2 {
+            right: 25px;
+            top: 105px;
+        }
+
+        .s3 {
+            bottom: 25px;
+            left: 105px;
+        }
+
+        .s4 {
+            left: 25px;
+            top: 105px;
+        }
+
+        @keyframes float {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+        }
+
+        /* SECTION */
+
+        .section {
+            max-width: 1150px;
+            margin: auto;
+            padding: 55px 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #85859b;
+        }
+
+        /* TOPICS */
+
+        .topics {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 22px;
+        }
+
+        .topic-card {
+            padding: 30px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.35s ease;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139,92,246,0.45);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .topic-icon {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+
+        .topic-card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .topic-card p {
+            color: #9292a8;
+            font-size: 14px;
+        }
+
+        /* FORMULAS */
+
+        .formula-box {
+            padding: 35px;
+            border-radius: 22px;
+            background: linear-gradient(
+                135deg,
+                rgba(139,92,246,0.10),
+                rgba(59,130,246,0.08)
+            );
+            border: 1px solid rgba(139,92,246,0.25);
+        }
+
+        .formula {
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 14px;
+            background: rgba(0,0,0,0.25);
+            text-align: center;
+            color: #ddd6fe;
+            font-size: 22px;
+        }
+
+        /* EXAMPLE */
+
+        .example {
+            padding: 30px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.045);
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .example p {
+            margin: 10px 0;
+            color: #c7c7d8;
+        }
+
+        .answer {
+            color: #86efac !important;
+            font-weight: bold;
+        }
+
+        /* QUIZ */
+
+        .quiz {
+            max-width: 700px;
+            margin: auto;
+            padding: 32px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+        }
+
+        .quiz h3 {
+            margin-bottom: 25px;
+        }
+
+        .quiz-option {
+            width: 100%;
+            padding: 14px;
+            margin: 7px 0;
+            border: none;
+            border-radius: 12px;
+            background: rgba(139,92,246,0.12);
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .quiz-option:hover {
+            background: linear-gradient(
+                135deg,
+                #8b5cf6,
+                #3b82f6
+            );
+            transform: translateY(-2px);
+        }
+
+        .quiz-option:disabled {
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        #quizResult {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* BUTTON */
+
+        .back-section {
+            text-align: center;
+            padding: 30px 20px 70px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 13px 25px;
+            border-radius: 12px;
+            background: linear-gradient(
+                135deg,
+                #8b5cf6,
+                #3b82f6
+            );
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139,92,246,0.35);
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #77778c;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:850px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .topics {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            ZYNTRA
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="dashboard.html">Dashboard</a>
+
+            <a href="study.html">Study</a>
+
+            <a href="math.html" class="active">
+                Mathematics
+            </a>
+
+            <a href="ai.html">AI</a>
+
+            <a href="planner.html">Planner</a>
+
+            <a href="challenge.html">Challenges</a>
+
+            <a href="profile.html">Profile</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="badge">
+            ∞ ZYNTRA MATHEMATICS • ADVANCED
+        </div>
+
+        <h1>
+            Go Beyond. Think Deeper.
+        </h1>
+
+        <p>
+            Explore challenging mathematical ideas,
+            powerful formulas, problem-solving techniques
+            and advanced examination concepts.
+        </p>
+
+
+        <div class="math-orb">
+
+            <div class="formula-main">
+                f(x) = x²
+            </div>
+
+            <span class="symbol s1">∫</span>
+            <span class="symbol s2">π</span>
+            <span class="symbol s3">Σ</span>
+            <span class="symbol s4">∞</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOPICS -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                Advanced Topics
+            </h2>
+
+            <p>
+                Challenge yourself with higher-level mathematics.
+            </p>
+
+        </div>
+
+
+        <div class="topics">
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    🧮
+                </div>
+
+                <h3>
+                    Advanced Algebra
+                </h3>
+
+                <p>
+                    Work with simultaneous equations,
+                    quadratic equations, inequalities
+                    and algebraic manipulation.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    📈
+                </div>
+
+                <h3>
+                    Advanced Functions
+                </h3>
+
+                <p>
+                    Explore transformations, composite
+                    functions, inverse functions and graphs.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    ∫
+                </div>
+
+                <h3>
+                    Introduction to Calculus
+                </h3>
+
+                <p>
+                    Discover differentiation, gradients,
+                    rates of change and basic integration.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    🔢
+                </div>
+
+                <h3>
+                    Sequences & Series
+                </h3>
+
+                <p>
+                    Learn arithmetic sequences,
+                    geometric sequences and series.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    🎲
+                </div>
+
+                <h3>
+                    Advanced Probability
+                </h3>
+
+                <p>
+                    Study probability rules, events,
+                    combinations and expected outcomes.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    📐
+                </div>
+
+                <h3>
+                    Mathematical Problem Solving
+                </h3>
+
+                <p>
+                    Develop logical thinking and strategies
+                    for solving difficult examination questions.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT FORMULAS -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                📌 Important Formulas
+            </h2>
+
+            <p>
+                Some useful formulas for advanced mathematics.
+            </p>
+
+        </div>
+
+
+        <div class="formula-box">
+
+            <div class="formula">
+                Quadratic Formula:
+                x = (-b ± √(b² - 4ac)) / 2a
+            </div>
+
+            <div class="formula">
+                Arithmetic Sequence:
+                aₙ = a + (n - 1)d
+            </div>
+
+            <div class="formula">
+                Arithmetic Series:
+                Sₙ = n/2 [2a + (n - 1)d]
+            </div>
+
+            <div class="formula">
+                Gradient:
+                m = (y₂ - y₁) / (x₂ - x₁)
+            </div>
+
+            <div class="formula">
+                Probability:
+                P(E) = Favourable outcomes / Total outcomes
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WORKED EXAMPLE -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                🧠 Worked Example
+            </h2>
+
+            <p>
+                Let's solve a quadratic equation.
+            </p>
+
+        </div>
+
+
+        <div class="example">
+
+            <p>
+                Solve:
+            </p>
+
+            <div class="formula">
+                x² - 5x + 6 = 0
+            </div>
+
+            <p>
+                Factorise:
+            </p>
+
+            <div class="formula">
+                (x - 2)(x - 3) = 0
+            </div>
+
+            <p>
+                Therefore:
+            </p>
+
+            <p>
+                x - 2 = 0 &nbsp;&nbsp; or &nbsp;&nbsp; x - 3 = 0
+            </p>
+
+            <p class="answer">
+                x = 2 or x = 3
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUICK REVISION -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                ⚡ Quick Revision
+            </h2>
+
+            <p>
+                Remember these key ideas.
+            </p>
+
+        </div>
+
+
+        <div class="topics">
+
+
+            <div class="topic-card">
+
+                <h3>
+                    Calculus
+                </h3>
+
+                <p>
+                    Differentiation deals with rates of
+                    change and gradients.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <h3>
+                    Sequence
+                </h3>
+
+                <p>
+                    A sequence is an ordered list
+                    of numbers following a pattern.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <h3>
+                    Probability
+                </h3>
+
+                <p>
+                    Probability measures how likely
+                    an event is to occur.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUIZ -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                🏆 Advanced Challenge
+            </h2>
+
+            <p>
+                Test your mathematical thinking.
+            </p>
+
+        </div>
+
+
+        <div class="quiz">
+
+            <h3>
+                What are the solutions of
+                x² - 5x + 6 = 0?
+            </h3>
+
+
+            <button
+                class="quiz-option"
+                onclick="checkAnswer(this, false)">
+                A. x = 1 and x = 6
+            </button>
+
+
+            <button
+                class="quiz-option"
+                onclick="checkAnswer(this, true)">
+                B. x = 2 and x = 3
+            </button>
+
+
+            <button
+                class="quiz-option"
+                onclick="checkAnswer(this, false)">
+                C. x = -2 and x = -3
+            </button>
+
+
+            <button
+                class="quiz-option"
+                onclick="checkAnswer(this, false)">
+                D. x = 0 and x = 5
+            </button>
+
+
+            <div id="quizResult"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BACK BUTTON -->
+
+    <div class="back-section">
+
+        <a href="math.html" class="back-button">
+            ← Back to Mathematics
+        </a>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            ZYNTRA Mathematics • Advanced Mathematics
+        </p>
+
+        <small id="year">
+            © 2026 ZYNTRA. Learn Beyond Limits.
+        </small>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function checkAnswer(button, correct) {
+
+            let result =
+                document.getElementById("quizResult");
+
+            let buttons =
+                document.querySelectorAll(".quiz-option");
+
+            buttons.forEach(function(btn) {
+                btn.disabled = true;
+            });
+
+
+            if (correct) {
+
+                result.textContent =
+                    "✅ Correct! The solutions are x = 2 and x = 3.";
+
+                result.style.color =
+                    "#22c55e";
+
+            } else {
+
+                result.textContent =
+                    "❌ Not quite. The correct answer is x = 2 and x = 3.";
+
+                result.style.color =
+                    "#f87171";
+
+            }
+
+        }
+
+
+        document.getElementById("year").textContent =
+            "© " +
+            new Date().getFullYear() +
+            " ZYNTRA. Learn Beyond Limits.";
+
+    </script>
+
+</body>
+</html>
+

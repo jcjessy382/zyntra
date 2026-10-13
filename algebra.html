@@ -1,0 +1,1423 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZYNTRA Algebra</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #070711;
+            --card: rgba(255,255,255,0.055);
+            --border: rgba(255,255,255,0.10);
+            --white: #ffffff;
+            --text: #d6d6e5;
+            --muted: #85859b;
+            --purple: #8b5cf6;
+            --blue: #3b82f6;
+            --pink: #ec4899;
+            --cyan: #06b6d4;
+            --green: #22c55e;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+
+        /* BACKGROUND GLOW */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            left: -150px;
+            background: var(--purple);
+            filter: blur(180px);
+            opacity: 0.12;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            bottom: -200px;
+            right: -150px;
+            background: var(--cyan);
+            filter: blur(180px);
+            opacity: 0.08;
+            z-index: -1;
+        }
+
+
+        /* NAVBAR */
+
+        .navbar {
+            width: 100%;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            border-bottom: 1px solid var(--border);
+            background: rgba(7,7,17,0.75);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(
+                135deg,
+                var(--purple),
+                var(--blue)
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .profile-mini {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 12px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            background: var(--card);
+            color: white;
+            text-decoration: none;
+        }
+
+        .mini-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                135deg,
+                var(--purple),
+                var(--blue)
+            );
+            font-weight: bold;
+        }
+
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+
+        /* BACK BUTTONS */
+
+        .back-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 11px 20px;
+            border-radius: 12px;
+            background: linear-gradient(
+                135deg,
+                var(--purple),
+                var(--blue)
+            );
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .back-btn.secondary {
+            background: var(--card);
+            border: 1px solid var(--border);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139,92,246,0.35);
+        }
+
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px 55px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(139,92,246,0.13);
+            border: 1px solid rgba(139,92,246,0.30);
+            color: #b9a0ff;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(
+                135deg,
+                var(--purple),
+                var(--blue)
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+
+        /* MATH VISUAL */
+
+        .math-visual {
+            width: 260px;
+            height: 260px;
+            margin: 45px auto 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .math-core {
+            width: 145px;
+            height: 145px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                rgba(139,92,246,0.25),
+                rgba(59,130,246,0.18)
+            );
+            border: 1px solid rgba(139,92,246,0.4);
+            box-shadow:
+                0 0 50px rgba(139,92,246,0.25),
+                inset 0 0 30px rgba(59,130,246,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            z-index: 3;
+            animation: pulse 3s infinite;
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px solid rgba(139,92,246,0.25);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+        }
+
+        .orbit.one {
+            width: 210px;
+            height: 100px;
+        }
+
+        .orbit.two {
+            width: 100px;
+            height: 210px;
+            animation-duration: 7s;
+            animation-direction: reverse;
+        }
+
+        .symbol {
+            position: absolute;
+            font-size: 25px;
+            font-weight: bold;
+            color: #a78bfa;
+        }
+
+        .symbol.one {
+            top: 5px;
+            left: 110px;
+        }
+
+        .symbol.two {
+            right: 5px;
+            top: 105px;
+        }
+
+        .symbol.three {
+            bottom: 5px;
+            left: 110px;
+        }
+
+        .symbol.four {
+            left: 5px;
+            top: 105px;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%,100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+
+        /* SECTION */
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            margin-bottom: 18px;
+        }
+
+        .section-title h2 {
+            font-size: 27px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+
+        /* CARDS */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 27px;
+            border-radius: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139,92,246,0.45);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .card-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+
+        /* FORMULA BOX */
+
+        .formula-box {
+            margin-top: 18px;
+            padding: 18px;
+            border-radius: 14px;
+            background: rgba(139,92,246,0.10);
+            border: 1px solid rgba(139,92,246,0.20);
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #c4b5fd;
+        }
+
+
+        /* EXAMPLE */
+
+        .example {
+            margin-top: 18px;
+            padding: 18px;
+            border-radius: 14px;
+            background: rgba(6,182,212,0.07);
+            border: 1px solid rgba(6,182,212,0.18);
+        }
+
+        .example strong {
+            color: #67e8f9;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .example p {
+            color: var(--text);
+        }
+
+
+        /* TABLE */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            padding: 14px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        th {
+            color: #c4b5fd;
+        }
+
+        td {
+            color: var(--text);
+        }
+
+
+        /* QUIZ */
+
+        .quiz-card {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .question {
+            font-size: 22px;
+            margin: 20px 0;
+        }
+
+        .answers {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 12px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .answer-btn {
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.04);
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .answer-btn:hover {
+            background: rgba(139,92,246,0.15);
+            border-color: var(--purple);
+            transform: translateY(-2px);
+        }
+
+        .quiz-result {
+            margin-top: 18px;
+            font-weight: bold;
+            min-height: 25px;
+        }
+
+
+        /* REVISION */
+
+        .revision-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .revision-item {
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .revision-item strong {
+            color: #c4b5fd;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width:800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .answers {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media(max-width:500px) {
+
+            .hero h1 {
+                font-size: 33px;
+            }
+
+            .hero {
+                padding-top: 50px;
+            }
+
+            .math-visual {
+                transform: scale(0.85);
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ZYNTRA
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="math.html">
+                Mathematics
+            </a>
+
+            <a href="study.html">
+                Study
+            </a>
+
+            <a href="ai.html">
+                AI
+            </a>
+
+        </div>
+
+
+        <a href="profile.html" class="profile-mini">
+
+            <div class="mini-avatar">
+                Z
+            </div>
+
+            <span>
+                Student
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <main class="container">
+
+
+        <!-- BACK BUTTONS -->
+
+        <div class="back-buttons">
+
+            <a href="math.html" class="back-btn">
+                ← Back to Mathematics
+            </a>
+
+            <a href="index.html" class="back-btn secondary">
+                🏠 Home
+            </a>
+
+        </div>
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="badge">
+                ∑ ZYNTRA MATHEMATICS • ALGEBRA
+            </div>
+
+            <h1>
+                Master <span>Algebra.</span>
+            </h1>
+
+            <p>
+                Learn how to work with expressions, equations,
+                factorisation, indices and quadratic equations.
+                Build your mathematical thinking step by step.
+            </p>
+
+
+            <!-- MATH VISUAL -->
+
+            <div class="math-visual">
+
+                <div class="orbit one"></div>
+                <div class="orbit two"></div>
+
+                <div class="symbol one">
+                    x²
+                </div>
+
+                <div class="symbol two">
+                    +
+                </div>
+
+                <div class="symbol three">
+                    =
+                </div>
+
+                <div class="symbol four">
+                    √
+                </div>
+
+                <div class="math-core">
+                    ax² + bx + c
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INTRODUCTION -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    🔢 What is Algebra?
+                </h2>
+
+                <p>
+                    Algebra uses letters and symbols to represent
+                    unknown or changing numbers.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <p>
+                    In algebra, letters such as
+                    <strong>x</strong> and <strong>y</strong>
+                    are called variables. Numbers that are fixed
+                    are called constants.
+                </p>
+
+                <div class="formula-box">
+                    3x + 5
+                </div>
+
+                <div class="example">
+
+                    <strong>Example</strong>
+
+                    <p>
+                        If x = 4, then:
+                        <br><br>
+                        3x + 5 = 3(4) + 5
+                        <br>
+                        = 12 + 5
+                        <br>
+                        = <strong>17</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EXPRESSIONS -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    ✏️ Algebraic Expressions
+                </h2>
+
+                <p>
+                    Learn how to identify and simplify expressions.
+                </p>
+
+            </div>
+
+
+            <div class="grid">
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🔤
+                    </div>
+
+                    <h3>
+                        Like Terms
+                    </h3>
+
+                    <p>
+                        Like terms contain the same variables
+                        raised to the same powers.
+                    </p>
+
+                    <div class="formula-box">
+                        3x + 5x = 8x
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        ➕
+                    </div>
+
+                    <h3>
+                        Simplification
+                    </h3>
+
+                    <p>
+                        Collect like terms to make an expression
+                        simpler.
+                    </p>
+
+                    <div class="formula-box">
+                        4x + 3 + 2x + 5 = 6x + 8
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- EXPANSION -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    ✨ Expansion
+                </h2>
+
+                <p>
+                    Expansion removes brackets by multiplying
+                    each term inside the bracket.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="formula-box">
+                    3(x + 4) = 3x + 12
+                </div>
+
+
+                <div class="example">
+
+                    <strong>Worked Example</strong>
+
+                    <p>
+                        Expand:
+                        <br><br>
+                        2(x + 5)
+                        <br><br>
+                        Multiply 2 by every term:
+                        <br>
+                        = 2x + 10
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FACTORISATION -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    🧩 Factorisation
+                </h2>
+
+                <p>
+                    Factorisation is the reverse of expansion.
+                </p>
+
+            </div>
+
+
+            <div class="grid">
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🔍
+                    </div>
+
+                    <h3>
+                        Common Factor
+                    </h3>
+
+                    <p>
+                        Find the greatest common factor of the
+                        terms and take it outside the bracket.
+                    </p>
+
+                    <div class="formula-box">
+                        6x + 12 = 6(x + 2)
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🧠
+                    </div>
+
+                    <h3>
+                        Difference of Squares
+                    </h3>
+
+                    <p>
+                        A difference of two squares can be
+                        factorised using a standard identity.
+                    </p>
+
+                    <div class="formula-box">
+                        a² − b² = (a − b)(a + b)
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- LINEAR EQUATIONS -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    ⚖️ Linear Equations
+                </h2>
+
+                <p>
+                    Solve equations by keeping both sides balanced.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="formula-box">
+                    2x + 5 = 15
+                </div>
+
+
+                <div class="example">
+
+                    <strong>Step-by-Step</strong>
+
+                    <p>
+                        2x + 5 = 15
+                        <br><br>
+                        Subtract 5 from both sides:
+                        <br>
+                        2x = 10
+                        <br><br>
+                        Divide both sides by 2:
+                        <br>
+                        x = <strong>5</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INDICES -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    ⚡ Laws of Indices
+                </h2>
+
+                <p>
+                    Indices are powers that tell us how many times
+                    a number is multiplied by itself.
+                </p>
+
+            </div>
+
+
+            <div class="grid">
+
+
+                <div class="card">
+
+                    <h3>
+                        Multiplication
+                    </h3>
+
+                    <div class="formula-box">
+                        aᵐ × aⁿ = aᵐ⁺ⁿ
+                    </div>
+
+                    <div class="example">
+
+                        <strong>Example</strong>
+
+                        <p>
+                            2³ × 2²
+                            <br>
+                            = 2⁵
+                            <br>
+                            = 32
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        Division
+                    </h3>
+
+                    <div class="formula-box">
+                        aᵐ ÷ aⁿ = aᵐ⁻ⁿ
+                    </div>
+
+                    <div class="example">
+
+                        <strong>Example</strong>
+
+                        <p>
+                            5⁴ ÷ 5²
+                            <br>
+                            = 5²
+                            <br>
+                            = 25
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        Power of a Power
+                    </h3>
+
+                    <div class="formula-box">
+                        (aᵐ)ⁿ = aᵐⁿ
+                    </div>
+
+                    <div class="example">
+
+                        <strong>Example</strong>
+
+                        <p>
+                            (2³)²
+                            <br>
+                            = 2⁶
+                            <br>
+                            = 64
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        Zero Index
+                    </h3>
+
+                    <div class="formula-box">
+                        a⁰ = 1
+                    </div>
+
+                    <div class="example">
+
+                        <strong>Example</strong>
+
+                        <p>
+                            7⁰ = <strong>1</strong>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUADRATIC EQUATIONS -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    📈 Quadratic Equations
+                </h2>
+
+                <p>
+                    A quadratic equation contains a variable raised
+                    to the power of 2.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="formula-box">
+                    ax² + bx + c = 0
+                </div>
+
+
+                <div class="example">
+
+                    <strong>Quadratic Formula</strong>
+
+                    <p>
+                        For ax² + bx + c = 0:
+                        <br><br>
+
+                        x =
+                        <strong>
+                            (−b ± √(b² − 4ac)) ÷ 2a
+                        </strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- COMMON IDENTITIES -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    📋 Important Algebraic Identities
+                </h2>
+
+                <p>
+                    These identities are useful for expansion
+                    and factorisation.
+                </p>
+
+            </div>
+
+
+            <div class="card table-container">
+
+                <table>
+
+                    <tr>
+                        <th>Identity</th>
+                        <th>Formula</th>
+                    </tr>
+
+                    <tr>
+                        <td>Square of a sum</td>
+                        <td>(a + b)² = a² + 2ab + b²</td>
+                    </tr>
+
+                    <tr>
+                        <td>Square of a difference</td>
+                        <td>(a − b)² = a² − 2ab + b²</td>
+                    </tr>
+
+                    <tr>
+                        <td>Difference of squares</td>
+                        <td>a² − b² = (a − b)(a + b)</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK REVISION -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    🚀 Quick Revision
+                </h2>
+
+                <p>
+                    Remember these key ideas before your exam.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="revision-list">
+
+                    <div class="revision-item">
+                        <strong>Variable:</strong>
+                        A letter representing an unknown or changing value.
+                    </div>
+
+                    <div class="revision-item">
+                        <strong>Constant:</strong>
+                        A fixed numerical value.
+                    </div>
+
+                    <div class="revision-item">
+                        <strong>Like terms:</strong>
+                        Terms with the same variables and powers.
+                    </div>
+
+                    <div class="revision-item">
+                        <strong>Expansion:</strong>
+                        Removing brackets by multiplication.
+                    </div>
+
+                    <div class="revision-item">
+                        <strong>Factorisation:</strong>
+                        Writing an expression as a product of factors.
+                    </div>
+
+                    <div class="revision-item">
+                        <strong>Linear equation:</strong>
+                        An equation where the highest power of the variable is 1.
+                    </div>
+
+                    <div class="revision-item">
+                        <strong>Quadratic equation:</strong>
+                        An equation where the highest power of the variable is 2.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUIZ -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    🧠 Algebra Challenge
+                </h2>
+
+                <p>
+                    Test yourself before leaving the lesson.
+                </p>
+
+            </div>
+
+
+            <div class="card quiz-card">
+
+                <div class="question">
+                    What is the value of x if
+                    <strong>2x + 6 = 16</strong>?
+                </div>
+
+
+                <div class="answers">
+
+                    <button
+                        class="answer-btn"
+                        onclick="checkAnswer(this, false)">
+                        A. 3
+                    </button>
+
+                    <button
+                        class="answer-btn"
+                        onclick="checkAnswer(this, false)">
+                        B. 4
+                    </button>
+
+                    <button
+                        class="answer-btn"
+                        onclick="checkAnswer(this, true)">
+                        C. 5
+                    </button>
+
+                    <button
+                        class="answer-btn"
+                        onclick="checkAnswer(this, false)">
+                        D. 6
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="quizResult"
+                    class="quiz-result">
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © <span id="year"></span> ZYNTRA.
+        Built for the next generation of learners.
+
+    </footer>
+
+
+    <script>
+
+        /* QUIZ */
+
+        function checkAnswer(button, correct) {
+
+            const result =
+                document.getElementById("quizResult");
+
+            const buttons =
+                document.querySelectorAll(".answer-btn");
+
+            buttons.forEach(function(btn) {
+                btn.disabled = true;
+            });
+
+
+            if (correct) {
+
+                result.textContent =
+                    "✅ Correct! 2x + 6 = 16, so x = 5.";
+
+                result.style.color =
+                    "#22c55e";
+
+            }
+
+            else {
+
+                result.textContent =
+                    "❌ Not quite. Subtract 6 first, then divide by 2. The answer is 5.";
+
+                result.style.color =
+                    "#f87171";
+
+            }
+
+        }
+
+
+        /* CURRENT YEAR */
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        /* SIMPLE CARD ANIMATION */
+
+        const cards =
+            document.querySelectorAll(".card");
+
+        cards.forEach(function(card, index) {
+
+            card.style.opacity = "0";
+
+            card.style.transform =
+                "translateY(15px)";
+
+            setTimeout(function() {
+
+                card.style.transition =
+                    "opacity 0.5s ease, transform 0.5s ease";
+
+                card.style.opacity = "1";
+
+                card.style.transform =
+                    "translateY(0)";
+
+            }, index * 80);
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
+```

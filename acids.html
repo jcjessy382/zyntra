@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZYNTRA | Acids & Bases</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .lesson-page {
+            min-height: 100vh;
+            padding: 140px 7% 70px;
+        }
+
+        .lesson-header {
+            max-width: 850px;
+            margin-bottom: 45px;
+        }
+
+        .lesson-badge {
+            display: inline-block;
+            padding: 9px 16px;
+            border-radius: 30px;
+            background: rgba(139,92,246,.10);
+            border: 1px solid rgba(139,92,246,.30);
+            color: #c4b5fd;
+            margin-bottom: 20px;
+        }
+
+        .lesson-header h1 {
+            font-size: clamp(42px, 6vw, 70px);
+            margin: 0 0 18px;
+        }
+
+        .lesson-header h1 span {
+            background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .lesson-header p {
+            color: #9999ad;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .lesson-card {
+            max-width: 950px;
+            padding: 35px;
+            margin-bottom: 25px;
+            border-radius: 22px;
+            background: rgba(255,255,255,.045);
+            border: 1px solid rgba(255,255,255,.09);
+        }
+
+        .lesson-card h2 {
+            margin-bottom: 18px;
+            font-size: 28px;
+        }
+
+        .lesson-card p {
+            color: #b0b0c0;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .info-box {
+            padding: 25px;
+            border-radius: 18px;
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.08);
+        }
+
+        .info-box h3 {
+            margin-bottom: 12px;
+        }
+
+        .info-box ul {
+            padding-left: 20px;
+            color: #b0b0c0;
+            line-height: 1.9;
+        }
+
+        .indicator-box {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 18px;
+            background: rgba(139,92,246,.08);
+            border: 1px solid rgba(139,92,246,.20);
+        }
+
+        .indicator-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .indicator-table th,
+        .indicator-table td {
+            padding: 14px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            text-align: left;
+        }
+
+        .indicator-table th {
+            color: #c4b5fd;
+        }
+
+        .indicator-table td {
+            color: #b0b0c0;
+        }
+
+        .neutralisation {
+            margin-top: 20px;
+            padding: 25px;
+            text-align: center;
+            border-radius: 18px;
+            background: rgba(59,130,246,.08);
+            border: 1px solid rgba(59,130,246,.20);
+        }
+
+        .equation {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .quiz-question {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255,255,255,.035);
+        }
+
+        .quiz-question button {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 10px;
+            background: rgba(255,255,255,.05);
+            color: white;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .quiz-question button:hover {
+            background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 13px 22px;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.12);
+        }
+
+        @media(max-width:700px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-page {
+                padding: 120px 5% 50px;
+            }
+
+            .indicator-table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        ZYNTRA<span>●</span>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="study.html">Study</a>
+        <a href="ai.html">AI</a>
+        <a href="planner.html">Planner</a>
+        <a href="challenge.html">Challenges</a>
+        <a href="profile.html">Profile</a>
+    </nav>
+
+</header>
+
+
+<main class="lesson-page">
+
+    <section class="lesson-header">
+
+        <div class="lesson-badge">
+            🧪 CHEMISTRY LESSON
+        </div>
+
+        <h1>
+            Acids <span>& Bases</span>
+        </h1>
+
+        <p>
+            Learn the properties of acids and bases,
+            indicators, pH and neutralisation reactions.
+        </p>
+
+    </section>
+
+
+    <section class="lesson-card">
+
+        <h2>🔬 What is an Acid?</h2>
+
+        <p>
+            An acid is a substance that produces hydrogen ions
+            (H⁺) when dissolved in water.
+        </p>
+
+        <div class="info-grid">
+
+            <div class="info-box">
+
+                <h3>Properties of Acids</h3>
+
+                <ul>
+                    <li>They have a pH below 7.</li>
+                    <li>They turn blue litmus paper red.</li>
+                    <li>They react with some metals.</li>
+                    <li>They react with bases.</li>
+                </ul>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>Examples</h3>
+
+                <ul>
+                    <li>Hydrochloric acid (HCl)</li>
+                    <li>Sulfuric acid (H₂SO₄)</li>
+                    <li>Nitric acid (HNO₃)</li>
+                    <li>Ethanoic acid (CH₃COOH)</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="lesson-card">
+
+        <h2>⚗️ What is a Base?</h2>
+
+        <p>
+            A base is a substance that reacts with an acid
+            to form salt and water. Soluble bases are called
+            alkalis.
+        </p>
+
+        <div class="info-grid">
+
+            <div class="info-box">
+
+                <h3>Properties of Bases</h3>
+
+                <ul>
+                    <li>They have a pH above 7.</li>
+                    <li>They turn red litmus paper blue.</li>
+                    <li>They react with acids.</li>
+                    <li>Alkalis dissolve in water.</li>
+                </ul>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>Examples</h3>
+
+                <ul>
+                    <li>Sodium hydroxide (NaOH)</li>
+                    <li>Potassium hydroxide (KOH)</li>
+                    <li>Calcium hydroxide [Ca(OH)₂]</li>
+                    <li>Magnesium oxide (MgO)</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="lesson-card">
+
+        <h2>🌈 Indicators</h2>
+
+        <p>
+            An indicator is a substance that changes colour
+            depending on whether a solution is acidic or alkaline.
+        </p>
+
+        <div class="indicator-box">
+
+            <table class="indicator-table">
+
+                <tr>
+                    <th>Indicator</th>
+                    <th>Acid</th>
+                    <th>Alkali</th>
+                </tr>
+
+                <tr>
+                    <td>Blue litmus</td>
+                    <td>Red</td>
+                    <td>Blue</td>
+                </tr>
+
+                <tr>
+                    <td>Red litmus</td>
+                    <td>Red</td>
+                    <td>Blue</td>
+                </tr>
+
+                <tr>
+                    <td>Phenolphthalein</td>
+                    <td>Colourless</td>
+                    <td>Pink</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <section class="lesson-card">
+
+        <h2>⚡ Neutralisation</h2>
+
+        <p>
+            Neutralisation occurs when an acid reacts with
+            a base to form salt and water.
+        </p>
+
+        <div class="neutralisation">
+
+            <strong>General Equation</strong>
+
+            <div class="equation">
+                Acid + Base → Salt + Water
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="lesson-card">
+
+        <h2>🧠 Quick Quiz</h2>
+
+        <div class="quiz-question">
+
+            <strong>
+                1. What is the pH of a neutral solution?
+            </strong>
+
+            <button onclick="checkAnswer(this, true)">
+                A. 7
+            </button>
+
+            <button onclick="checkAnswer(this, false)">
+                B. 2
+            </button>
+
+            <button onclick="checkAnswer(this, false)">
+                C. 12
+            </button>
+
+        </div>
+
+
+        <div class="quiz-question">
+
+            <strong>
+                2. What colour does blue litmus turn in an acid?
+            </strong>
+
+            <button onclick="checkAnswer(this, true)">
+                A. Red
+            </button>
+
+            <button onclick="checkAnswer(this, false)">
+                B. Blue
+            </button>
+
+            <button onclick="checkAnswer(this, false)">
+                C. Green
+            </button>
+
+        </div>
+
+
+        <div class="quiz-question">
+
+            <strong>
+                3. What are the products of neutralisation?
+            </strong>
+
+            <button onclick="checkAnswer(this, false)">
+                A. Oxygen and hydrogen
+            </button>
+
+            <button onclick="checkAnswer(this, true)">
+                B. Salt and water
+            </button>
+
+            <button onclick="checkAnswer(this, false)">
+                C. Carbon and oxygen
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <a href="chemistry.html" class="back-button">
+        ← Back to Chemistry
+    </a>
+
+</main>
+
+
+<script>
+
+function checkAnswer(button, correct) {
+
+    if (correct) {
+        button.textContent = "✅ Correct!";
+    } else {
+        button.textContent = "❌ Try again!";
+    }
+
+    button.disabled = true;
+}
+
+</script>
+
+</body>
+</html>

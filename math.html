@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Mathematics</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+:root {
+    --bg:#070711;
+    --panel:#111124;
+    --panel2:#17172e;
+    --purple:#8b5cf6;
+    --blue:#3b82f6;
+    --cyan:#06b6d4;
+    --green:#22c55e;
+    --text:#f5f5ff;
+    --muted:#a4a4bd;
+    --border:rgba(255,255,255,.09);
+}
+* { box-sizing:border-box; }
+body {
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+button { font:inherit; cursor:pointer; }
+a { color:inherit; text-decoration:none; }
+.navbar {
+    position:sticky;
+    top:0;
+    z-index:10;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:16px 6%;
+    background:rgba(7,7,17,.94);
+    border-bottom:1px solid var(--border);
+    backdrop-filter:blur(16px);
+}
+.logo {
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:2px;
+    background:linear-gradient(90deg,#a78bfa,#60a5fa);
+    color:transparent;
+    background-clip:text;
+}
+.nav-links { display:flex; gap:18px; flex-wrap:wrap; }
+.nav-links a { color:var(--muted); font-size:14px; }
+.nav-links a:hover { color:white; }
+.container { width:min(1150px,92%); margin:auto; }
+.hero {
+    padding:60px 0 35px;
+    display:grid;
+    grid-template-columns:1.4fr .8fr;
+    gap:25px;
+    align-items:center;
+}
+.eyebrow {
+    display:inline-block;
+    color:#c4b5fd;
+    background:rgba(139,92,246,.13);
+    border:1px solid rgba(139,92,246,.3);
+    padding:8px 12px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+h1 { font-size:clamp(34px,5vw,58px); margin:18px 0; line-height:1.08; }
+.gradient {
+    background:linear-gradient(90deg,#a78bfa,#60a5fa,#67e8f9);
+    background-clip:text;
+    color:transparent;
+}
+.subtitle { color:var(--muted); line-height:1.8; max-width:620px; }
+.hero-art {
+    padding:30px;
+    min-height:220px;
+    border:1px solid var(--border);
+    border-radius:25px;
+    background:
+      radial-gradient(circle at 20% 20%,rgba(139,92,246,.28),transparent 50%),
+      radial-gradient(circle at 80% 80%,rgba(59,130,246,.2),transparent 50%),
+      var(--panel);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+.math-symbol { font-size:56px; color:#c4b5fd; font-weight:bold; }
+.hero-art p { color:var(--muted); }
+.stats {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:15px 0 45px;
+}
+.stat,.panel,.topic-card {
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:18px;
+}
+.stat { padding:20px; }
+.stat strong { display:block; font-size:28px; margin-bottom:6px; }
+.stat span { color:var(--muted); font-size:13px; }
+.section-heading {
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:15px;
+    margin:35px 0 20px;
+}
+.section-heading h2 { margin:0 0 8px; font-size:27px; }
+.section-heading p { margin:0; color:var(--muted); }
+.topic-grid {
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:17px;
+}
+.topic-card {
+    padding:22px;
+    transition:transform .2s,border-color .2s;
+}
+.topic-card:hover { transform:translateY(-4px); border-color:rgba(167,139,250,.5); }
+.topic-icon {
+    width:48px;height:48px;
+    display:grid;place-items:center;
+    font-size:24px;
+    border-radius:14px;
+    background:rgba(139,92,246,.15);
+    margin-bottom:17px;
+}
+.topic-card h3 { margin:0 0 9px; font-size:19px; }
+.topic-card p { color:var(--muted); font-size:13px; line-height:1.65; min-height:43px; }
+.topic-meta { color:#c4b5fd; font-size:12px; margin:15px 0; }
+.progress-track {
+    height:7px;
+    background:#27273d;
+    border-radius:20px;
+    overflow:hidden;
+    margin:10px 0;
+}
+.progress-fill {
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,var(--purple),var(--blue));
+    transition:width .3s;
+}
+.progress-label { color:var(--muted); font-size:12px; }
+.primary-btn,.secondary-btn {
+    border:0;
+    border-radius:11px;
+    padding:12px 16px;
+    font-weight:bold;
+}
+.primary-btn {
+    background:linear-gradient(100deg,var(--purple),var(--blue));
+    color:white;
+}
+.secondary-btn {
+    background:#25253d;
+    border:1px solid var(--border);
+    color:white;
+}
+.topic-card .primary-btn { width:100%; margin-top:15px; }
+.primary-btn:hover,.secondary-btn:hover { filter:brightness(1.12); }
+.panel { padding:25px; margin:35px 0; }
+#quizPanel { display:none; scroll-margin-top:90px; }
+.quiz-top {
+    display:flex;justify-content:space-between;
+    gap:12px;flex-wrap:wrap;align-items:center;
+}
+.pill {
+    display:inline-block;padding:7px 10px;border-radius:30px;
+    background:#24243b;color:#d8d4fe;font-size:12px;
+}
+.quiz-question { font-size:23px; line-height:1.5; margin:25px 0; }
+.options { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.option {
+    width:100%;text-align:left;
+    padding:15px;border:1px solid var(--border);
+    border-radius:12px;background:#19192e;color:white;
+}
+.option:hover:not(:disabled) { border-color:var(--purple); }
+.option:disabled { cursor:default; opacity:1; }
+.option.correct { border-color:var(--green); background:rgba(34,197,94,.12); }
+.option.wrong { border-color:#f87171; background:rgba(248,113,113,.1); }
+.feedback { margin-top:18px; padding:15px; border-radius:12px; line-height:1.7; display:none; }
+.feedback.good { display:block; background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.3); }
+.feedback.bad { display:block; background:rgba(248,113,113,.1); border:1px solid rgba(248,113,113,.3); }
+.quiz-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+.result { text-align:center; padding:30px 5px; }
+.result-score { font-size:48px; font-weight:900; color:#c4b5fd; margin:15px; }
+.small-muted { color:var(--muted); font-size:13px; }
+footer { padding:35px 10px; text-align:center; color:var(--muted); font-size:13px; }
+@media(max-width:850px) {
+    .hero { grid-template-columns:1fr; }
+    .topic-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:560px) {
+    .navbar { padding:14px 4%; align-items:flex-start; }
+    .nav-links { gap:10px; justify-content:flex-end; }
+    .nav-links a { font-size:12px; }
+    .topic-grid,.stats,.options { grid-template-columns:1fr; }
+    .hero { padding-top:38px; }
+    .stat { padding:15px; }
+    .section-heading { align-items:flex-start; flex-direction:column; }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a class="logo" href="index.html">ZYNTRA</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="study.html">Study</a>
+        <a href="ai.html">AI Tutor</a>
+        <a href="planner.html">Planner</a>
+    </div>
+</nav>
+
+<main class="container">
+
+<section class="hero">
+    <div>
+        <span class="eyebrow">MATHEMATICS PRACTICE CENTRE</span>
+        <h1>Understand Maths.<br><span class="gradient">Master Every Topic.</span></h1>
+        <p class="subtitle">
+            Choose a topic, practise 20 questions, check your answers,
+            learn from explanations and build your mathematics progress
+            one topic at a time.
+        </p>
+        <a href="#topics" class="primary-btn" style="display:inline-block;margin-top:12px">
+            Explore Topics ↓
+        </a>
+    </div>
+    <div class="hero-art">
+        <div class="math-symbol">∑ π √ x²</div>
+        <h3>Practice makes progress</h3>
+        <p>10 topics · 20 questions per topic</p>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="stat">
+        <strong id="totalTopics">10</strong>
+        <span>Topics available</span>
+    </div>
+    <div class="stat">
+        <strong id="completedTopics">0/10</strong>
+        <span>Topics completed</span>
+    </div>
+    <div class="stat">
+        <strong id="totalXP">0</strong>
+        <span>ZYNTRA XP</span>
+    </div>
+</section>
+
+<section id="topics">
+    <div class="section-heading">
+        <div>
+            <h2>Choose your topic</h2>
+            <p>Each topic has its own questions, score and progress.</p>
+        </div>
+    </div>
+    <div class="topic-grid" id="topicGrid"></div>
+</section>
+
+<section class="panel" id="quizPanel">
+    <div id="quizContent"></div>
+</section>
+
+<footer>
+    ZYNTRA Mathematics · Learn at your own pace.
+</footer>
+
+</main>
+
+<script>
+"use strict";
+
+/* USER AND PROGRESS */
+
+function getUsername() {
+    return localStorage.getItem("zyntraUsername") ||
+           localStorage.getItem("zyntraUser") ||
+           localStorage.getItem("username") ||
+           "guest";
+}
+
+const username = getUsername();
+
+function completionKey(topicId) {
+    return "zyntraMathCompleted_" + topicId + "_" + username;
+}
+
+function scoreKey(topicId) {
+    return "zyntraMathBest_" + topicId + "_" + username;
+}
+
+function getXP() {
+    return Number(localStorage.getItem("zyntraXP_" + username) || 0);
+}
+
+/* QUESTION BUILDER */
+
+function makeQ(question, correct, wrongs, explanation) {
+    const choices = [String(correct), ...wrongs.map(String)];
+    const uniqueChoices = [...new Set(choices)];
+
+    while (uniqueChoices.length < 4) {
+        uniqueChoices.push(String(Number(correct) + uniqueChoices.length + 7));
+    }
+
+    const shuffled = uniqueChoices.slice(0, 4);
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    return {
+        question,
+        options: shuffled,
+        answer: shuffled.indexOf(String(correct)),
+        explanation
+    };
+}
+
+/* 20 ALGEBRA QUESTIONS */
+
+function algebraQuestions() {
+    const out = [];
+    for (let i = 0; i < 20; i++) {
+        const n = i + 2;
+        if (i % 4 === 0) {
+            const a = n, b = i % 7 + 2;
+            out.push(makeQ(
+                "Simplify " + a + "x + " + b + "x.",
+                (a+b) + "x",
+                [(a+b+1)+"x",(a*b)+"x",(a-b)+"x"],
+                "Combine like terms: add the coefficients of x. " + a + " + " + b + " = " + (a+b) + "."
+            ));
+        } else if (i % 4 === 1) {
+            const a = i % 5 + 2, x = i + 1, b = i % 6 + 3, c = a*x+b;
+            out.push(makeQ(
+                "Solve for x: " + a + "x + " + b + " = " + c + ".",
+                "x = " + x,
+                ["x = "+(x+1),"x = "+(x-1),"x = "+(x+2)],
+                "Subtract " + b + " from both sides, then divide by " + a + "."
+            ));
+        } else if (i % 4 === 2) {
+            const a = i % 6 + 2, b = i % 5 + 3;
+            out.push(makeQ(
+                "Expand " + a + "(x + " + b + ").",
+                a+"x + "+(a*b),
+                [a+"x + "+b,(a+b)+"x",a+"x - "+(a*b)],
+                "Multiply " + a + " by each term: " + a + " × x and " + a + " × " + b + "."
+            ));
+        } else {
+            const x = i + 2, answer = 3*x - 4;
+            out.push(makeQ(
+                "If x = " + x + ", find the value of 3x − 4.",
+                answer,
+                [answer+3,answer-3,answer+4],
+                "Substitute x = " + x + ": 3 × " + x + " − 4 = " + answer + "."
+            ));
+        }
+    }
+    return out;
+}
+
+/* 20 INDICES AND LOGARITHMS QUESTIONS */
+
+function indicesQuestions() {
+    const out = [];
+    for (let i = 0; i < 20; i++) {
+        const a = i % 4 + 2, m = i + 2, n = i % 5 + 2;
+        if (i % 4 === 0) {
+            out.push(makeQ(
+                "Simplify " + a + "^" + m + " × " + a + "^" + n + ".",
+                a + "^" + (m+n),
+                [a+"^"+(m*n),a+"^"+(m-n),a+"^"+(m+n+1)],
+                "When multiplying powers with the same base, add the indices: " + m + " + " + n + " = " + (m+n) + "."
+            ));
+        } else if (i % 4 === 1) {
+            out.push(makeQ(
+                "Simplify " + a + "^" + (n+3) + " ÷ " + a + "^" + n + ".",
+                a + "^3",
+                [a+"^"+(2),a+"^"+(n+3),a+"^"+(n+6)],
+                "When dividing powers with the same base, subtract the indices: ("+(n+3)+") − "+n+" = 3."
+            ));
+        } else if (i % 4 === 2) {
+            out.push(makeQ(
+                "Simplify (" + a + "^" + n + ")^" + 2 + ".",
+                a + "^" + (2*n),
+                [a+"^"+(n+2),a+"^"+(n*n),a+"^"+n],
+                "A power raised to another power means multiply the indices: " + n + " × 2 = " + (2*n) + "."
+            ));
+        } else {
+            const base = 2, exponent = i+1, value = Math.pow(base, exponent);
+            out.push(makeQ(
+                "Evaluate 2^" + exponent + ".",
+                value,
+                [value+2,value/2,value*2],
+                "Multiply 2 by itself " + exponent + " times to obtain " + value + "."
+            ));
+        }
+    }
+    return out;
+}
+
+/* 20 QUADRATIC EQUATIONS QUESTIONS */
+
+function quadraticQuestions() {
+    const out = [];
+    for (let i = 0; i < 20; i++) {
+        const r = i + 1, s = i + 3;
+        const sum = r+s, product = r*s;
+        out.push(makeQ(
+            "Solve x² − " + sum + "x + " + product + " = 0.",
+            "x = " + r + " or x = " + s,
+            ["x = "+(r+1)+" or x = "+s,
+             "x = "+r+" or x = "+(s+1),
+             "x = −"+r+" or x = −"+s],
+            "Factorise as (x − " + r + ")(x − " + s + ") = 0. Therefore x = " + r + " or x = " + s + "."
+        ));
+    }
+    return out;
+}
+
+/* 20 TRIGONOMETRY QUESTIONS */
+
+function trigonometryQuestions() {
+    const items = [
+        ["sin 0°","0",["1","1/2","−1"],"The sine of 0° is 0."],
+        ["sin 30°","1/2",["√3/2","1","0"],"sin 30° = 1/2."],
+        ["sin 45°","√2/2",["1/2","√3/2","1"],"sin 45° = √2/2."],
+        ["sin 60°","√3/2",["1/2","√2/2","1"],"sin 60° = √3/2."],
+        ["sin 90°","1",["0","1/2","√3/2"],"sin 90° = 1."],
+        ["cos 0°","1",["0","1/2","−1"],"cos 0° = 1."],
+        ["cos 30°","√3/2",["1/2","√2/2","1"],"cos 30° = √3/2."],
+        ["cos 45°","√2/2",["1/2","√3/2","1"],"cos 45° = √2/2."],
+        ["cos 60°","1/2",["√3/2","1","0"],"cos 60° = 1/2."],
+        ["cos 90°","0",["1","1/2","−1"],"cos 90° = 0."],
+        ["tan 0°","0",["1","√3","undefined"],"tan 0° = 0."],
+        ["tan 30°","√3/3",["1","√3","1/2"],"tan 30° = 1/√3 = √3/3."],
+        ["tan 45°","1",["0","√3","1/2"],"tan 45° = 1."],
+        ["tan 60°","√3",["1","√3/3","2"],"tan 60° = √3."],
+        ["cosec 30°","2",["1","√3","1/2"],"cosec θ = 1/sin θ. Therefore cosec 30° = 2."],
+        ["sec 60°","2",["1","√3","1/2"],"sec θ = 1/cos θ. Therefore sec 60° = 2."],
+        ["cot 45°","1",["0","√3","1/2"],"cot 45° = 1/tan 45° = 1."],
+        ["If sin θ = 1/2 and θ is acute, find θ.","30°",["45°","60°","90°"],"The acute angle whose sine is 1/2 is 30°."],
+        ["If cos θ = 1/2 and θ is acute, find θ.","60°",["30°","45°","90°"],"The acute angle whose cosine is 1/2 is 60°."],
+        ["If tan θ = 1 and θ is acute, find θ.","45°",["30°","60°","90°"],"The acute angle whose tangent is 1 is 45°."]
+    ];
+    return items.map(item => makeQ(item[0],item[1],item[2],item[3]));
+}
+
+/* 20 COORDINATE GEOMETRY QUESTIONS */
+
+function coordinateQuestions() {
+    const out = [];
+    for (let i = 0; i < 20; i++) {
+        const n = i+2;
+        if (i%4===0) {
+            const x1=1,y1=2,x2=n,y2=2*n+1;
+            const m=(y2-y1)/(x2-x1);
+            out.push(makeQ(
+                "Find the gradient of the line through ("+x1+", "+y1+") and ("+x2+", "+y2+").",
+                m,
+                [m+1,m-1,m+2],
+                "Gradient = (y₂ − y₁)/(x₂ − x₁) = "+(y2-y1)+"/"+(x2-x1)+" = "+m+"."
+            ));
+        } else if (i%4===1) {
+            const x1=n,y1=2,x2=n+4,y2=8;
+            out.push(makeQ(
+                "Find the midpoint of ("+x1+", "+y1+") and ("+x2+", "+y2+").",
+                "("+((x1+x2)/2)+", 5)",
+                ["("+((x1+x2)/2+1)+", 5)","("+x1+", 5)","("+((x1+x2)/2)+", 6)"],
+                "Midpoint = ((x₁ + x₂)/2, (y₁ + y₂)/2)."
+            ));
+        } else if (i%4===2) {
+            const a=n;
+            out.push(makeQ(
+                "A line has equation y = 3x + "+a+". What is its gradient?",
+                "3",
+                [String(a),"−3","1/3"],
+                "In y = mx + c, the gradient is the coefficient of x. Here m = 3."
+            ));
+        } else {
+            const m=n, c=2*n;
+            out.push(makeQ(
+                "If y = "+m+"x + "+c+" and x = 2, find y.",
+                2*m+c,
+                [2*m+c+2,2*m+c-2,m+c],
+                "Substitute x = 2: y = "+m+" × 2 + "+c+" = "+(2*m+c)+"."
+            ));
+        }
+    }
+    return out;
+}
+
+/* 20 VECTOR QUESTIONS */
+
+function vectorQuestions() {
+    const out = [];
+    for (let i = 0; i < 20; i++) {
+        const a=i+1,b=i+2,c=i+3,d=i+4;
+        if (i%4===0) {
+            out.push(makeQ(
+                "Find ("+a+", "+b+") + ("+c+", "+d+").",
+                "("+ (a+c) +", "+(b+d)+")",
+                ["("+(a+c+1)+", "+(b+d)+")","("+(a-c)+", "+(b-d)+")","("+(a+c)+", "+(b+d+1)+")"],
+                "Add corresponding components: ("+a+" + "+c+", "+b+" + "+d+")."
+            ));
+        } else if (i%4===1) {
+            out.push(makeQ(
+                "Find ("+c+", "+d+") − ("+a+", "+b+").",
+                "("+ (c-a) +", "+(d-b)+")",
+                ["("+(c+a)+", "+(d+b)+")","("+(a-c)+", "+(b-d)+")","("+(c-a+1)+", "+(d-b)+")"],
+                "Subtract corresponding components: ("+c+" − "+a+", "+d+" − "+b+")."
+            ));
+        } else if (i%4===2) {
+            const x=i+3,y=0;
+            out.push(makeQ(
+                "Find the magnitude of vector ("+x+", 0).",
+                String(x),
+                [String(x+1),String(x-1),String(x*2)],
+                "Magnitude = √(x² + y²) = √("+x+"² + 0²) = "+x+"."
+            ));
+        } else {
+            out.push(makeQ(
+                "Find the dot product of ("+a+", 2) and (3, "+b+").",
+                a*3+2*b,
+                [a*3+b,a+2*b,a*3+2*b+1],
+                "Dot product = ("+a+" × 3) + (2 × "+b+") = "+(a*3+2*b)+"."
+            ));
+        }
+    }
+    return out;
+}
+
+/* 20 STATISTICS QUESTIONS */
+
+function statisticsQuestions() {
+    const out = [];
+    for (let i = 0; i < 20; i++) {
+        const n=i+3;
+        if (i%3===0) {
+            out.push(makeQ(
+                "Find the mean of "+n+", "+(n+2)+" and "+(n+4)+".",
+                n+2,
+                [n+1,n+3,n+4],
+                "Mean = total ÷ number of values = "+(3*n+6)+" ÷ 3 = "+(n+2)+"."
+            ));
+        } else if (i%3===1) {
+            out.push(makeQ(
+                "Find the median of "+(n-1)+", "+n+", "+(n+2)+", "+(n+4)+", "+(n+8)+".",
+                n+2,
+                [n,n+1,n+4],
+                "The numbers are in order. The middle (third) value is "+(n+2)+"."
+            ));
+        } else {
+            out.push(makeQ(
+                "Find the range of "+n+", "+(n+3)+", "+(n+7)+", "+(n+10)+".",
+                "10",
+                ["7","3","13"],
+                "Range = largest value − smallest value = "+(n+10)+" − "+n+" = 10."
+            ));
+        }
+    }
+    return out;
+}
+
+/* 20 PROBABILITY QUESTIONS */
+
+function probabilityQuestions() {
+    const out = [];
+    for (let i = 0; i < 20; i++) {
+        const red=i+2, blue=i+3, total=red+blue;
+        if (i%4===0) {
+            out.push(makeQ(
+                "A bag has "+red+" red balls and "+blue+" blue balls. Find P(red).",
+                red+"/"+total,
+                [blue+"/"+total,"1/"+total,(red+1)+"/"+total],
+                "Probability = favourable outcomes ÷ total outcomes = "+red+"/"+total+"."
+            ));
+        } else if (i%4===1) {
+            const faces=i+1;
+            out.push(makeQ(
+                "A fair six-sided die is rolled. What is the probability of rolling a  "+(faces%6+1)+"?",
+                "1/6",
+                ["1/3","1/2","5/6"],
+                "A fair die has six equally likely faces. One face is favourable, so P = 1/6."
+            ));
+        } else if (i%4===2) {
+            const totalCoins=i+2;
+            out.push(makeQ(
+                "A fair coin is tossed once. What is the probability of getting heads?",
+                "1/2",
+                ["1/4","1","0"],
+                "A fair coin has two equally likely outcomes: heads and tails."
+            ));
+        } else {
+            out.push(makeQ(
+                "A box contains "+red+" green counters and "+blue+" yellow counters. Find P(not green).",
+                blue+"/"+total,
+                [red+"/"+total,"1/"+total,(blue+1)+"/"+total],
+                "Not green means yellow. There are "+blue+" yellow counters out of "+total+" counters."
+            ));
+        }
+    }
+    return out;
+}
+
+/* 20 SEQUENCES QUESTIONS */
+
+function sequenceQuestions() {
+    const out = [];
+    for (let i = 0; i < 20; i++) {
+        const a=i+2,d=i%5+2,n=i+3;
+        if (i%4===0) {
+            out.push(makeQ(
+                "Find the next term: "+a+", "+(a+d)+", "+(a+2*d)+", ...",
+                a+3*d,
+                [a+2*d,a+4*d,a+3*d+1],
+                "This is an arithmetic sequence with common difference "+d+". Add "+d+" to the last term."
+            ));
+        } else if (i%4===1) {
+            out.push(makeQ(
+                "Find the nth term of the arithmetic sequence with first term "+a+" and common difference "+d+".",
+                "aₙ = "+d+"n + "+(a-d),
+                ["aₙ = "+a+"n + "+d,"aₙ = "+d+"n + "+a,"aₙ = "+(a+d)+"n"],
+                "The nth term is a + (n − 1)d = "+a+" + (n − 1)"+d+" = "+d+"n + "+(a-d)+"."
+            ));
+        } else if (i%4===2) {
+            const first=a, last=a+(n-1)*d, sum=n*(first+last)/2;
+            out.push(makeQ(
+                "Find the sum of the first "+n+" terms of an arithmetic sequence with first term "+first+" and common difference "+d+".",
+                sum,
+                [sum+d,sum-d,n*(first+last),sum+first],
+                "Sₙ = n/2 × [2a + (n − 1)d] = "+sum+"."
+            ));
+        } else {
+            const r=2, power=i+1, value=Math.pow(r,power);
+            out.push(makeQ(
+                "Find the value of 2^"+power+".",
+                value,
+                [value*2,value/2,value+2],
+                "Multiply 2 by itself "+power+" times. The result is "+value+"."
+            ));
+        }
+    }
+    return out;
+}
+
+/* 20 MATRICES QUESTIONS */
+
+function matrixQuestions() {
+    const out = [];
+    for (let i = 0; i < 20; i++) {
+        const a=i+2,b=i%5+1,c=i%4+2,d=i+3;
+        if (i%4===0) {
+            const det=a*d-b*c;
+            out.push(makeQ(
+                "Find the determinant of [[ "+a+", "+b+" ], [ "+c+", "+d+" ]].",
+                det,
+                [a*d+b*c,det+1,det-1],
+                "For a 2 × 2 matrix, determinant = ad − bc = "+a+"×"+d+" − "+b+"×"+c+" = "+det+"."
+            ));
+        } else if (i%4===1) {
+            out.push(makeQ(
+                "Find the top-left entry of [[ "+a+", "+b+" ], [ "+c+", "+d+" ]] + [[ 2, 3 ], [ 4, 5 ]].",
+                a+2,
+                [a+3,a+4,a],
+                "Add corresponding entries. The top-left entry is "+a+" + 2 = "+(a+2)+"."
+            ));
+        } else if (i%4===2) {
+            out.push(makeQ(
+                "What is the order of a matrix with 3 rows and 2 columns?",
+                "3 × 2",
+                ["2 × 3","3 × 3","2 × 2"],
+                "Matrix order is written as rows × columns, so the order is 3 × 2."
+            ));
+        } else {
+            out.push(makeQ(
+                "Multiply matrix [[ "+a+", "+b+" ], [ "+c+", "+d+" ]] by scalar 2. What is its top-left entry?",
+                2*a,
+                [a+2,2*b,2*c],
+                "Multiply each matrix entry by 2. The top-left entry becomes 2 × "+a+" = "+(2*a)+"."
+            ));
+        }
+    }
+    return out;
+}
+
+/* TOPICS */
+
+const topics = [
+    {id:"algebra",name:"Algebra",icon:"𝒙",desc:"Simplification, expansion and solving linear equations.",make:algebraQuestions},
+    {id:"indices",name:"Indices & Powers",icon:"x²",desc:"Laws of indices, powers and exponent calculations.",make:indicesQuestions},
+    {id:"quadratics",name:"Quadratic Equations",icon:"∪",desc:"Factorising and solving quadratic equations.",make:quadraticQuestions},
+    {id:"trigonometry",name:"Trigonometry",icon:"△",desc:"Sine, cosine, tangent and special angles.",make:trigonometryQuestions},
+    {id:"coordinates",name:"Coordinate Geometry",icon:"📈",desc:"Gradients, midpoints and straight-line equations.",make:coordinateQuestions},
+    {id:"vectors",name:"Vectors",icon:"↗",desc:"Vector addition, subtraction, magnitude and dot products.",make:vectorQuestions},
+    {id:"statistics",name:"Statistics",icon:"📊",desc:"Mean, median and range.",make:statisticsQuestions},
+    {id:"probability",name:"Probability",icon:"🎲",desc:"Calculate probabilities for simple events.",make:probabilityQuestions},
+    {id:"sequences",name:"Sequences & Series",icon:"∑",desc:"Arithmetic sequences, nth terms and sums.",make:sequenceQuestions},
+    {id:"matrices",name:"Matrices",icon:"▦",desc:"Matrix orders, addition, scalar multiplication and determinants.",make:matrixQuestions}
+];
+
+let currentTopic = null;
+let questions = [];
+let questionIndex = 0;
+let score = 0;
+let answered = false;
+
+/* TOPIC CARDS AND PROGRESS */
+
+function renderTopics() {
+    const grid = document.getElementById("topicGrid");
+
+    grid.innerHTML = topics.map((topic,index) => {
+        const completed = localStorage.getItem(completionKey(topic.id)) === "true";
+        const best = localStorage.getItem(scoreKey(topic.id));
+        const pct = completed ? 100 : 0;
+
+        return `
+        <article class="topic-card">
+            <div class="topic-icon">${topic.icon}</div>
+            <h3>${index+1}. ${topic.name}</h3>
+            <p>${topic.desc}</p>
+            <div class="topic-meta">20 practice questions</div>
+            <div class="progress-track">
+                <div class="progress-fill" style="width:${pct}%"></div>
+            </div>
+            <div class="progress-label">
+                ${completed ? "Completed" : "Not completed"}
+                ${best !== null ? " · Best score: "+best+"/20" : ""}
+            </div>
+            <button class="primary-btn" onclick="startTopic('${topic.id}')">
+                ${completed ? "Practise Again" : "Start Topic"}
+            </button>
+        </article>`;
+    }).join("");
+
+    updateStats();
+}
+
+function updateStats() {
+    const completed = topics.filter(t =>
+        localStorage.getItem(completionKey(t.id)) === "true"
+    ).length;
+
+    document.getElementById("completedTopics").textContent =
+        completed + "/" + topics.length;
+    document.getElementById("totalTopics").textContent = topics.length;
+    document.getElementById("totalXP").textContent = getXP();
+}
+
+/* START A TOPIC */
+
+function startTopic(topicId) {
+    currentTopic = topics.find(t => t.id === topicId);
+    if (!currentTopic) return;
+
+    questions = currentTopic.make();
+    questionIndex = 0;
+    score = 0;
+    answered = false;
+
+    document.getElementById("quizPanel").style.display = "block";
+    document.getElementById("quizPanel").scrollIntoView({
+        behavior:"smooth",block:"start"
+    });
+    renderQuestion();
+}
+
+function renderQuestion() {
+    const q = questions[questionIndex];
+    answered = false;
+
+    document.getElementById("quizContent").innerHTML = `
+        <div class="quiz-top">
+            <span class="pill">${currentTopic.name}</span>
+            <span class="pill">Question ${questionIndex+1} of ${questions.length}</span>
+        </div>
+        <div class="progress-track" style="margin-top:18px">
+            <div class="progress-fill" style="width:${(questionIndex/questions.length)*100}%"></div>
+        </div>
+        <h2 class="quiz-question">${q.question}</h2>
+        <div class="options">
+            ${q.options.map((option,index) => `
+                <button class="option" data-index="${index}">
+                    <strong>${String.fromCharCode(65+index)}.</strong> ${option}
+                </button>
+            `).join("")}
+        </div>
+        <div id="feedback" class="feedback"></div>
+        <div class="quiz-actions">
+            <button id="nextButton" class="primary-btn" disabled>
+                ${questionIndex === questions.length-1 ? "Finish Quiz" : "Next Question →"}
+            </button>
+            <button class="secondary-btn" onclick="closeQuiz()">Close Quiz</button>
+        </div>
+        <p class="small-muted">Your score: ${score} / ${questions.length}</p>
+    `;
+
+    document.querySelectorAll(".option").forEach(button => {
+        button.addEventListener("click", () => chooseAnswer(Number(button.dataset.index)));
+    });
+
+    document.getElementById("nextButton").addEventListener("click", nextQuestion);
+}
+
+function chooseAnswer(selected) {
+    if (answered) return;
+    answered = true;
+
+    const q = questions[questionIndex];
+    const correct = selected === q.answer;
+    const buttons = document.querySelectorAll(".option");
+
+    buttons.forEach((button,index) => {
+        button.disabled = true;
+        if (index === q.answer) button.classList.add("correct");
+        if (index === selected && !correct) button.classList.add("wrong");
+    });
+
+    const feedback = document.getElementById("feedback");
+    feedback.className = "feedback " + (correct ? "good" : "bad");
+    feedback.innerHTML =
+        "<strong>" + (correct ? "Correct! ✓" : "Not quite.") + "</strong><br>" +
+        (correct ? "Well done. " : "The correct answer is <strong>" +
+        q.options[q.answer] + "</strong>. ") + q.explanation;
+
+    if (correct) score++;
+
+    document.getElementById("nextButton").disabled = false;
+    document.querySelector("#quizContent .small-muted").textContent =
+        "Your score: " + score + " / " + questions.length;
+}
+
+function nextQuestion() {
+    if (!answered) return;
+
+    questionIndex++;
+    if (questionIndex >= questions.length) {
+        finishQuiz();
+    } else {
+        renderQuestion();
+    }
+}
+
+/* FINISH AND SAVE */
+
+function finishQuiz() {
+    const previousBest = Number(localStorage.getItem(scoreKey(currentTopic.id)) || 0);
+    if (score > previousBest) {
+        localStorage.setItem(scoreKey(currentTopic.id), String(score));
+    }
+
+    const key = completionKey(currentTopic.id);
+    const wasCompleted = localStorage.getItem(key) === "true";
+
+    localStorage.setItem(key, "true");
+
+    let earnedXP = 0;
+    if (!wasCompleted) {
+        earnedXP = 10;
+        localStorage.setItem("zyntraXP_" + username, String(getXP()+earnedXP));
+    }
+
+    const percentage = Math.round((score/questions.length)*100);
+    let message = "Keep practising. Review the explanations and try again.";
+    if (percentage >= 80) message = "Excellent work! You have a strong understanding of this topic.";
+    else if (percentage >= 60) message = "Good effort! Review the questions you missed and practise again.";
+
+    document.getElementById("quizContent").innerHTML = `
+        <div class="result">
+            <span class="eyebrow">QUIZ COMPLETE</span>
+            <h2>${currentTopic.name}</h2>
+            <div class="result-score">${score}/20</div>
+            <h3>${percentage}% correct</h3>
+            <p class="subtitle" style="margin:15px auto">${message}</p>
+            <p>${earnedXP ? "You earned "+earnedXP+" XP for completing this topic for the first time!" :
+                "Your progress is saved. Replaying this topic will not award duplicate completion XP."}</p>
+            <p class="small-muted">Best score: ${Math.max(previousBest,score)}/20</p>
+            <div class="quiz-actions" style="justify-content:center">
+                <button class="primary-btn" onclick="startTopic('${currentTopic.id}')">Try Again</button>
+                <button class="secondary-btn" onclick="closeQuiz()">Choose Another Topic</button>
+            </div>
+        </div>`;
+
+    renderTopics();
+    updateStats();
+}
+
+function closeQuiz() {
+    document.getElementById("quizPanel").style.display = "none";
+    document.getElementById("topics").scrollIntoView({behavior:"smooth"});
+}
+
+renderTopics();
+</script>
+
+</body>
+</html>

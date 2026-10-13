@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZYNTRA - Waves</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .lesson-page {
+            max-width: 1000px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .lesson-hero {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .lesson-badge {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 30px;
+            background: rgba(59, 130, 246, 0.12);
+            color: #60a5fa;
+            font-weight: bold;
+        }
+
+        .lesson-hero h1 {
+            font-size: 55px;
+            margin: 20px 0 10px;
+        }
+
+        .lesson-hero p {
+            color: #9999ad;
+            font-size: 18px;
+        }
+
+        .lesson-card {
+            margin-top: 25px;
+            padding: 30px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .lesson-card h2 {
+            margin-bottom: 15px;
+        }
+
+        .lesson-card p,
+        .lesson-card li {
+            color: #c5c5d5;
+            line-height: 1.8;
+        }
+
+        .formula-box {
+            margin-top: 20px;
+            padding: 25px;
+            text-align: center;
+            border-radius: 18px;
+            background: rgba(59,130,246,0.08);
+            border: 1px solid rgba(59,130,246,0.2);
+        }
+
+        .formula-box strong {
+            display: block;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .quiz-option:hover {
+            background: rgba(59,130,246,0.25);
+        }
+
+        .quiz-option:disabled {
+            cursor: not-allowed;
+            opacity: 0.85;
+        }
+
+        .correct-answer {
+            background: rgba(34,197,94,0.25) !important;
+            border: 1px solid rgba(34,197,94,0.5);
+        }
+
+        .wrong-answer {
+            background: rgba(239,68,68,0.25) !important;
+            border: 1px solid rgba(239,68,68,0.5);
+        }
+
+        #quizResult {
+            margin-top: 15px;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+
+        .progress-message {
+            margin-top: 12px;
+            padding: 14px;
+            border-radius: 12px;
+            background: rgba(139,92,246,0.12);
+            color: #c4b5fd;
+            display: none;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+
+            .lesson-hero h1 {
+                font-size: 40px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="lesson-page">
+
+
+    <section class="lesson-hero">
+
+        <div class="lesson-badge">
+            🌊 PHYSICS • WAVES
+        </div>
+
+        <h1>Explore Waves</h1>
+
+        <p>
+            Understand wave motion, frequency, wavelength, amplitude and wave speed.
+        </p>
+
+    </section>
+
+
+    <div class="lesson-card">
+
+        <h2>🌊 What is a Wave?</h2>
+
+        <p>
+            A wave is a disturbance that transfers energy from one
+            place to another without causing a net transfer of matter.
+        </p>
+
+        <p>
+            Examples include water waves, sound waves and light waves.
+        </p>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🔊 Types of Waves</h2>
+
+        <ul>
+
+            <li>
+                <strong>Transverse waves</strong> — particles vibrate
+                perpendicular to the direction of wave travel.
+            </li>
+
+            <li>
+                <strong>Longitudinal waves</strong> — particles vibrate
+                parallel to the direction of wave travel.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>📏 Wavelength</h2>
+
+        <p>
+            Wavelength is the distance between two successive points
+            that are in the same phase, such as two successive crests
+            or two successive compressions.
+        </p>
+
+        <p>
+            The SI unit of wavelength is the metre (m).
+        </p>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>〰️ Amplitude</h2>
+
+        <p>
+            Amplitude is the maximum displacement of a vibrating particle
+            from its equilibrium position.
+        </p>
+
+        <p>
+            A larger amplitude means more energy is transferred by the wave.
+        </p>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🔄 Frequency</h2>
+
+        <p>
+            Frequency is the number of complete waves produced or vibrations
+            made per second.
+        </p>
+
+        <div class="formula-box">
+
+            <strong>f = Number of vibrations ÷ time</strong>
+
+            <p>
+                Frequency is measured in hertz (Hz).
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🚀 Wave Speed</h2>
+
+        <p>
+            Wave speed is the distance travelled by a wave per unit time.
+        </p>
+
+        <div class="formula-box">
+
+            <strong>v = fλ</strong>
+
+            <p>
+                v = wave speed in metres per second (m/s)<br>
+                f = frequency in hertz (Hz)<br>
+                λ = wavelength in metres (m)
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🧠 Worked Example</h2>
+
+        <p>
+            A wave has a frequency of 5 Hz and a wavelength of 2 m.
+            Calculate its speed.
+        </p>
+
+        <div class="formula-box">
+
+            <strong>v = fλ</strong>
+
+            <p>
+                v = 5 × 2
+            </p>
+
+            <p>
+                <strong>Wave speed = 10 m/s</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🎵 Sound Waves</h2>
+
+        <p>
+            Sound is produced by vibrating objects and requires a medium
+            such as a solid, liquid or gas to travel through.
+        </p>
+
+        <ul>
+
+            <li>Sound waves are longitudinal waves.</li>
+
+            <li>Sound cannot travel through a vacuum.</li>
+
+            <li>Frequency affects the pitch of a sound.</li>
+
+            <li>Amplitude affects the loudness of a sound.</li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🧠 ZYNTRA Quick Challenge</h2>
+
+        <p>
+            A wave has a frequency of 4 Hz and a wavelength of 3 m.
+            What is its speed?
+        </p>
+
+
+        <button class="quiz-option" onclick="checkAnswer('A', this)">
+            A. 7 m/s
+        </button>
+
+        <button class="quiz-option" onclick="checkAnswer('B', this)">
+            B. 12 m/s
+        </button>
+
+        <button class="quiz-option" onclick="checkAnswer('C', this)">
+            C. 1.33 m/s
+        </button>
+
+        <button class="quiz-option" onclick="checkAnswer('D', this)">
+            D. 24 m/s
+        </button>
+
+        <p id="quizResult"></p>
+
+        <div id="progressMessage" class="progress-message"></div>
+
+    </div>
+
+
+    <a href="physics.html" class="back-btn">
+        ← Back to Physics
+    </a>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   ZYNTRA PROGRESS SYSTEM
+   ===================================================== */
+
+const SUBJECT = "Physics";
+
+const username =
+    localStorage.getItem("zyntraUsername") ||
+    localStorage.getItem("username") ||
+    "guest";
+
+const progressKey = "zyntraProgress_" + username;
+
+const completionKey =
+    "zyntraCompleted_waves_" + username;
+
+
+/* =====================================================
+   DEFAULT PROGRESS
+   ===================================================== */
+
+function getDefaultProgress() {
+
+    return {
+
+        xp: 0,
+
+        streak: 0,
+
+        questions: 0,
+
+        achievements: 0,
+
+        subjects: {
+
+            Mathematics: 0,
+
+            Chemistry: 0,
+
+            Physics: 0,
+
+            Biology: 0,
+
+            "Computer-Studies": 0,
+
+            English: 0
+
+        },
+
+        lastStudyDate: ""
+
+    };
+
+}
+
+
+/* =====================================================
+   LOAD PROGRESS
+   ===================================================== */
+
+function getProgress() {
+
+    try {
+
+        const saved = localStorage.getItem(progressKey);
+
+        if (!saved) {
+
+            return getDefaultProgress();
+
+        }
+
+        const progress = JSON.parse(saved);
+
+        const defaults = getDefaultProgress();
+
+        progress.subjects =
+            progress.subjects || defaults.subjects;
+
+        progress.xp =
+            Number(progress.xp) || 0;
+
+        progress.streak =
+            Number(progress.streak) || 0;
+
+        progress.questions =
+            Number(progress.questions) || 0;
+
+        progress.achievements =
+            Number(progress.achievements) || 0;
+
+        progress.subjects[SUBJECT] =
+            Number(progress.subjects[SUBJECT]) || 0;
+
+        return progress;
+
+    } catch (error) {
+
+        return getDefaultProgress();
+
+    }
+
+}
+
+
+/* =====================================================
+   SAVE PROGRESS
+   ===================================================== */
+
+function saveProgress(progress) {
+
+    localStorage.setItem(
+        progressKey,
+        JSON.stringify(progress)
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE STREAK
+   ===================================================== */
+
+function updateStreak(progress) {
+
+    const today =
+        new Date().toISOString().split("T")[0];
+
+    const last =
+        progress.lastStudyDate;
+
+    if (!last) {
+
+        progress.streak = 1;
+
+    } else {
+
+        const lastDate =
+            new Date(last);
+
+        const todayDate =
+            new Date(today);
+
+        const difference =
+            Math.floor(
+                (todayDate - lastDate) /
+                (1000 * 60 * 60 * 24)
+            );
+
+        if (difference === 1) {
+
+            progress.streak += 1;
+
+        } else if (difference > 1) {
+
+            progress.streak = 1;
+
+        }
+
+    }
+
+    progress.lastStudyDate = today;
+
+}
+
+
+/* =====================================================
+   UPDATE ACHIEVEMENTS
+   ===================================================== */
+
+function updateAchievements(progress) {
+
+    let achievements = 0;
+
+    if (progress.xp >= 10) {
+
+        achievements++;
+
+    }
+
+    if (progress.xp >= 100) {
+
+        achievements++;
+
+    }
+
+    if (progress.questions >= 10) {
+
+        achievements++;
+
+    }
+
+    if (progress.streak >= 7) {
+
+        achievements++;
+
+    }
+
+    progress.achievements = achievements;
+
+}
+
+
+/* =====================================================
+   COMPLETE WAVES CHALLENGE
+   ===================================================== */
+
+function completeWavesChallenge(correct) {
+
+    /*
+       This challenge gives exactly 10 XP TOTAL.
+
+       It does NOT give 10 XP per answer.
+
+       Refreshing the page or answering again
+       will not award XP again.
+    */
+
+    if (localStorage.getItem(completionKey)) {
+
+        return false;
+
+    }
+
+
+    const progress = getProgress();
+
+
+    // Count the completed challenge
+    progress.questions += 1;
+
+
+    // Award exactly 10 XP
+    progress.xp += 10;
+
+
+    // Increase Physics progress by 5%
+    progress.subjects[SUBJECT] =
+        Math.min(
+            100,
+            progress.subjects[SUBJECT] + 5
+        );
+
+
+    // Update streak
+    updateStreak(progress);
+
+
+    // Update achievements
+    updateAchievements(progress);
+
+
+    // Save everything
+    saveProgress(progress);
+
+
+    // Mark this challenge as completed
+    localStorage.setItem(
+        completionKey,
+        "true"
+    );
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   CHECK ANSWER
+   ===================================================== */
+
+function checkAnswer(answer, button) {
+
+    const buttons =
+        document.querySelectorAll(".quiz-option");
+
+    const result =
+        document.getElementById("quizResult");
+
+    const progressMessage =
+        document.getElementById("progressMessage");
+
+
+    // Prevent answering more than once
+    buttons.forEach(function(btn) {
+
+        btn.disabled = true;
+
+    });
+
+
+    // Highlight correct answer
+    buttons.forEach(function(btn) {
+
+        if (
+            btn.textContent.trim().startsWith("B.")
+        ) {
+
+            btn.classList.add(
+                "correct-answer"
+            );
+
+        }
+
+    });
+
+
+    const correct =
+        answer === "B";
+
+
+    // Highlight selected wrong answer
+    if (!correct) {
+
+        button.classList.add(
+            "wrong-answer"
+        );
+
+    }
+
+
+    // Complete challenge
+    const newCompletion =
+        completeWavesChallenge(correct);
+
+
+    if (correct) {
+
+        result.textContent =
+            "✅ Correct! v = fλ = 4 × 3 = 12 m/s.";
+
+    } else {
+
+        result.textContent =
+            "❌ Not quite. The correct answer is 12 m/s.";
+
+    }
+
+
+    if (newCompletion) {
+
+        progressMessage.style.display =
+            "block";
+
+        progressMessage.textContent =
+            "🎉 Challenge completed! +10 XP earned. Physics progress +5%.";
+
+    } else {
+
+        progressMessage.style.display =
+            "block";
+
+        progressMessage.textContent =
+            "This challenge was already completed. No additional XP was awarded.";
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

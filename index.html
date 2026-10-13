@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ================= SEO ================= -->
+
+<title>Kenya Student Revision – KCSE Notes & Quizzes | ZYNTRA</title>
+
+<meta
+    name="description"
+    content="Kenya Student Revision with KCSE notes, quizzes, study resources and smart learning tools for Kenyan students."
+>
+
+<meta
+    name="keywords"
+    content="KCSE revision, KCSE notes, KCSE quizzes, Kenya student revision, KCSE revision Kenya, Form 1 revision, Form 2 revision, Form 3 revision, Form 4 revision, Mathematics, Chemistry, Physics, Biology, Computer Studies, English"
+>
+
+<meta name="author" content="ZYNTRA">
+
+<meta name="robots" content="index, follow">
+
+<meta name="theme-color" content="#070711">
+
+<!-- ================= SOCIAL SHARING ================= -->
+
+<meta property="og:title"
+      content="Kenya Student Revision – KCSE Notes & Quizzes | ZYNTRA">
+
+<meta property="og:description"
+      content="Study smarter with KCSE notes, quizzes, challenges, AI learning and student community features on ZYNTRA.">
+
+<meta property="og:type" content="website">
+
+<meta property="og:site_name" content="ZYNTRA">
+
+<!-- ================= FAVICON ================= -->
+
+<link rel="icon" href="data:,">
+
+
+<style>
+
+/* ======================================================
+   RESET
+====================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* ======================================================
+   ROOT
+====================================================== */
+
+:root{
+
+    --bg:#070711;
+    --bg2:#0d0d1b;
+
+    --card:rgba(255,255,255,.06);
+
+    --border:rgba(255,255,255,.10);
+
+    --purple:#8b5cf6;
+    --blue:#3b82f6;
+    --pink:#ec4899;
+    --cyan:#06b6d4;
+    --green:#22c55e;
+
+    --text:#fff;
+    --muted:#a8a8bd;
+}
+
+
+/* ======================================================
+   BODY
+====================================================== */
+
+body{
+
+    min-height:100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:var(--text);
+
+    background:
+
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(139,92,246,.20),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(59,130,246,.16),
+            transparent 30%
+        ),
+
+        var(--bg);
+
+    overflow-x:hidden;
+}
+
+
+/* ======================================================
+   NAVBAR
+====================================================== */
+
+.navbar{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 6%;
+
+    background:
+        rgba(7,7,17,.86);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.logo{
+
+    text-decoration:none;
+
+    color:#fff;
+
+    font-size:25px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+}
+
+
+.logo span{
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--blue)
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+}
+
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+}
+
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:#bdbdd0;
+
+    font-size:14px;
+
+    padding:10px 12px;
+
+    border-radius:10px;
+
+    transition:.25s;
+}
+
+
+.nav-links a:hover{
+
+    color:#fff;
+
+    background:
+        rgba(139,92,246,.14);
+}
+
+
+.nav-links .fun-link{
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.20),
+            rgba(236,72,153,.15)
+        );
+
+    border:
+        1px solid rgba(139,92,246,.20);
+}
+
+
+.profile{
+
+    width:39px;
+
+    height:39px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    font-weight:bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+}
+
+
+/* ======================================================
+   HERO
+====================================================== */
+
+.hero{
+
+    width:min(1150px,92%);
+
+    min-height:650px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:70px 10px;
+}
+
+
+.hero-content{
+
+    max-width:900px;
+}
+
+
+.badge{
+
+    display:inline-block;
+
+    padding:9px 16px;
+
+    border-radius:30px;
+
+    border:
+        1px solid rgba(139,92,246,.3);
+
+    background:
+        rgba(139,92,246,.10);
+
+    color:#cfc0ff;
+
+    font-size:14px;
+
+    margin-bottom:22px;
+}
+
+
+.hero h1{
+
+    font-size:
+        clamp(44px,7vw,78px);
+
+    line-height:1.05;
+
+    font-weight:900;
+
+    margin-bottom:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--blue),
+            var(--pink)
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+}
+
+
+.hero h2{
+
+    font-size:
+        clamp(22px,4vw,34px);
+
+    margin-bottom:18px;
+}
+
+
+.hero p{
+
+    max-width:760px;
+
+    margin:auto;
+
+    color:var(--muted);
+
+    font-size:17px;
+
+    line-height:1.7;
+}
+
+
+.buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:14px;
+
+    margin-top:32px;
+}
+
+
+.btn{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    padding:14px 23px;
+
+    border-radius:13px;
+
+    font-weight:bold;
+
+    transition:.25s;
+}
+
+
+.btn-primary{
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(59,130,246,.18);
+}
+
+
+.btn-secondary{
+
+    border:
+        1px solid var(--border);
+
+    background:
+        rgba(255,255,255,.05);
+}
+
+
+.btn-fun{
+
+    border:
+        1px solid rgba(236,72,153,.3);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.18),
+            rgba(236,72,153,.18)
+        );
+}
+
+
+.btn:hover{
+
+    transform:translateY(-3px);
+}
+
+
+/* ======================================================
+   SEO INTRO
+====================================================== */
+
+.seo-intro{
+
+    width:min(950px,92%);
+
+    margin:
+        -20px auto 70px;
+
+    text-align:center;
+
+    padding:28px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid var(--border);
+}
+
+
+.seo-intro h2{
+
+    font-size:28px;
+
+    margin-bottom:12px;
+}
+
+
+.seo-intro p{
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:15px;
+}
+
+
+/* ======================================================
+   FEATURES
+====================================================== */
+
+.section{
+
+    width:min(1150px,92%);
+
+    margin:
+        0 auto 70px;
+}
+
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:35px;
+}
+
+
+.section-title h2{
+
+    font-size:35px;
+
+    margin-bottom:10px;
+}
+
+
+.section-title p{
+
+    color:var(--muted);
+
+    line-height:1.6;
+}
+
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+}
+
+
+.feature{
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:var(--card);
+
+    border:
+        1px solid var(--border);
+
+    transition:.3s;
+}
+
+
+.feature:hover{
+
+    transform:translateY(-5px);
+
+    border-color:
+        rgba(139,92,246,.35);
+}
+
+
+.feature-icon{
+
+    font-size:35px;
+
+    margin-bottom:15px;
+}
+
+
+.feature h3{
+
+    margin-bottom:9px;
+}
+
+
+.feature p{
+
+    color:var(--muted);
+
+    line-height:1.5;
+
+    font-size:14px;
+}
+
+
+/* ======================================================
+   SUBJECTS
+====================================================== */
+
+.subject-section{
+
+    width:min(1150px,92%);
+
+    margin:
+        0 auto 70px;
+}
+
+
+.subject-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+}
+
+
+.subject{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.05);
+
+    border:
+        1px solid var(--border);
+
+    transition:.3s;
+}
+
+
+.subject:hover{
+
+    transform:translateY(-5px);
+
+    border-color:
+        rgba(139,92,246,.45);
+
+    background:
+        rgba(139,92,246,.08);
+}
+
+
+.subject-icon{
+
+    font-size:35px;
+
+    margin-bottom:12px;
+}
+
+
+.subject h3{
+
+    margin-bottom:8px;
+}
+
+
+.subject p{
+
+    color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.5;
+}
+
+
+/* ======================================================
+   FUN BANNER
+====================================================== */
+
+.fun-banner{
+
+    width:min(1150px,92%);
+
+    margin:
+        0 auto 70px;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    border:
+        1px solid rgba(236,72,153,.25);
+
+    background:
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(236,72,153,.18),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.12),
+            rgba(59,130,246,.08)
+        );
+
+    text-align:center;
+}
+
+
+.fun-banner .big-icon{
+
+    font-size:50px;
+
+    margin-bottom:12px;
+}
+
+
+.fun-banner h2{
+
+    font-size:32px;
+
+    margin-bottom:12px;
+}
+
+
+.fun-banner p{
+
+    color:var(--muted);
+
+    margin-bottom:22px;
+
+    line-height:1.6;
+}
+
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
+footer{
+
+    border-top:
+        1px solid var(--border);
+
+    padding:28px;
+
+    text-align:center;
+
+    color:#77778e;
+
+    font-size:13px;
+}
+
+
+footer a{
+
+    color:#a99bff;
+
+    text-decoration:none;
+}
+
+
+/* ======================================================
+   MOBILE
+====================================================== */
+
+@media(max-width:1000px){
+
+    .features{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+
+    .subject-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+
+    .nav-links a{
+
+        font-size:12px;
+
+        padding:8px;
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    .navbar{
+
+        padding:0 4%;
+    }
+
+
+    .nav-links{
+
+        display:none;
+    }
+
+
+    .hero{
+
+        min-height:580px;
+
+        padding:
+            60px 5px;
+    }
+
+
+    .hero h1{
+
+        font-size:50px;
+    }
+
+
+    .hero h2{
+
+        font-size:24px;
+    }
+
+
+    .hero p{
+
+        font-size:15px;
+    }
+
+
+    .features{
+
+        grid-template-columns:1fr;
+    }
+
+
+    .subject-grid{
+
+        grid-template-columns:1fr;
+    }
+
+
+    .seo-intro{
+
+        padding:24px 18px;
+    }
+
+
+    .fun-banner{
+
+        padding:30px 20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<nav class="navbar">
+
+    <a href="index.html" class="logo">
+        ZYNTRA<span>.</span>
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="study.html">
+            Study
+        </a>
+
+        <a href="ai.html">
+            AI
+        </a>
+
+        <a href="community.html">
+            Community
+        </a>
+
+        <a href="planner.html">
+            Planner
+        </a>
+
+        <a href="challenge.html">
+            Challenges
+        </a>
+
+        <a href="fun.html" class="fun-link">
+            🎮 Fun
+        </a>
+
+    </div>
+
+
+    <a
+        href="profile.html"
+        class="profile"
+        id="profileCircle"
+    >
+        Z
+    </a>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+
+        <div class="badge">
+            🇰🇪 Built for Kenyan Students
+        </div>
+
+
+        <h1>
+            Kenya Student Revision
+        </h1>
+
+
+        <h2>
+            KCSE Notes, Quizzes & Smart Learning
+        </h2>
+
+
+        <p>
+            Study smarter with ZYNTRA. Access revision
+            materials, quizzes, challenges, AI study help
+            and a student community designed for learning.
+        </p>
+
+
+        <div class="buttons">
+
+            <a
+                href="study.html"
+                class="btn btn-primary"
+            >
+                📚 Start Learning
+            </a>
+
+
+            <a
+                href="ai.html"
+                class="btn btn-secondary"
+            >
+                🤖 Ask ZYNTRA AI
+            </a>
+
+
+            <a
+                href="fun.html"
+                class="btn btn-fun"
+            >
+                🎮 Just for Fun
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SEO INTRO
+====================================================== -->
+
+<section class="seo-intro">
+
+    <h2>
+        KCSE Revision for Kenyan Students
+    </h2>
+
+    <p>
+        ZYNTRA provides a simple place for students to
+        revise Mathematics, Chemistry, Physics, Biology,
+        Computer Studies and English through notes,
+        quizzes, challenges and interactive learning tools.
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     FEATURES
+====================================================== -->
+
+<section class="section">
+
+
+    <div class="section-title">
+
+        <h2>
+            Everything Students Need
+        </h2>
+
+        <p>
+            Learn, practise, connect and challenge yourself
+            in one student platform.
+        </p>
+
+    </div>
+
+
+
+    <div class="features">
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📚
+            </div>
+
+            <h3>
+                KCSE Revision
+            </h3>
+
+            <p>
+                Study school subjects with organized
+                revision lessons and learning materials.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📝
+            </div>
+
+            <h3>
+                Notes & Quizzes
+            </h3>
+
+            <p>
+                Review important topics and test your
+                understanding with interactive quizzes.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🤖
+            </div>
+
+            <h3>
+                ZYNTRA AI
+            </h3>
+
+            <p>
+                Get help understanding difficult topics,
+                questions and study concepts.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🏆
+            </div>
+
+            <h3>
+                Challenges
+            </h3>
+
+            <p>
+                Complete learning challenges and track
+                your progress as you study.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SUBJECTS
+====================================================== -->
+
+<section class="subject-section">
+
+
+    <div class="section-title">
+
+        <h2>
+            KCSE Revision Subjects
+        </h2>
+
+        <p>
+            Explore subjects and start your revision.
+        </p>
+
+    </div>
+
+
+
+    <div class="subject-grid">
+
+
+        <a
+            href="math.html"
+            class="subject"
+        >
+
+            <div class="subject-icon">
+                📐
+            </div>
+
+            <h3>
+                Mathematics
+            </h3>
+
+            <p>
+                Revise mathematics concepts,
+                formulas and practice questions.
+            </p>
+
+        </a>
+
+
+
+        <a
+            href="chemistry.html"
+            class="subject"
+        >
+
+            <div class="subject-icon">
+                🧪
+            </div>
+
+            <h3>
+                Chemistry
+            </h3>
+
+            <p>
+                Study chemistry topics,
+                reactions and important concepts.
+            </p>
+
+        </a>
+
+
+
+        <a
+            href="physics.html"
+            class="subject"
+        >
+
+            <div class="subject-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Physics
+            </h3>
+
+            <p>
+                Learn physics concepts,
+                formulas and problem solving.
+            </p>
+
+        </a>
+
+
+
+        <a
+            href="biology.html"
+            class="subject"
+        >
+
+            <div class="subject-icon">
+                🧬
+            </div>
+
+            <h3>
+                Biology
+            </h3>
+
+            <p>
+                Revise biology topics and
+                important scientific concepts.
+            </p>
+
+        </a>
+
+
+
+        <a
+            href="computer.html"
+            class="subject"
+        >
+
+            <div class="subject-icon">
+                💻
+            </div>
+
+            <h3>
+                Computer Studies
+            </h3>
+
+            <p>
+                Learn computer hardware,
+                software, networks and more.
+            </p>
+
+        </a>
+
+
+
+        <a
+            href="english.html"
+            class="subject"
+        >
+
+            <div class="subject-icon">
+                📖
+            </div>
+
+            <h3>
+                English
+            </h3>
+
+            <p>
+                Improve English skills,
+                language and literature knowledge.
+            </p>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FUN SECTION
+====================================================== -->
+
+<section class="fun-banner">
+
+
+    <div class="big-icon">
+        🎮
+    </div>
+
+
+    <h2>
+        Need a Study Break?
+    </h2>
+
+
+    <p>
+        Visit Just for Fun and play quick games,
+        solve riddles, test your reaction speed,
+        discover fun facts and earn Fun Points.
+    </p>
+
+
+    <a
+        href="fun.html"
+        class="btn btn-fun"
+    >
+        🚀 Enter Just for Fun
+    </a>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    © 2026 ZYNTRA — Kenya Student Revision.
+
+    <br><br>
+
+    KCSE Notes • Quizzes • Smart Learning • Student Community
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+
+/* ======================================================
+   GET CURRENT USER
+====================================================== */
+
+function getCurrentUser(){
+
+    const rawUser =
+        localStorage.getItem("zyntraUser");
+
+
+    if(!rawUser){
+
+        return null;
+
+    }
+
+
+    try{
+
+        const user =
+            JSON.parse(rawUser);
+
+
+        if(
+            user &&
+            typeof user === "object"
+        ){
+
+            return user;
+
+        }
+
+    }
+    catch(error){
+
+        return {
+
+            username:rawUser
+
+        };
+
+    }
+
+
+    return null;
+
+}
+
+
+/* ======================================================
+   PROFILE INITIAL
+====================================================== */
+
+const currentUser =
+    getCurrentUser();
+
+
+if(currentUser){
+
+    const username =
+
+        currentUser.username ||
+        currentUser.email ||
+        currentUser.name ||
+        "U";
+
+
+    const firstLetter =
+
+        username
+        .trim()
+        .charAt(0)
+        .toUpperCase();
+
+
+    document
+        .getElementById("profileCircle")
+        .textContent =
+        firstLetter || "U";
+
+}
+
+else{
+
+    document
+        .getElementById("profileCircle")
+        .textContent =
+        "U";
+
+}
+
+
+/* ======================================================
+   PAGE TITLE
+====================================================== */
+
+document.title =
+    "Kenya Student Revision – KCSE Notes & Quizzes | ZYNTRA";
+
+
+</script>
+
+
+</body>
+
+</html>

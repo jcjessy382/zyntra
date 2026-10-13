@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZYNTRA Computer Security</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #070711;
+            color: white;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #8b5cf6;
+            filter: blur(180px);
+            opacity: 0.12;
+            top: -200px;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            background: #06b6d4;
+            filter: blur(180px);
+            opacity: 0.08;
+            bottom: -200px;
+            right: -150px;
+            z-index: -1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 50px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 30px;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            color: #b9a0ff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff, #9f8cff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #a9a9bd;
+            font-size: 18px;
+        }
+
+        /* SECURITY VISUAL */
+
+        .security-visual {
+            width: 220px;
+            height: 220px;
+            margin: 40px auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .shield {
+            width: 130px;
+            height: 155px;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            clip-path: polygon(
+                50% 0%,
+                90% 15%,
+                90% 55%,
+                75% 80%,
+                50% 100%,
+                25% 80%,
+                10% 55%,
+                10% 15%
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            box-shadow: 0 0 50px rgba(139,92,246,0.5);
+            animation: shieldGlow 3s infinite alternate;
+        }
+
+        @keyframes shieldGlow {
+
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.06);
+            }
+
+        }
+
+        .ring {
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            border: 2px solid rgba(139,92,246,0.25);
+            border-radius: 50%;
+            animation: rotate 8s linear infinite;
+        }
+
+        .ring2 {
+            width: 215px;
+            height: 215px;
+            border-color: rgba(59,130,246,0.15);
+            animation-direction: reverse;
+        }
+
+        @keyframes rotate {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+        /* SECTIONS */
+
+        section {
+            margin-bottom: 45px;
+        }
+
+        .section-title {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #8b5cf6;
+            box-shadow: 0 10px 30px rgba(139,92,246,0.15);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #a5a5b7;
+        }
+
+        .icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        /* TABLE */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.04);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+
+        th {
+            background: rgba(139,92,246,0.2);
+        }
+
+        td {
+            color: #c8c8d8;
+        }
+
+        /* SECURITY RULES */
+
+        .rules {
+            background: linear-gradient(
+                135deg,
+                rgba(139,92,246,0.12),
+                rgba(59,130,246,0.08)
+            );
+
+            border: 1px solid rgba(139,92,246,0.25);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .rules li {
+            margin-bottom: 10px;
+            color: #d1d1df;
+        }
+
+        /* QUIZ */
+
+        .quiz {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question h3 {
+            margin-bottom: 15px;
+        }
+
+        .quiz button {
+            padding: 12px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 10px;
+            background: #17172a;
+            color: white;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .quiz button:hover {
+            background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+            transform: translateY(-2px);
+        }
+
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* BACK BUTTON */
+
+        .back-btn {
+            display: inline-block;
+            margin: 40px 0 60px;
+            padding: 12px 22px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139,92,246,0.4);
+        }
+
+        /* MOBILE */
+
+        @media(max-width:700px) {
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+        <div class="badge">
+            🔐 ZYNTRA COMPUTER SECURITY
+        </div>
+
+        <h1>Protect the Digital World.</h1>
+
+        <p>
+            Learn how computers, networks and information can
+            be protected from threats and unauthorized access.
+        </p>
+
+        <div class="security-visual">
+
+            <div class="ring"></div>
+
+            <div class="ring ring2"></div>
+
+            <div class="shield">
+                🔒
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+
+        <!-- WHAT IS SECURITY -->
+
+        <section>
+
+            <h2 class="section-title">
+                🔐 What Is Computer Security?
+            </h2>
+
+            <div class="card">
+
+                <p>
+                    Computer security is the protection of computer
+                    systems, networks, programs and data from
+                    unauthorized access, damage, theft or disruption.
+                </p>
+
+                <br>
+
+                <p>
+                    The main goal is to keep information
+                    <strong>confidential, accurate and available</strong>
+                    to authorized users.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- SECURITY THREATS -->
+
+        <section>
+
+            <h2 class="section-title">
+                ⚠️ Common Security Threats
+            </h2>
+
+            <div class="card-grid">
+
+                <div class="card">
+
+                    <div class="icon">🦠</div>
+
+                    <h3>Virus</h3>
+
+                    <p>
+                        A malicious program that can attach itself
+                        to files and spread when the files are used.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">🐴</div>
+
+                    <h3>Trojan Horse</h3>
+
+                    <p>
+                        Malicious software that appears to be
+                        legitimate or useful.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">🎣</div>
+
+                    <h3>Phishing</h3>
+
+                    <p>
+                        A trick used to obtain sensitive information
+                        by pretending to be a trusted person or service.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">🔑</div>
+
+                    <h3>Password Attack</h3>
+
+                    <p>
+                        An attempt to gain unauthorized access by
+                        guessing or obtaining passwords.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">🕷️</div>
+
+                    <h3>Spyware</h3>
+
+                    <p>
+                        Software designed to secretly collect
+                        information about a user or system.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">🚫</div>
+
+                    <h3>Unauthorized Access</h3>
+
+                    <p>
+                        Accessing a computer system or information
+                        without permission.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MALWARE -->
+
+        <section>
+
+            <h2 class="section-title">
+                🦠 Malware
+            </h2>
+
+            <div class="table-container">
+
+                <table>
+
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+
+                    <tr>
+                        <td>Virus</td>
+                        <td>
+                            Attaches to files and can spread when
+                            infected files are opened.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Worm</td>
+                        <td>
+                            Can spread across networks without
+                            requiring a user to copy it manually.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Trojan</td>
+                        <td>
+                            Appears legitimate but performs
+                            malicious actions.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Spyware</td>
+                        <td>
+                            Secretly collects information.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Ransomware</td>
+                        <td>
+                            Can restrict access to files or systems
+                            and demand payment from victims.
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- SECURITY METHODS -->
+
+        <section>
+
+            <h2 class="section-title">
+                🛡️ Ways to Protect a Computer
+            </h2>
+
+            <div class="card-grid">
+
+                <div class="card">
+
+                    <div class="icon">🔒</div>
+
+                    <h3>Strong Passwords</h3>
+
+                    <p>
+                        Use long, unique passwords and avoid
+                        easily guessed information.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">🛡️</div>
+
+                    <h3>Antivirus Software</h3>
+
+                    <p>
+                        Helps detect and remove malicious software.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">🔥</div>
+
+                    <h3>Firewall</h3>
+
+                    <p>
+                        Helps control network traffic entering
+                        or leaving a computer or network.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">🔄</div>
+
+                    <h3>Software Updates</h3>
+
+                    <p>
+                        Updates can fix security weaknesses and
+                        improve software protection.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">💾</div>
+
+                    <h3>Backups</h3>
+
+                    <p>
+                        Keep copies of important information
+                        in case the original data is lost.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">👤</div>
+
+                    <h3>User Permissions</h3>
+
+                    <p>
+                        Give users only the access they need.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CIA TRIAD -->
+
+        <section>
+
+            <h2 class="section-title">
+                🔺 The CIA Triad
+            </h2>
+
+            <div class="card-grid">
+
+                <div class="card">
+
+                    <div class="icon">🤫</div>
+
+                    <h3>Confidentiality</h3>
+
+                    <p>
+                        Information should only be accessible
+                        to authorized people.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">✅</div>
+
+                    <h3>Integrity</h3>
+
+                    <p>
+                        Information should remain accurate
+                        and trustworthy.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">⚡</div>
+
+                    <h3>Availability</h3>
+
+                    <p>
+                        Authorized users should be able to
+                        access information when needed.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SECURITY RULES -->
+
+        <section>
+
+            <h2 class="section-title">
+                🧠 Smart Security Rules
+            </h2>
+
+            <div class="rules">
+
+                <ul>
+
+                    <li>
+                        Never share your passwords with other people.
+                    </li>
+
+                    <li>
+                        Be careful when opening unexpected links
+                        or attachments.
+                    </li>
+
+                    <li>
+                        Keep your operating system and applications updated.
+                    </li>
+
+                    <li>
+                        Use security software where appropriate.
+                    </li>
+
+                    <li>
+                        Back up important files regularly.
+                    </li>
+
+                    <li>
+                        Lock your computer when you leave it.
+                    </li>
+
+                    <li>
+                        Avoid entering sensitive information on
+                        suspicious websites.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK REVISION -->
+
+        <section>
+
+            <h2 class="section-title">
+                📚 Quick Revision
+            </h2>
+
+            <div class="rules">
+
+                <ul>
+
+                    <li>
+                        Computer security protects computers,
+                        networks and data.
+                    </li>
+
+                    <li>
+                        Malware is malicious software.
+                    </li>
+
+                    <li>
+                        A virus can attach itself to files.
+                    </li>
+
+                    <li>
+                        Phishing attempts to trick people into
+                        revealing information.
+                    </li>
+
+                    <li>
+                        A firewall helps control network traffic.
+                    </li>
+
+                    <li>
+                        Antivirus software helps detect malware.
+                    </li>
+
+                    <li>
+                        Backups help protect against data loss.
+                    </li>
+
+                    <li>
+                        CIA means Confidentiality, Integrity
+                        and Availability.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUIZ -->
+
+        <section>
+
+            <h2 class="section-title">
+                🎯 Security Challenge
+            </h2>
+
+            <div class="quiz">
+
+
+                <!-- QUESTION 1 -->
+
+                <div class="question">
+
+                    <h3>
+                        1. What is the main purpose of computer security?
+                    </h3>
+
+                    <button onclick="checkAnswer(this, false)">
+                        A. To make computers heavier
+                    </button>
+
+                    <button onclick="checkAnswer(this, true)">
+                        B. To protect systems and information
+                    </button>
+
+                    <button onclick="checkAnswer(this, false)">
+                        C. To delete all files
+                    </button>
+
+                    <p class="result"></p>
+
+                </div>
+
+
+                <!-- QUESTION 2 -->
+
+                <div class="question">
+
+                    <h3>
+                        2. Which of the following is a form of malware?
+                    </h3>
+
+                    <button onclick="checkAnswer(this, true)">
+                        A. Virus
+                    </button>
+
+                    <button onclick="checkAnswer(this, false)">
+                        B. Keyboard
+                    </button>
+
+                    <button onclick="checkAnswer(this, false)">
+                        C. Monitor
+                    </button>
+
+                    <p class="result"></p>
+
+                </div>
+
+
+                <!-- QUESTION 3 -->
+
+                <div class="question">
+
+                    <h3>
+                        3. What does the "C" in CIA stand for?
+                    </h3>
+
+                    <button onclick="checkAnswer(this, false)">
+                        A. Computer
+                    </button>
+
+                    <button onclick="checkAnswer(this, true)">
+                        B. Confidentiality
+                    </button>
+
+                    <button onclick="checkAnswer(this, false)">
+                        C. Connection
+                    </button>
+
+                    <p class="result"></p>
+
+                </div>
+
+
+                <!-- QUESTION 4 -->
+
+                <div class="question">
+
+                    <h3>
+                        4. Which device or software can help control network traffic?
+                    </h3>
+
+                    <button onclick="checkAnswer(this, false)">
+                        A. Speaker
+                    </button>
+
+                    <button onclick="checkAnswer(this, true)">
+                        B. Firewall
+                    </button>
+
+                    <button onclick="checkAnswer(this, false)">
+                        C. Keyboard
+                    </button>
+
+                    <p class="result"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BACK -->
+
+        <a href="computer.html" class="back-btn">
+            ← Back to Computer Studies
+        </a>
+
+    </div>
+
+
+    <script>
+
+        function checkAnswer(button, correct) {
+
+            const result =
+                button.parentElement.querySelector(".result");
+
+            if (correct) {
+
+                result.textContent =
+                    "✅ Correct! Excellent work.";
+
+                result.style.color = "#4ade80";
+
+            } else {
+
+                result.textContent =
+                    "❌ Not quite. Try again.";
+
+                result.style.color = "#f87171";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1096 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA Grammar</title>
+
+<style>
+
+:root{
+    --bg:#070711;
+    --card:rgba(255,255,255,.055);
+    --border:rgba(255,255,255,.10);
+    --white:#ffffff;
+    --text:#dcdceb;
+    --muted:#85859b;
+    --purple:#8b5cf6;
+    --blue:#3b82f6;
+    --green:#22c55e;
+    --red:#f87171;
+    --gradient:linear-gradient(135deg,#8b5cf6,#3b82f6);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+    radial-gradient(circle at 15% 20%,rgba(139,92,246,.12),transparent 30%),
+    radial-gradient(circle at 85% 70%,rgba(59,130,246,.10),transparent 30%),
+    var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+.navbar{
+    height:72px;
+    padding:0 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(7,7,17,.85);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:3px;
+    background:var(--gradient);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    gap:22px;
+}
+
+.nav-links a{
+    color:var(--muted);
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:white;
+}
+
+.container{
+    width:92%;
+    max-width:1200px;
+    margin:auto;
+    padding:45px 0 70px;
+}
+
+.back-btn{
+    display:inline-block;
+    padding:11px 20px;
+    margin-bottom:35px;
+    border-radius:12px;
+    background:var(--gradient);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(139,92,246,.35);
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    margin-bottom:65px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 15px;
+    border-radius:30px;
+    background:rgba(139,92,246,.12);
+    border:1px solid rgba(139,92,246,.3);
+    color:#c1b2ff;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(42px,6vw,68px);
+    margin-bottom:18px;
+    background:linear-gradient(135deg,#ffffff,#aaa9c7);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:700px;
+    margin:auto;
+    color:var(--muted);
+    line-height:1.8;
+    font-size:16px;
+}
+
+/* SECTION */
+
+.section{
+    margin-bottom:60px;
+}
+
+.section-title{
+    margin-bottom:25px;
+}
+
+.section-title h2{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.section-title p{
+    color:var(--muted);
+}
+
+/* CARDS */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:27px;
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(139,92,246,.35);
+    box-shadow:0 18px 45px rgba(0,0,0,.25);
+}
+
+.icon{
+    width:52px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:15px;
+    background:rgba(139,92,246,.12);
+    font-size:25px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    margin-bottom:10px;
+    font-size:19px;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.65;
+    font-size:14px;
+}
+
+/* EXAMPLE */
+
+.example-box{
+    margin-top:15px;
+    padding:14px;
+    border-left:3px solid var(--purple);
+    background:rgba(139,92,246,.08);
+    border-radius:8px;
+    color:#ddd6ff;
+}
+
+/* TABLE */
+
+.table-box{
+    overflow-x:auto;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,
+td{
+    padding:16px;
+    text-align:left;
+    border-bottom:1px solid var(--border);
+}
+
+th{
+    color:white;
+    background:rgba(139,92,246,.10);
+}
+
+td{
+    color:var(--muted);
+}
+
+/* RULE BOX */
+
+.rule-box{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:30px;
+}
+
+.rule{
+    padding:18px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.rule:last-child{
+    border-bottom:none;
+}
+
+.rule strong{
+    color:white;
+}
+
+.rule p{
+    color:var(--muted);
+    margin-top:7px;
+    line-height:1.6;
+}
+
+/* QUIZ */
+
+.quiz{
+    max-width:750px;
+    margin:70px auto;
+    padding:35px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:25px;
+    text-align:center;
+}
+
+.quiz h2{
+    margin-bottom:10px;
+}
+
+.quiz p{
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.option{
+    padding:14px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.04);
+    color:white;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.option:hover{
+    background:rgba(139,92,246,.15);
+    transform:translateY(-2px);
+}
+
+#result{
+    margin-top:20px;
+    min-height:25px;
+    font-weight:bold;
+}
+
+/* BOTTOM */
+
+.bottom{
+    text-align:center;
+}
+
+.bottom a{
+    display:inline-block;
+    margin:6px;
+    padding:13px 22px;
+    border-radius:12px;
+    background:var(--gradient);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.bottom a:hover{
+    transform:translateY(-3px);
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:30px;
+    border-top:1px solid var(--border);
+    color:var(--muted);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
+
+    .grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .options{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        ZYNTRA
+    </div>
+
+    <nav class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="dashboard.html">Dashboard</a>
+
+        <a href="study.html">Study</a>
+
+        <a href="english.html" class="active">English</a>
+
+        <a href="ai.html">AI</a>
+
+        <a href="community.html">Community</a>
+
+        <a href="planner.html">Planner</a>
+
+        <a href="challenge.html">Challenges</a>
+
+    </nav>
+
+</header>
+
+
+<div class="container">
+
+<a href="english.html" class="back-btn">
+    ← Back to English
+</a>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <span class="badge">
+        🔤 ZYNTRA ENGLISH • GRAMMAR
+    </span>
+
+    <h1>
+        Build Strong Grammar.
+    </h1>
+
+    <p>
+        Learn the rules that make English clear,
+        accurate and powerful. Study parts of speech,
+        tenses, sentence structure and agreement.
+    </p>
+
+</section>
+
+
+<!-- PARTS OF SPEECH -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            🔤 Parts of Speech
+        </h2>
+
+        <p>
+            Words perform different functions in sentences.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <div class="card">
+
+            <div class="icon">👤</div>
+
+            <h3>Noun</h3>
+
+            <p>
+                A word used to name a person, place,
+                thing or idea.
+            </p>
+
+            <div class="example-box">
+                Example: teacher, Nairobi, book
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🔄</div>
+
+            <h3>Pronoun</h3>
+
+            <p>
+                A word used instead of a noun.
+            </p>
+
+            <div class="example-box">
+                Example: he, she, they, it
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">⚡</div>
+
+            <h3>Verb</h3>
+
+            <p>
+                A word that shows an action,
+                occurrence or state.
+            </p>
+
+            <div class="example-box">
+                Example: run, write, is
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🎨</div>
+
+            <h3>Adjective</h3>
+
+            <p>
+                A word that describes or modifies
+                a noun or pronoun.
+            </p>
+
+            <div class="example-box">
+                Example: beautiful, tall, clever
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">💨</div>
+
+            <h3>Adverb</h3>
+
+            <p>
+                A word that modifies a verb,
+                adjective or another adverb.
+            </p>
+
+            <div class="example-box">
+                Example: quickly, very, carefully
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🔗</div>
+
+            <h3>Preposition</h3>
+
+            <p>
+                A word that shows the relationship
+                between words.
+            </p>
+
+            <div class="example-box">
+                Example: in, on, under, beside
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🔀</div>
+
+            <h3>Conjunction</h3>
+
+            <p>
+                A word used to connect words,
+                phrases or clauses.
+            </p>
+
+            <div class="example-box">
+                Example: and, but, because
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">❗</div>
+
+            <h3>Interjection</h3>
+
+            <p>
+                A word or expression that shows
+                sudden emotion.
+            </p>
+
+            <div class="example-box">
+                Example: Wow! Oh! Hurray!
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🧩</div>
+
+            <h3>Determiner</h3>
+
+            <p>
+                A word that comes before a noun
+                to clarify its reference.
+            </p>
+
+            <div class="example-box">
+                Example: the, a, an, some
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TENSES -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            ⏰ English Tenses
+        </h2>
+
+        <p>
+            Tenses help show when an action happens.
+        </p>
+
+    </div>
+
+
+    <div class="table-box">
+
+        <table>
+
+            <tr>
+                <th>Tense</th>
+                <th>Example</th>
+                <th>Use</th>
+            </tr>
+
+            <tr>
+                <td>Simple Present</td>
+                <td>She plays football.</td>
+                <td>Regular actions or facts.</td>
+            </tr>
+
+            <tr>
+                <td>Simple Past</td>
+                <td>She played football.</td>
+                <td>Completed past action.</td>
+            </tr>
+
+            <tr>
+                <td>Simple Future</td>
+                <td>She will play football.</td>
+                <td>Future action.</td>
+            </tr>
+
+            <tr>
+                <td>Present Continuous</td>
+                <td>She is playing football.</td>
+                <td>Action happening now.</td>
+            </tr>
+
+            <tr>
+                <td>Past Continuous</td>
+                <td>She was playing football.</td>
+                <td>Action in progress in the past.</td>
+            </tr>
+
+            <tr>
+                <td>Present Perfect</td>
+                <td>She has played football.</td>
+                <td>Past action connected to the present.</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- SUBJECT VERB AGREEMENT -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            🎯 Subject-Verb Agreement
+        </h2>
+
+        <p>
+            The subject and verb should agree in number.
+        </p>
+
+    </div>
+
+
+    <div class="rule-box">
+
+
+        <div class="rule">
+
+            <strong>
+                Rule 1 — Singular subject
+            </strong>
+
+            <p>
+                A singular subject normally takes a singular verb.
+            </p>
+
+            <div class="example-box">
+                She <strong>plays</strong> football.
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <strong>
+                Rule 2 — Plural subject
+            </strong>
+
+            <p>
+                A plural subject normally takes a plural verb.
+            </p>
+
+            <div class="example-box">
+                They <strong>play</strong> football.
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <strong>
+                Rule 3 — Don't be confused by extra words
+            </strong>
+
+            <p>
+                The words between the subject and verb do not
+                necessarily change the agreement.
+            </p>
+
+            <div class="example-box">
+                The boy, together with his friends, <strong>is</strong> here.
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ACTIVE PASSIVE -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            🔄 Active and Passive Voice
+        </h2>
+
+        <p>
+            Learn how sentences can change their focus.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <div class="card">
+
+            <div class="icon">
+                ➡️
+            </div>
+
+            <h3>
+                Active Voice
+            </h3>
+
+            <p>
+                The subject performs the action.
+            </p>
+
+            <div class="example-box">
+                The student answered the question.
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🔄
+            </div>
+
+            <h3>
+                Passive Voice
+            </h3>
+
+            <p>
+                The subject receives the action.
+            </p>
+
+            <div class="example-box">
+                The question was answered by the student.
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- SENTENCE STRUCTURE -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            🧩 Sentence Structure
+        </h2>
+
+        <p>
+            Understand how words combine to form sentences.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <div class="card">
+
+            <div class="icon">
+                1️⃣
+            </div>
+
+            <h3>
+                Simple Sentence
+            </h3>
+
+            <p>
+                Contains one main clause.
+            </p>
+
+            <div class="example-box">
+                The student reads.
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                2️⃣
+            </div>
+
+            <h3>
+                Compound Sentence
+            </h3>
+
+            <p>
+                Contains two or more independent clauses
+                joined together.
+            </p>
+
+            <div class="example-box">
+                I studied, and I passed.
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                3️⃣
+            </div>
+
+            <h3>
+                Complex Sentence
+            </h3>
+
+            <p>
+                Contains a main clause and at least
+                one dependent clause.
+            </p>
+
+            <div class="example-box">
+                I studied because I wanted to pass.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- QUICK QUIZ -->
+
+<section class="quiz">
+
+    <h2>
+        🎯 Grammar Challenge
+    </h2>
+
+    <p>
+        Choose the sentence with correct subject-verb agreement.
+    </p>
+
+
+    <div class="options">
+
+        <button
+            class="option"
+            onclick="checkAnswer(this)">
+            A. The students studies every day.
+        </button>
+
+        <button
+            class="option"
+            onclick="checkAnswer(this)">
+            B. The students study every day.
+        </button>
+
+        <button
+            class="option"
+            onclick="checkAnswer(this)">
+            C. The students studying every day.
+        </button>
+
+        <button
+            class="option"
+            onclick="checkAnswer(this)">
+            D. The students studies every days.
+        </button>
+
+    </div>
+
+
+    <div id="result"></div>
+
+</section>
+
+
+<!-- BUTTONS -->
+
+<div class="bottom">
+
+    <a href="english.html">
+        ← English
+    </a>
+
+    <a href="study.html">
+        📚 Smart Study
+    </a>
+
+    <a href="index.html">
+        🏠 Home
+    </a>
+
+</div>
+
+
+</div>
+
+
+<footer>
+
+    <small>
+        © 2026 ZYNTRA. Learn beyond limits.
+    </small>
+
+</footer>
+
+
+<script>
+
+function checkAnswer(button, correct){
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    const result =
+        document.getElementById("quizResult");
+
+    buttons.forEach(function(item){
+        item.disabled = true;
+    });
+
+
+    /* GET SAVED ZYNTRA PROGRESS */
+
+    let progress =
+        JSON.parse(
+            localStorage.getItem("zyntraProgress")
+        ) || {
+            lessons: 0,
+            quizzes: 0,
+            correctAnswers: 0,
+            streak: 0,
+            achievements: 0
+        };
+
+
+    /* RECORD QUIZ */
+
+    progress.quizzes =
+        Number(progress.quizzes || 0) + 1;
+
+
+    /* RECORD ANSWER */
+
+    if(correct){
+
+        progress.correctAnswers =
+            Number(progress.correctAnswers || 0) + 1;
+
+        button.style.borderColor =
+            "#8b5cf6";
+
+        button.style.background =
+            "rgba(139,92,246,.25)";
+
+        result.textContent =
+            "✅ Correct! Your ZYNTRA progress has been updated.";
+
+    }else{
+
+        button.style.borderColor =
+            "#ef4444";
+
+        button.style.background =
+            "rgba(239,68,68,.18)";
+
+        result.textContent =
+            "❌ Not quite. Review the lesson and try again.";
+
+    }
+
+
+    /* SAVE */
+
+    localStorage.setItem(
+        "zyntraProgress",
+        JSON.stringify(progress)
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>
+

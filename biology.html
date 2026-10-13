@@ -1,0 +1,848 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Biology</title>
+
+<style>
+:root {
+    --bg:#070711;
+    --card:#11111f;
+    --border:rgba(255,255,255,.10);
+    --purple:#8b5cf6;
+    --blue:#3b82f6;
+    --muted:#a0a0b5;
+    --green:#22c55e;
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+
+body {
+    background:var(--bg);
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+    line-height:1.6;
+}
+
+button,a { font-family:inherit; }
+a { color:inherit; text-decoration:none; }
+button { cursor:pointer; }
+
+.navbar {
+    position:sticky;
+    top:0;
+    z-index:10;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:15px 5%;
+    background:rgba(7,7,17,.97);
+    border-bottom:1px solid var(--border);
+}
+
+.logo {
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:1px;
+    background:linear-gradient(90deg,#a78bfa,#3b82f6,#ec4899);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.nav-links { display:flex; gap:18px; flex-wrap:wrap; }
+
+.nav-links a { color:var(--muted); font-size:12px; }
+.nav-links a:hover { color:white; }
+
+.container { width:92%; max-width:1050px; margin:auto; }
+
+.hero { padding:42px 0 25px; }
+
+.eyebrow {
+    display:inline-block;
+    padding:5px 11px;
+    border:1px solid rgba(139,92,246,.35);
+    border-radius:30px;
+    color:#c4b5fd;
+    font-size:11px;
+    margin-bottom:12px;
+}
+
+.hero h1 {
+    font-size:clamp(30px,5vw,43px);
+    line-height:1.2;
+    margin-bottom:12px;
+}
+
+.gradient {
+    background:linear-gradient(90deg,#a78bfa,#3b82f6);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero p { max-width:650px; color:var(--muted); font-size:14px; }
+
+.back-btn {
+    display:inline-block;
+    margin-top:18px;
+    padding:9px 14px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    background:var(--card);
+    font-size:12px;
+}
+
+.stats {
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:12px;
+    margin:10px 0 25px;
+}
+
+.stat {
+    padding:17px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--card);
+}
+
+.stat strong {
+    display:block;
+    font-size:24px;
+    color:#c4b5fd;
+}
+
+.stat span { color:var(--muted); font-size:11px; }
+
+.xp-card { border-color:rgba(139,92,246,.4); }
+
+.section-title { margin:25px 0 15px; font-size:20px; }
+
+.overall-progress {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:17px;
+    margin-bottom:25px;
+}
+
+.progress-top {
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    font-size:12px;
+}
+
+.progress-top span:last-child { color:#c4b5fd; }
+
+.progress-track {
+    height:7px;
+    border-radius:20px;
+    overflow:hidden;
+    background:#29293b;
+    margin-top:12px;
+}
+
+.progress-fill {
+    height:100%;
+    width:0;
+    border-radius:20px;
+    background:linear-gradient(90deg,var(--purple),var(--blue));
+    transition:width .3s;
+}
+
+.topic-grid {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:13px;
+}
+
+.topic-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    min-width:0;
+}
+
+.topic-card.completed { border-color:rgba(34,197,94,.45); }
+
+.topic-number {
+    width:35px;
+    height:35px;
+    display:grid;
+    place-items:center;
+    border-radius:9px;
+    background:rgba(139,92,246,.16);
+    margin-bottom:12px;
+    font-weight:bold;
+}
+
+.topic-card h3 { font-size:16px; margin-bottom:7px; }
+
+.topic-card p {
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:14px;
+}
+
+.topic-meta {
+    color:#9898ac;
+    font-size:10px;
+    margin-top:auto;
+    margin-bottom:12px;
+}
+
+.primary-btn,.secondary-btn {
+    padding:10px 14px;
+    border-radius:8px;
+    border:0;
+    font-weight:bold;
+    font-size:12px;
+}
+
+.primary-btn {
+    color:white;
+    background:linear-gradient(90deg,var(--purple),var(--blue));
+}
+
+.secondary-btn {
+    background:#242436;
+    color:white;
+    border:1px solid var(--border);
+}
+
+.topic-card .primary-btn { width:100%; }
+
+.primary-btn:hover,.secondary-btn:hover { filter:brightness(1.12); }
+
+.lesson-panel {
+    display:none;
+    margin-top:30px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    background:var(--card);
+}
+
+.lesson-header {
+    padding:22px;
+    border-bottom:1px solid var(--border);
+    background:linear-gradient(120deg,rgba(139,92,246,.12),rgba(59,130,246,.07));
+}
+
+.lesson-header h2 { font-size:24px; margin-bottom:6px; }
+.lesson-header p { color:var(--muted); font-size:12px; }
+
+.lesson-body { padding:22px; }
+
+.lesson-body h3 {
+    font-size:16px;
+    color:#c4b5fd;
+    margin:22px 0 8px;
+}
+
+.lesson-body h3:first-child { margin-top:0; }
+.lesson-body p,.lesson-body li { color:#d0d0df; font-size:13px; }
+.lesson-body ul { padding-left:22px; margin:10px 0; }
+
+.quiz { border-top:1px solid var(--border); padding:22px; }
+.quiz h3 { margin-bottom:8px; }
+.quiz-intro { color:var(--muted); font-size:12px; margin-bottom:18px; }
+
+.question {
+    padding:15px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    margin-bottom:13px;
+}
+
+.question h4 { font-size:13px; margin-bottom:12px; }
+
+.option {
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+    padding:9px;
+    border-radius:7px;
+    color:#d0d0df;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.option:hover { background:rgba(139,92,246,.08); }
+.option input { margin-top:4px; accent-color:var(--purple); }
+
+.quiz-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+
+.feedback {
+    display:none;
+    margin-top:18px;
+    padding:18px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    text-align:center;
+}
+
+.feedback h3 { font-size:20px; margin:6px 0; }
+.feedback p { color:var(--muted); font-size:12px; }
+.feedback button { margin:12px 4px 0; }
+
+.reward {
+    color:#c4b5fd;
+    font-size:15px;
+    font-weight:bold;
+    margin:8px 0;
+}
+
+footer {
+    margin-top:45px;
+    padding:24px 5%;
+    border-top:1px solid var(--border);
+    color:#85859b;
+    text-align:center;
+    font-size:11px;
+}
+
+@media(max-width:750px) {
+    .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
+@media(max-width:650px) {
+    .nav-links { display:none; }
+    .topic-grid { grid-template-columns:1fr; }
+    .stat { padding:12px; }
+    .stat strong { font-size:20px; }
+    .lesson-body,.quiz,.lesson-header { padding:16px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a class="logo" href="/index.html">ZYNTRA</a>
+    <div class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/study.html">Smart Study</a>
+        <a href="/ai.html">AI</a>
+        <a href="/community.html">Community</a>
+        <a href="/planner.html">Planner</a>
+    </div>
+</nav>
+
+<main class="container">
+
+    <section class="hero">
+        <span class="eyebrow">🧬 SCIENCE • BIOLOGY</span>
+        <h1>Explore the <span class="gradient">Living World</span></h1>
+        <p>
+            Learn Biology with notes, examples and five-question quizzes.
+            Complete topics, save your progress and earn XP.
+        </p>
+        <a class="back-btn" href="/study.html">← Back to Smart Study</a>
+    </section>
+
+    <section class="stats">
+        <div class="stat">
+            <strong id="completedCount">0/6</strong>
+            <span>Topics completed</span>
+        </div>
+
+        <div class="stat">
+            <strong id="overallPercent">0%</strong>
+            <span>Biology progress</span>
+        </div>
+
+        <div class="stat">
+            <strong id="bestScore">0/5</strong>
+            <span>Best topic score</span>
+        </div>
+
+        <div class="stat xp-card">
+            <strong id="biologyXP">0 XP</strong>
+            <span>Total Biology XP</span>
+        </div>
+    </section>
+
+    <section class="overall-progress">
+        <div class="progress-top">
+            <span>Overall Biology Progress</span>
+            <span id="progressLabel">0%</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill" id="overallFill"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Biology Topics</h2>
+        <div class="topic-grid" id="topicGrid"></div>
+    </section>
+
+    <section class="lesson-panel" id="lessonPanel">
+        <div class="lesson-header">
+            <h2 id="lessonTitle">Biology Lesson</h2>
+            <p id="lessonDescription"></p>
+        </div>
+
+        <div class="lesson-body" id="lessonContent"></div>
+
+        <div class="quiz">
+            <h3>Quick Challenge</h3>
+            <p class="quiz-intro">
+                Answer all five questions to complete this topic.
+                Earn 10 XP the first time you complete each topic.
+            </p>
+
+            <form id="quizForm">
+                <div id="questions"></div>
+                <div class="quiz-actions">
+                    <button type="submit" class="primary-btn">Submit Answers →</button>
+                    <button type="button" class="secondary-btn" id="closeLesson">Back to Topics</button>
+                </div>
+            </form>
+
+            <div class="feedback" id="feedback" aria-live="polite">
+                <div style="font-size:30px" id="feedbackIcon">🎉</div>
+                <h3 id="feedbackTitle">Topic Completed!</h3>
+                <h3 class="gradient" id="feedbackScore">5/5</h3>
+                <div class="reward" id="rewardMessage">+10 XP</div>
+                <p id="feedbackMessage"></p>
+                <button type="button" class="primary-btn" id="retryQuiz">Try Again</button>
+                <button type="button" class="secondary-btn" id="returnTopics">Back to Topics</button>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>ZYNTRA · Learn something new every day.</footer>
+
+<script>
+"use strict";
+
+const XP_PER_TOPIC = 10;
+
+let currentTopic = null;
+let submitted = false;
+
+/* ---------------- USER AND STORAGE ---------------- */
+
+function getUsername() {
+    const stored = localStorage.getItem("zyntraUser");
+
+    if (!stored) return "guest";
+
+    try {
+        const user = JSON.parse(stored);
+
+        if (user && typeof user === "object") {
+            return String(
+                user.username || user.email || user.name || "guest"
+            ).trim().toLowerCase() || "guest";
+        }
+    } catch (error) {
+        // The stored username may be plain text.
+    }
+
+    return String(stored).trim().toLowerCase() || "guest";
+}
+
+function completionKey(topicId) {
+    return `zyntraCompleted_biology_${topicId}_${getUsername()}`;
+}
+
+function scoreKey(topicId) {
+    return `zyntraBiologyScore_${topicId}_${getUsername()}`;
+}
+
+function xpTotalKey() {
+    return `zyntraBiologyXP_${getUsername()}`;
+}
+
+function xpRewardKey(topicId) {
+    return `zyntraBiologyXPReward_${topicId}_${getUsername()}`;
+}
+
+function isCompleted(topicId) {
+    return localStorage.getItem(completionKey(topicId)) === "true";
+}
+
+function getBiologyXP() {
+    return Number(localStorage.getItem(xpTotalKey())) || 0;
+}
+
+function displayBiologyXP() {
+    const element = document.getElementById("biologyXP");
+
+    if (element) {
+        element.textContent = getBiologyXP() + " XP";
+    }
+}
+
+/*
+ * Award XP once per topic, even if the quiz is repeated.
+ * Previously completed topics are not rewarded twice.
+ */
+function awardBiologyXP(topicId) {
+    const rewardKey = xpRewardKey(topicId);
+
+    if (localStorage.getItem(rewardKey) === "true") {
+        displayBiologyXP();
+        return false;
+    }
+
+    const newTotal = getBiologyXP() + XP_PER_TOPIC;
+
+    localStorage.setItem(xpTotalKey(), String(newTotal));
+    localStorage.setItem(rewardKey, "true");
+
+    displayBiologyXP();
+
+    return true;
+}
+
+/* ---------------- SIX BIOLOGY TOPICS ---------------- */
+
+const topics = [
+{
+    id:"introduction-to-biology",
+    title:"Introduction to Biology",
+    icon:"🌱",
+    description:"Discover Biology, living things and scientific investigation.",
+    sections:[
+        ["What is Biology?","Biology is the scientific study of living organisms and their interactions with the environment."],
+        ["Branches of Biology","Botany studies plants. Zoology studies animals. Ecology examines relationships between organisms and their environment. Microbiology studies microorganisms."],
+        ["Characteristics of Living Things","Living things carry out nutrition, respiration, movement, growth, reproduction, excretion and sensitivity. These characteristics are often remembered as MRS GREN."],
+        ["Scientific Investigation","A scientific investigation may involve identifying a problem, forming a hypothesis, carrying out a fair experiment, recording observations and drawing a conclusion."]
+    ],
+    questions:[
+        {q:"What is Biology?",o:["Study of rocks only","Scientific study of living organisms","Study of numbers","Study of weather only"],a:1},
+        {q:"Which branch studies plants?",o:["Zoology","Ecology","Botany","Anatomy"],a:2},
+        {q:"Which is a characteristic of living things?",o:["Rusting","Combustion","Respiration","Melting"],a:2},
+        {q:"Which branch studies organisms and their environment?",o:["Ecology","Botany","Genetics","Chemistry"],a:0},
+        {q:"What should a scientist do after collecting results?",o:["Hide results","Draw a conclusion from evidence","Change results","Ignore observations"],a:1}
+    ]
+},
+{
+    id:"cell-structure",
+    title:"Cell Structure",
+    icon:"🔬",
+    description:"Understand cells, their structures and their functions.",
+    sections:[
+        ["The Cell","The cell is the basic structural and functional unit of life. Some organisms consist of one cell, while others contain many cells."],
+        ["Cell Structures","The cell membrane controls movement of substances into and out of the cell. The cytoplasm is where many chemical reactions occur. The nucleus contains genetic material and helps control cell activities."],
+        ["Plant and Animal Cells","Plant cells typically have a cellulose cell wall, chloroplasts in photosynthetic tissues and a large permanent vacuole. Animal cells lack a cellulose cell wall and chloroplasts."],
+        ["Specialised Cells","Cells are adapted to their functions. Red blood cells transport oxygen, while root hair cells absorb water and mineral salts."]
+    ],
+    questions:[
+        {q:"What is the basic unit of life?",o:["Organ","Tissue","Cell","System"],a:2},
+        {q:"Which structure contains genetic material?",o:["Nucleus","Cell wall","Vacuole","Cell membrane"],a:0},
+        {q:"Which plant-cell structure is mainly made of cellulose?",o:["Cytoplasm","Cell wall","Nucleus","Ribosome"],a:1},
+        {q:"Which structure controls movement into and out of a cell?",o:["Cell membrane","Nucleus","Chloroplast","Vacuole"],a:0},
+        {q:"Which cell absorbs water in roots?",o:["Red blood cell","Root hair cell","Nerve cell","Sperm cell"],a:1}
+    ]
+},
+{
+    id:"nutrition",
+    title:"Nutrition",
+    icon:"🥗",
+    description:"Learn about nutrients, photosynthesis and balanced diets.",
+    sections:[
+        ["Meaning of Nutrition","Nutrition is the process by which organisms obtain and use nutrients for energy, growth, repair and maintaining life."],
+        ["Nutrients","Carbohydrates provide energy. Proteins are needed for growth and tissue repair. Lipids store energy and help with insulation. Vitamins and minerals support healthy body functions. Water is needed for many chemical reactions, and fibre supports movement of food through the gut."],
+        ["Photosynthesis","Green plants use light energy absorbed by chlorophyll to make glucose from carbon dioxide and water. Oxygen is released."],
+        ["Balanced Diet","A balanced diet supplies the different nutrients needed by the body in appropriate amounts. Requirements vary with age, activity and health."]
+    ],
+    questions:[
+        {q:"Which nutrient is important for growth and tissue repair?",o:["Protein","Water only","Fibre","Vitamin C only"],a:0},
+        {q:"Which substance absorbs light energy in photosynthesis?",o:["Haemoglobin","Chlorophyll","Insulin","Glycogen"],a:1},
+        {q:"Which gas is used during photosynthesis?",o:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],a:2},
+        {q:"Which nutrient is a major source of energy?",o:["Carbohydrate","Mineral salts","Water","Fibre"],a:0},
+        {q:"What is a balanced diet?",o:["Only protein foods","Only fruits","Needed nutrients in suitable amounts","A diet without water"],a:2}
+    ]
+},
+{
+    id:"transport",
+    title:"Transport in Organisms",
+    icon:"🩸",
+    description:"Explore diffusion, osmosis, blood and transport in plants.",
+    sections:[
+        ["Why Transport Is Necessary","Multicellular organisms need transport systems to deliver useful substances to cells and remove waste products."],
+        ["Diffusion","Diffusion is the net movement of particles from a region of higher concentration to a region of lower concentration due to random particle motion."],
+        ["Osmosis","Osmosis is the net movement of water molecules through a selectively permeable membrane from a dilute solution to a more concentrated solution."],
+        ["Transport Systems","In humans, blood transports oxygen, nutrients, hormones and waste products. In plants, xylem transports water and mineral salts, while phloem transports dissolved organic substances such as sucrose."]
+    ],
+    questions:[
+        {q:"What is diffusion?",o:["Movement from low to high concentration only","Net movement from high to low concentration","Movement requiring a heart","Production of glucose"],a:1},
+        {q:"Osmosis involves movement of which substance?",o:["Protein","Starch","Water","Fat"],a:2},
+        {q:"Which plant tissue transports water and mineral salts?",o:["Phloem","Xylem","Epidermis only","Palisade tissue"],a:1},
+        {q:"Which fluid transports oxygen around the human body?",o:["Bile","Blood","Saliva","Urine"],a:1},
+        {q:"Which plant tissue transports dissolved sugars?",o:["Xylem","Phloem","Root cap","Cuticle"],a:1}
+    ]
+},
+{
+    id:"respiration",
+    title:"Respiration",
+    icon:"⚡",
+    description:"Learn how cells release energy from food substances.",
+    sections:[
+        ["What Is Respiration?","Respiration is a chemical process in cells that releases energy from food substances."],
+        ["Aerobic Respiration","Aerobic respiration takes place in the presence of oxygen. Glucose is broken down to release energy, producing carbon dioxide and water."],
+        ["Word Equation","Glucose + Oxygen → Carbon dioxide + Water + Energy"],
+        ["Anaerobic Respiration","Anaerobic respiration occurs without oxygen. In human muscles it can produce lactic acid. In yeast it can produce ethanol and carbon dioxide."],
+        ["Why Energy Is Needed","Energy released through respiration supports movement, growth, repair, active transport and other life processes."]
+    ],
+    questions:[
+        {q:"What is respiration?",o:["Making sunlight","Releasing energy from food in cells","Taking in food only","Removing undigested food"],a:1},
+        {q:"Which gas is used in aerobic respiration?",o:["Carbon dioxide","Nitrogen","Oxygen","Hydrogen"],a:2},
+        {q:"Which are products of aerobic respiration?",o:["Glucose and oxygen","Protein and starch","Carbon dioxide and water","Chlorophyll and light"],a:2},
+        {q:"Anaerobic respiration occurs without which gas?",o:["Oxygen","Carbon dioxide","Nitrogen","Hydrogen"],a:0},
+        {q:"Which process releases energy needed for muscle movement?",o:["Respiration","Filtration only","Photosynthesis in muscles","Evaporation"],a:0}
+    ]
+},
+{
+    id:"reproduction",
+    title:"Reproduction",
+    icon:"🌼",
+    description:"Study sexual and asexual reproduction in living organisms.",
+    sections:[
+        ["Meaning of Reproduction","Reproduction is the biological process by which organisms produce new individuals of their own species."],
+        ["Asexual Reproduction","Asexual reproduction involves one parent and no fusion of gametes. Offspring are usually genetically very similar to the parent. Examples include binary fission and budding."],
+        ["Sexual Reproduction","Sexual reproduction involves the fusion of male and female gametes during fertilisation. It produces genetic variation among offspring."],
+        ["Pollination and Fertilisation","In flowering plants, pollination is the transfer of pollen from an anther to a stigma. Fertilisation occurs when the male nucleus fuses with the female nucleus."]
+    ],
+    questions:[
+        {q:"What is reproduction?",o:["Obtaining oxygen","Producing new individuals","Removing waste only","Breaking down food"],a:1},
+        {q:"How many parents are involved in typical asexual reproduction?",o:["One","Two","Three","Four"],a:0},
+        {q:"What is fertilisation?",o:["Transfer of pollen only","Fusion of male and female gametes","Germination of a seed","Movement of water"],a:1},
+        {q:"What is pollination in flowering plants?",o:["Transfer of pollen from anther to stigma","Formation of roots","Absorption of minerals","Release of energy"],a:0},
+        {q:"Sexual reproduction can increase what among offspring?",o:["Genetic variation","Identical copies only","Number of cell walls","Chlorophyll in all cells"],a:0}
+    ]
+}
+];
+
+/* ---------------- TOPIC CARDS AND PROGRESS ---------------- */
+
+function renderTopics() {
+    const grid = document.getElementById("topicGrid");
+
+    grid.innerHTML = topics.map((topic,index) => {
+        const completed = isCompleted(topic.id);
+
+        return `
+            <article class="topic-card ${completed ? "completed" : ""}">
+                <div class="topic-number">${completed ? "✓" : topic.icon}</div>
+                <h3>${index+1}. ${topic.title}</h3>
+                <p>${topic.description}</p>
+                <div class="topic-meta">
+                    ${completed ? "✓ Completed · XP reward claimed" : "5 quiz questions · +10 XP"}
+                </div>
+                <button class="primary-btn" data-topic="${topic.id}">
+                    ${completed ? "Review Topic ↗" : "Study Topic →"}
+                </button>
+            </article>
+        `;
+    }).join("");
+
+    grid.querySelectorAll("[data-topic]").forEach(button => {
+        button.addEventListener("click", () => openTopic(button.dataset.topic));
+    });
+
+    updateProgress();
+}
+
+function updateProgress() {
+    const completed = topics.filter(topic => isCompleted(topic.id)).length;
+    const percent = Math.round(completed / topics.length * 100);
+
+    document.getElementById("completedCount").textContent =
+        `${completed}/${topics.length}`;
+
+    document.getElementById("overallPercent").textContent = percent + "%";
+    document.getElementById("progressLabel").textContent = percent + "%";
+    document.getElementById("overallFill").style.width = percent + "%";
+
+    let best = 0;
+
+    topics.forEach(topic => {
+        const score = Number(localStorage.getItem(scoreKey(topic.id)));
+
+        if (Number.isFinite(score)) best = Math.max(best,score);
+    });
+
+    document.getElementById("bestScore").textContent = best + "/5";
+
+    displayBiologyXP();
+}
+
+/* ---------------- OPEN A LESSON ---------------- */
+
+function openTopic(topicId) {
+    currentTopic = topics.find(topic => topic.id === topicId);
+    if (!currentTopic) return;
+
+    submitted = false;
+
+    document.getElementById("lessonTitle").textContent = currentTopic.title;
+    document.getElementById("lessonDescription").textContent =
+        currentTopic.description;
+
+    document.getElementById("lessonContent").innerHTML =
+        currentTopic.sections.map(section => `
+            <h3>${section[0]}</h3>
+            <p>${section[1]}</p>
+        `).join("");
+
+    document.getElementById("questions").innerHTML =
+        currentTopic.questions.map((question,index) => `
+            <div class="question">
+                <h4>${index+1}. ${question.q}</h4>
+                ${question.o.map((option,optionIndex) => `
+                    <label class="option">
+                        <input type="radio"
+                            name="question${index}"
+                            value="${optionIndex}"
+                            required>
+                        <span>${option}</span>
+                    </label>
+                `).join("")}
+            </div>
+        `).join("");
+
+    document.getElementById("quizForm").style.display = "block";
+    document.getElementById("feedback").style.display = "none";
+    document.getElementById("lessonPanel").style.display = "block";
+
+    document.getElementById("lessonPanel").scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+}
+
+/* ---------------- QUIZ COMPLETION AND XP ---------------- */
+
+document.getElementById("quizForm").addEventListener("submit",function(event) {
+    event.preventDefault();
+
+    if (!currentTopic || submitted) return;
+
+    const formData = new FormData(this);
+
+    for (let i=0; i<currentTopic.questions.length; i++) {
+        if (formData.get("question"+i) === null) {
+            alert("Please answer all five questions before submitting.");
+            return;
+        }
+    }
+
+    let score = 0;
+
+    currentTopic.questions.forEach((question,index) => {
+        if (Number(formData.get("question"+index)) === question.a) {
+            score++;
+        }
+    });
+
+    const wasCompleted = isCompleted(currentTopic.id);
+
+    /*
+     * Save the completion in the same format read by study.html.
+     */
+    localStorage.setItem(completionKey(currentTopic.id),"true");
+
+    /*
+     * Save this topic's best score rather than lowering it
+     * when a student repeats the quiz.
+     */
+    const previousBest =
+        Number(localStorage.getItem(scoreKey(currentTopic.id))) || 0;
+
+    const bestForTopic = Math.max(previousBest,score);
+
+    localStorage.setItem(
+        scoreKey(currentTopic.id),
+        String(bestForTopic)
+    );
+
+    /*
+     * Give XP only for the first successful completion.
+     * Each topic can award a maximum of 10 XP.
+     */
+    const receivedXP = awardBiologyXP(currentTopic.id);
+
+    submitted = true;
+
+    document.getElementById("quizForm").style.display = "none";
+    document.getElementById("feedback").style.display = "block";
+
+    document.getElementById("feedbackScore").textContent = score + "/5";
+
+    document.getElementById("feedbackTitle").textContent =
+        score === 5 ? "Excellent Work!" : "Topic Completed!";
+
+    document.getElementById("feedbackIcon").textContent =
+        score === 5 ? "🎉" : "🧬";
+
+    document.getElementById("rewardMessage").textContent =
+        receivedXP ? "+10 XP earned!" :
+        wasCompleted ? "XP already claimed for this topic." :
+        "XP saved.";
+
+    document.getElementById("feedbackMessage").textContent =
+        score === 5
+            ? "Perfect score! Your topic completion and score have been saved."
+            : `You answered ${score} out of 5 correctly. Your topic completion and score have been saved.`;
+
+    renderTopics();
+
+    document.getElementById("feedback").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+});
+
+/* ---------------- NAVIGATION AND INITIALISATION ---------------- */
+
+function closeLesson() {
+    document.getElementById("lessonPanel").style.display = "none";
+    currentTopic = null;
+    submitted = false;
+
+    document.getElementById("topicGrid").scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+}
+
+document.getElementById("closeLesson").addEventListener("click",closeLesson);
+document.getElementById("returnTopics").addEventListener("click",closeLesson);
+
+document.getElementById("retryQuiz").addEventListener("click",function() {
+    if (currentTopic) openTopic(currentTopic.id);
+});
+
+window.addEventListener("storage",function(event) {
+    if (!event.key || event.key.includes("zyntra")) {
+        renderTopics();
+    }
+});
+
+window.addEventListener("pageshow",renderTopics);
+
+renderTopics();
+displayBiologyXP();
+</script>
+
+</body>
+</html>

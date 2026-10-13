@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA Physics</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =====================================================
+   ZYNTRA PHYSICS
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#070711;
+    color:#fff;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.physics-page{
+    min-height:100vh;
+    padding-bottom:70px;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.physics-nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:16px 7%;
+
+    background:rgba(7,7,17,.88);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:1px;
+
+    background:linear-gradient(
+        90deg,
+        #8b5cf6,
+        #3b82f6
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-actions{
+    display:flex;
+    gap:10px;
+}
+
+.nav-btn{
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.05);
+    color:#fff;
+
+    padding:10px 16px;
+    border-radius:10px;
+
+    cursor:pointer;
+    transition:.2s;
+}
+
+.nav-btn:hover{
+    background:rgba(139,92,246,.2);
+    border-color:rgba(139,92,246,.4);
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.physics-hero{
+    text-align:center;
+    padding:75px 20px 45px;
+}
+
+.physics-badge{
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    background:rgba(139,92,246,.13);
+    border:1px solid rgba(139,92,246,.3);
+
+    color:#c4b5fd;
+
+    font-size:13px;
+    font-weight:bold;
+
+    margin-bottom:18px;
+}
+
+.physics-hero h1{
+    margin:0;
+
+    font-size:clamp(38px,6vw,62px);
+    line-height:1.1;
+}
+
+.physics-hero h1 span{
+    background:linear-gradient(
+        90deg,
+        #8b5cf6,
+        #3b82f6,
+        #06b6d4
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.physics-hero p{
+    max-width:700px;
+    margin:18px auto 0;
+
+    color:#a7a7b5;
+
+    line-height:1.7;
+    font-size:16px;
+}
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.physics-container{
+    width:min(1100px,92%);
+    margin:auto;
+}
+
+/* =====================================================
+   OVERALL PROGRESS
+===================================================== */
+
+.overall-card{
+
+    display:grid;
+    grid-template-columns:1fr auto;
+
+    gap:30px;
+
+    padding:28px;
+
+    margin-bottom:35px;
+
+    border-radius:22px;
+
+    background:rgba(18,18,32,.9);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
+}
+
+.overall-left h2{
+    margin:0 0 8px;
+    font-size:24px;
+}
+
+.overall-left p{
+    margin:0 0 18px;
+    color:#999;
+}
+
+.overall-progress{
+    height:11px;
+
+    background:#191927;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.overall-fill{
+    height:100%;
+    width:0%;
+
+    background:linear-gradient(
+        90deg,
+        #8b5cf6,
+        #3b82f6
+    );
+
+    border-radius:20px;
+
+    transition:.5s;
+}
+
+.overall-percent{
+    min-width:100px;
+    text-align:center;
+    align-self:center;
+}
+
+.overall-percent strong{
+    display:block;
+
+    font-size:38px;
+
+    background:linear-gradient(
+        90deg,
+        #8b5cf6,
+        #3b82f6
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.overall-percent span{
+    color:#888;
+    font-size:13px;
+}
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:18px;
+}
+
+.section-heading h2{
+    margin:0;
+    font-size:26px;
+}
+
+.section-heading span{
+    color:#888;
+    font-size:14px;
+}
+
+/* =====================================================
+   TOPIC GRID
+===================================================== */
+
+.topic-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:18px;
+}
+
+/* =====================================================
+   TOPIC CARD
+===================================================== */
+
+.topic-card{
+
+    position:relative;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,20,37,.95),
+            rgba(12,12,24,.95)
+        );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+    transition:
+        transform .25s,
+        border-color .25s,
+        box-shadow .25s;
+}
+
+.topic-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    right:-55px;
+    top:-55px;
+
+    border-radius:50%;
+
+    background:rgba(139,92,246,.08);
+
+    pointer-events:none;
+}
+
+.topic-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:rgba(139,92,246,.35);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.25);
+}
+
+.topic-top{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.topic-icon{
+
+    width:52px;
+    height:52px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:15px;
+
+    font-size:25px;
+
+    background:rgba(139,92,246,.13);
+
+    border:1px solid rgba(139,92,246,.18);
+}
+
+.topic-info{
+    flex:1;
+}
+
+.topic-info h3{
+    margin:0 0 7px;
+
+    font-size:21px;
+}
+
+.topic-info p{
+    margin:0;
+
+    color:#9292a2;
+
+    font-size:14px;
+
+    line-height:1.5;
+}
+
+/* =====================================================
+   TOPIC STATUS
+===================================================== */
+
+.topic-status{
+
+    text-align:right;
+
+    min-width:55px;
+}
+
+.topic-status strong{
+
+    display:block;
+
+    font-size:18px;
+
+    color:#c4b5fd;
+}
+
+.topic-status span{
+
+    display:block;
+
+    color:#777;
+
+    font-size:11px;
+
+    margin-top:3px;
+}
+
+/* =====================================================
+   TOPIC PROGRESS
+===================================================== */
+
+.topic-progress-area{
+
+    margin-top:23px;
+}
+
+.topic-progress-label{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:8px;
+
+    color:#888;
+
+    font-size:12px;
+}
+
+.topic-progress{
+
+    height:8px;
+
+    background:#191927;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.topic-fill{
+
+    height:100%;
+
+    width:0%;
+
+    background:linear-gradient(
+        90deg,
+        #8b5cf6,
+        #3b82f6
+    );
+
+    transition:.5s;
+}
+
+/* =====================================================
+   TOPIC BUTTON
+===================================================== */
+
+.topic-button{
+
+    width:100%;
+
+    margin-top:22px;
+
+    padding:13px;
+
+    border:none;
+
+    border-radius:11px;
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8b5cf6,
+            #3b82f6
+        );
+
+    transition:.2s;
+}
+
+.topic-button:hover{
+    opacity:.9;
+    transform:translateY(-1px);
+}
+
+/* =====================================================
+   FORMULA CARD
+===================================================== */
+
+.formula-card{
+
+    margin-top:35px;
+
+    padding:30px;
+
+    text-align:center;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.12),
+            rgba(59,130,246,.08)
+        );
+
+    border:1px solid rgba(139,92,246,.2);
+}
+
+.formula-card h2{
+    margin:0 0 10px;
+}
+
+.formula-card p{
+    color:#999;
+    margin:0 0 20px;
+}
+
+.formula{
+
+    display:inline-block;
+
+    padding:15px 28px;
+
+    border-radius:14px;
+
+    background:#111120;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    font-size:27px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    color:#c4b5fd;
+}
+
+/* =====================================================
+   BOTTOM ACTIONS
+===================================================== */
+
+.bottom-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:35px;
+
+    flex-wrap:wrap;
+}
+
+.bottom-btn{
+
+    padding:13px 22px;
+
+    border-radius:11px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:#111120;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.bottom-btn:hover{
+
+    background:#191927;
+
+    border-color:rgba(139,92,246,.35);
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:750px){
+
+    .physics-nav{
+        padding:14px 4%;
+    }
+
+    .nav-btn{
+        padding:9px 12px;
+        font-size:12px;
+    }
+
+    .physics-hero{
+        padding-top:50px;
+    }
+
+    .overall-card{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .overall-percent{
+        order:-1;
+    }
+
+    .topic-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .topic-card{
+        padding:20px;
+    }
+
+    .topic-top{
+        gap:10px;
+    }
+
+    .topic-info h3{
+        font-size:18px;
+    }
+
+    .topic-info p{
+        font-size:13px;
+    }
+
+    .formula{
+        font-size:22px;
+        padding:14px 20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="physics-page">
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="physics-nav">
+
+    <div class="logo">
+        ZYNTRA
+    </div>
+
+    <div class="nav-actions">
+
+        <button
+            class="nav-btn"
+            onclick="goToStudy()">
+            ← Study
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="goToAI()">
+            AI
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="physics-hero">
+
+    <div class="physics-badge">
+        ⚡ ZYNTRA PHYSICS
+    </div>
+
+    <h1>
+        Master <span>Physics</span>
+    </h1>
+
+    <p>
+        Learn important Physics concepts, answer questions,
+        build your knowledge and track your progress topic by topic.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="physics-container">
+
+
+<!-- =====================================================
+     OVERALL PROGRESS
+===================================================== -->
+
+<section class="overall-card">
+
+    <div class="overall-left">
+
+        <h2>
+            Your Physics Progress
+        </h2>
+
+        <p id="overallText">
+            Start learning to build your progress.
+        </p>
+
+        <div class="overall-progress">
+
+            <div
+                class="overall-fill"
+                id="overallFill">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="overall-percent">
+
+        <strong id="overallPercent">
+            0%
+        </strong>
+
+        <span>
+            Completed
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TOPICS
+===================================================== -->
+
+<div class="section-heading">
+
+    <h2>
+        Physics Topics
+    </h2>
+
+    <span>
+        6 Topics • 30 Questions
+    </span>
+
+</div>
+
+
+<section class="topic-grid">
+
+
+<!-- =====================================================
+     MOTION
+===================================================== -->
+
+<article
+    class="topic-card"
+    data-topic="motion">
+
+    <div class="topic-top">
+
+        <div class="topic-icon">
+            🚀
+        </div>
+
+        <div class="topic-info">
+
+            <h3>
+                Motion
+            </h3>
+
+            <p>
+                Speed, velocity, acceleration,
+                distance and displacement.
+            </p>
+
+        </div>
+
+        <div class="topic-status">
+
+            <strong class="topic-percent">
+                0%
+            </strong>
+
+            <span>
+                Progress
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="topic-progress-area">
+
+        <div class="topic-progress-label">
+
+            <span>
+                5 Questions
+            </span>
+
+            <span class="question-count">
+                0/5
+            </span>
+
+        </div>
+
+        <div class="topic-progress">
+
+            <div class="topic-fill">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="topic-button"
+        onclick="openTopic('motion')">
+
+        Start Motion →
+
+    </button>
+
+</article>
+
+
+<!-- =====================================================
+     FORCES
+===================================================== -->
+
+<article
+    class="topic-card"
+    data-topic="forces">
+
+    <div class="topic-top">
+
+        <div class="topic-icon">
+            💥
+        </div>
+
+        <div class="topic-info">
+
+            <h3>
+                Forces
+            </h3>
+
+            <p>
+                Newton's laws, friction,
+                mass, force and acceleration.
+            </p>
+
+        </div>
+
+        <div class="topic-status">
+
+            <strong class="topic-percent">
+                0%
+            </strong>
+
+            <span>
+                Progress
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="topic-progress-area">
+
+        <div class="topic-progress-label">
+
+            <span>
+                5 Questions
+            </span>
+
+            <span class="question-count">
+                0/5
+            </span>
+
+        </div>
+
+        <div class="topic-progress">
+
+            <div class="topic-fill">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="topic-button"
+        onclick="openTopic('forces')">
+
+        Start Forces →
+
+    </button>
+
+</article>
+
+
+<!-- =====================================================
+     ELECTRICITY
+===================================================== -->
+
+<article
+    class="topic-card"
+    data-topic="electricity">
+
+    <div class="topic-top">
+
+        <div class="topic-icon">
+            ⚡
+        </div>
+
+        <div class="topic-info">
+
+            <h3>
+                Electricity
+            </h3>
+
+            <p>
+                Current, voltage, resistance,
+                charge and electrical circuits.
+            </p>
+
+        </div>
+
+        <div class="topic-status">
+
+            <strong class="topic-percent">
+                0%
+            </strong>
+
+            <span>
+                Progress
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="topic-progress-area">
+
+        <div class="topic-progress-label">
+
+            <span>
+                5 Questions
+            </span>
+
+            <span class="question-count">
+                0/5
+            </span>
+
+        </div>
+
+        <div class="topic-progress">
+
+            <div class="topic-fill">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="topic-button"
+        onclick="openTopic('electricity')">
+
+        Start Electricity →
+
+    </button>
+
+</article>
+
+
+<!-- =====================================================
+     ENERGY
+===================================================== -->
+
+<article
+    class="topic-card"
+    data-topic="energy">
+
+    <div class="topic-top">
+
+        <div class="topic-icon">
+            🔋
+        </div>
+
+        <div class="topic-info">
+
+            <h3>
+                Energy
+            </h3>
+
+            <p>
+                Work, power, kinetic energy,
+                potential energy and efficiency.
+            </p>
+
+        </div>
+
+        <div class="topic-status">
+
+            <strong class="topic-percent">
+                0%
+            </strong>
+
+            <span>
+                Progress
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="topic-progress-area">
+
+        <div class="topic-progress-label">
+
+            <span>
+                5 Questions
+            </span>
+
+            <span class="question-count">
+                0/5
+            </span>
+
+        </div>
+
+        <div class="topic-progress">
+
+            <div class="topic-fill">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="topic-button"
+        onclick="openTopic('energy')">
+
+        Start Energy →
+
+    </button>
+
+</article>
+
+
+<!-- =====================================================
+     WAVES
+===================================================== -->
+
+<article
+    class="topic-card"
+    data-topic="waves">
+
+    <div class="topic-top">
+
+        <div class="topic-icon">
+            🌊
+        </div>
+
+        <div class="topic-info">
+
+            <h3>
+                Waves
+            </h3>
+
+            <p>
+                Frequency, wavelength, wave speed,
+                sound and wave properties.
+            </p>
+
+        </div>
+
+        <div class="topic-status">
+
+            <strong class="topic-percent">
+                0%
+            </strong>
+
+            <span>
+                Progress
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="topic-progress-area">
+
+        <div class="topic-progress-label">
+
+            <span>
+                5 Questions
+            </span>
+
+            <span class="question-count">
+                0/5
+            </span>
+
+        </div>
+
+        <div class="topic-progress">
+
+            <div class="topic-fill">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="topic-button"
+        onclick="openTopic('waves')">
+
+        Start Waves →
+
+    </button>
+
+</article>
+
+
+<!-- =====================================================
+     LIGHT
+===================================================== -->
+
+<article
+    class="topic-card"
+    data-topic="light">
+
+    <div class="topic-top">
+
+        <div class="topic-icon">
+            💡
+        </div>
+
+        <div class="topic-info">
+
+            <h3>
+                Light
+            </h3>
+
+            <p>
+                Reflection, refraction, lenses,
+                mirrors and properties of light.
+            </p>
+
+        </div>
+
+        <div class="topic-status">
+
+            <strong class="topic-percent">
+                0%
+            </strong>
+
+            <span>
+                Progress
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="topic-progress-area">
+
+        <div class="topic-progress-label">
+
+            <span>
+                5 Questions
+            </span>
+
+            <span class="question-count">
+                0/5
+            </span>
+
+        </div>
+
+        <div class="topic-progress">
+
+            <div class="topic-fill">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="topic-button"
+        onclick="openTopic('light')">
+
+        Start Light →
+
+    </button>
+
+</article>
+
+
+</section>
+
+
+<!-- =====================================================
+     FORMULA
+===================================================== -->
+
+<section class="formula-card">
+
+    <h2>
+        ⚡ Physics Formula
+    </h2>
+
+    <p>
+        Newton's Second Law
+    </p>
+
+    <div class="formula">
+        F = ma
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BOTTOM ACTIONS
+===================================================== -->
+
+<div class="bottom-actions">
+
+    <button
+        class="bottom-btn"
+        onclick="goToStudy()">
+        ← Back to Study
+    </button>
+
+    <button
+        class="bottom-btn"
+        onclick="goToAI()">
+        Ask ZYNTRA AI 🤖
+    </button>
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<!-- =====================================================
+     PROGRESS SYSTEM
+===================================================== -->
+
+<script src="zyntra-progress.js"></script>
+
+
+<script>
+
+/* =====================================================
+   TOPIC DATA
+===================================================== */
+
+const topics = [
+    "motion",
+    "forces",
+    "electricity",
+    "energy",
+    "waves",
+    "light"
+];
+
+const QUESTIONS_PER_TOPIC = 5;
+
+
+/* =====================================================
+   OPEN TOPIC
+===================================================== */
+
+function openTopic(topic){
+
+    window.location.href =
+        "lesson.html?subject=physics&lesson=" +
+        encodeURIComponent(topic);
+
+}
+
+
+/* =====================================================
+   GET USERNAME
+===================================================== */
+
+function getUsername(){
+
+    if(typeof getZyntraUsername === "function"){
+
+        return getZyntraUsername();
+
+    }
+
+    const savedUser =
+        localStorage.getItem("zyntraUser");
+
+    if(!savedUser){
+
+        return "Student";
+
+    }
+
+    try{
+
+        const user =
+            JSON.parse(savedUser);
+
+        return (
+            user.username ||
+            user.email ||
+            user.name ||
+            "Student"
+        );
+
+    }
+    catch(error){
+
+        return savedUser;
+
+    }
+
+}
+
+
+/* =====================================================
+   GET TOPIC PROGRESS
+===================================================== */
+
+function getTopicProgress(topic){
+
+    /*
+       New progress system uses:
+
+       zyntraQuestion_Physics_topic_0_username
+       zyntraQuestion_Physics_topic_1_username
+       ...
+       zyntraQuestion_Physics_topic_4_username
+    */
+
+    const username =
+        getUsername();
+
+    let completed = 0;
+
+
+    for(
+        let i = 0;
+        i < QUESTIONS_PER_TOPIC;
+        i++
+    ){
+
+        const key =
+            "zyntraQuestion_Physics_" +
+            topic +
+            "_" +
+            i +
+            "_" +
+            username;
+
+
+        if(
+            localStorage.getItem(key) === "true"
+        ){
+
+            completed++;
+
+        }
+
+    }
+
+
+    return {
+        completed: completed,
+        percent:
+            Math.round(
+                (completed / QUESTIONS_PER_TOPIC) * 100
+            )
+    };
+
+}
+
+
+/* =====================================================
+   UPDATE TOPIC CARDS
+===================================================== */
+
+function updateTopicCards(){
+
+    let totalCompleted = 0;
+
+
+    topics.forEach(topic => {
+
+        const progress =
+            getTopicProgress(topic);
+
+
+        totalCompleted +=
+            progress.completed;
+
+
+        const card =
+            document.querySelector(
+                '[data-topic="' + topic + '"]'
+            );
+
+
+        if(!card) return;
+
+
+        const percentElement =
+            card.querySelector(
+                ".topic-percent"
+            );
+
+
+        const fill =
+            card.querySelector(
+                ".topic-fill"
+            );
+
+
+        const count =
+            card.querySelector(
+                ".question-count"
+            );
+
+
+        const button =
+            card.querySelector(
+                ".topic-button"
+            );
+
+
+        percentElement.textContent =
+            progress.percent + "%";
+
+
+        fill.style.width =
+            progress.percent + "%";
+
+
+        count.textContent =
+            progress.completed +
+            "/" +
+            QUESTIONS_PER_TOPIC;
+
+
+        /* ==============================
+           BUTTON TEXT
+        ============================== */
+
+        if(progress.percent === 100){
+
+            button.textContent =
+                "Review Topic ✓";
+
+        }
+        else if(progress.completed > 0){
+
+            button.textContent =
+                "Continue Topic →";
+
+        }
+        else{
+
+            button.textContent =
+                "Start " +
+                capitalize(topic) +
+                " →";
+
+        }
+
+    });
+
+
+    /* =================================================
+       OVERALL PHYSICS PROGRESS
+    ================================================= */
+
+    const totalQuestions =
+        topics.length *
+        QUESTIONS_PER_TOPIC;
+
+
+    const overallPercent =
+        Math.round(
+            (totalCompleted / totalQuestions) * 100
+        );
+
+
+    document.getElementById(
+        "overallFill"
+    ).style.width =
+        overallPercent + "%";
+
+
+    document.getElementById(
+        "overallPercent"
+    ).textContent =
+        overallPercent + "%";
+
+
+    /* =================================================
+       OVERALL MESSAGE
+    ================================================= */
+
+    const overallText =
+        document.getElementById(
+            "overallText"
+        );
+
+
+    if(overallPercent === 0){
+
+        overallText.textContent =
+            "Start learning to build your Physics progress.";
+
+    }
+    else if(overallPercent < 50){
+
+        overallText.textContent =
+            totalCompleted +
+            " of " +
+            totalQuestions +
+            " Physics questions completed. Keep going!";
+
+    }
+    else if(overallPercent < 100){
+
+        overallText.textContent =
+            "Great progress! You have completed " +
+            totalCompleted +
+            " of " +
+            totalQuestions +
+            " questions.";
+
+    }
+    else{
+
+        overallText.textContent =
+            "Amazing! You have completed all 30 Physics questions.";
+
+    }
+
+}
+
+
+/* =====================================================
+   CAPITALIZE
+===================================================== */
+
+function capitalize(text){
+
+    return text.charAt(0).toUpperCase()
+        + text.slice(1);
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goToStudy(){
+
+    window.location.href =
+        "study.html";
+
+}
+
+
+function goToAI(){
+
+    window.location.href =
+        "ai.html";
+
+}
+
+
+/* =====================================================
+   REFRESH PROGRESS
+===================================================== */
+
+function refreshProgress(){
+
+    updateTopicCards();
+
+}
+
+
+/* =====================================================
+   PAGE LOAD
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        updateTopicCards();
+
+    }
+);
+
+
+/*
+   If the user returns to this page
+   after completing questions, refresh
+   the progress automatically.
+*/
+
+window.addEventListener(
+    "pageshow",
+    function(){
+
+        updateTopicCards();
+
+    }
+);
+
+
+/*
+   Also refresh when the tab becomes
+   active again.
+*/
+
+document.addEventListener(
+    "visibilitychange",
+    function(){
+
+        if(!document.hidden){
+
+            updateTopicCards();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

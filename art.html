@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Art and Design</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070711;--card:#111124;--border:#292743;--purple:#8b5cf6;--blue:#3b82f6;--text:#f5f3ff;--muted:#aaa7c5}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+header{position:sticky;top:0;z-index:5;background:#0b0b19ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 5%}
+nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:23px;font-weight:900;color:#a78bfa;text-decoration:none;letter-spacing:1px}
+.navlinks{display:flex;gap:9px;flex-wrap:wrap}
+.navlinks a{color:#e9e5ff;text-decoration:none;padding:8px 12px;border-radius:9px;background:#17162a;font-size:13px}
+main{max-width:1200px;margin:auto;padding:25px 5% 55px}
+.hero{text-align:center;padding:35px 10px}
+.tag{display:inline-block;background:#241843;color:#c4b5fd;padding:5px 13px;border-radius:20px;font-size:12px;margin-bottom:12px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.2;margin-bottom:12px}
+.gradient{background:linear-gradient(90deg,#c4b5fd,#60a5fa);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero p,.muted{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.stat,.panel,.topic,.lessonbox,.quizbox{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:17px}
+.stat{text-align:center}.stat strong{display:block;font-size:24px;color:#c4b5fd}.stat span{font-size:12px;color:var(--muted)}
+.progress-track{height:8px;background:#27243b;border-radius:20px;overflow:hidden;margin-top:10px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--blue));transition:width .3s}
+.section-title{font-size:22px;margin:28px 0 13px}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.topic{cursor:pointer;transition:.2s}.topic:hover,.topic.active{border-color:var(--purple);transform:translateY(-2px)}
+.topic .emoji{font-size:26px}.topic h3{font-size:16px;margin:4px 0}.topic p{font-size:13px;color:var(--muted)}.topic small{display:block;color:#c4b5fd;margin-top:8px}
+.lesson-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:14px;margin-top:20px}
+.lesson-list{display:grid;gap:8px;margin-top:12px}
+.lesson-btn{background:#17162a;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:10px;text-align:left;cursor:pointer;width:100%}
+.lesson-btn.active{border-color:var(--purple);background:#241843}.lesson-btn.done{border-color:#166534}
+.lesson-btn small{display:block;color:var(--muted)}
+.lessonbox h2{font-size:23px;margin:8px 0}.lessonbox h3{font-size:17px;color:#c4b5fd;margin:17px 0 6px}
+.lessonbox p{margin:9px 0}.lessonbox ul,.lessonbox ol{padding-left:22px;margin:8px 0}
+.example{background:#19162d;border-left:3px solid var(--purple);padding:12px;border-radius:6px;margin:12px 0}
+.swatches{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}
+.swatch{width:66px;height:66px;border-radius:10px;border:1px solid #ffffff30;display:flex;align-items:end;justify-content:center;padding:3px;font-size:10px;color:white;text-shadow:0 1px 3px #000}
+button{font:inherit}.primary,.secondary{border:0;border-radius:10px;padding:11px 14px;cursor:pointer;font-weight:bold}
+.primary{background:linear-gradient(100deg,var(--purple),var(--blue));color:white}.secondary{background:#24213a;color:white;border:1px solid var(--border)}
+.primary:disabled{opacity:.65;cursor:default}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+.quiz-question{padding:14px;background:#17162a;border:1px solid var(--border);border-radius:12px;margin:12px 0}
+.quiz-question p{font-weight:bold;margin-bottom:8px}.quiz-question label{display:block;padding:6px 0;cursor:pointer}
+.quiz-question input{margin-right:8px;accent-color:var(--purple)}
+#quizResult{margin-top:13px;font-weight:bold}.notice{font-size:13px;color:var(--muted);margin-top:12px}
+footer{text-align:center;color:var(--muted);padding:23px;border-top:1px solid var(--border)}
+@media(max-width:700px){.lesson-layout{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:11px}.stat strong{font-size:21px}main{padding-left:4%;padding-right:4%}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a class="logo" href="index.html">ZYNTRA</a>
+<div class="navlinks"><a href="index.html">Home</a><a href="study.html">Study</a><a href="profile.html">Profile</a></div>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<span class="tag">CREATE • DESIGN • EXPRESS</span>
+<h1>Explore <span class="gradient">Art and Design</span></h1>
+<p>Discover drawing, colour theory, design principles, composition, and creative expression.</p>
+</section>
+
+<section class="stats">
+<div class="stat"><strong id="completedCount">0</strong><span>Lessons completed</span></div>
+<div class="stat"><strong id="xpCount">0</strong><span>XP earned</span></div>
+<div class="stat"><strong id="progressPercent">0%</strong><span>Progress</span></div>
+</section>
+<div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+
+<h2 class="section-title">Choose a topic</h2>
+<section class="topics" id="topicGrid"></section>
+
+<div class="lesson-layout">
+<section class="panel">
+<h2 class="section-title" style="margin-top:0">Lessons</h2>
+<p class="muted" id="topicDescription">Choose a topic to begin.</p>
+<div class="lesson-list" id="lessonList"></div>
+</section>
+<section class="lessonbox" id="lessonContent">
+<span class="tag">WELCOME TO ZYNTRA</span>
+<h2>Art and Design</h2>
+<p>Choose a topic and lesson to begin learning.</p>
+<div class="example">Art communicates ideas, feelings, experiences, and observations through visual forms and creative choices.</div>
+<p>Read the notes, practise the techniques, and complete the quiz to test your understanding.</p>
+</section>
+</div>
+
+<section class="quizbox" style="margin-top:25px">
+<h2 class="section-title" style="margin-top:0">Art and Design Quiz</h2>
+<p class="muted">Answer all six questions to check your understanding.</p>
+<form id="quizForm"></form>
+<div class="actions"><button class="primary" type="button" id="checkQuiz">Check answers</button><button class="secondary" type="button" id="resetQuiz">Try again</button></div>
+<p id="quizResult" aria-live="polite"></p>
+<p class="notice">Score at least 4 out of 6 to earn 5 bonus XP once per page session.</p>
+</section>
+</main>
+
+<footer>© 2026 ZYNTRA • Learn something new every day.</footer>
+
+<script>
+const topics=[
+{title:"Elements of Art",emoji:"✏️",description:"Learn the basic building blocks of visual art.",lessons:[
+{title:"Line, Shape and Form",content:`
+<h3>Line</h3>
+<p>A line is a mark made by a moving point. Lines may be straight, curved, thick, thin, horizontal, vertical, or diagonal.</p>
+<ul><li>Horizontal lines can suggest calmness or stability.</li><li>Vertical lines can suggest height or strength.</li><li>Diagonal lines can suggest movement or energy.</li><li>Curved lines can suggest softness or flow.</li></ul>
+<h3>Shape</h3>
+<p>A shape is a two-dimensional enclosed area. Geometric shapes include circles, squares, and triangles. Organic shapes are irregular and often inspired by nature.</p>
+<h3>Form</h3>
+<p>Form describes a three-dimensional object with height, width, and depth, such as a sphere, cube, or cylinder.</p>
+<div class="example">Practice: Draw a circle, a square, and a triangle. Then use shading to make the circle look like a sphere and the square look like a cube.</div>`},
+{title:"Colour, Texture and Space",content:`
+<h3>Colour</h3>
+<p>Colour helps create mood, contrast, emphasis, and harmony.</p>
+<div class="swatches"><div class="swatch" style="background:#ef4444">Red</div><div class="swatch" style="background:#f59e0b">Orange</div><div class="swatch" style="background:#eab308;color:#222">Yellow</div><div class="swatch" style="background:#22c55e">Green</div><div class="swatch" style="background:#3b82f6">Blue</div><div class="swatch" style="background:#8b5cf6">Violet</div></div>
+<h3>Texture</h3>
+<p>Texture is the surface quality of an artwork. It can be actual, such as rough clay, or visual, where marks create the appearance of a surface.</p>
+<h3>Space</h3>
+<p>Space refers to the area around, between, or within objects. Positive space is occupied by the subject; negative space is the surrounding area.</p>
+<div class="example">Practice: Draw a leaf and use different lines to suggest its veins and surface texture.</div>`}
+]},
+{title:"Colour Theory",emoji:"🎨",description:"Explore colour groups and colour mixing.",lessons:[
+{title:"Primary, Secondary and Tertiary Colours",content:`
+<h3>Colour groups</h3>
+<p>In traditional school art using paint, primary colours are commonly taught as red, yellow, and blue.</p>
+<ul><li>Primary colours: red, yellow, blue.</li><li>Secondary colours: orange, green, violet.</li><li>Tertiary colours: colours made by mixing a primary colour with a neighbouring secondary colour.</li></ul>
+<div class="example">Traditional paint mixing: yellow + blue can produce green; red + yellow can produce orange; red + blue can produce violet.</div>
+<p>Actual results depend on the pigments used. Light and digital screens use a different colour model.</p>`},
+{title:"Warm, Cool and Complementary Colours",content:`
+<h3>Warm colours</h3>
+<p>Reds, oranges, and many yellows are described as warm colours. They can create an energetic or welcoming feeling.</p>
+<h3>Cool colours</h3>
+<p>Blues, greens, and many violets are described as cool colours. They can suggest calmness or distance.</p>
+<h3>Complementary colours</h3>
+<p>Complementary colours sit opposite each other on a colour wheel and can create strong contrast.</p>
+<div class="example">Examples of traditional colour-wheel pairs include blue and orange, red and green, and yellow and violet.</div>
+<p>Artists choose colour combinations based on the message, mood, and visual effect they want to create.</p>`}
+]},
+{title:"Principles of Design",emoji:"📐",description:"Create organised and effective compositions.",lessons:[
+{title:"Balance, Contrast and Emphasis",content:`
+<h3>Balance</h3>
+<p>Balance is the distribution of visual weight in an artwork. It can be symmetrical, asymmetrical, or radial.</p>
+<h3>Contrast</h3>
+<p>Contrast uses noticeable differences, such as light versus dark, large versus small, or smooth versus rough.</p>
+<h3>Emphasis</h3>
+<p>Emphasis makes a particular part of an artwork stand out as the focal point.</p>
+<div class="example">Practice: Draw a large dark circle among several small light circles. The difference in size and tone makes the large circle stand out.</div>`},
+{title:"Rhythm, Pattern and Unity",content:`
+<h3>Rhythm</h3>
+<p>Rhythm is created when visual elements repeat or change in a way that guides the viewer's eye.</p>
+<h3>Pattern</h3>
+<p>Pattern is the repetition of shapes, lines, colours, or other elements in an organised arrangement.</p>
+<h3>Unity</h3>
+<p>Unity occurs when different parts of an artwork feel connected and work together.</p>
+<h3>Proportion</h3>
+<p>Proportion describes the relative size of parts in relation to one another or to the whole.</p>
+<div class="example">Practice: Design a border using a repeated leaf shape. Keep spacing consistent to establish a pattern.</div>`}
+]},
+{title:"Drawing and Shading",emoji:"🖌️",description:"Develop observation and drawing techniques.",lessons:[
+{title:"Observation and Sketching",content:`
+<h3>Observational drawing</h3>
+<p>Observational drawing means drawing from a real object or scene by carefully studying its shape, size, proportions, and details.</p>
+<h3>Useful techniques</h3>
+<ul><li>Begin with light construction lines.</li><li>Compare the size of different parts.</li><li>Look at negative spaces around the subject.</li><li>Use simple shapes to organise the drawing.</li><li>Check proportions before adding details.</li></ul>
+<h3>Materials</h3>
+<p>Pencils, paper, erasers, charcoal, pens, and suitable drawing surfaces can all be used for sketching.</p>
+<div class="example">Practice: Place a cup on a table. Sketch its overall shape first, then add the handle, rim, and shadows.</div>`},
+{title:"Light, Tone and Shading",content:`
+<h3>Tone</h3>
+<p>Tone describes how light or dark a colour or surface appears.</p>
+<h3>Shading techniques</h3>
+<ul><li>Hatching: drawing parallel lines.</li><li>Cross-hatching: overlapping sets of lines.</li><li>Blending: gradually smoothing tonal transitions.</li><li>Stippling: using dots to create tone and texture.</li></ul>
+<h3>Light and shadow</h3>
+<p>Identify the light source, highlight, mid-tones, core shadow, and cast shadow. Their appearance depends on the shape, material, and lighting.</p>
+<div class="example">Practice: Shade a sphere using a range from light to dark. Keep the brightest area near the light source and place the cast shadow on the opposite side.</div>`}
+]},
+{title:"Composition and Visual Communication",emoji:"🖼️",description:"Arrange artwork and communicate a message.",lessons:[
+{title:"Composition and Perspective",content:`
+<h3>Composition</h3>
+<p>Composition is the arrangement of visual elements within an artwork.</p>
+<ul><li>Focal point: the main area of attention.</li><li>Foreground: the part that appears nearest.</li><li>Middle ground: the area between foreground and background.</li><li>Background: the area that appears farthest away.</li></ul>
+<h3>Perspective</h3>
+<p>Perspective is a way to represent depth on a flat surface. Linear perspective uses converging lines and vanishing points.</p>
+<div class="example">Practice: Draw a road that appears to narrow toward a point on the horizon. Add smaller objects farther away to suggest depth.</div>`},
+{title:"Posters, Symbols and Messages",content:`
+<h3>Visual communication</h3>
+<p>Visual communication uses images, symbols, typography, colours, and layout to share information or ideas.</p>
+<h3>Designing a poster</h3>
+<ol><li>Identify the audience and purpose.</li><li>Choose a clear headline.</li><li>Use images that support the message.</li><li>Make important information easy to find.</li><li>Use readable text and suitable contrast.</li><li>Check spelling and layout before presenting.</li></ol>
+<h3>Symbols</h3>
+<p>A symbol is a visual sign that represents an idea, object, or instruction. Symbols should be appropriate for the audience and context.</p>
+<div class="example">Practice: Design a school poster encouraging students to keep the environment clean. Include a headline, an original illustration, and a clear call to action.</div>`}
+]},
+{title:"Crafts and Materials",emoji:"🧵",description:"Explore materials, construction, and creative making.",lessons:[
+{title:"Art Materials and Their Uses",content:`
+<h3>Common materials</h3>
+<ul><li>Paper and cardboard: drawing, collage, models, and packaging.</li><li>Clay: modelling and sculpture.</li><li>Fabric and thread: textile art and stitching.</li><li>Wood: carving and construction when suitable tools and supervision are available.</li><li>Found materials: reused objects for collage and three-dimensional designs.</li></ul>
+<h3>Choosing materials</h3>
+<p>Consider durability, cost, availability, appearance, environmental impact, and the intended use of the artwork.</p>
+<p>Use tools responsibly and follow safety instructions, especially when cutting, heating, or handling chemicals.</p>`},
+{title:"Craft, Recycling and Finishing",content:`
+<h3>Craft and construction</h3>
+<p>Craft involves making objects using practical skills, techniques, and materials. Good construction considers strength, function, and appearance.</p>
+<h3>Reusing materials</h3>
+<ul><li>Use clean cardboard for models.</li><li>Reuse suitable paper for collage.</li><li>Turn safe, clean containers into organisers or decorative objects.</li><li>Separate recyclable materials where local services allow.</li></ul>
+<h3>Finishing an artwork</h3>
+<p>Check that edges are neat, joins are secure, surfaces are appropriate, and the finished work communicates its intended idea.</p>
+<div class="example">Practice: Create a small model of a building from clean cardboard. Plan its shape first, make stable joins, and add details using reused materials.</div>`}
+]}
+];
+
+const questions=[
+{q:"Which is an element of art?",a:["Line","Profit","Velocity"],c:0},
+{q:"In traditional paint mixing, red and yellow commonly make:",a:["Green","Orange","Violet"],c:1},
+{q:"What does contrast do in an artwork?",a:["Creates noticeable differences","Removes every shape","Always makes the artwork symmetrical"],c:0},
+{q:"Which shading method uses dots?",a:["Perspective","Stippling","Collage"],c:1},
+{q:"What is the foreground in a composition?",a:["The area that appears nearest","The title of an artwork","Always the darkest area"],c:0},
+{q:"What is visual communication used for?",a:["Only measuring temperature","Only calculating distance","Sharing ideas through visual elements"],c:2}
+];
+
+const username=localStorage.getItem("zyntraUser")||"guest";
+const userKey=username.toLowerCase().replace(/[^a-z0-9_-]/g,"_");
+const completedKey="zyntraArtCompleted_"+userKey;
+const xpKey="zyntraArtXP_"+userKey;
+let completed=JSON.parse(localStorage.getItem(completedKey)||"[]");
+let xp=Number(localStorage.getItem(xpKey)||0);
+let currentTopic=0,currentLesson=0,quizRewarded=false;
+
+const topicGrid=document.getElementById("topicGrid");
+const lessonList=document.getElementById("lessonList");
+const lessonContent=document.getElementById("lessonContent");
+const lessonId=(t,l)=>t+"-"+l;
+const isDone=(t,l)=>completed.includes(lessonId(t,l));
+
+function updateStats(){
+ const total=topics.reduce((sum,t)=>sum+t.lessons.length,0);
+ const percent=Math.round(completed.length/total*100);
+ document.getElementById("completedCount").textContent=completed.length;
+ document.getElementById("xpCount").textContent=xp;
+ document.getElementById("progressPercent").textContent=percent+"%";
+ document.getElementById("progressBar").style.width=percent+"%";
+ topicGrid.querySelectorAll(".topic").forEach((el,i)=>{
+  const count=topics[i].lessons.filter((_,j)=>isDone(i,j)).length;
+  el.querySelector("small").textContent=count+"/"+topics[i].lessons.length+" lessons completed";
+ });
+}
+function renderTopics(){
+ topicGrid.innerHTML="";
+ topics.forEach((t,i)=>{
+  const el=document.createElement("div");
+  el.className="topic"+(i===currentTopic?" active":"");
+  el.tabIndex=0;
+  el.innerHTML=`<div class="emoji">${t.emoji}</div><h3>${t.title}</h3><p>${t.description}</p><small></small>`;
+  el.onclick=()=>{currentTopic=i;currentLesson=0;renderTopics();renderLessons();renderLesson()};
+  el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();el.click()}};
+  topicGrid.appendChild(el);
+ });
+ updateStats();
+}
+function renderLessons(){
+ const t=topics[currentTopic];
+ document.getElementById("topicDescription").textContent=t.description;
+ lessonList.innerHTML="";
+ t.lessons.forEach((lesson,i)=>{
+  const btn=document.createElement("button");
+  btn.className="lesson-btn"+(i===currentLesson?" active":"")+(isDone(currentTopic,i)?" done":"");
+  btn.innerHTML=(isDone(currentTopic,i)?"✓ ":"")+lesson.title+"<small>"+(isDone(currentTopic,i)?"Completed • +10 XP":"Lesson "+(i+1))+"</small>";
+  btn.onclick=()=>{currentLesson=i;renderLessons();renderLesson()};
+  lessonList.appendChild(btn);
+ });
+}
+function renderLesson(){
+ const t=topics[currentTopic],l=t.lessons[currentLesson],done=isDone(currentTopic,currentLesson);
+ lessonContent.innerHTML=`
+ <span class="tag">${t.emoji} ${t.title}</span>
+ <h2>${l.title}</h2><p class="muted">Lesson ${currentLesson+1} of ${t.lessons.length}</p>
+ ${l.content}
+ <div class="actions"><button class="primary" id="completeLesson" ${done?"disabled":""}>${done?"✓ Lesson Completed":"Mark Lesson Complete (+10 XP)"}</button><button class="secondary" id="nextLesson">Next Lesson →</button></div>
+ ${done?'<p class="notice">XP for this lesson has already been awarded.</p>':""}`;
+ document.getElementById("completeLesson").onclick=()=>{
+  if(!isDone(currentTopic,currentLesson)){
+   completed.push(lessonId(currentTopic,currentLesson));xp+=10;
+   localStorage.setItem(completedKey,JSON.stringify(completed));
+   localStorage.setItem(xpKey,String(xp));
+   renderTopics();renderLessons();renderLesson();
+  }
+ };
+ document.getElementById("nextLesson").onclick=()=>{
+  if(currentLesson<topics[currentTopic].lessons.length-1)currentLesson++;
+  else if(currentTopic<topics.length-1){currentTopic++;currentLesson=0}
+  else{alert("Well done! You have reached the final Art and Design lesson.");return}
+  renderTopics();renderLessons();renderLesson();
+ };
+}
+function renderQuiz(){
+ const form=document.getElementById("quizForm");form.innerHTML="";
+ questions.forEach((q,i)=>{
+  const box=document.createElement("div");box.className="quiz-question";
+  const p=document.createElement("p");p.textContent=(i+1)+". "+q.q;box.appendChild(p);
+  q.a.forEach((answer,j)=>{
+   const label=document.createElement("label");
+   const input=document.createElement("input");input.type="radio";input.name="q"+i;input.value=j;
+   label.appendChild(input);label.appendChild(document.createTextNode(answer));box.appendChild(label);
+  });
+  form.appendChild(box);
+ });
+}
+document.getElementById("checkQuiz").onclick=()=>{
+ let score=0,answered=0;
+ questions.forEach((q,i)=>{
+  const selected=document.querySelector('input[name="q'+i+'"]:checked');
+  if(selected){answered++;if(Number(selected.value)===q.c)score++}
+ });
+ const result=document.getElementById("quizResult");
+ if(answered<questions.length){result.textContent="Please answer all six questions first.";return}
+ result.textContent="Your score: "+score+"/"+questions.length+". "+(score===6?"Excellent work!":score>=4?"Good work! Keep practising.":"Review the lessons and try again.");
+ if(score>=4&&!quizRewarded){xp+=5;quizRewarded=true;localStorage.setItem(xpKey,String(xp));result.textContent+=" You earned 5 bonus XP!";updateStats()}
+};
+document.getElementById("resetQuiz").onclick=()=>{renderQuiz();document.getElementById("quizResult").textContent=""};
+renderTopics();renderLessons();renderLesson();renderQuiz();
+</script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Chemistry</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+*{box-sizing:border-box}
+:root{--bg:#070711;--panel:#111126;--purple:#8b5cf6;--blue:#3b82f6;--text:#f5f3ff;--muted:#9999ad;--green:#22c55e}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at top left,#211444,transparent 35%),var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+.navbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:17px 6%;background:rgba(7,7,17,.94);border-bottom:1px solid #292344;backdrop-filter:blur(15px)}
+.logo{font-size:23px;font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,#a78bfa,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.logo span{color:#8b5cf6}
+.navbar nav{display:flex;gap:18px;flex-wrap:wrap}
+.navbar nav a{color:#c7c5dc;text-decoration:none;font-size:14px}
+.navbar nav a:hover{color:#a78bfa}
+.chem-page{width:min(1250px,92%);margin:auto;padding:55px 0 70px}
+.chem-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:35px;align-items:center;margin-bottom:50px}
+.chem-badge{display:inline-block;padding:8px 15px;border-radius:30px;background:#251747;border:1px solid #49317a;color:#c4b5fd;margin-bottom:20px;font-size:13px}
+.chem-hero h1{font-size:clamp(38px,5.5vw,70px);line-height:1.08;margin:0 0 18px}
+.chem-hero h1 span{background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chem-hero p,.section-heading p,.chem-card p,.lab-section p,.progress-subtitle{color:var(--muted);line-height:1.8}
+.chem-hero p{font-size:17px;max-width:600px}
+.chem-visual{min-height:290px;display:flex;align-items:center;justify-content:center;position:relative}
+.molecule{width:220px;height:220px;position:relative}
+.atom{position:absolute;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#8b5cf6,#3b82f6);box-shadow:0 0 25px #8b5cf655;font-size:21px;font-weight:bold;z-index:2;animation:float 4s ease-in-out infinite}
+.atom.center{width:76px;height:76px;left:72px;top:72px;font-size:25px}
+.atom.top{left:80px;top:0}
+.atom.left{left:0;top:80px;animation-delay:.5s}
+.atom.right{right:0;top:80px;animation-delay:1s}
+.atom.bottom{left:80px;bottom:0;animation-delay:1.5s}
+.bond{position:absolute;background:#8b5cf6;height:4px;opacity:.7}
+.bond.v{width:4px;height:65px;left:108px}
+.bond.v.top{top:35px}.bond.v.bottom{bottom:35px}
+.bond.h{width:65px;top:108px}.bond.h.left{left:35px}.bond.h.right{right:35px}
+@keyframes float{50%{transform:translateY(-9px)}}
+.progress-overview{padding:25px;border:1px solid #30264f;border-radius:20px;background:rgba(17,17,38,.95);margin-bottom:55px}
+.overview-top{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.overview-top h2{margin:0 0 5px;font-size:24px}
+.big-percent{font-size:32px;font-weight:900;color:#c4b5fd}
+.progress-track{height:11px;background:#292641;border-radius:20px;overflow:hidden;margin:18px 0 10px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#8b5cf6,#3b82f6);border-radius:20px;transition:width .35s}
+.overview-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.stat{padding:15px;background:#0c0c1d;border:1px solid #30264f;border-radius:13px}
+.stat strong{display:block;font-size:23px;color:#c4b5fd}
+.stat span{font-size:13px;color:var(--muted)}
+.section-heading{margin-bottom:25px}
+.section-heading h2{font-size:30px;margin:0 0 6px}
+.chem-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.chem-card{padding:24px;border-radius:20px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);transition:.25s;display:flex;flex-direction:column;min-width:0}
+.chem-card:hover{transform:translateY(-5px);border-color:#8b5cf677;box-shadow:0 15px 35px #5b21b622}
+.chem-icon{width:54px;height:54px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(135deg,#8b5cf6,#3b82f6);font-size:26px;margin-bottom:17px}
+.chem-card h3{font-size:20px;margin:0 0 8px}
+.chem-card p{font-size:14px;margin:0 0 12px;flex:1}
+.topic-status{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#aaa8c4;margin-top:12px}
+.topic-status .done{color:#4ade80}
+.topic-track{height:7px;background:#292641;border-radius:20px;overflow:hidden;margin-top:7px}
+.topic-track span{display:block;width:0;height:100%;background:linear-gradient(90deg,#8b5cf6,#3b82f6);transition:width .3s}
+.chem-button,.action-button{width:100%;margin-top:17px;padding:12px;border:1px solid #49317a;border-radius:11px;background:#251747;color:white;font-weight:bold;cursor:pointer;font-size:14px}
+.chem-button:hover,.action-button:hover{background:linear-gradient(135deg,#8b5cf6,#3b82f6)}
+.chem-button.completed{background:#123523;border-color:#166534;color:#86efac}
+.lab-section,.quiz-box{margin-top:45px;padding:30px;border-radius:22px;background:linear-gradient(135deg,#8b5cf622,#3b82f611);border:1px solid #49317a;text-align:center}
+.lab-section h2,.quiz-box h2{margin:0 0 8px;font-size:27px}
+.equation-display{margin:23px auto;padding:23px;max-width:650px;border-radius:16px;background:#07071188;border:1px solid #ffffff16;font-size:clamp(22px,4vw,36px);font-weight:bold;letter-spacing:2px}
+.lab-note{color:#c4b5fd;font-weight:bold}
+.quiz-box{background:rgba(255,255,255,.04);border-color:#30264f;text-align:left}
+.quiz-box>p{color:var(--muted)}
+.quiz-option{width:100%;display:block;text-align:left;margin:10px 0;padding:14px 16px;border-radius:11px;border:1px solid #30264f;background:#0c0c1d;color:white;cursor:pointer}
+.quiz-option:hover:not(:disabled){border-color:#8b5cf6}
+.quiz-option:disabled{cursor:default;opacity:.95}
+.correct-answer{background:#123523!important;border-color:#22c55e!important}
+.wrong-answer{background:#35151d!important;border-color:#ef4444!important}
+#chemResult,#chemProgressMessage{margin-top:15px;line-height:1.7}
+#chemProgressMessage{display:none;padding:13px;border-radius:11px;background:#251747;color:#c4b5fd}
+.back-button{display:inline-block;margin-top:30px;padding:12px 18px;border-radius:11px;color:white;text-decoration:none;background:#15152b;border:1px solid #30264f}
+footer{text-align:center;padding:25px;color:#77758f;font-size:13px}
+@media(max-width:900px){.chem-hero{grid-template-columns:1fr}.chem-visual{min-height:250px}.chem-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.navbar{align-items:flex-start;flex-direction:column}.navbar nav{gap:12px}.chem-page{width:92%;padding-top:35px}.chem-grid{grid-template-columns:1fr}.overview-stats{grid-template-columns:1fr}.progress-overview,.chem-card,.lab-section,.quiz-box{padding:20px}}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <a class="logo" href="index.html" style="text-decoration:none">ZYNTRA<span>●</span></a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="study.html">Study</a>
+        <a href="ai.html">AI</a>
+        <a href="planner.html">Planner</a>
+        <a href="challenge.html">Challenges</a>
+        <a href="profile.html">Profile</a>
+    </nav>
+</header>
+
+<main class="chem-page">
+
+<section class="chem-hero">
+    <div>
+        <div class="chem-badge">⚗️ ZYNTRA CHEMISTRY</div>
+        <h1>Explore the <span>world of Chemistry.</span></h1>
+        <p>Discover atoms, reactions, acids, organic compounds and more through interactive lessons and challenges. Complete lessons to build your progress and earn XP.</p>
+    </div>
+
+    <div class="chem-visual" aria-label="Decorative molecule illustration">
+        <div class="molecule">
+            <div class="bond v top"></div>
+            <div class="bond v bottom"></div>
+            <div class="bond h left"></div>
+            <div class="bond h right"></div>
+            <div class="atom center">C</div>
+            <div class="atom top">H</div>
+            <div class="atom left">O</div>
+            <div class="atom right">N</div>
+            <div class="atom bottom">H</div>
+        </div>
+    </div>
+</section>
+
+<section class="progress-overview">
+    <div class="overview-top">
+        <div>
+            <h2>📊 Your Chemistry Progress</h2>
+            <p class="progress-subtitle" style="margin:0">Your progress updates when you complete a lesson.</p>
+        </div>
+        <div class="big-percent" id="overallPercent">0%</div>
+    </div>
+
+    <div class="progress-track">
+        <div class="progress-fill" id="overallBar"></div>
+    </div>
+
+    <div class="overview-stats">
+        <div class="stat">
+            <strong id="completedCount">0/6</strong>
+            <span>Lessons completed</span>
+        </div>
+        <div class="stat">
+            <strong id="chemistryXP">0 XP</strong>
+            <span>XP from Chemistry lessons</span>
+        </div>
+        <div class="stat">
+            <strong id="remainingCount">6</strong>
+            <span>Lessons remaining</span>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="section-heading">
+        <h2>🧪 Explore Chemistry</h2>
+        <p>Choose a topic and continue your learning journey.</p>
+    </div>
+
+    <div class="chem-grid">
+
+        <article class="chem-card">
+            <div class="chem-icon">⚛️</div>
+            <h3>Atomic Structure</h3>
+            <p>Learn about atoms, protons, neutrons, electrons and electronic arrangement.</p>
+            <div class="topic-status"><span id="atomicStatus">Not completed</span><span id="atomicPercent">0%</span></div>
+            <div class="topic-track"><span id="atomicProgress"></span></div>
+            <button class="chem-button" id="atomicButton" onclick="openLesson('atomic')">Start Learning →</button>
+        </article>
+
+        <article class="chem-card">
+            <div class="chem-icon">🧪</div>
+            <h3>Chemical Reactions</h3>
+            <p>Understand reactants, products, reaction types and balanced equations.</p>
+            <div class="topic-status"><span id="reactionsStatus">Not completed</span><span id="reactionsPercent">0%</span></div>
+            <div class="topic-track"><span id="reactionsProgress"></span></div>
+            <button class="chem-button" id="reactionsButton" onclick="openLesson('reactions')">Start Learning →</button>
+        </article>
+
+        <article class="chem-card">
+            <div class="chem-icon">🧫</div>
+            <h3>Acids and Bases</h3>
+            <p>Learn about pH, indicators, acids, bases and neutralisation.</p>
+            <div class="topic-status"><span id="acidsStatus">Not completed</span><span id="acidsPercent">0%</span></div>
+            <div class="topic-track"><span id="acidsProgress"></span></div>
+            <button class="chem-button" id="acidsButton" onclick="openLesson('acids')">Start Learning →</button>
+        </article>
+
+        <article class="chem-card">
+            <div class="chem-icon">💧</div>
+            <h3>Water</h3>
+            <p>Study water properties, purification, testing and importance.</p>
+            <div class="topic-status"><span id="waterStatus">Not completed</span><span id="waterPercent">0%</span></div>
+            <div class="topic-track"><span id="waterProgress"></span></div>
+            <button class="chem-button" id="waterButton" onclick="openLesson('water')">Start Learning →</button>
+        </article>
+
+        <article class="chem-card">
+            <div class="chem-icon">🔬</div>
+            <h3>Organic Chemistry</h3>
+            <p>Explore carbon compounds, hydrocarbons, alkanes and alkenes.</p>
+            <div class="topic-status"><span id="organicStatus">Not completed</span><span id="organicPercent">0%</span></div>
+            <div class="topic-track"><span id="organicProgress"></span></div>
+            <button class="chem-button" id="organicButton" onclick="openLesson('organic')">Start Learning →</button>
+        </article>
+
+        <article class="chem-card">
+            <div class="chem-icon">⚡</div>
+            <h3>Electrochemistry</h3>
+            <p>Learn about electrolysis, electrolytes, electrodes and ions.</p>
+            <div class="topic-status"><span id="electrochemistryStatus">Not completed</span><span id="electrochemistryPercent">0%</span></div>
+            <div class="topic-track"><span id="electrochemistryProgress"></span></div>
+            <button class="chem-button" id="electrochemistryButton" onclick="openLesson('electrochemistry')">Start Learning →</button>
+        </article>
+
+    </div>
+</section>
+
+<section class="lab-section">
+    <h2>⚗️ Chemistry Lab</h2>
+    <p>Explore how reactants combine to form products.</p>
+    <div class="equation-display">2H₂ + O₂ → 2H₂O</div>
+    <div class="lab-note">Hydrogen + Oxygen → Water</div>
+</section>
+
+<section class="quiz-box">
+    <h2>🧠 Chemistry Challenge</h2>
+    <p>Answer correctly to earn 10 bonus XP. This challenge can reward XP only once per browser username.</p>
+    <h3 style="margin:22px 0 14px">Which particle has a negative electrical charge?</h3>
+
+    <button class="quiz-option" onclick="answerChem(this,false)">A. Proton</button>
+    <button class="quiz-option" onclick="answerChem(this,true)">B. Electron</button>
+    <button class="quiz-option" onclick="answerChem(this,false)">C. Neutron</button>
+
+    <div id="chemResult" aria-live="polite"></div>
+    <div id="chemProgressMessage"></div>
+</section>
+
+<a href="study.html" class="back-button">← Back to Smart Study</a>
+
+</main>
+
+<footer>© ZYNTRA · Learn, practise, and grow.</footer>
+
+<script>
+"use strict";
+
+/* Use the same username priority as lesson.html. */
+function getUsername(){
+    return localStorage.getItem("zyntraUsername") ||
+           localStorage.getItem("zyntraUser") ||
+           localStorage.getItem("username") ||
+           "guest";
+}
+
+const username = getUsername();
+
+const chemistryLessons = [
+    {id:"atomic",key:"atomic-structure",title:"Atomic Structure"},
+    {id:"reactions",key:"chemical-reactions",title:"Chemical Reactions"},
+    {id:"acids",key:"acids-and-bases",title:"Acids and Bases"},
+    {id:"water",key:"water",title:"Water"},
+    {id:"organic",key:"organic-chemistry",title:"Organic Chemistry"},
+    {id:"electrochemistry",key:"electrochemistry",title:"Electrochemistry"}
+];
+
+function completionKey(lesson){
+    return "zyntraCompleted_chemistry_" + lesson.key + "_" + username;
+}
+
+function isCompleted(lesson){
+    return localStorage.getItem(completionKey(lesson)) === "true";
+}
+
+function openLesson(alias){
+    window.location.href =
+        "lesson.html?subject=chemistry&lesson=" +
+        encodeURIComponent(alias);
+}
+
+/* Overall and individual progress */
+function updateChemistryProgress(){
+    let completed = 0;
+
+    chemistryLessons.forEach(function(lesson){
+        const done = isCompleted(lesson);
+        if(done) completed++;
+
+        const bar = document.getElementById(lesson.id + "Progress");
+        const percent = document.getElementById(lesson.id + "Percent");
+        const status = document.getElementById(lesson.id + "Status");
+        const button = document.getElementById(lesson.id + "Button");
+
+        if(bar) bar.style.width = done ? "100%" : "0%";
+        if(percent) percent.textContent = done ? "100%" : "0%";
+
+        if(status){
+            status.textContent = done ? "✓ Completed" : "Not completed";
+            status.classList.toggle("done", done);
+        }
+
+        if(button){
+            button.textContent = done ? "Review Lesson ↻" : "Start Learning →";
+            button.classList.toggle("completed", done);
+        }
+    });
+
+    const percent = Math.round(completed / chemistryLessons.length * 100);
+
+    document.getElementById("overallPercent").textContent = percent + "%";
+    document.getElementById("overallBar").style.width = percent + "%";
+    document.getElementById("completedCount").textContent =
+        completed + "/" + chemistryLessons.length;
+    document.getElementById("remainingCount").textContent =
+        chemistryLessons.length - completed;
+
+    /* Display XP earned from the six Chemistry lessons. */
+    document.getElementById("chemistryXP").textContent =
+        (completed * 10) + " XP";
+}
+
+/* Bonus challenge XP is separate from lesson completion. */
+const challengeKey = "zyntraChemChallengeCompleted_" + username;
+const xpKey = "zyntraXP_" + username;
+
+function answerChem(button, correct){
+    const options = document.querySelectorAll(".quiz-option");
+    const result = document.getElementById("chemResult");
+    const message = document.getElementById("chemProgressMessage");
+
+    if(Array.from(options).some(option => option.disabled)) return;
+
+    options.forEach(option => {
+        option.disabled = true;
+        if(option.textContent.trim().startsWith("B.")){
+            option.classList.add("correct-answer");
+        }
+    });
+
+    if(!correct){
+        button.classList.add("wrong-answer");
+    }
+
+    if(correct){
+        result.textContent = "Correct! An electron has a negative electrical charge.";
+    }else{
+        result.textContent = "Not quite. The correct answer is B: Electron.";
+    }
+
+    if(localStorage.getItem(challengeKey) === "true"){
+        message.style.display = "block";
+        message.textContent =
+            "You have already attempted this challenge for XP. Keep practising!";
+        return;
+    }
+
+    if(correct){
+        const currentXP = Number(localStorage.getItem(xpKey) || 0);
+        localStorage.setItem(xpKey, String(currentXP + 10));
+        localStorage.setItem(challengeKey, "true");
+
+        message.style.display = "block";
+        message.textContent = "🎉 Correct! You earned 10 bonus XP.";
+    }else{
+        message.style.display = "block";
+        message.textContent =
+            "No bonus XP this time. Review Atomic Structure and try another lesson!";
+        /* A wrong attempt does not mark the challenge as completed. */
+        options.forEach(option => {
+            option.disabled = false;
+        });
+        button.disabled = true;
+    }
+}
+
+updateChemistryProgress();
+
+/* Refresh displayed progress when returning to this page. */
+window.addEventListener("pageshow", updateChemistryProgress);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZYNTRA - Electricity</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .lesson-page {
+            max-width: 1000px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .lesson-hero {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .lesson-badge {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 30px;
+            background: rgba(6, 182, 212, 0.12);
+            color: #22d3ee;
+            font-weight: bold;
+        }
+
+        .lesson-hero h1 {
+            font-size: 55px;
+            margin: 20px 0 10px;
+        }
+
+        .lesson-hero p {
+            color: #9999ad;
+            font-size: 18px;
+        }
+
+        .lesson-card {
+            margin-top: 25px;
+            padding: 30px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .lesson-card h2 {
+            margin-bottom: 15px;
+        }
+
+        .lesson-card p,
+        .lesson-card li {
+            color: #c5c5d5;
+            line-height: 1.8;
+        }
+
+        .lesson-card ul {
+            padding-left: 25px;
+        }
+
+        .formula-box {
+            margin-top: 20px;
+            padding: 25px;
+            text-align: center;
+            border-radius: 18px;
+            background: rgba(6,182,212,0.08);
+            border: 1px solid rgba(34,211,238,0.2);
+        }
+
+        .formula-box strong {
+            display: block;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .quiz-option:hover {
+            background: rgba(6,182,212,0.25);
+            transform: translateY(-1px);
+        }
+
+        .quiz-option:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        #quizResult {
+            margin-top: 15px;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+
+        #progressMessage {
+            margin-top: 10px;
+            color: #a5b4fc;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+
+            .lesson-hero h1 {
+                font-size: 40px;
+            }
+
+            .lesson-card {
+                padding: 22px;
+            }
+
+            .formula-box strong {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="lesson-page">
+
+
+    <!-- ==========================================
+         HERO
+         ========================================== -->
+
+    <section class="lesson-hero">
+
+        <div class="lesson-badge">
+            ⚡ PHYSICS • ELECTRICITY
+        </div>
+
+        <h1>Understanding Electricity</h1>
+
+        <p>
+            Learn about electric current, voltage, resistance and circuits.
+        </p>
+
+    </section>
+
+
+    <!-- ==========================================
+         WHAT IS ELECTRICITY?
+         ========================================== -->
+
+    <div class="lesson-card">
+
+        <h2>⚡ What is Electricity?</h2>
+
+        <p>
+            Electricity is associated with the movement and interaction
+            of electric charges.
+        </p>
+
+        <p>
+            In an electric circuit, charged particles can move through
+            conducting materials when there is a suitable source of energy.
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         CURRENT
+         ========================================== -->
+
+    <div class="lesson-card">
+
+        <h2>🔌 Electric Current</h2>
+
+        <p>
+            Electric current is the rate of flow of electric charge
+            through a conductor.
+        </p>
+
+        <div class="formula-box">
+
+            <strong>I = Q ÷ t</strong>
+
+            <p>
+                I = current in amperes (A)<br>
+                Q = charge in coulombs (C)<br>
+                t = time in seconds (s)
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         VOLTAGE
+         ========================================== -->
+
+    <div class="lesson-card">
+
+        <h2>🔋 Voltage</h2>
+
+        <p>
+            Voltage, also called potential difference, is the energy
+            transferred per unit charge between two points in a circuit.
+        </p>
+
+        <ul>
+
+            <li>Its SI unit is the volt (V).</li>
+
+            <li>A battery can provide a potential difference.</li>
+
+            <li>
+                Voltage provides the energy that drives current
+                around a circuit.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- ==========================================
+         RESISTANCE
+         ========================================== -->
+
+    <div class="lesson-card">
+
+        <h2>🧱 Resistance</h2>
+
+        <p>
+            Resistance is the opposition to the flow of electric current
+            in a circuit.
+        </p>
+
+        <ul>
+
+            <li>Its SI unit is the ohm (Ω).</li>
+
+            <li>
+                A higher resistance generally means less current
+                for the same voltage.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- ==========================================
+         OHM'S LAW
+         ========================================== -->
+
+    <div class="lesson-card">
+
+        <h2>📐 Ohm's Law</h2>
+
+        <p>
+            For a conductor under constant physical conditions,
+            the current is proportional to the potential difference.
+        </p>
+
+        <div class="formula-box">
+
+            <strong>V = IR</strong>
+
+            <p>
+                V = voltage in volts (V)<br>
+                I = current in amperes (A)<br>
+                R = resistance in ohms (Ω)
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         WORKED EXAMPLE
+         ========================================== -->
+
+    <div class="lesson-card">
+
+        <h2>💡 Worked Example</h2>
+
+        <p>
+            A circuit has a voltage of 12 V and a resistance of 4 Ω.
+            Find the current.
+        </p>
+
+        <div class="formula-box">
+
+            <strong>I = V ÷ R</strong>
+
+            <p>
+                I = 12 ÷ 4
+            </p>
+
+            <p>
+                <strong>Current = 3 A</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         SIMPLE CIRCUIT
+         ========================================== -->
+
+    <div class="lesson-card">
+
+        <h2>🔗 Simple Electric Circuit</h2>
+
+        <p>
+            A basic circuit can contain a source such as a battery,
+            connecting wires, a switch and a component such as a lamp.
+        </p>
+
+        <ul>
+
+            <li>
+                <strong>Battery</strong> — supplies electrical energy.
+            </li>
+
+            <li>
+                <strong>Wires</strong> — provide a conducting path.
+            </li>
+
+            <li>
+                <strong>Switch</strong> — opens or closes the circuit.
+            </li>
+
+            <li>
+                <strong>Lamp</strong> — converts electrical energy
+                into light and heat.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- ==========================================
+         ZYNTRA QUIZ
+         ========================================== -->
+
+    <div class="lesson-card">
+
+        <h2>🧠 ZYNTRA Quick Challenge</h2>
+
+        <p>
+            A circuit has a voltage of 10 V and a resistance of 5 Ω.
+            What is the current?
+        </p>
+
+
+        <button
+            class="quiz-option"
+            onclick="checkAnswer('A', this)"
+        >
+            A. 0.5 A
+        </button>
+
+
+        <button
+            class="quiz-option"
+            onclick="checkAnswer('B', this)"
+        >
+            B. 2 A
+        </button>
+
+
+        <button
+            class="quiz-option"
+            onclick="checkAnswer('C', this)"
+        >
+            C. 5 A
+        </button>
+
+
+        <button
+            class="quiz-option"
+            onclick="checkAnswer('D', this)"
+        >
+            D. 50 A
+        </button>
+
+
+        <p id="quizResult"></p>
+
+        <p id="progressMessage"></p>
+
+    </div>
+
+
+    <!-- ==========================================
+         BACK
+         ========================================== -->
+
+    <a href="physics.html" class="back-btn">
+        ← Back to Physics
+    </a>
+
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   ZYNTRA PROGRESS SYSTEM
+   ========================================================= */
+
+const SUBJECT = "Physics";
+
+
+/* =========================================================
+   GET CURRENT USER
+   ========================================================= */
+
+function getUsername() {
+
+    const savedUser =
+        localStorage.getItem("zyntraUser");
+
+
+    if (!savedUser) {
+
+        return "student";
+
+    }
+
+
+    try {
+
+        const user =
+            JSON.parse(savedUser);
+
+
+        return (
+
+            user.username ||
+
+            user.name ||
+
+            user.email ||
+
+            "student"
+
+        );
+
+    }
+
+    catch (error) {
+
+        return savedUser || "student";
+
+    }
+
+}
+
+
+/* =========================================================
+   DEFAULT PROGRESS
+   ========================================================= */
+
+function getDefaultProgress() {
+
+    return {
+
+        xp: 0,
+
+        streak: 0,
+
+        questions: 0,
+
+        achievements: 0,
+
+        subjects: {
+
+            Mathematics: 0,
+
+            Chemistry: 0,
+
+            Physics: 0,
+
+            Biology: 0,
+
+            "Computer-Studies": 0,
+
+            English: 0
+
+        },
+
+        lastStudyDate: ""
+
+    };
+
+}
+
+
+/* =========================================================
+   LOAD PROGRESS
+   ========================================================= */
+
+function loadProgress() {
+
+    const username =
+        getUsername();
+
+
+    const key =
+        "zyntraProgress_" + username;
+
+
+    const saved =
+        localStorage.getItem(key);
+
+
+    if (!saved) {
+
+        return getDefaultProgress();
+
+    }
+
+
+    try {
+
+        const progress =
+            JSON.parse(saved);
+
+
+        const defaults =
+            getDefaultProgress();
+
+
+        return {
+
+            ...defaults,
+
+            ...progress,
+
+            subjects: {
+
+                ...defaults.subjects,
+
+                ...(progress.subjects || {})
+
+            }
+
+        };
+
+    }
+
+    catch (error) {
+
+        return getDefaultProgress();
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE PROGRESS
+   ========================================================= */
+
+function saveProgress(progress) {
+
+    const username =
+        getUsername();
+
+
+    const key =
+        "zyntraProgress_" + username;
+
+
+    localStorage.setItem(
+
+        key,
+
+        JSON.stringify(progress)
+
+    );
+
+}
+
+
+/* =========================================================
+   UPDATE STREAK
+   ========================================================= */
+
+function updateStreak(progress) {
+
+    const today =
+        new Date();
+
+
+    today.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    const todayString =
+        today.toISOString().split("T")[0];
+
+
+    /* First study activity */
+
+    if (!progress.lastStudyDate) {
+
+        progress.streak = 1;
+
+        progress.lastStudyDate =
+            todayString;
+
+        return;
+
+    }
+
+
+    /* Already studied today */
+
+    if (
+        progress.lastStudyDate ===
+        todayString
+    ) {
+
+        return;
+
+    }
+
+
+    const previousDate =
+        new Date(
+            progress.lastStudyDate
+        );
+
+
+    previousDate.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    const difference =
+        today.getTime() -
+        previousDate.getTime();
+
+
+    const oneDay =
+        24 * 60 * 60 * 1000;
+
+
+    if (difference === oneDay) {
+
+        progress.streak++;
+
+    }
+
+    else {
+
+        progress.streak = 1;
+
+    }
+
+
+    progress.lastStudyDate =
+        todayString;
+
+}
+
+
+/* =========================================================
+   UPDATE ACHIEVEMENTS
+   ========================================================= */
+
+function updateAchievements(progress) {
+
+    let achievements = 0;
+
+
+    /* First Step */
+
+    if (progress.xp >= 10) {
+
+        achievements++;
+
+    }
+
+
+    /* Active Learner */
+
+    if (progress.xp >= 100) {
+
+        achievements++;
+
+    }
+
+
+    /* Question Master */
+
+    if (progress.questions >= 10) {
+
+        achievements++;
+
+    }
+
+
+    /* Consistent */
+
+    if (progress.streak >= 7) {
+
+        achievements++;
+
+    }
+
+
+    progress.achievements =
+        achievements;
+
+}
+
+
+/* =========================================================
+   RECORD QUESTION
+   ========================================================= */
+
+function recordQuestion(correct) {
+
+    const progress =
+        loadProgress();
+
+
+    /* Count question */
+
+    progress.questions++;
+
+
+    /* XP */
+
+    if (correct) {
+
+        progress.xp += 10;
+
+    }
+
+    else {
+
+        progress.xp += 2;
+
+    }
+
+
+    /* Physics progress */
+
+    if (!progress.subjects.Physics) {
+
+        progress.subjects.Physics = 0;
+
+    }
+
+
+    progress.subjects.Physics =
+        Math.min(
+
+            100,
+
+            progress.subjects.Physics + 5
+
+        );
+
+
+    /* Streak */
+
+    updateStreak(progress);
+
+
+    /* Achievements */
+
+    updateAchievements(progress);
+
+
+    /* Save */
+
+    saveProgress(progress);
+
+
+    return progress;
+
+}
+
+
+/* =========================================================
+   QUIZ CONTROL
+   ========================================================= */
+
+let answered = false;
+
+
+function checkAnswer(answer, button) {
+
+    /* Prevent double counting */
+
+    if (answered) {
+
+        return;
+
+    }
+
+
+    answered = true;
+
+
+    /* Disable all options */
+
+    const buttons =
+        document.querySelectorAll(
+            ".quiz-option"
+        );
+
+
+    buttons.forEach(function(btn) {
+
+        btn.disabled = true;
+
+    });
+
+
+    const result =
+        document.getElementById(
+            "quizResult"
+        );
+
+
+    const progressMessage =
+        document.getElementById(
+            "progressMessage"
+        );
+
+
+    const correct =
+        answer === "B";
+
+
+    /* Record progress */
+
+    const progress =
+        recordQuestion(correct);
+
+
+    /* Display answer */
+
+    if (correct) {
+
+        result.textContent =
+            "✅ Correct! I = V ÷ R = 10 ÷ 5 = 2 A.";
+
+        progressMessage.textContent =
+            "+10 XP earned • " +
+            "Physics progress +5% • " +
+            "Question completed.";
+
+    }
+
+    else {
+
+        result.textContent =
+            "❌ Not quite. " +
+            "The correct answer is 2 A.";
+
+        progressMessage.textContent =
+            "+2 XP earned • " +
+            "Physics progress +5% • " +
+            "Question completed.";
+
+    }
+
+
+    /* Keep clicked button visible */
+
+    if (button) {
+
+        button.style.opacity = "1";
+
+    }
+
+
+    console.log(
+        "ZYNTRA Progress:",
+        progress
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

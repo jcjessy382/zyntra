@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Geography</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070711;--panel:#121226;--purple:#8b5cf6;--blue:#3b82f6;--border:#302b49;--muted:#aaa8c4}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#f7f5ff;min-height:100vh}
+header{position:sticky;top:0;z-index:5;background:#090918f2;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:16px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font-weight:900;font-size:24px;letter-spacing:2px}.logo span{color:var(--purple)}
+nav{display:flex;gap:9px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;padding:10px 13px;background:#18172c;border:1px solid var(--border);border-radius:9px;font-size:14px}
+main{max-width:1150px;margin:auto;padding:28px 20px 55px}
+.hero{padding:32px 25px;border:1px solid #49336f;border-radius:20px;background:linear-gradient(130deg,#29204c,#11152d 75%);margin-bottom:25px}
+.tag{display:inline-block;color:#e0d3ff;background:#3b2a61;border-radius:20px;padding:7px 12px;font-size:12px;margin-bottom:14px}
+h1{font-size:clamp(28px,5vw,43px);margin-bottom:12px}
+.hero p{color:#d0cde3;line-height:1.7;max-width:750px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:23px}
+.stat{padding:14px;background:#ffffff0c;border-radius:12px}
+.stat strong{display:block;font-size:23px;margin-bottom:5px}.stat span{font-size:12px;color:var(--muted)}
+input[type=search]{width:100%;padding:14px;background:#121226;border:1px solid var(--border);border-radius:11px;color:white;font-size:15px;margin-bottom:22px}
+h2.section{font-size:22px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{padding:20px;background:linear-gradient(145deg,#15152c,#0e0e1d);border:1px solid var(--border);border-radius:16px}
+.card:hover{border-color:#7656bd}
+.emoji{font-size:30px;margin-bottom:12px}.card h3{font-size:18px;margin-bottom:9px}
+.card p{color:var(--muted);font-size:13px;line-height:1.65}
+.small{font-size:12px;color:#c4b5fd;margin:13px 0}
+.btn{background:linear-gradient(100deg,var(--purple),var(--blue));border:0;border-radius:9px;color:white;padding:11px 15px;font-weight:bold;cursor:pointer}
+.secondary{background:#25243d;border:1px solid #3c3959}
+.progress{height:6px;background:#2a2740;border-radius:9px;margin:12px 0;overflow:hidden}
+.bar{height:100%;background:linear-gradient(90deg,var(--purple),var(--blue));width:0}
+#lessonArea{display:none;margin-top:28px;padding:24px;background:var(--panel);border:1px solid #49336f;border-radius:17px}
+#lessonContent{line-height:1.8;color:#e5e1f5}
+#lessonContent h3{margin:18px 0 8px;color:#c4b5fd}
+#lessonContent ul,#lessonContent ol{padding-left:24px;margin:10px 0}
+#lessonContent p{margin:10px 0}
+.example{background:#201d39;padding:14px;border-radius:10px;margin:13px 0}
+.question{background:#1b1a30;padding:15px;border-radius:10px;margin:14px 0}
+.question label{display:block;margin:10px 0;cursor:pointer}
+#feedback{margin-top:13px;line-height:1.6}
+footer{text-align:center;padding:25px;color:var(--muted);font-size:13px}
+@media(max-width:600px){main{padding:20px 13px}.hero{padding:24px 17px}.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">ZYN<span>TRA</span></div>
+<nav>
+<a href="index.html">Home</a>
+<a href="study.html">Smart Study</a>
+<a href="profile.html">Profile</a>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<div class="tag">🌍 SMART STUDY · GEOGRAPHY</div>
+<h1>Explore Our World</h1>
+<p>Jifunze kuhusu dunia, hali ya hewa, ramani, mazingira na shughuli za binadamu. Soma mada, jaribu maswali na ufuatilie maendeleo yako.</p>
+<div class="stats">
+<div class="stat"><strong id="topicCount">6</strong><span>Mada</span></div>
+<div class="stat"><strong id="doneCount">0</strong><span>Masomo yaliyokamilika</span></div>
+<div class="stat"><strong id="xpCount">0 XP</strong><span>Pointi zako</span></div>
+</div>
+</section>
+
+<input type="search" id="search" placeholder="🔎 Tafuta mada ya Geography...">
+<h2 class="section">Mada za Geography</h2>
+<div class="grid" id="topicGrid"></div>
+
+<section id="lessonArea">
+<h2 id="lessonTitle" style="margin-bottom:15px">Somo</h2>
+<div id="lessonContent"></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px">
+<button class="btn" id="completeBtn" onclick="completeLesson()">✓ Kamilisha Somo (+10 XP)</button>
+<button class="btn secondary" onclick="closeLesson()">Rudi kwa Mada</button>
+</div>
+<div id="feedback"></div>
+</section>
+</main>
+<footer>ZYNTRA © 2026 · Explore, Learn, Achieve.</footer>
+
+<script>
+const topics=[
+{
+id:"earth",emoji:"🌎",title:"Dunia na Mfumo wa Jua",
+desc:"Umbo la dunia, mizunguko ya dunia, latitudo, longitudo na mfumo wa jua.",
+lessons:[
+{id:"shape",title:"Umbo na Mienendo ya Dunia",content:`
+<p>Dunia ni sayari ya tatu kutoka kwenye Jua. Ina umbo linalokaribia tufe, lililobonyea kidogo kwenye ncha na kupanuka karibu na ikweta.</p>
+<h3>Mizunguko ya Dunia</h3>
+<ul>
+<li><b>Mzunguko wa dunia kwenye mhimili wake:</b> Huchukua takribani saa 24 na husababisha mchana na usiku.</li>
+<li><b>Mzunguko wa dunia kulizunguka Jua:</b> Huchukua takribani siku 365¼.</li>
+<li>Mwinamo wa mhimili wa dunia pamoja na mapinduzi yake huchangia kutokea kwa majira ya mwaka.</li>
+</ul>
+<div class="example"><b>Kumbuka:</b> Mchana na usiku husababishwa na mzunguko wa dunia kwenye mhimili wake.</div>
+<h3>Jaribio</h3><p>Ni nini husababisha mchana na usiku?</p>
+<div class="question"><label><input type="radio" name="q" value="a"> Dunia kulizunguka Jua</label><label><input type="radio" name="q" value="b"> Dunia kuzunguka kwenye mhimili wake</label><label><input type="radio" name="q" value="c"> Mabadiliko ya upepo</label></div>
+<button class="btn" onclick="checkAnswer('b','Mzunguko wa dunia kwenye mhimili wake husababisha mchana na usiku.')">Angalia Jibu</button><div id="answerFeedback"></div>`},
+{id:"latitude",title:"Latitudo na Longitudo",content:`
+<p>Latitudo na longitudo hutumika kutambua mahali duniani.</p>
+<ul>
+<li><b>Latitudo:</b> Mistari ya kufikirika inayopima umbali wa kaskazini au kusini mwa ikweta.</li>
+<li><b>Longitudo:</b> Mistari ya kufikirika inayopima umbali wa mashariki au magharibi mwa meridiani ya Greenwich.</li>
+<li><b>Ikweta:</b> Latitudo ya 0°.</li>
+<li><b>Meridiani ya Greenwich:</b> Longitudo ya 0°.</li>
+</ul>
+<div class="example">Mahali huweza kuonyeshwa kwa jozi ya latitudo na longitudo, kwa mfano 1° Kusini, 37° Mashariki.</div>
+<h3>Jaribio</h3><p>Latitudo ya ikweta ni ngapi?</p>
+<div class="question"><label><input type="radio" name="q" value="a"> 90°</label><label><input type="radio" name="q" value="b"> 180°</label><label><input type="radio" name="q" value="c"> 0°</label></div>
+<button class="btn" onclick="checkAnswer('c','Ikweta iko kwenye latitudo ya 0°.')">Angalia Jibu</button><div id="answerFeedback"></div>`}
+]},
+{
+id:"weather",emoji:"🌦️",title:"Hali ya Hewa na Tabianchi",
+desc:"Vipengele vya hali ya hewa, vifaa vya kupimia na mambo yanayoathiri tabianchi.",
+lessons:[
+{id:"elements",title:"Vipengele vya Hali ya Hewa",content:`
+<p>Hali ya hewa ni hali ya anga mahali fulani kwa muda mfupi. Tabianchi ni wastani wa hali ya hewa wa eneo kwa kipindi kirefu.</p>
+<h3>Vipengele muhimu</h3>
+<ul><li>Joto</li><li>Mvua</li><li>Upepo</li><li>Unyevu angani</li><li>Shinikizo la hewa</li><li>Uwingu na mwangaza wa jua</li></ul>
+<h3>Vifaa vya kupimia</h3>
+<ul><li>Thermometer: hupima joto.</li><li>Rain gauge: hupima kiasi cha mvua.</li><li>Wind vane: huonyesha mwelekeo wa upepo.</li><li>Anemometer: hupima kasi ya upepo.</li><li>Barometer: hupima shinikizo la hewa.</li></ul>
+<h3>Jaribio</h3><p>Kifaa gani hupima kiasi cha mvua?</p>
+<div class="question"><label><input type="radio" name="q" value="a"> Barometer</label><label><input type="radio" name="q" value="b"> Rain gauge</label><label><input type="radio" name="q" value="c"> Thermometer</label></div>
+<button class="btn" onclick="checkAnswer('b','Rain gauge hupima kiasi cha mvua.')">Angalia Jibu</button><div id="answerFeedback"></div>`}
+]},
+{
+id:"rocks",emoji:"🪨",title:"Miamba na Muundo wa Dunia",
+desc:"Aina za miamba, mzunguko wa miamba na michakato inayounda uso wa dunia.",
+lessons:[
+{id:"rock-types",title:"Aina za Miamba",content:`
+<p>Miamba ni mkusanyiko wa madini unaounda sehemu kubwa ya ganda la dunia.</p>
+<h3>Aina kuu tatu</h3>
+<ul><li><b>Miamba ya moto:</b> Hutokana na magma au lava kupoa. Mfano: granite na basalt.</li><li><b>Miamba ya mashapo:</b> Hutokana na mashapo kukusanyika na kushikamana. Mfano: sandstone na limestone.</li><li><b>Miamba ya metamofia:</b> Miamba iliyobadilika kutokana na joto na shinikizo. Mfano: marble na slate.</li></ul>
+<div class="example">Mzunguko wa miamba ni mabadiliko yanayotokea miamba inapovunjika, kusafirishwa, kuganda au kubadilishwa na joto na shinikizo.</div>
+<h3>Jaribio</h3><p>Granite ni mfano wa mwamba wa aina gani?</p>
+<div class="question"><label><input type="radio" name="q" value="a"> Mwamba wa moto</label><label><input type="radio" name="q" value="b"> Mwamba wa mashapo</label><label><input type="radio" name="q" value="c"> Mwamba wa metamofia</label></div>
+<button class="btn" onclick="checkAnswer('a','Granite ni mwamba wa moto unaoundwa magma inapopoa polepole.')">Angalia Jibu</button><div id="answerFeedback"></div>`}
+]},
+{
+id:"maps",emoji:"🗺️",title:"Ramani na Upimaji",
+desc:"Alama za ramani, vipimo, mwelekeo, mizani na namna ya kutafsiri ramani.",
+lessons:[
+{id:"map-elements",title:"Vipengele vya Ramani",content:`
+<p>Ramani ni mchoro unaowakilisha eneo lote au sehemu ya uso wa dunia kwa kutumia mizani.</p>
+<h3>Vipengele vya ramani</h3>
+<ul><li><b>Kichwa:</b> Huonyesha eneo au mada ya ramani.</li><li><b>Mizani:</b> Huonyesha uhusiano kati ya umbali wa ramani na umbali halisi.</li><li><b>Ufunguo:</b> Hufafanua alama zilizotumiwa.</li><li><b>Mwelekeo:</b> Huonyesha kaskazini, kusini, mashariki na magharibi.</li><li><b>Gridi:</b> Husaidia kutafuta mahali kwenye ramani.</li></ul>
+<div class="example"><b>Mfano wa mizani:</b> Ikiwa sentimita 1 kwenye ramani inawakilisha kilomita 2 ardhini, sentimita 5 huwakilisha kilomita 10.</div>
+<h3>Jaribio</h3><p>Ni kipengele gani kinachofafanua alama za ramani?</p>
+<div class="question"><label><input type="radio" name="q" value="a"> Kichwa</label><label><input type="radio" name="q" value="b"> Ufunguo</label><label><input type="radio" name="q" value="c"> Mwelekeo pekee</label></div>
+<button class="btn" onclick="checkAnswer('b','Ufunguo hueleza maana ya alama za ramani.')">Angalia Jibu</button><div id="answerFeedback"></div>`}
+]},
+{
+id:"vegetation",emoji:"🌳",title:"Mimea na Wanyama",
+desc:"Aina za mimea, usambazaji wake na uhusiano kati ya viumbe na mazingira.",
+lessons:[
+{id:"vegetation-types",title:"Aina za Mimea Asilia",content:`
+<p>Mimea asilia ni mimea inayokua katika eneo bila kupandwa na binadamu.</p>
+<h3>Aina za mimea</h3>
+<ul><li><b>Misitu:</b> Mara nyingi hupatikana katika maeneo yenye unyevu wa kutosha.</li><li><b>Savanna:</b> Huwa na nyasi pamoja na miti iliyotawanyika.</li><li><b>Jangwa:</b> Mimea ni michache na imezoea ukame.</li><li><b>Mimea ya milimani:</b> Hubadilika kulingana na kimo na joto.</li></ul>
+<h3>Mambo yanayoathiri usambazaji wa mimea</h3>
+<p>Mvua, joto, udongo, mwinuko, mwanga na shughuli za binadamu huathiri aina ya mimea inayoweza kukua katika eneo.</p>
+<h3>Jaribio</h3><p>Savanna kwa kawaida huwa na nini?</p>
+<div class="question"><label><input type="radio" name="q" value="a"> Barafu pekee</label><label><input type="radio" name="q" value="b"> Nyasi na miti iliyotawanyika</label><label><input type="radio" name="q" value="c"> Maji pekee</label></div>
+<button class="btn" onclick="checkAnswer('b','Savanna huwa na nyasi na miti iliyotawanyika.')">Angalia Jibu</button><div id="answerFeedback"></div>`}
+]},
+{
+id:"environment",emoji:"♻️",title:"Mazingira na Uhifadhi",
+desc:"Uharibifu wa mazingira, uchafuzi, ukataji miti na mbinu za uhifadhi.",
+lessons:[
+{id:"conservation",title:"Uhifadhi wa Mazingira",content:`
+<p>Mazingira ni vitu hai na visivyo hai vinavyotuzunguka. Uhifadhi wa mazingira hulenga kulinda rasilimali za asili na kudumisha uwiano wa ikolojia.</p>
+<h3>Changamoto za mazingira</h3>
+<ul><li>Ukataji wa miti.</li><li>Uchafuzi wa maji, hewa na udongo.</li><li>Uharibifu wa udongo kutokana na mmomonyoko.</li><li>Upotevu wa makazi ya wanyamapori.</li><li>Mabadiliko ya tabianchi.</li></ul>
+<h3>Njia za uhifadhi</h3>
+<ul><li>Kupanda miti na kulinda misitu.</li><li>Kutupa na kuchakata taka kwa njia sahihi.</li><li>Kutumia maji kwa uangalifu.</li><li>Kulinda maeneo ya wanyamapori.</li><li>Kutumia nishati safi inapowezekana.</li></ul>
+<h3>Jaribio</h3><p>Ni hatua gani inayosaidia kupunguza ukataji wa miti?</p>
+<div class="question"><label><input type="radio" name="q" value="a"> Kupanda miti</label><label><input type="radio" name="q" value="b"> Kuchoma misitu</label><label><input type="radio" name="q" value="c"> Kutupa taka mtoni</label></div>
+<button class="btn" onclick="checkAnswer('a','Kupanda miti husaidia kurejesha uoto wa asili na kulinda udongo.')">Angalia Jibu</button><div id="answerFeedback"></div>`}
+]}
+];
+
+const grid=document.getElementById("topicGrid");
+const search=document.getElementById("search");
+let activeLesson=null;
+
+function userId(){
+ let value=localStorage.getItem("zyntraUser")||"guest";
+ try{let u=JSON.parse(value);value=u.username||u.email||u.name||value}catch(e){}
+ return String(value).replace(/[^a-zA-Z0-9_-]/g,"_");
+}
+const userKey=userId();
+const progressKey="zyntraGeographyCompleted_"+userKey;
+const xpKey="zyntraGeographyXP_"+userKey;
+function completedList(){try{return JSON.parse(localStorage.getItem(progressKey)||"[]")}catch(e){return []}}
+function xp(){return Number(localStorage.getItem(xpKey)||0)}
+
+function render(){
+ const term=search.value.toLowerCase().trim();
+ const done=completedList();
+ const filtered=topics.filter(t=>(t.title+" "+t.desc+" "+t.lessons.map(l=>l.title).join(" ")).toLowerCase().includes(term));
+ grid.innerHTML="";
+ filtered.forEach(t=>{
+  const count=t.lessons.filter(l=>done.includes(t.id+":"+l.id)).length;
+  const pct=Math.round(count/t.lessons.length*100);
+  const card=document.createElement("article");
+  card.className="card";
+  card.innerHTML=`<div class="emoji">${t.emoji}</div><h3>${t.title}</h3><p>${t.desc}</p><div class="small">${count}/${t.lessons.length} masomo yamekamilika</div><div class="progress"><div class="bar" style="width:${pct}%"></div></div><button class="btn">Fungua Mada →</button>`;
+  card.querySelector("button").onclick=()=>openTopic(t.id);
+  grid.appendChild(card);
+ });
+ if(!filtered.length)grid.innerHTML="<p>Hakuna mada iliyopatikana. Jaribu neno jingine.</p>";
+ document.getElementById("topicCount").textContent=topics.length;
+ document.getElementById("doneCount").textContent=done.length;
+ document.getElementById("xpCount").textContent=xp()+" XP";
+}
+function openTopic(id){
+ const t=topics.find(x=>x.id===id);
+ const done=completedList();
+ activeLesson=null;
+ document.getElementById("lessonTitle").textContent=t.title;
+ document.getElementById("lessonContent").innerHTML=`<p>${t.desc}</p><h3>Masomo</h3>`+t.lessons.map((l,i)=>`<div class="card" style="margin:12px 0"><h3>${i+1}. ${l.title} ${done.includes(t.id+":"+l.id)?"✓":""}</h3><button class="btn" style="margin-top:12px" onclick="showLesson('${t.id}','${l.id}')">Soma Somo →</button></div>`).join("");
+ document.getElementById("completeBtn").style.display="none";
+ document.getElementById("feedback").textContent="";
+ document.getElementById("lessonArea").style.display="block";
+ document.getElementById("lessonArea").scrollIntoView({behavior:"smooth"});
+}
+function showLesson(tid,lid){
+ const t=topics.find(x=>x.id===tid);
+ const l=t.lessons.find(x=>x.id===lid);
+ activeLesson=tid+":"+lid;
+ document.getElementById("lessonTitle").textContent=l.title;
+ document.getElementById("lessonContent").innerHTML=l.content;
+ const done=completedList().includes(activeLesson);
+ const btn=document.getElementById("completeBtn");
+ btn.style.display="inline-block";
+ btn.disabled=done;
+ btn.textContent=done?"✓ Somo Limekamilika":"✓ Kamilisha Somo (+10 XP)";
+ document.getElementById("feedback").textContent=done?"Tayari umekamilisha somo hili.":"";
+ document.getElementById("lessonArea").scrollIntoView({behavior:"smooth"});
+}
+function checkAnswer(correct,explanation){
+ const selected=document.querySelector('input[name="q"]:checked');
+ const out=document.getElementById("answerFeedback");
+ if(!selected){out.textContent="Chagua jibu kwanza.";out.style.color="#fbbf24";return}
+ if(selected.value===correct){out.textContent="✓ Sahihi! "+explanation;out.style.color="#4ade80"}
+ else{out.textContent="Bado si sahihi. Soma maelezo na ujaribu tena.";out.style.color="#fb7185"}
+}
+function completeLesson(){
+ if(!activeLesson)return;
+ const done=completedList();
+ if(done.includes(activeLesson))return;
+ done.push(activeLesson);
+ localStorage.setItem(progressKey,JSON.stringify(done));
+ localStorage.setItem(xpKey,String(xp()+10));
+ document.getElementById("completeBtn").disabled=true;
+ document.getElementById("completeBtn").textContent="✓ Somo Limekamilika";
+ document.getElementById("feedback").textContent="Hongera! Umepata XP 10.";
+ document.getElementById("feedback").style.color="#4ade80";
+ render();
+}
+function closeLesson(){
+ document.getElementById("lessonArea").style.display="none";
+ activeLesson=null;
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+search.addEventListener("input",render);
+render();
+</script>
+</body>
+</html>

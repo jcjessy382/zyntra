@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA | Challenges</title>
+
+<style>
+:root{
+    --bg:#070711;
+    --bg2:#0d0d1b;
+    --purple:#8b5cf6;
+    --blue:#3b82f6;
+    --pink:#ec4899;
+    --cyan:#06b6d4;
+    --green:#22c55e;
+    --red:#ef4444;
+    --yellow:#f59e0b;
+    --text:#f5f5f5;
+    --muted:#999;
+    --border:rgba(255,255,255,.10);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at top left,rgba(139,92,246,.16),transparent 30%),
+        radial-gradient(circle at top right,rgba(59,130,246,.12),transparent 30%),
+        var(--bg);
+    color:var(--text);
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    height:70px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 5%;
+    background:rgba(7,7,17,.88);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:2px;
+    background:linear-gradient(90deg,var(--purple),var(--blue),var(--cyan));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.nav-links a{
+    color:#aaa;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:white;
+}
+
+.profile{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--purple),var(--blue));
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+    width:94%;
+    max-width:1050px;
+    margin:auto;
+    padding:40px 0 70px;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:42px;
+    margin-bottom:10px;
+    background:linear-gradient(90deg,var(--purple),var(--blue),var(--cyan));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.header p{
+    color:var(--muted);
+    line-height:1.5;
+}
+
+/* ================= QUICK INFO ================= */
+
+.challenge-types{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.type-card{
+    padding:20px;
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:rgba(13,13,27,.85);
+}
+
+.type-card h3{
+    margin-bottom:7px;
+}
+
+.type-card p{
+    color:#999;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.type-icon{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:rgba(13,13,27,.88);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+}
+
+.stat-number{
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.stat-label{
+    color:#999;
+    font-size:13px;
+}
+
+/* ================= CHALLENGE CARD ================= */
+
+.challenge-card{
+    background:rgba(13,13,27,.90);
+    border:1px solid var(--border);
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 20px 60px rgba(0,0,0,.30);
+}
+
+/* ================= TOP ================= */
+
+.challenge-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.challenge-label{
+    color:#aaa;
+    font-size:13px;
+}
+
+.question-number{
+    color:#aaa;
+    font-size:13px;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress{
+    width:100%;
+    height:8px;
+    border-radius:10px;
+    background:#171727;
+    overflow:hidden;
+    margin-bottom:28px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,var(--purple),var(--blue),var(--cyan));
+    transition:.3s;
+}
+
+/* ================= QUESTION ================= */
+
+.subject{
+    display:inline-block;
+    padding:7px 11px;
+    border-radius:15px;
+    background:rgba(139,92,246,.12);
+    color:#c6b4ff;
+    font-size:12px;
+    margin-bottom:15px;
+}
+
+.question{
+    font-size:23px;
+    line-height:1.5;
+    margin-bottom:25px;
+}
+
+/* ================= OPTIONS ================= */
+
+.options{
+    display:grid;
+    gap:12px;
+}
+
+.option{
+    width:100%;
+    padding:15px;
+    text-align:left;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:#090916;
+    color:#ddd;
+    cursor:pointer;
+    transition:.2s;
+    font-size:15px;
+}
+
+.option:hover{
+    border-color:var(--purple);
+    background:rgba(139,92,246,.08);
+}
+
+.option.selected{
+    border-color:var(--purple);
+    background:rgba(139,92,246,.16);
+    color:white;
+}
+
+.option.correct{
+    border-color:var(--green);
+    background:rgba(34,197,94,.13);
+    color:#8df0ae;
+}
+
+.option.wrong{
+    border-color:var(--red);
+    background:rgba(239,68,68,.13);
+    color:#ff9999;
+}
+
+.option:disabled{
+    cursor:not-allowed;
+}
+
+/* ================= FEEDBACK ================= */
+
+.feedback{
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    border-radius:13px;
+    line-height:1.5;
+}
+
+.feedback.show{
+    display:block;
+}
+
+.feedback.correct{
+    background:rgba(34,197,94,.10);
+    border:1px solid rgba(34,197,94,.25);
+    color:#86e8aa;
+}
+
+.feedback.wrong{
+    background:rgba(239,68,68,.10);
+    border:1px solid rgba(239,68,68,.25);
+    color:#ff9b9b;
+}
+
+/* ================= ACTIONS ================= */
+
+.actions{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:25px;
+}
+
+.btn{
+    padding:13px 20px;
+    border-radius:11px;
+    border:1px solid var(--border);
+    background:#101021;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.btn:hover{
+    border-color:var(--purple);
+    transform:translateY(-1px);
+}
+
+.btn.primary{
+    border:none;
+    background:linear-gradient(135deg,var(--purple),var(--blue));
+}
+
+.btn.green{
+    border:none;
+    background:linear-gradient(135deg,#16a34a,var(--green));
+}
+
+.btn.danger{
+    border-color:rgba(239,68,68,.3);
+}
+
+.btn:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+    transform:none;
+}
+
+/* ================= RESULT ================= */
+
+.result{
+    display:none;
+    text-align:center;
+    padding:20px;
+}
+
+.result.show{
+    display:block;
+}
+
+.result-icon{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.result h2{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.result-score{
+    font-size:45px;
+    font-weight:bold;
+    margin:15px 0;
+    background:linear-gradient(90deg,var(--purple),var(--cyan));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.result p{
+    color:#aaa;
+    margin-bottom:22px;
+    line-height:1.5;
+}
+
+.result-details{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:25px 0;
+}
+
+.result-box{
+    padding:15px;
+    border-radius:15px;
+    background:#090916;
+    border:1px solid var(--border);
+}
+
+.result-box strong{
+    display:block;
+    font-size:22px;
+    margin-bottom:5px;
+}
+
+.result-box span{
+    color:#999;
+    font-size:12px;
+}
+
+/* ================= DAILY PROGRESS ================= */
+
+.daily{
+    margin-top:20px;
+    padding:20px;
+    background:rgba(13,13,27,.85);
+    border:1px solid var(--border);
+    border-radius:18px;
+}
+
+.daily-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.daily-title{
+    font-weight:bold;
+}
+
+.daily-count{
+    color:#aaa;
+    font-size:13px;
+}
+
+.daily-bar{
+    width:100%;
+    height:8px;
+    background:#171727;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.daily-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,var(--pink),var(--purple));
+    transition:.3s;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:750px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .container{
+        width:94%;
+        padding-top:25px;
+    }
+
+    .header h1{
+        font-size:34px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .challenge-types{
+        grid-template-columns:1fr;
+    }
+
+    .challenge-card{
+        padding:20px;
+    }
+
+    .question{
+        font-size:19px;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .result-details{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:430px){
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stat{
+        padding:15px 10px;
+    }
+
+    .stat-number{
+        font-size:24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        ZYNTRA
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="study.html">Study</a>
+
+        <a href="ai.html">AI</a>
+
+        <a href="community.html">Community</a>
+
+        <a href="planner.html">Planner</a>
+
+        <a href="challenge.html" class="active">
+            Challenges
+        </a>
+
+        <a href="profile.html">Profile</a>
+
+    </div>
+
+    <div
+        class="profile"
+        id="profileInitial"
+        onclick="goProfile()"
+        title="Open Profile"
+    >
+        S
+    </div>
+
+</nav>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+    <div class="header">
+
+        <h1>
+            Daily Challenge
+        </h1>
+
+        <p id="welcomeText">
+            Test your knowledge and improve every day.
+        </p>
+
+    </div>
+
+
+    <!-- ================= TYPES ================= -->
+
+    <section class="challenge-types">
+
+        <div class="type-card">
+
+            <div class="type-icon">
+                🎯
+            </div>
+
+            <h3>
+                Daily Challenge
+            </h3>
+
+            <p>
+                Answer questions from different school subjects
+                and earn points every day.
+            </p>
+
+        </div>
+
+
+        <div class="type-card">
+
+            <div class="type-icon">
+                🔥
+            </div>
+
+            <h3>
+                Build Your Streak
+            </h3>
+
+            <p>
+                Keep practising consistently and improve your
+                personal best.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STATS ================= -->
+
+    <section class="stats">
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="scoreStat"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Total Points
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="correctStat"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Correct Answers
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="streakStat"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Best Score
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="completedStat"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Challenges
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DAILY PROGRESS ================= -->
+
+    <section class="daily">
+
+        <div class="daily-top">
+
+            <div class="daily-title">
+                📅 Today's Progress
+            </div>
+
+            <div
+                class="daily-count"
+                id="dailyCount"
+            >
+                0 / 10
+            </div>
+
+        </div>
+
+        <div class="daily-bar">
+
+            <div
+                class="daily-fill"
+                id="dailyFill"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CHALLENGE ================= -->
+
+    <section
+        class="challenge-card"
+        style="margin-top:20px;"
+    >
+
+        <div id="quizArea">
+
+            <div class="challenge-top">
+
+                <div class="challenge-label">
+                    ZYNTRA Knowledge Challenge
+                </div>
+
+                <div
+                    class="question-number"
+                    id="questionNumber"
+                >
+                    Question 1 of 10
+                </div>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
+
+            </div>
+
+
+            <div
+                class="subject"
+                id="subject"
+            >
+                Mathematics
+            </div>
+
+
+            <div
+                class="question"
+                id="question"
+            >
+                Loading question...
+            </div>
+
+
+            <div
+                class="options"
+                id="options"
+            ></div>
+
+
+            <div
+                class="feedback"
+                id="feedback"
+            ></div>
+
+
+            <div class="actions">
+
+                <button
+                    class="btn danger"
+                    onclick="restartQuiz()"
+                >
+                    Restart
+                </button>
+
+
+                <button
+                    class="btn primary"
+                    id="nextButton"
+                    onclick="nextQuestion()"
+                    disabled
+                >
+                    Next Question →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RESULT ================= -->
+
+        <div
+            class="result"
+            id="result"
+        >
+
+            <div class="result-icon">
+                🏆
+            </div>
+
+            <h2>
+                Challenge Complete!
+            </h2>
+
+            <div
+                class="result-score"
+                id="resultScore"
+            >
+                0/10
+            </div>
+
+            <p id="resultMessage">
+                Great effort!
+            </p>
+
+
+            <div class="result-details">
+
+                <div class="result-box">
+
+                    <strong id="resultPoints">
+                        +0
+                    </strong>
+
+                    <span>
+                        Points Earned
+                    </span>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <strong id="resultCorrect">
+                        0
+                    </strong>
+
+                    <span>
+                        Correct
+                    </span>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <strong id="resultPercentage">
+                        0%
+                    </strong>
+
+                    <span>
+                        Accuracy
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn primary"
+                onclick="restartQuiz()"
+            >
+                Try Again
+            </button>
+
+            <button
+                class="btn"
+                onclick="goStudy()"
+                style="margin-left:8px;"
+            >
+                Back to Study
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= AUTH ================= -->
+
+<script src="auth.js"></script>
+
+
+<script>
+
+/* =====================================================
+   REQUIRE LOGIN
+   ===================================================== */
+
+if(!requireZyntraLogin()){
+
+    throw new Error(
+        "ZYNTRA login required."
+    );
+
+}
+
+
+/* =====================================================
+   USER
+   ===================================================== */
+
+const studentName =
+    getZyntraName();
+
+const profileInitial =
+    document.getElementById(
+        "profileInitial"
+    );
+
+profileInitial.textContent =
+    studentName
+        .charAt(0)
+        .toUpperCase();
+
+
+document.getElementById(
+    "welcomeText"
+).textContent =
+    "Welcome " +
+    studentName +
+    "! Test your knowledge and improve every day.";
+
+
+/* =====================================================
+   QUESTIONS
+   ===================================================== */
+
+const questions = [
+
+    {
+        subject:"Mathematics",
+
+        question:
+            "Solve: 2x + 4 = 10.",
+
+        options:[
+            "x = 2",
+            "x = 3",
+            "x = 4",
+            "x = 5"
+        ],
+
+        answer:1,
+
+        explanation:
+            "Subtract 4 from both sides: 2x = 6. Divide by 2: x = 3."
+    },
+
+
+    {
+        subject:"Chemistry",
+
+        question:
+            "Which gas is required for combustion?",
+
+        options:[
+            "Nitrogen",
+            "Oxygen",
+            "Carbon dioxide",
+            "Hydrogen"
+        ],
+
+        answer:1,
+
+        explanation:
+            "Oxygen supports combustion."
+    },
+
+
+    {
+        subject:"Physics",
+
+        question:
+            "What is the SI unit of force?",
+
+        options:[
+            "Joule",
+            "Watt",
+            "Newton",
+            "Pascal"
+        ],
+
+        answer:2,
+
+        explanation:
+            "Force is measured in newtons (N)."
+    },
+
+
+    {
+        subject:"Biology",
+
+        question:
+            "Which organelle is responsible for photosynthesis?",
+
+        options:[
+            "Mitochondrion",
+            "Nucleus",
+            "Chloroplast",
+            "Ribosome"
+        ],
+
+        answer:2,
+
+        explanation:
+            "Chloroplasts contain chlorophyll and are the main site of photosynthesis."
+    },
+
+
+    {
+        subject:"Computer Studies",
+
+        question:
+            "Which device connects different networks together?",
+
+        options:[
+            "Keyboard",
+            "Router",
+            "Monitor",
+            "Printer"
+        ],
+
+        answer:1,
+
+        explanation:
+            "A router forwards data between different networks."
+    },
+
+
+    {
+        subject:"English",
+
+        question:
+            "Which word is a synonym of 'rapid'?",
+
+        options:[
+            "Slow",
+            "Fast",
+            "Weak",
+            "Small"
+        ],
+
+        answer:1,
+
+        explanation:
+            "Rapid means happening quickly or fast."
+    },
+
+
+    {
+        subject:"Geography",
+
+        question:
+            "What is the process by which water changes from liquid to vapour?",
+
+        options:[
+            "Condensation",
+            "Precipitation",
+            "Evaporation",
+            "Freezing"
+        ],
+
+        answer:2,
+
+        explanation:
+            "Evaporation changes liquid water into water vapour."
+    },
+
+
+    {
+        subject:"History",
+
+        question:
+            "Which event began in France in 1789?",
+
+        options:[
+            "Industrial Revolution",
+            "French Revolution",
+            "American Civil War",
+            "First World War"
+        ],
+
+        answer:1,
+
+        explanation:
+            "The French Revolution began in France in 1789."
+    },
+
+
+    {
+        subject:"Computer Studies",
+
+        question:
+            "What does CPU stand for?",
+
+        options:[
+            "Central Processing Unit",
+            "Computer Personal Unit",
+            "Central Program Utility",
+            "Computer Processing User"
+        ],
+
+        answer:0,
+
+        explanation:
+            "CPU stands for Central Processing Unit."
+    },
+
+
+    {
+        subject:"Physics",
+
+        question:
+            "If F = ma, what is the force when mass is 5 kg and acceleration is 2 m/s²?",
+
+        options:[
+            "7 N",
+            "10 N",
+            "12 N",
+            "15 N"
+        ],
+
+        answer:1,
+
+        explanation:
+            "F = ma = 5 × 2 = 10 N."
+    }
+
+];
+
+
+/* =====================================================
+   QUIZ VARIABLES
+   ===================================================== */
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let correctAnswers = 0;
+
+let currentAnswered = false;
+
+
+/* =====================================================
+   USER STORAGE
+   ===================================================== */
+
+function getChallengeKey(){
+
+    const username =
+        getZyntraUsername();
+
+    const email =
+        getZyntraEmail();
+
+    const identifier =
+        username ||
+        email ||
+        "student";
+
+    return (
+        "zyntraChallenge_" +
+        identifier
+    );
+
+}
+
+
+function getChallengeStats(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(
+                getChallengeKey()
+            );
+
+        if(!saved){
+
+            return {
+
+                totalScore:0,
+
+                correctAnswers:0,
+
+                bestStreak:0,
+
+                completed:0,
+
+                dailyCompleted:0,
+
+                lastDate:"",
+
+                weeklyCompleted:0,
+
+                weekStart:""
+
+            };
+
+        }
+
+        const stats =
+            JSON.parse(saved);
+
+        return {
+
+            totalScore:
+                stats.totalScore || 0,
+
+            correctAnswers:
+                stats.correctAnswers || 0,
+
+            bestStreak:
+                stats.bestStreak || 0,
+
+            completed:
+                stats.completed || 0,
+
+            dailyCompleted:
+                stats.dailyCompleted || 0,
+
+            lastDate:
+                stats.lastDate || "",
+
+            weeklyCompleted:
+                stats.weeklyCompleted || 0,
+
+            weekStart:
+                stats.weekStart || ""
+
+        };
+
+    }catch(error){
+
+        return {
+
+            totalScore:0,
+
+            correctAnswers:0,
+
+            bestStreak:0,
+
+            completed:0,
+
+            dailyCompleted:0,
+
+            lastDate:"",
+
+            weeklyCompleted:0,
+
+            weekStart:""
+
+        };
+
+    }
+
+}
+
+
+function saveChallengeStats(stats){
+
+    localStorage.setItem(
+
+        getChallengeKey(),
+
+        JSON.stringify(stats)
+
+    );
+
+}
+
+
+/* =====================================================
+   DATE HELPERS
+   ===================================================== */
+
+function getToday(){
+
+    const date =
+        new Date();
+
+    return date
+        .toISOString()
+        .split("T")[0];
+
+}
+
+
+function getWeekStart(){
+
+    const date =
+        new Date();
+
+    const day =
+        date.getDay();
+
+    const difference =
+        day === 0
+        ? 6
+        : day - 1;
+
+    date.setDate(
+        date.getDate() -
+        difference
+    );
+
+    return date
+        .toISOString()
+        .split("T")[0];
+
+}
+
+
+/* =====================================================
+   RESET DAILY / WEEKLY DATA
+   ===================================================== */
+
+function refreshPeriodStats(){
+
+    const stats =
+        getChallengeStats();
+
+    const today =
+        getToday();
+
+    const weekStart =
+        getWeekStart();
+
+
+    if(stats.lastDate !== today){
+
+        stats.dailyCompleted =
+            0;
+
+        stats.lastDate =
+            today;
+
+    }
+
+
+    if(stats.weekStart !== weekStart){
+
+        stats.weeklyCompleted =
+            0;
+
+        stats.weekStart =
+            weekStart;
+
+    }
+
+
+    saveChallengeStats(
+        stats
+    );
+
+}
+
+
+/* =====================================================
+   DISPLAY STATS
+   ===================================================== */
+
+function displayStats(){
+
+    refreshPeriodStats();
+
+    const stats =
+        getChallengeStats();
+
+
+    document.getElementById(
+        "scoreStat"
+    ).textContent =
+        stats.totalScore;
+
+
+    document.getElementById(
+        "correctStat"
+    ).textContent =
+        stats.correctAnswers;
+
+
+    document.getElementById(
+        "streakStat"
+    ).textContent =
+        stats.bestStreak;
+
+
+    document.getElementById(
+        "completedStat"
+    ).textContent =
+        stats.completed;
+
+
+    const daily =
+        Math.min(
+            stats.dailyCompleted,
+            questions.length
+        );
+
+
+    document.getElementById(
+        "dailyCount"
+    ).textContent =
+        daily +
+        " / " +
+        questions.length;
+
+
+    document.getElementById(
+        "dailyFill"
+    ).style.width =
+        (
+            daily /
+            questions.length *
+            100
+        ) +
+        "%";
+
+}
+
+
+displayStats();
+
+
+/* =====================================================
+   LOAD QUESTION
+   ===================================================== */
+
+function loadQuestion(){
+
+    currentAnswered =
+        false;
+
+
+    const q =
+        questions[currentQuestion];
+
+
+    document.getElementById(
+        "questionNumber"
+    ).textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        questions.length;
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        (
+            (currentQuestion + 1) /
+            questions.length *
+            100
+        ) +
+        "%";
+
+
+    document.getElementById(
+        "subject"
+    ).textContent =
+        q.subject;
+
+
+    document.getElementById(
+        "question"
+    ).textContent =
+        q.question;
+
+
+    const options =
+        document.getElementById(
+            "options"
+        );
+
+
+    options.innerHTML = "";
+
+
+    q.options.forEach(
+        (option,index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "option";
+
+
+            button.textContent =
+                String.fromCharCode(
+                    65 + index
+                ) +
+                ". " +
+                option;
+
+
+            button.onclick =
+                function(){
+
+                    selectAnswer(
+                        index,
+                        button
+                    );
+
+                };
+
+
+            options.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    const feedback =
+        document.getElementById(
+            "feedback"
+        );
+
+
+    feedback.className =
+        "feedback";
+
+
+    feedback.textContent =
+        "";
+
+
+    const nextButton =
+        document.getElementById(
+            "nextButton"
+        );
+
+
+    nextButton.disabled =
+        true;
+
+
+    nextButton.textContent =
+        currentQuestion ===
+        questions.length - 1
+        ?
+        "Finish Challenge"
+        :
+        "Next Question →";
+
+}
+
+
+/* =====================================================
+   SELECT ANSWER
+   ===================================================== */
+
+function selectAnswer(
+    selectedIndex,
+    selectedButton
+){
+
+    if(currentAnswered){
+
+        return;
+
+    }
+
+
+    currentAnswered =
+        true;
+
+
+    const q =
+        questions[currentQuestion];
+
+
+    const optionButtons =
+        document.querySelectorAll(
+            ".option"
+        );
+
+
+    optionButtons.forEach(
+        button => {
+
+            button.disabled =
+                true;
+
+        }
+    );
+
+
+    const feedback =
+        document.getElementById(
+            "feedback"
+        );
+
+
+    if(
+        selectedIndex ===
+        q.answer
+    ){
+
+        selectedButton.classList.add(
+            "correct"
+        );
+
+
+        score += 1;
+
+        correctAnswers += 1;
+
+
+        feedback.className =
+            "feedback show correct";
+
+
+        feedback.textContent =
+            "✓ Correct! " +
+            q.explanation;
+
+    }else{
+
+        selectedButton.classList.add(
+            "wrong"
+        );
+
+
+        optionButtons[
+            q.answer
+        ].classList.add(
+            "correct"
+        );
+
+
+        feedback.className =
+            "feedback show wrong";
+
+
+        feedback.textContent =
+            "✗ Not quite. " +
+            q.explanation;
+
+    }
+
+
+    document.getElementById(
+        "nextButton"
+    ).disabled =
+        false;
+
+}
+
+
+/* =====================================================
+   NEXT QUESTION
+   ===================================================== */
+
+function nextQuestion(){
+
+    if(!currentAnswered){
+
+        return;
+
+    }
+
+
+    if(
+        currentQuestion >=
+        questions.length - 1
+    ){
+
+        finishQuiz();
+
+        return;
+
+    }
+
+
+    currentQuestion++;
+
+    loadQuestion();
+
+}
+
+
+/* =====================================================
+   FINISH QUIZ
+   ===================================================== */
+
+function finishQuiz(){
+
+    const stats =
+        getChallengeStats();
+
+
+    const pointsEarned =
+        score * 10;
+
+
+    stats.totalScore +=
+        pointsEarned;
+
+
+    stats.correctAnswers +=
+        correctAnswers;
+
+
+    stats.completed +=
+        1;
+
+
+    stats.dailyCompleted +=
+        1;
+
+
+    stats.weeklyCompleted +=
+        1;
+
+
+    if(score > stats.bestStreak){
+
+        stats.bestStreak =
+            score;
+
+    }
+
+
+    stats.lastDate =
+        getToday();
+
+
+    stats.weekStart =
+        getWeekStart();
+
+
+    saveChallengeStats(
+        stats
+    );
+
+
+    document.getElementById(
+        "quizArea"
+    ).style.display =
+        "none";
+
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    result.classList.add(
+        "show"
+    );
+
+
+    const percentage =
+        Math.round(
+            score /
+            questions.length *
+            100
+        );
+
+
+    document.getElementById(
+        "resultScore"
+    ).textContent =
+        score +
+        "/" +
+        questions.length;
+
+
+    document.getElementById(
+        "resultPoints"
+    ).textContent =
+        "+" +
+        pointsEarned;
+
+
+    document.getElementById(
+        "resultCorrect"
+    ).textContent =
+        correctAnswers;
+
+
+    document.getElementById(
+        "resultPercentage"
+    ).textContent =
+        percentage +
+        "%";
+
+
+    let message;
+
+
+    if(percentage >= 80){
+
+        message =
+            "Excellent work, " +
+            studentName +
+            "! Keep challenging yourself.";
+
+    }else if(percentage >= 50){
+
+        message =
+            "Good effort, " +
+            studentName +
+            "! Keep revising and you will improve.";
+
+    }else{
+
+        message =
+            "Keep practising, " +
+            studentName +
+            ". Every challenge is a chance to learn.";
+
+    }
+
+
+    document.getElementById(
+        "resultMessage"
+    ).textContent =
+        message;
+
+
+    displayStats();
+
+}
+
+
+/* =====================================================
+   RESTART QUIZ
+   ===================================================== */
+
+function restartQuiz(){
+
+    currentQuestion =
+        0;
+
+    score =
+        0;
+
+    correctAnswers =
+        0;
+
+
+    document.getElementById(
+        "quizArea"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "result"
+    ).classList.remove(
+        "show"
+    );
+
+
+    loadQuestion();
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
+
+function goProfile(){
+
+    window.location.href =
+        "profile.html";
+
+}
+
+
+function goStudy(){
+
+    window.location.href =
+        "study.html";
+
+}
+
+
+/* =====================================================
+   LOGOUT
+   ===================================================== */
+
+function logoutStudent(){
+
+    logoutZyntra();
+
+}
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1457 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA | Ninema</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#070711;
+    color:white;
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#8b5cf6;
+    filter:blur(190px);
+    opacity:.10;
+    top:-200px;
+    left:-180px;
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#3b82f6;
+    filter:blur(190px);
+    opacity:.09;
+    right:-180px;
+    bottom:-200px;
+    z-index:-2;
+}
+
+
+/* NAVBAR */
+
+nav{
+    height:75px;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(7,7,17,.85);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:3px;
+}
+
+.logo span{
+    color:#8b5cf6;
+}
+
+.nav-links{
+    display:flex;
+    gap:22px;
+}
+
+.nav-links a{
+    color:#9292a6;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:white;
+}
+
+
+/* CONTAINER */
+
+.container{
+    width:92%;
+    max-width:1200px;
+    margin:auto;
+}
+
+
+/* BACK BUTTON */
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:11px 20px;
+    border-radius:12px;
+    color:white;
+    text-decoration:none;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+    transform:translateY(-3px);
+}
+
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:80px 20px 70px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 16px;
+    margin-bottom:20px;
+    border-radius:30px;
+    background:rgba(139,92,246,.12);
+    border:1px solid rgba(139,92,246,.30);
+    color:#c4b5fd;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.hero h1{
+    font-size:clamp(45px,7vw,80px);
+    line-height:1;
+    margin-bottom:20px;
+    background:linear-gradient(135deg,#ffffff,#c4b5fd,#60a5fa);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    max-width:750px;
+    margin:auto;
+    color:#9999ad;
+    font-size:17px;
+}
+
+
+/* STORY ICON */
+
+.story-icon{
+    width:150px;
+    height:150px;
+    margin:40px auto 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:35px;
+    font-size:70px;
+    background:linear-gradient(
+        135deg,
+        rgba(139,92,246,.20),
+        rgba(59,130,246,.15)
+    );
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 0 60px rgba(139,92,246,.20);
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+}
+
+
+/* SECTIONS */
+
+.section{
+    margin-bottom:70px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.section-title p{
+    color:#858599;
+}
+
+
+/* CARDS */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    padding:27px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:20px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(139,92,246,.40);
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.card-icon{
+    font-size:32px;
+    margin-bottom:14px;
+}
+
+.card h3{
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#9292a5;
+    font-size:14px;
+}
+
+
+/* FEATURE BOX */
+
+.featured{
+    padding:35px;
+    border-radius:25px;
+    background:linear-gradient(
+        135deg,
+        rgba(139,92,246,.13),
+        rgba(59,130,246,.07)
+    );
+    border:1px solid rgba(139,92,246,.25);
+    box-shadow:0 20px 70px rgba(0,0,0,.25);
+}
+
+.featured h2{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.featured p{
+    color:#b0b0c0;
+    margin-bottom:15px;
+}
+
+
+/* THEME BOX */
+
+.theme{
+    padding:24px;
+    border-radius:18px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    transition:.3s;
+}
+
+.theme:hover{
+    transform:translateY(-4px);
+    border-color:rgba(139,92,246,.35);
+}
+
+.theme h3{
+    margin-bottom:8px;
+}
+
+.theme p{
+    color:#8d8d9f;
+    font-size:14px;
+}
+
+
+/* ANALYSIS */
+
+.analysis-box{
+    padding:30px;
+    border-radius:22px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);
+}
+
+.analysis-box h3{
+    margin-bottom:15px;
+}
+
+.analysis-box p{
+    color:#a4a4b5;
+    margin-bottom:12px;
+}
+
+
+/* QUESTIONS */
+
+.question{
+    padding:25px;
+    margin-bottom:15px;
+    border-radius:18px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.question-tag{
+    display:inline-block;
+    padding:5px 10px;
+    margin-bottom:10px;
+    border-radius:15px;
+    background:rgba(139,92,246,.12);
+    color:#c4b5fd;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.question h3{
+    margin-bottom:10px;
+}
+
+.question p{
+    color:#9292a5;
+    font-size:14px;
+}
+
+
+/* QUIZ */
+
+.quiz{
+    max-width:700px;
+    margin:auto;
+    padding:35px;
+    border-radius:25px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.10);
+}
+
+.quiz h2{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.quiz-intro{
+    text-align:center;
+    color:#858599;
+    margin-bottom:25px;
+}
+
+.quiz-question{
+    padding:25px;
+    background:rgba(0,0,0,.15);
+    border-radius:18px;
+}
+
+.quiz-question h3{
+    margin-bottom:20px;
+}
+
+.option{
+    width:100%;
+    padding:14px;
+    margin:6px 0;
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.09);
+    color:white;
+    cursor:pointer;
+    text-align:left;
+    transition:.25s;
+}
+
+.option:hover{
+    background:rgba(139,92,246,.15);
+    transform:translateX(4px);
+}
+
+.option:disabled{
+    cursor:not-allowed;
+    opacity:.85;
+}
+
+#quizResult{
+    text-align:center;
+    margin-top:20px;
+    font-weight:bold;
+    min-height:25px;
+}
+
+
+/* REVISION */
+
+.revision{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.revision-item{
+    padding:20px;
+    border-left:3px solid #8b5cf6;
+    background:rgba(255,255,255,.04);
+    border-radius:12px;
+}
+
+.revision-item h3{
+    margin-bottom:5px;
+}
+
+.revision-item p{
+    color:#8c8c9e;
+    font-size:14px;
+}
+
+
+/* BUTTONS */
+
+.topic-button{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 18px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.topic-button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(139,92,246,.35);
+}
+
+
+/* BOTTOM LINKS */
+
+.bottom-links{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin:50px 0;
+}
+
+.bottom-links a{
+    padding:12px 18px;
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.09);
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.bottom-links a:hover{
+    background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+    transform:translateY(-3px);
+}
+
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:35px 20px;
+    border-top:1px solid rgba(255,255,255,.07);
+    color:#707083;
+}
+
+footer strong{
+    color:white;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .hero{
+        padding-top:55px;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .grid,
+    .revision{
+        grid-template-columns:1fr;
+    }
+
+    .featured,
+    .quiz{
+        padding:25px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+    ZYN<span>TRA</span>
+</div>
+
+<div class="nav-links">
+
+<a href="index.html">Home</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="study.html">Study</a>
+
+<a href="english.html">English</a>
+
+<a href="literature.html" class="active">
+    Literature
+</a>
+
+<a href="ai.html">
+    AI
+</a>
+
+<a href="planner.html">
+    Planner
+</a>
+
+<a href="challenge.html">
+    Challenges
+</a>
+
+<a href="progress.html">
+    Progress
+</a>
+
+</div>
+
+</nav>
+
+
+<div class="container">
+
+
+<!-- BACK -->
+
+<a href="silent-song.html" class="back-btn">
+    ← Back to Silent Song
+</a>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<span class="badge">
+    🌿 ZYNTRA • NINEMA REVISION
+</span>
+
+<h1>
+    Ninema
+</h1>
+
+<p>
+    Study the story through synopsis, characters, themes,
+    literary techniques and KCSE-focused revision.
+</p>
+
+<div class="story-icon">
+    🌿
+</div>
+
+</section>
+
+
+<!-- SYNOPSIS -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>📖 Brief Synopsis</h2>
+
+<p>
+A short revision-friendly overview.
+</p>
+
+</div>
+
+
+<div class="featured">
+
+<h2>
+    Understanding Ninema
+</h2>
+
+<p>
+Ninema provides a useful basis for examining the experiences
+of women within society and the pressures that can influence
+their lives and decisions.
+</p>
+
+<p>
+The story can be studied through its characters, relationships,
+social expectations and challenges. For examination purposes,
+focus on how individual experiences reveal wider issues in
+society.
+</p>
+
+<p>
+When revising, avoid simply retelling events. Instead, connect
+events and character experiences to themes, character traits
+and the writer's techniques.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- CHARACTERS -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>👥 Character Study</h2>
+
+<p>
+Study characters through their actions, relationships,
+choices and experiences.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div class="card-icon">
+    👩
+</div>
+
+<h3>
+    Ninema
+</h3>
+
+<p>
+Focus on Ninema's experiences, challenges, decisions and
+responses. Use these aspects to discuss characterisation,
+women's experiences and resilience.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+    👥
+</div>
+
+<h3>
+    Other Characters
+</h3>
+
+<p>
+Study how other characters interact with Ninema and how
+their attitudes or actions contribute to conflict and
+social issues.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+    🔗
+</div>
+
+<h3>
+    Relationships
+</h3>
+
+<p>
+Examine how relationships influence decisions, create
+conflict and reveal the values or attitudes of society.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- THEMES -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>🎯 Major Themes</h2>
+
+<p>
+Don't only name the theme. Explain how the story develops it.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="theme">
+
+<h3>
+    👩 Women's Struggle
+</h3>
+
+<p>
+The story can be examined through the difficulties,
+pressures and social expectations experienced by women.
+</p>
+
+</div>
+
+
+<div class="theme">
+
+<h3>
+    ⚖️ Social Inequality
+</h3>
+
+<p>
+Consider differences in power, treatment, opportunities
+and social position between individuals.
+</p>
+
+</div>
+
+
+<div class="theme">
+
+<h3>
+    🏠 Family & Relationships
+</h3>
+
+<p>
+Relationships can influence choices, create conflict
+and shape the experiences of characters.
+</p>
+
+</div>
+
+
+<div class="theme">
+
+<h3>
+    💪 Resilience
+</h3>
+
+<p>
+Study how characters respond to difficult circumstances
+and what their responses reveal about them.
+</p>
+
+</div>
+
+
+<div class="theme">
+
+<h3>
+    🌍 Society & Culture
+</h3>
+
+<p>
+Examine how social expectations, beliefs and cultural
+attitudes influence individual lives.
+</p>
+
+</div>
+
+
+<div class="theme">
+
+<h3>
+    🔄 Change
+</h3>
+
+<p>
+Look at how experiences can influence characters,
+relationships and their understanding of life.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- LITERARY TECHNIQUES -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>🎨 Literary Techniques</h2>
+
+<p>
+Identify the technique and explain its effect.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div class="card-icon">
+    🖼️
+</div>
+
+<h3>
+    Imagery
+</h3>
+
+<p>
+Look for descriptive language that helps the reader
+visualise situations or understand emotions.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+    💬
+</div>
+
+<h3>
+    Dialogue
+</h3>
+
+<p>
+Conversation between characters can reveal personality,
+relationships, attitudes and conflict.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+    👤
+</div>
+
+<h3>
+    Characterisation
+</h3>
+
+<p>
+The writer develops characters through actions,
+speech, relationships and reactions.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+    🔁
+</div>
+
+<h3>
+    Repetition
+</h3>
+
+<p>
+Repeated words or ideas can emphasise feelings,
+situations or important themes.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+    ⚔️
+</div>
+
+<h3>
+    Conflict
+</h3>
+
+<p>
+Conflict creates tension and helps reveal characters,
+themes and social problems.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+    🎭
+</div>
+
+<h3>
+    Irony
+</h3>
+
+<p>
+A contrast between expectation and reality can
+highlight an important idea.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ANALYSIS METHOD -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>
+    🧠 How to Answer Literature Questions
+</h2>
+
+<p>
+Use the PEEL approach to develop strong paragraphs.
+</p>
+
+</div>
+
+
+<div class="analysis-box">
+
+<h3>
+    ⭐ PEEL Method
+</h3>
+
+<p>
+<strong>Point:</strong>
+State the main idea you want to discuss.
+</p>
+
+<p>
+<strong>Evidence:</strong>
+Give a relevant reference to an event, action,
+statement or detail from the story.
+</p>
+
+<p>
+<strong>Explanation:</strong>
+Explain what the evidence reveals and why it is important.
+</p>
+
+<p>
+<strong>Link:</strong>
+Connect your explanation back to the question.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- EXAM QUESTIONS -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>
+    📝 KCSE-Style Questions
+</h2>
+
+<p>
+Practise developing complete answers.
+</p>
+
+</div>
+
+
+<div class="question">
+
+<span class="question-tag">
+    THEME
+</span>
+
+<h3>
+Discuss the theme of women's struggle in Ninema.
+</h3>
+
+<p>
+Give well-developed points and support them with
+relevant evidence from the story.
+</p>
+
+</div>
+
+
+<div class="question">
+
+<span class="question-tag">
+    CHARACTER
+</span>
+
+<h3>
+Discuss the character traits revealed through Ninema's
+experiences.
+</h3>
+
+<p>
+Use actions, relationships and experiences to support
+your points.
+</p>
+
+</div>
+
+
+<div class="question">
+
+<span class="question-tag">
+    SOCIETY
+</span>
+
+<h3>
+What does Ninema reveal about society?
+</h3>
+
+<p>
+Connect events and character experiences to wider
+social issues.
+</p>
+
+</div>
+
+
+<div class="question">
+
+<span class="question-tag">
+    TECHNIQUE
+</span>
+
+<h3>
+How does the writer use literary techniques to communicate
+important ideas?
+</h3>
+
+<p>
+Identify the techniques and explain their effects.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- REVISION -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>
+    ⚡ Quick Revision
+</h2>
+
+<p>
+Remember these points before your examination.
+</p>
+
+</div>
+
+
+<div class="revision">
+
+
+<div class="revision-item">
+
+<h3>
+    👩 Women's Experiences
+</h3>
+
+<p>
+Know the challenges and pressures affecting women.
+</p>
+
+</div>
+
+
+<div class="revision-item">
+
+<h3>
+    🎯 Themes
+</h3>
+
+<p>
+Know the major ideas and how they are developed.
+</p>
+
+</div>
+
+
+<div class="revision-item">
+
+<h3>
+    👥 Characters
+</h3>
+
+<p>
+Know traits, actions, relationships and motivations.
+</p>
+
+</div>
+
+
+<div class="revision-item">
+
+<h3>
+    🎨 Techniques
+</h3>
+
+<p>
+Identify techniques and explain their effects.
+</p>
+
+</div>
+
+
+<div class="revision-item">
+
+<h3>
+    📝 Evidence
+</h3>
+
+<p>
+Support your points with accurate references.
+</p>
+
+</div>
+
+
+<div class="revision-item">
+
+<h3>
+    🔗 Linking
+</h3>
+
+<p>
+Always connect your explanation to the question.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section class="section">
+
+<div class="quiz">
+
+<h2>
+    ⚡ Ninema Challenge
+</h2>
+
+<p class="quiz-intro">
+Test your literature knowledge.
+</p>
+
+
+<div class="quiz-question">
+
+<h3>
+Which is the strongest way to answer a literature question?
+</h3>
+
+
+<button
+    class="option"
+    onclick="checkAnswer(this,false)">
+    A. Give the theme only
+</button>
+
+
+<button
+    class="option"
+    onclick="checkAnswer(this,true)">
+    B. Give a point, evidence, explanation and link
+</button>
+
+
+<button
+    class="option"
+    onclick="checkAnswer(this,false)">
+    C. Retell the whole story
+</button>
+
+
+<button
+    class="option"
+    onclick="checkAnswer(this,false)">
+    D. Give only character names
+</button>
+
+
+<div id="quizResult"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- BOTTOM LINKS -->
+
+<div class="bottom-links">
+
+<a href="silent-song.html">
+    ← Silent Song
+</a>
+
+<a href="setbooks.html">
+    🎓 Set Books
+</a>
+
+<a href="literature.html">
+    📚 Literature
+</a>
+
+<a href="english.html">
+    📖 English
+</a>
+
+<a href="study.html">
+    🎓 Smart Study
+</a>
+
+<a href="progress.html">
+    📊 Progress
+</a>
+
+<a href="index.html">
+    🏠 Home
+</a>
+
+</div>
+
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<strong>
+    ZYNTRA
+</strong>
+
+<br>
+
+Learn. Connect. Create. Grow.
+
+<br><br>
+
+<small>
+    © 2026 ZYNTRA. Ninema Revision Hub.
+</small>
+
+</footer>
+
+
+<script>
+
+/* =====================================
+   ZYNTRA NINEMA QUIZ
+   ===================================== */
+
+function checkAnswer(button, correct){
+
+    const result =
+        document.getElementById("quizResult");
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+
+    /* Prevent multiple answers */
+
+    buttons.forEach(function(item){
+
+        item.disabled = true;
+
+    });
+
+
+    /* Get existing ZYNTRA progress */
+
+    let progress =
+        JSON.parse(
+            localStorage.getItem("zyntraProgress")
+        ) || {
+
+            lessons: 0,
+            quizzes: 0,
+            correctAnswers: 0,
+            streak: 0
+
+        };
+
+
+    /* Record completed quiz */
+
+    progress.quizzes =
+        Number(progress.quizzes || 0) + 1;
+
+
+    /* Record correct answer */
+
+    if(correct){
+
+        progress.correctAnswers =
+            Number(progress.correctAnswers || 0) + 1;
+
+
+        button.style.borderColor =
+            "#8b5cf6";
+
+        button.style.background =
+            "rgba(139,92,246,.25)";
+
+
+        result.textContent =
+            "✅ Correct! Strong answers use a point, evidence, explanation and link.";
+
+    }
+
+    else{
+
+        button.style.borderColor =
+            "#ef4444";
+
+        button.style.background =
+            "rgba(239,68,68,.18)";
+
+
+        result.textContent =
+            "❌ Review the PEEL method: Point, Evidence, Explanation and Link.";
+
+    }
+
+
+    /* Save progress */
+
+    localStorage.setItem(
+        "zyntraProgress",
+        JSON.stringify(progress)
+    );
+
+
+    /* Show saved message */
+
+    setTimeout(function(){
+
+        result.innerHTML +=
+            "<br><small style='color:#858599;'>Progress saved to ZYNTRA.</small>";
+
+    },300);
+
+}
+
+</script>
+
+
+</body>
+</html>
+

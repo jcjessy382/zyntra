@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZYNTRA Database Systems</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #070711;
+            color: white;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #8b5cf6;
+            filter: blur(180px);
+            opacity: 0.12;
+            top: -200px;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            background: #06b6d4;
+            filter: blur(180px);
+            opacity: 0.08;
+            bottom: -200px;
+            right: -150px;
+            z-index: -1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 50px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 30px;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            color: #b9a0ff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff, #9f8cff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #a9a9bd;
+            font-size: 18px;
+        }
+
+        /* DATABASE VISUAL */
+
+        .database-visual {
+            width: 240px;
+            height: 190px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .database {
+            width: 150px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            position: absolute;
+            left: 45px;
+            top: 35px;
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+        }
+
+        .database::before {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 130px;
+            top: 20px;
+            left: 0;
+            border-left: 5px solid #8b5cf6;
+            border-right: 5px solid #3b82f6;
+            border-bottom: 5px solid #3b82f6;
+            border-radius: 0 0 40px 40px;
+        }
+
+        .db-line {
+            position: absolute;
+            width: 140px;
+            height: 25px;
+            border-bottom: 3px solid rgba(255,255,255,0.4);
+            left: 50px;
+        }
+
+        .line1 {
+            top: 75px;
+        }
+
+        .line2 {
+            top: 105px;
+        }
+
+        .line3 {
+            top: 135px;
+        }
+
+        /* SECTIONS */
+
+        section {
+            margin-bottom: 45px;
+        }
+
+        .section-title {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #8b5cf6;
+            box-shadow: 0 10px 30px rgba(139,92,246,0.15);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .card p {
+            color: #a5a5b7;
+        }
+
+        .icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        /* TABLE */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.04);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+
+        th {
+            background: rgba(139,92,246,0.2);
+        }
+
+        td {
+            color: #c8c8d8;
+        }
+
+        /* SQL */
+
+        .sql-box {
+            background: #05050b;
+            border: 1px solid rgba(139,92,246,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            color: #b9a0ff;
+        }
+
+        /* REVISION */
+
+        .revision {
+            background: linear-gradient(
+                135deg,
+                rgba(139,92,246,0.12),
+                rgba(59,130,246,0.08)
+            );
+            border: 1px solid rgba(139,92,246,0.25);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .revision li {
+            margin-bottom: 8px;
+            color: #d1d1df;
+        }
+
+        /* QUIZ */
+
+        .quiz {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question h3 {
+            margin-bottom: 15px;
+        }
+
+        .quiz button {
+            padding: 12px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 10px;
+            background: #17172a;
+            color: white;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .quiz button:hover {
+            background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+            transform: translateY(-2px);
+        }
+
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* BACK BUTTON */
+
+        .back-btn {
+            display: inline-block;
+            margin: 40px 0 60px;
+            padding: 12px 22px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139,92,246,0.4);
+        }
+
+        /* MOBILE */
+
+        @media(max-width:700px) {
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+        <div class="badge">
+            🗄️ ZYNTRA DATABASE SYSTEMS
+        </div>
+
+        <h1>Turn Data Into Knowledge.</h1>
+
+        <p>
+            Learn how databases store, organize, manage and retrieve
+            information efficiently.
+        </p>
+
+        <div class="database-visual">
+
+            <div class="database"></div>
+
+            <div class="db-line line1"></div>
+            <div class="db-line line2"></div>
+            <div class="db-line line3"></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+        <!-- WHAT IS DATABASE -->
+
+        <section>
+
+            <h2 class="section-title">
+                🗄️ What Is a Database?
+            </h2>
+
+            <div class="card">
+
+                <p>
+                    A database is an organized collection of related
+                    data that can be easily stored, accessed,
+                    managed and updated.
+                </p>
+
+                <br>
+
+                <p>
+                    Examples include student records, hospital records,
+                    bank accounts and library systems.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- DBMS -->
+
+        <section>
+
+            <h2 class="section-title">
+                ⚙️ Database Management System
+            </h2>
+
+            <div class="card-grid">
+
+                <div class="card">
+
+                    <div class="icon">💻</div>
+
+                    <h3>DBMS</h3>
+
+                    <p>
+                        A Database Management System is software
+                        used to create, manage and control databases.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="icon">🗃️</div>
+
+                    <h3>Examples</h3>
+
+                    <p>
+                        MySQL, Microsoft Access, Oracle,
+                        PostgreSQL and SQL Server.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="icon">🔍</div>
+
+                    <h3>Data Retrieval</h3>
+
+                    <p>
+                        A DBMS allows users to search and retrieve
+                        required information quickly.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DATABASE COMPONENTS -->
+
+        <section>
+
+            <h2 class="section-title">
+                🧩 Database Components
+            </h2>
+
+            <div class="card-grid">
+
+                <div class="card">
+
+                    <div class="icon">📊</div>
+
+                    <h3>Table</h3>
+
+                    <p>
+                        A table stores related data in rows and columns.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="icon">📝</div>
+
+                    <h3>Record</h3>
+
+                    <p>
+                        A record is a complete set of information
+                        about one item or person.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="icon">🔤</div>
+
+                    <h3>Field</h3>
+
+                    <p>
+                        A field is a single category of information
+                        in a table.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="icon">🔑</div>
+
+                    <h3>Primary Key</h3>
+
+                    <p>
+                        A primary key uniquely identifies each
+                        record in a table.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TABLE EXAMPLE -->
+
+        <section>
+
+            <h2 class="section-title">
+                📋 Example of a Student Database
+            </h2>
+
+            <div class="table-container">
+
+                <table>
+
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Class</th>
+                        <th>Age</th>
+                    </tr>
+
+                    <tr>
+                        <td>001</td>
+                        <td>Brian</td>
+                        <td>Form 4</td>
+                        <td>16</td>
+                    </tr>
+
+                    <tr>
+                        <td>002</td>
+                        <td>Kevin</td>
+                        <td>Form 4</td>
+                        <td>17</td>
+                    </tr>
+
+                    <tr>
+                        <td>003</td>
+                        <td>Mary</td>
+                        <td>Form 3</td>
+                        <td>16</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- RELATIONAL DATABASE -->
+
+        <section>
+
+            <h2 class="section-title">
+                🔗 Relational Databases
+            </h2>
+
+            <div class="card">
+
+                <p>
+                    A relational database stores information in
+                    tables that can be connected using relationships.
+                </p>
+
+                <br>
+
+                <p>
+                    For example, a school database may have a
+                    <strong>Students</strong> table and a
+                    <strong>Results</strong> table.
+                </p>
+
+                <br>
+
+                <p>
+                    A common field such as Student ID can be used
+                    to connect the two tables.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- KEYS -->
+
+        <section>
+
+            <h2 class="section-title">
+                🔐 Database Keys
+            </h2>
+
+            <div class="card-grid">
+
+                <div class="card">
+
+                    <div class="icon">🔑</div>
+
+                    <h3>Primary Key</h3>
+
+                    <p>
+                        Uniquely identifies every record in a table.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="icon">🔗</div>
+
+                    <h3>Foreign Key</h3>
+
+                    <p>
+                        A field used to link one table to another.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DATABASE OBJECTS -->
+
+        <section>
+
+            <h2 class="section-title">
+                🛠️ Database Objects
+            </h2>
+
+            <div class="card-grid">
+
+                <div class="card">
+
+                    <div class="icon">📊</div>
+
+                    <h3>Tables</h3>
+
+                    <p>
+                        Store the actual data.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="icon">🔎</div>
+
+                    <h3>Queries</h3>
+
+                    <p>
+                        Search, filter or retrieve specific data.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="icon">📝</div>
+
+                    <h3>Forms</h3>
+
+                    <p>
+                        Provide an easy interface for entering
+                        and viewing data.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="icon">📄</div>
+
+                    <h3>Reports</h3>
+
+                    <p>
+                        Present database information in an
+                        organized format.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SQL -->
+
+        <section>
+
+            <h2 class="section-title">
+                💻 Introduction to SQL
+            </h2>
+
+            <div class="card">
+
+                <p>
+                    SQL means <strong>Structured Query Language</strong>.
+                    It is commonly used to communicate with relational
+                    databases.
+                </p>
+
+                <br>
+
+                <div class="sql-box">
+
+                    SELECT Name, Class
+                    FROM Students
+                    WHERE Class = 'Form 4';
+
+                </div>
+
+                <br>
+
+                <p>
+                    This example requests the names and classes of
+                    students who are in Form 4.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADVANTAGES -->
+
+        <section>
+
+            <h2 class="section-title">
+                🚀 Advantages of Databases
+            </h2>
+
+            <div class="card-grid">
+
+                <div class="card">
+                    <h3>⚡ Fast Access</h3>
+                    <p>
+                        Information can be retrieved quickly.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🔒 Better Security</h3>
+                    <p>
+                        Access to information can be controlled.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>📉 Reduced Duplication</h3>
+                    <p>
+                        Proper database design can reduce
+                        unnecessary duplicate data.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🔄 Easy Updating</h3>
+                    <p>
+                        Information can be added, changed or deleted.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK REVISION -->
+
+        <section>
+
+            <h2 class="section-title">
+                🧠 Quick Revision
+            </h2>
+
+            <div class="revision">
+
+                <ul>
+
+                    <li>
+                        A database is an organized collection of data.
+                    </li>
+
+                    <li>
+                        A DBMS is software used to manage databases.
+                    </li>
+
+                    <li>
+                        A table contains records and fields.
+                    </li>
+
+                    <li>
+                        A record represents one complete item.
+                    </li>
+
+                    <li>
+                        A field represents one category of data.
+                    </li>
+
+                    <li>
+                        A primary key uniquely identifies a record.
+                    </li>
+
+                    <li>
+                        A foreign key links related tables.
+                    </li>
+
+                    <li>
+                        SQL is used to communicate with databases.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUIZ -->
+
+        <section>
+
+            <h2 class="section-title">
+                🎯 Database Challenge
+            </h2>
+
+            <div class="quiz">
+
+                <!-- QUESTION 1 -->
+
+                <div class="question">
+
+                    <h3>
+                        1. What is a database?
+                    </h3>
+
+                    <button onclick="checkAnswer(this, false)">
+                        A. A computer game
+                    </button>
+
+                    <button onclick="checkAnswer(this, true)">
+                        B. An organized collection of data
+                    </button>
+
+                    <button onclick="checkAnswer(this, false)">
+                        C. A computer virus
+                    </button>
+
+                    <p class="result"></p>
+
+                </div>
+
+
+                <!-- QUESTION 2 -->
+
+                <div class="question">
+
+                    <h3>
+                        2. Which key uniquely identifies a record?
+                    </h3>
+
+                    <button onclick="checkAnswer(this, false)">
+                        A. Foreign key
+                    </button>
+
+                    <button onclick="checkAnswer(this, true)">
+                        B. Primary key
+                    </button>
+
+                    <button onclick="checkAnswer(this, false)">
+                        C. Password
+                    </button>
+
+                    <p class="result"></p>
+
+                </div>
+
+
+                <!-- QUESTION 3 -->
+
+                <div class="question">
+
+                    <h3>
+                        3. What does DBMS stand for?
+                    </h3>
+
+                    <button onclick="checkAnswer(this, true)">
+                        A. Database Management System
+                    </button>
+
+                    <button onclick="checkAnswer(this, false)">
+                        B. Digital Basic Management Software
+                    </button>
+
+                    <button onclick="checkAnswer(this, false)">
+                        C. Data Backup Management System
+                    </button>
+
+                    <p class="result"></p>
+
+                </div>
+
+
+                <!-- QUESTION 4 -->
+
+                <div class="question">
+
+                    <h3>
+                        4. Which language is commonly used with relational databases?
+                    </h3>
+
+                    <button onclick="checkAnswer(this, false)">
+                        A. HTML
+                    </button>
+
+                    <button onclick="checkAnswer(this, true)">
+                        B. SQL
+                    </button>
+
+                    <button onclick="checkAnswer(this, false)">
+                        C. CSS
+                    </button>
+
+                    <p class="result"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BACK -->
+
+        <a href="computer.html" class="back-btn">
+            ← Back to Computer Studies
+        </a>
+
+    </div>
+
+
+    <script>
+
+        function checkAnswer(button, correct) {
+
+            const result =
+                button.parentElement.querySelector(".result");
+
+            if (correct) {
+
+                result.textContent =
+                    "✅ Correct! Excellent work.";
+
+                result.style.color = "#4ade80";
+
+            } else {
+
+                result.textContent =
+                    "❌ Not quite. Try again.";
+
+                result.style.color = "#f87171";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

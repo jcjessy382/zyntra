@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Physical Education</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070711;--card:#111124;--border:#292743;--purple:#8b5cf6;--blue:#3b82f6;--text:#f5f3ff;--muted:#aaa7c5}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+header{position:sticky;top:0;z-index:5;background:#0b0b19ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 5%}
+nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:23px;font-weight:900;color:#a78bfa;text-decoration:none;letter-spacing:1px}
+.navlinks{display:flex;gap:9px;flex-wrap:wrap}
+.navlinks a{color:#e9e5ff;text-decoration:none;padding:8px 12px;border-radius:9px;background:#17162a;font-size:13px}
+main{max-width:1200px;margin:auto;padding:25px 5% 55px}
+.hero{text-align:center;padding:35px 10px}
+.tag{display:inline-block;background:#241843;color:#c4b5fd;padding:5px 13px;border-radius:20px;font-size:12px;margin-bottom:12px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.2;margin-bottom:12px}
+.gradient{background:linear-gradient(90deg,#c4b5fd,#60a5fa);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero p,.muted{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.stat,.panel,.topic,.lessonbox,.quizbox{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:17px}
+.stat{text-align:center}.stat strong{display:block;font-size:24px;color:#c4b5fd}.stat span{font-size:12px;color:var(--muted)}
+.progress-track{height:8px;background:#27243b;border-radius:20px;overflow:hidden;margin-top:10px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--blue));transition:width .3s}
+.section-title{font-size:22px;margin:28px 0 13px}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.topic{cursor:pointer;transition:.2s}.topic:hover,.topic.active{border-color:var(--purple);transform:translateY(-2px)}
+.topic .emoji{font-size:26px}.topic h3{font-size:16px;margin:4px 0}.topic p{font-size:13px;color:var(--muted)}.topic small{display:block;color:#c4b5fd;margin-top:8px}
+.lesson-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:14px;margin-top:20px}
+.lesson-list{display:grid;gap:8px;margin-top:12px}
+.lesson-btn{background:#17162a;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:10px;text-align:left;cursor:pointer;width:100%}
+.lesson-btn.active{border-color:var(--purple);background:#241843}.lesson-btn.done{border-color:#166534}
+.lesson-btn small{display:block;color:var(--muted)}
+.lessonbox h2{font-size:23px;margin:8px 0}.lessonbox h3{font-size:17px;color:#c4b5fd;margin:17px 0 6px}
+.lessonbox p{margin:9px 0}.lessonbox ul,.lessonbox ol{padding-left:22px;margin:8px 0}
+.example{background:#19162d;border-left:3px solid var(--purple);padding:12px;border-radius:6px;margin:12px 0}
+button{font:inherit}.primary,.secondary{border:0;border-radius:10px;padding:11px 14px;cursor:pointer;font-weight:bold}
+.primary{background:linear-gradient(100deg,var(--purple),var(--blue));color:white}
+.primary:disabled{opacity:.65;cursor:default}.secondary{background:#24213a;color:white;border:1px solid var(--border)}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+.quiz-question{padding:14px;background:#17162a;border:1px solid var(--border);border-radius:12px;margin:12px 0}
+.quiz-question p{font-weight:bold;margin-bottom:8px}.quiz-question label{display:block;padding:6px 0;cursor:pointer}
+.quiz-question input{margin-right:8px;accent-color:var(--purple)}
+#quizResult{margin-top:13px;font-weight:bold}.notice{font-size:13px;color:var(--muted);margin-top:12px}
+footer{text-align:center;color:var(--muted);padding:23px;border-top:1px solid var(--border)}
+@media(max-width:700px){.lesson-layout{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:11px}.stat strong{font-size:21px}main{padding-left:4%;padding-right:4%}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a class="logo" href="index.html">ZYNTRA</a>
+<div class="navlinks"><a href="index.html">Home</a><a href="study.html">Study</a><a href="profile.html">Profile</a></div>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<span class="tag">MOVE • PLAY • IMPROVE</span>
+<h1>Explore <span class="gradient">Physical Education</span></h1>
+<p>Learn about fitness, athletics, team sports, health, movement skills, and sportsmanship.</p>
+</section>
+
+<section class="stats">
+<div class="stat"><strong id="completedCount">0</strong><span>Lessons completed</span></div>
+<div class="stat"><strong id="xpCount">0</strong><span>XP earned</span></div>
+<div class="stat"><strong id="progressPercent">0%</strong><span>Progress</span></div>
+</section>
+<div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+
+<h2 class="section-title">Choose a topic</h2>
+<section class="topics" id="topicGrid"></section>
+
+<div class="lesson-layout">
+<section class="panel">
+<h2 class="section-title" style="margin-top:0">Lessons</h2>
+<p class="muted" id="topicDescription">Choose a topic to begin.</p>
+<div class="lesson-list" id="lessonList"></div>
+</section>
+<section class="lessonbox" id="lessonContent">
+<span class="tag">WELCOME TO ZYNTRA PE</span>
+<h2>Learn through movement</h2>
+<p>Physical Education develops movement skills, physical fitness, cooperation, and understanding of healthy activity.</p>
+<div class="example">You can begin by learning the rules of a sport, identifying fitness components, or understanding how to warm up safely.</div>
+<p>Select a topic and lesson to begin.</p>
+</section>
+</div>
+
+<section class="quizbox" style="margin-top:25px">
+<h2 class="section-title" style="margin-top:0">Physical Education Quiz</h2>
+<p class="muted">Answer all six questions to test your knowledge.</p>
+<form id="quizForm"></form>
+<div class="actions"><button class="primary" type="button" id="checkQuiz">Check answers</button><button class="secondary" type="button" id="resetQuiz">Try again</button></div>
+<p id="quizResult" aria-live="polite"></p>
+<p class="notice">Score at least 4 out of 6 to earn 5 bonus XP once per page session.</p>
+</section>
+</main>
+
+<footer>© 2026 ZYNTRA • Learn something new every day.</footer>
+
+<script>
+const topics=[
+{title:"Physical Fitness",emoji:"💪",description:"Understand fitness components and healthy activity.",lessons:[
+{title:"Components of Physical Fitness",content:`
+<h3>What is physical fitness?</h3>
+<p>Physical fitness is the ability to carry out everyday activities effectively while maintaining energy for other tasks.</p>
+<h3>Main components</h3>
+<ul>
+<li>Cardiorespiratory endurance: the ability of the heart and lungs to support sustained activity.</li>
+<li>Muscular strength: the ability of a muscle or group of muscles to exert force.</li>
+<li>Muscular endurance: the ability of muscles to continue working over time.</li>
+<li>Flexibility: the range of movement available at a joint.</li>
+<li>Body composition: the relative amounts of different tissues in the body.</li>
+<li>Coordination, balance, agility, speed, and reaction time support many sporting activities.</li>
+</ul>
+<div class="example">Revision task: Explain why a long-distance runner needs endurance and why a gymnast may benefit from flexibility and balance.</div>`},
+{title:"Warm-Ups, Cool-Downs and Recovery",content:`
+<h3>Warm-up</h3>
+<p>A warm-up prepares the body for activity by gradually increasing movement and effort.</p>
+<ul><li>Begin with gentle movement.</li><li>Use dynamic movements relevant to the activity.</li><li>Increase intensity gradually.</li></ul>
+<h3>Cool-down</h3>
+<p>A cool-down gradually reduces activity after exercise. Gentle movement and comfortable stretching may be included.</p>
+<h3>Recovery</h3>
+<p>Rest, sleep, hydration, and balanced meals help the body recover. Avoid continuing an activity that causes pain, dizziness, or unusual breathing difficulty; stop and tell a responsible adult or coach.</p>
+<div class="example">Revision task: Describe three activities that could form part of a safe warm-up before a school sports lesson.</div>`}
+]},
+{title:"Athletics",emoji:"🏃",description:"Learn running, jumping, throwing, and race rules.",lessons:[
+{title:"Track Events and Running Skills",content:`
+<h3>Track events</h3>
+<p>Track athletics includes sprints, middle-distance races, long-distance races, relays, and hurdles.</p>
+<h3>Running skills</h3>
+<ul><li>Maintain a balanced posture.</li><li>Coordinate arm and leg movements.</li><li>Run within the assigned lane where required.</li><li>Follow the starter's commands.</li><li>Respect race rules and other competitors.</li></ul>
+<h3>Relay races</h3>
+<p>Relay teams pass a baton between runners within the designated exchange zone. Timing, communication, and safe handovers are important.</p>
+<div class="example">Revision task: State two differences between a sprint and a long-distance race. Explain why relay runners practise baton exchanges.</div>`},
+{title:"Field Events and Competition Rules",content:`
+<h3>Jumping events</h3>
+<p>Long jump and triple jump test horizontal jumping performance. High jump and pole vault involve clearing a height under event-specific rules.</p>
+<h3>Throwing events</h3>
+<p>Shot put, discus, javelin, and hammer are throwing events. Each has specific equipment, throwing areas, and safety rules.</p>
+<h3>Fair competition</h3>
+<p>Competitors must follow officials' instructions, use equipment properly, and remain clear of landing and throwing areas.</p>
+<div class="example">Revision task: Name two jumping events and two throwing events. Explain why nobody should enter a throwing area until officials say it is safe.</div>`}
+]},
+{title:"Team Sports and Games",emoji:"⚽",description:"Study teamwork, tactics, and basic game rules.",lessons:[
+{title:"Football, Netball and Basketball",content:`
+<h3>Football</h3>
+<p>Football is generally played by two teams trying to score by getting the ball into the opponents' goal, mainly using the feet and other permitted body parts.</p>
+<h3>Netball</h3>
+<p>Netball uses designated playing positions and passing to move the ball towards a goal ring. Players have restrictions on movement and ball possession.</p>
+<h3>Basketball</h3>
+<p>Basketball teams score by putting the ball through the opponents' hoop. Passing, dribbling, shooting, defending, and rebounding are important skills.</p>
+<h3>Shared skills</h3>
+<p>Communication, spatial awareness, teamwork, decision-making, and respect for officials help players perform effectively.</p>
+<div class="example">Revision task: Choose one of these sports and explain two attacking skills, two defending skills, and one important rule.</div>`},
+{title:"Volleyball, Handball and Team Tactics",content:`
+<h3>Volleyball</h3>
+<p>Teams send the ball over a net and try to make it land in the opponents' court. Passing, setting, serving, attacking, and blocking are common skills.</p>
+<h3>Handball</h3>
+<p>In team handball, players pass and move the ball by hand to score in the opposing goal while following the game's rules.</p>
+<h3>Basic tactics</h3>
+<ul><li>Move into open space to receive a pass.</li><li>Communicate with teammates.</li><li>Cover spaces when defending.</li><li>Use appropriate passing and positioning.</li><li>Adapt decisions to the situation.</li></ul>
+<div class="example">Revision task: Explain how teamwork and communication can help a team retain possession and create scoring opportunities.</div>`}
+]},
+{title:"Movement and Gymnastics",emoji:"🤸",description:"Explore balance, coordination, and movement skills.",lessons:[
+{title:"Fundamental Movement Skills",content:`
+<h3>Locomotor skills</h3>
+<p>Locomotor skills move the body from one place to another. Examples include walking, running, hopping, jumping, and skipping.</p>
+<h3>Non-locomotor skills</h3>
+<p>These are movements performed without travelling from one place to another, such as bending, twisting, stretching, and balancing.</p>
+<h3>Manipulative skills</h3>
+<p>These involve controlling objects, for example throwing, catching, kicking, striking, and dribbling.</p>
+<div class="example">Revision task: Give two examples from each of the three movement-skill groups and describe a sport that uses each group.</div>`},
+{title:"Balance, Coordination and Gymnastics",content:`
+<h3>Balance</h3>
+<p>Balance is the ability to maintain control of body position while stationary or moving.</p>
+<h3>Coordination</h3>
+<p>Coordination is the ability to organise body movements smoothly and effectively.</p>
+<h3>Gymnastics</h3>
+<p>Gymnastics develops control, flexibility, strength, balance, and spatial awareness through planned movement sequences.</p>
+<h3>Safety</h3>
+<p>Practise unfamiliar gymnastics skills only with appropriate instruction, suitable mats or equipment, and qualified supervision. Do not attempt dangerous movements alone.</p>
+<div class="example">Revision task: Explain how balance and coordination are used in gymnastics and in a ball game.</div>`}
+]},
+{title:"Health, Nutrition and Safety",emoji:"🥗",description:"Learn about hydration, nutrition, hygiene, and safety.",lessons:[
+{title:"Nutrition, Hydration and Healthy Habits",content:`
+<h3>Balanced nutrition</h3>
+<p>The body needs a variety of foods to supply energy, support growth, repair tissues, and maintain health.</p>
+<ul><li>Carbohydrates provide an important source of energy.</li><li>Proteins support growth and tissue repair.</li><li>Fats supply energy and support important body functions.</li><li>Vitamins and minerals help regulate body processes.</li><li>Water supports temperature regulation and other body functions.</li></ul>
+<h3>Hydration</h3>
+<p>Drink water regularly, especially during hot weather and physical activity. Needs vary with the activity, environment, and individual.</p>
+<h3>Healthy habits</h3>
+<p>Regular enjoyable activity, sufficient sleep, personal hygiene, and balanced meals support general wellbeing.</p>
+<div class="example">Revision task: Explain two reasons hydration is important during sport and name three food groups or nutrients needed for health.</div>`},
+{title:"Sports Safety and First Aid Awareness",content:`
+<h3>Preventing injuries</h3>
+<ul><li>Use appropriate clothing and footwear.</li><li>Check that the playing area is suitable.</li><li>Follow rules and the teacher's instructions.</li><li>Use equipment correctly.</li><li>Warm up and increase activity gradually.</li></ul>
+<h3>When an injury occurs</h3>
+<p>Stop the activity and alert the teacher, coach, or responsible adult. Serious injuries, suspected head or neck injuries, breathing problems, or loss of consciousness need urgent medical help. Do not move someone with a suspected serious neck or back injury unless there is immediate danger.</p>
+<h3>Sportsmanship</h3>
+<p>Fair play means following rules, respecting officials, supporting teammates, and treating opponents with dignity.</p>
+<div class="example">Revision task: Describe three ways to reduce injury risk during a school sports lesson. Explain why fair play matters.</div>`}
+]},
+{title:"Sports Rules and Officiating",emoji:"🏅",description:"Understand officials, scoring, and fair play.",lessons:[
+{title:"Officials and Their Responsibilities",content:`
+<h3>Sports officials</h3>
+<p>Officials help competitions follow the rules and run fairly. Their roles depend on the sport.</p>
+<ul><li>Referees or umpires apply the rules during play.</li><li>Judges assess performances against event criteria.</li><li>Timekeepers record elapsed time.</li><li>Scorers record points or results.</li><li>Line officials assist with decisions about boundaries or other specific situations.</li></ul>
+<h3>Why officials matter</h3>
+<p>Officials promote safety, consistency, fair competition, and respect for the rules.</p>
+<div class="example">Revision task: Identify three types of sports officials and explain the responsibility of each.</div>`},
+{title:"Scoring, Fair Play and Leadership",content:`
+<h3>Scoring</h3>
+<p>Scoring systems differ across sports. Competitors and spectators should understand how points are awarded and how winners are determined.</p>
+<h3>Fair play</h3>
+<p>Fair play includes honesty, respecting decisions, avoiding deliberate rule-breaking, and treating every participant fairly.</p>
+<h3>Leadership</h3>
+<p>A good team captain communicates clearly, encourages teammates, manages disagreements respectfully, and sets a positive example.</p>
+<div class="example">Revision task: Describe three qualities of a good team captain and explain how a disagreement between teammates could be handled respectfully.</div>`}
+]}
+];
+
+const questions=[
+{q:"Which fitness component is most closely related to sustaining activity over time?",a:["Endurance","Flexibility only","Reaction time only"],c:0},
+{q:"What is the main purpose of a warm-up?",a:["To exhaust the body","To prepare the body gradually for activity","To replace all training"],c:1},
+{q:"Which is a field athletics event?",a:["100-metre sprint","Relay exchange","Long jump"],c:2},
+{q:"Which skill involves controlling a ball with the feet?",a:["Dribbling in football","Setting in volleyball","Serving in tennis"],c:0},
+{q:"Which nutrient is especially important for growth and tissue repair?",a:["Protein","Water only","Salt only"],c:0},
+{q:"Who helps apply the rules during a football match?",a:["A spectator","The referee","The team mascot"],c:1}
+];
+
+const username=localStorage.getItem("zyntraUser")||"guest";
+const userKey=username.toLowerCase().replace(/[^a-z0-9_-]/g,"_");
+const completedKey="zyntraPECompleted_"+userKey;
+const xpKey="zyntraPEXP_"+userKey;
+let completed=JSON.parse(localStorage.getItem(completedKey)||"[]");
+let xp=Number(localStorage.getItem(xpKey)||0);
+let currentTopic=0,currentLesson=0,quizRewarded=false;
+
+const topicGrid=document.getElementById("topicGrid");
+const lessonList=document.getElementById("lessonList");
+const lessonContent=document.getElementById("lessonContent");
+const lessonId=(t,l)=>t+"-"+l;
+const isDone=(t,l)=>completed.includes(lessonId(t,l));
+
+function updateStats(){
+ const total=topics.reduce((sum,t)=>sum+t.lessons.length,0);
+ const percent=Math.round(completed.length/total*100);
+ document.getElementById("completedCount").textContent=completed.length;
+ document.getElementById("xpCount").textContent=xp;
+ document.getElementById("progressPercent").textContent=percent+"%";
+ document.getElementById("progressBar").style.width=percent+"%";
+ topicGrid.querySelectorAll(".topic").forEach((el,i)=>{
+  const count=topics[i].lessons.filter((_,j)=>isDone(i,j)).length;
+  el.querySelector("small").textContent=count+"/"+topics[i].lessons.length+" lessons completed";
+ });
+}
+function renderTopics(){
+ topicGrid.innerHTML="";
+ topics.forEach((t,i)=>{
+  const el=document.createElement("div");
+  el.className="topic"+(i===currentTopic?" active":"");
+  el.tabIndex=0;
+  el.innerHTML=`<div class="emoji">${t.emoji}</div><h3>${t.title}</h3><p>${t.description}</p><small></small>`;
+  el.onclick=()=>{currentTopic=i;currentLesson=0;renderTopics();renderLessons();renderLesson()};
+  el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();el.click()}};
+  topicGrid.appendChild(el);
+ });
+ updateStats();
+}
+function renderLessons(){
+ const t=topics[currentTopic];
+ document.getElementById("topicDescription").textContent=t.description;
+ lessonList.innerHTML="";
+ t.lessons.forEach((lesson,i)=>{
+  const btn=document.createElement("button");
+  btn.className="lesson-btn"+(i===currentLesson?" active":"")+(isDone(currentTopic,i)?" done":"");
+  btn.innerHTML=(isDone(currentTopic,i)?"✓ ":"")+lesson.title+"<small>"+(isDone(currentTopic,i)?"Completed • +10 XP":"Lesson "+(i+1))+"</small>";
+  btn.onclick=()=>{currentLesson=i;renderLessons();renderLesson()};
+  lessonList.appendChild(btn);
+ });
+}
+function renderLesson(){
+ const t=topics[currentTopic],l=t.lessons[currentLesson],done=isDone(currentTopic,currentLesson);
+ lessonContent.innerHTML=`
+ <span class="tag">${t.emoji} ${t.title}</span>
+ <h2>${l.title}</h2><p class="muted">Lesson ${currentLesson+1} of ${t.lessons.length}</p>
+ ${l.content}
+ <div class="actions"><button class="primary" id="completeLesson" ${done?"disabled":""}>${done?"✓ Lesson Completed":"Mark Lesson Complete (+10 XP)"}</button><button class="secondary" id="nextLesson">Next Lesson →</button></div>
+ ${done?'<p class="notice">XP for this lesson has already been awarded.</p>':""}`;
+ document.getElementById("completeLesson").onclick=()=>{
+  if(!isDone(currentTopic,currentLesson)){
+   completed.push(lessonId(currentTopic,currentLesson));xp+=10;
+   localStorage.setItem(completedKey,JSON.stringify(completed));
+   localStorage.setItem(xpKey,String(xp));
+   renderTopics();renderLessons();renderLesson();
+  }
+ };
+ document.getElementById("nextLesson").onclick=()=>{
+  if(currentLesson<topics[currentTopic].lessons.length-1)currentLesson++;
+  else if(currentTopic<topics.length-1){currentTopic++;currentLesson=0}
+  else{alert("Well done! You have reached the final Physical Education lesson.");return}
+  renderTopics();renderLessons();renderLesson();
+ };
+}
+function renderQuiz(){
+ const form=document.getElementById("quizForm");form.innerHTML="";
+ questions.forEach((q,i)=>{
+  const box=document.createElement("div");box.className="quiz-question";
+  const p=document.createElement("p");p.textContent=(i+1)+". "+q.q;box.appendChild(p);
+  q.a.forEach((answer,j)=>{
+   const label=document.createElement("label");
+   const input=document.createElement("input");input.type="radio";input.name="q"+i;input.value=j;
+   label.appendChild(input);label.appendChild(document.createTextNode(answer));box.appendChild(label);
+  });
+  form.appendChild(box);
+ });
+}
+document.getElementById("checkQuiz").onclick=()=>{
+ let score=0,answered=0;
+ questions.forEach((q,i)=>{
+  const selected=document.querySelector('input[name="q'+i+'"]:checked');
+  if(selected){answered++;if(Number(selected.value)===q.c)score++}
+ });
+ const result=document.getElementById("quizResult");
+ if(answered<questions.length){result.textContent="Please answer all six questions first.";return}
+ result.textContent="Your score: "+score+"/"+questions.length+". "+(score===6?"Excellent work!":score>=4?"Good work! Keep practising.":"Review the lessons and try again.");
+ if(score>=4&&!quizRewarded){xp+=5;quizRewarded=true;localStorage.setItem(xpKey,String(xp));result.textContent+=" You earned 5 bonus XP!";updateStats()}
+};
+document.getElementById("resetQuiz").onclick=()=>{renderQuiz();document.getElementById("quizResult").textContent=""};
+renderTopics();renderLessons();renderLesson();renderQuiz();
+</script>
+</body>
+</html>

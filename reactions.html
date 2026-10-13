@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZYNTRA | Chemical Reactions</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .lesson-page {
+            min-height: 100vh;
+            padding: 140px 7% 70px;
+        }
+
+        .lesson-header {
+            max-width: 850px;
+            margin-bottom: 45px;
+        }
+
+        .lesson-badge {
+            display: inline-block;
+            padding: 9px 16px;
+            border-radius: 30px;
+            background: rgba(139,92,246,.10);
+            border: 1px solid rgba(139,92,246,.30);
+            color: #c4b5fd;
+            margin-bottom: 20px;
+        }
+
+        .lesson-header h1 {
+            font-size: clamp(42px, 6vw, 70px);
+            margin: 0 0 18px;
+        }
+
+        .lesson-header h1 span {
+            background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .lesson-header p {
+            color: #9999ad;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .lesson-card {
+            max-width: 950px;
+            padding: 35px;
+            margin-bottom: 25px;
+            border-radius: 22px;
+            background: rgba(255,255,255,.045);
+            border: 1px solid rgba(255,255,255,.09);
+        }
+
+        .lesson-card h2 {
+            margin-bottom: 18px;
+            font-size: 28px;
+        }
+
+        .lesson-card p {
+            color: #b0b0c0;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .reaction-box {
+            margin-top: 25px;
+            padding: 25px;
+            text-align: center;
+            border-radius: 18px;
+            background: rgba(139,92,246,.08);
+            border: 1px solid rgba(139,92,246,.2);
+        }
+
+        .equation {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .reaction-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .reaction-type {
+            padding: 25px;
+            border-radius: 18px;
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.08);
+        }
+
+        .reaction-type h3 {
+            margin-bottom: 10px;
+        }
+
+        .reaction-type p {
+            margin: 0;
+        }
+
+        .quiz-question {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255,255,255,.035);
+        }
+
+        .quiz-question button {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 10px;
+            background: rgba(255,255,255,.05);
+            color: white;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .quiz-question button:hover {
+            background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 13px 22px;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.12);
+        }
+
+        @media(max-width:700px) {
+            .reaction-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-page {
+                padding: 120px 5% 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        ZYNTRA<span>●</span>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="study.html">Study</a>
+        <a href="ai.html">AI</a>
+        <a href="planner.html">Planner</a>
+        <a href="challenge.html">Challenges</a>
+        <a href="profile.html">Profile</a>
+    </nav>
+
+</header>
+
+
+<main class="lesson-page">
+
+    <section class="lesson-header">
+
+        <div class="lesson-badge">
+            🧪 CHEMISTRY LESSON
+        </div>
+
+        <h1>
+            Chemical <span>Reactions</span>
+        </h1>
+
+        <p>
+            Learn how substances change during chemical reactions
+            and how to represent reactions using chemical equations.
+        </p>
+
+    </section>
+
+
+    <section class="lesson-card">
+
+        <h2>🧪 What is a Chemical Reaction?</h2>
+
+        <p>
+            A chemical reaction is a process in which one or more
+            substances change to form new substances with different
+            properties.
+        </p>
+
+        <div class="reaction-box">
+
+            <div>Reactants</div>
+
+            <div class="equation">
+                Reactants → Products
+            </div>
+
+            <div>Products</div>
+
+        </div>
+
+    </section>
+
+
+    <section class="lesson-card">
+
+        <h2>⚗️ Types of Chemical Reactions</h2>
+
+        <div class="reaction-grid">
+
+            <div class="reaction-type">
+
+                <h3>1. Combination</h3>
+
+                <p>
+                    Two or more substances combine to form
+                    one new substance.
+                </p>
+
+                <div class="equation">
+                    A + B → AB
+                </div>
+
+            </div>
+
+
+            <div class="reaction-type">
+
+                <h3>2. Decomposition</h3>
+
+                <p>
+                    One compound breaks down into two or
+                    more simpler substances.
+                </p>
+
+                <div class="equation">
+                    AB → A + B
+                </div>
+
+            </div>
+
+
+            <div class="reaction-type">
+
+                <h3>3. Displacement</h3>
+
+                <p>
+                    One element replaces another element
+                    in a compound.
+                </p>
+
+                <div class="equation">
+                    A + BC → AC + B
+                </div>
+
+            </div>
+
+
+            <div class="reaction-type">
+
+                <h3>4. Neutralisation</h3>
+
+                <p>
+                    An acid reacts with a base to form
+                    salt and water.
+                </p>
+
+                <div class="equation">
+                    Acid + Base → Salt + Water
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="lesson-card">
+
+        <h2>🧠 Quick Quiz</h2>
+
+        <div class="quiz-question">
+
+            <strong>
+                1. What are the substances present at the beginning
+                of a chemical reaction called?
+            </strong>
+
+            <button onclick="checkAnswer(this, true)">
+                A. Reactants
+            </button>
+
+            <button onclick="checkAnswer(this, false)">
+                B. Products
+            </button>
+
+            <button onclick="checkAnswer(this, false)">
+                C. Elements
+            </button>
+
+        </div>
+
+
+        <div class="quiz-question">
+
+            <strong>
+                2. What is produced when an acid reacts with a base?
+            </strong>
+
+            <button onclick="checkAnswer(this, false)">
+                A. Oxygen only
+            </button>
+
+            <button onclick="checkAnswer(this, true)">
+                B. Salt and water
+            </button>
+
+            <button onclick="checkAnswer(this, false)">
+                C. Carbon only
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <a href="chemistry.html" class="back-button">
+        ← Back to Chemistry
+    </a>
+
+</main>
+
+
+<script>
+function checkAnswer(button, correct) {
+
+    if (correct) {
+        button.textContent = "✅ Correct!";
+    } else {
+        button.textContent = "❌ Try again!";
+    }
+
+    button.disabled = true;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1429 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZYNTRA Student Dashboard</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #070711;
+            --card: rgba(255,255,255,0.055);
+            --border: rgba(255,255,255,0.10);
+            --white: #ffffff;
+            --text: #d6d6e5;
+            --muted: #85859b;
+            --purple: #8b5cf6;
+            --blue: #3b82f6;
+            --pink: #ec4899;
+            --cyan: #06b6d4;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND GLOW */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            left: -150px;
+            background: var(--purple);
+            filter: blur(180px);
+            opacity: 0.12;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            bottom: -200px;
+            right: -150px;
+            background: var(--cyan);
+            filter: blur(180px);
+            opacity: 0.08;
+            z-index: -1;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            width: 100%;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            border-bottom: 1px solid var(--border);
+            background: rgba(7,7,17,0.75);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg,var(--purple),var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: white;
+        }
+
+        .profile-mini {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 12px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            background: var(--card);
+            color: white;
+            text-decoration: none;
+        }
+
+        .mini-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg,var(--purple),var(--blue));
+            font-weight: bold;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        /* BACK TO HOME */
+
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 11px 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .back-home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        /* WELCOME */
+
+        .welcome {
+            padding: 55px 0 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .welcome-badge {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 30px;
+            background: rgba(139,92,246,0.13);
+            border: 1px solid rgba(139,92,246,0.3);
+            color: #b9a0ff;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .welcome h1 {
+            font-size: 42px;
+            margin-bottom: 8px;
+        }
+
+        .welcome h1 span {
+            background: linear-gradient(135deg,var(--purple),var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome p {
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .date-box {
+            padding: 18px 22px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 16px;
+            text-align: right;
+        }
+
+        .date-box small {
+            color: var(--muted);
+        }
+
+        .date-box strong {
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* STATS */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            padding: 24px;
+            border-radius: 18px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139,92,246,0.45);
+        }
+
+        .stat-icon {
+            font-size: 27px;
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--muted);
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        /* MAIN GRID */
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 22px;
+            margin-bottom: 22px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 27px;
+        }
+
+        .card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .card-title h2 {
+            font-size: 21px;
+        }
+
+        .card-title a {
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* PROGRESS */
+
+        .overall {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .progress-circle {
+            width: 145px;
+            height: 145px;
+            border-radius: 50%;
+            background:
+                conic-gradient(
+                    var(--purple) 68%,
+                    #202031 68%
+                );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .progress-inner {
+            width: 112px;
+            height: 112px;
+            background: #0b0b16;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .progress-inner strong {
+            font-size: 29px;
+        }
+
+        .progress-inner small {
+            color: var(--muted);
+        }
+
+        .overall-text h3 {
+            margin-bottom: 8px;
+        }
+
+        .overall-text p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* SUBJECT PROGRESS */
+
+        .subject {
+            margin-bottom: 18px;
+        }
+
+        .subject:last-child {
+            margin-bottom: 0;
+        }
+
+        .subject-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+
+        .subject-info span:last-child {
+            color: #a78bfa;
+            font-weight: bold;
+        }
+
+        .bar {
+            height: 8px;
+            background: #1a1a29;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg,var(--purple),var(--blue));
+            border-radius: 20px;
+        }
+
+        /* DAILY GOAL */
+
+        .goal {
+            text-align: center;
+        }
+
+        .goal-circle {
+            width: 145px;
+            height: 145px;
+            margin: 10px auto 20px;
+            border-radius: 50%;
+            background:
+                conic-gradient(
+                    var(--cyan) 75%,
+                    #202031 75%
+                );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .goal-inner {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            background: #0b0b16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .goal-inner strong {
+            font-size: 30px;
+        }
+
+        .goal p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .goal-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 11px 20px;
+            border-radius: 11px;
+            background: linear-gradient(135deg,var(--purple),var(--blue));
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* ACTIVITIES */
+
+        .activity {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .activity:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 12px;
+            background: rgba(139,92,246,0.14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .activity-text {
+            flex: 1;
+        }
+
+        .activity-text strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .activity-text small {
+            color: var(--muted);
+        }
+
+        /* CHALLENGE */
+
+        .challenge {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(139,92,246,0.18),
+                    rgba(59,130,246,0.10)
+                );
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge::after {
+            content: "🧠";
+            position: absolute;
+            right: 20px;
+            bottom: -15px;
+            font-size: 100px;
+            opacity: 0.08;
+        }
+
+        .challenge h2 {
+            margin-bottom: 10px;
+        }
+
+        .challenge p {
+            color: var(--muted);
+            max-width: 500px;
+        }
+
+        .challenge-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 22px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,var(--purple),var(--blue));
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* QUICK ACTIONS */
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 15px;
+        }
+
+        .action {
+            text-decoration: none;
+            color: white;
+            padding: 20px;
+            border-radius: 17px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .action:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139,92,246,0.5);
+        }
+
+        .action-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .action strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .action small {
+            color: var(--muted);
+        }
+
+        /* ACHIEVEMENTS */
+
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 15px;
+        }
+
+        .achievement {
+            text-align: center;
+            padding: 20px 10px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid var(--border);
+        }
+
+        .achievement-icon {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .achievement strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .achievement small {
+            color: var(--muted);
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 45px 20px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:900px) {
+
+            .stats-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actions-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .achievements {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+        }
+
+        @media(max-width:600px) {
+
+            .welcome {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .date-box {
+                text-align: left;
+                width: 100%;
+            }
+
+            .welcome h1 {
+                font-size: 34px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .overall {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievements {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ZYNTRA
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="study.html">
+                Study
+            </a>
+
+            <a href="ai.html">
+                AI
+            </a>
+
+            <a href="planner.html">
+                Planner
+            </a>
+
+            <a href="challenge.html">
+                Challenges
+            </a>
+
+        </div>
+
+        <a href="profile.html" class="profile-mini">
+
+            <div class="mini-avatar">
+                Z
+            </div>
+
+            <span>
+                Student
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <main class="container">
+
+        <!-- BACK TO HOME -->
+
+        <a href="index.html" class="back-home-btn">
+            ← Back to Home
+        </a>
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome">
+
+            <div>
+
+                <div class="welcome-badge">
+                    ✦ STUDENT DASHBOARD
+                </div>
+
+                <h1>
+                    Welcome back, <span>ZYNTRA Student</span> 👋
+                </h1>
+
+                <p>
+                    Keep learning, keep improving and reach your goals.
+                </p>
+
+            </div>
+
+            <div class="date-box">
+
+                <small>
+                    TODAY
+                </small>
+
+                <strong id="todayDate">
+                    Loading...
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATS -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <div class="stat-number">
+                    6
+                </div>
+
+                <div class="stat-label">
+                    Subjects
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔥
+                </div>
+
+                <div class="stat-number">
+                    7
+                </div>
+
+                <div class="stat-label">
+                    Day Streak
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🎯
+                </div>
+
+                <div class="stat-number">
+                    68%
+                </div>
+
+                <div class="stat-label">
+                    Overall Progress
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🏆
+                </div>
+
+                <div class="stat-number">
+                    5
+                </div>
+
+                <div class="stat-label">
+                    Achievements
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROGRESS + DAILY GOAL -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- OVERALL PROGRESS -->
+
+            <div class="card">
+
+                <div class="card-title">
+
+                    <h2>
+                        📈 Learning Progress
+                    </h2>
+
+                    <a href="study.html">
+                        View Study →
+                    </a>
+
+                </div>
+
+
+                <div class="overall">
+
+                    <div class="progress-circle">
+
+                        <div class="progress-inner">
+
+                            <strong>
+                                68%
+                            </strong>
+
+                            <small>
+                                Overall
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="overall-text">
+
+                        <h3>
+                            You're making progress! 🚀
+                        </h3>
+
+                        <p>
+                            You've completed a good part of your
+                            learning journey. Keep your streak alive
+                            and continue practicing every day.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUBJECTS -->
+
+                <div class="subject">
+
+                    <div class="subject-info">
+
+                        <span>
+                            Mathematics
+                        </span>
+
+                        <span>
+                            68%
+                        </span>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <div
+                            class="bar-fill"
+                            style="width:68%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="subject">
+
+                    <div class="subject-info">
+
+                        <span>
+                            Chemistry
+                        </span>
+
+                        <span>
+                            54%
+                        </span>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <div
+                            class="bar-fill"
+                            style="width:54%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="subject">
+
+                    <div class="subject-info">
+
+                        <span>
+                            Physics
+                        </span>
+
+                        <span>
+                            42%
+                        </span>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <div
+                            class="bar-fill"
+                            style="width:42%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="subject">
+
+                    <div class="subject-info">
+
+                        <span>
+                            Biology
+                        </span>
+
+                        <span>
+                            61%
+                        </span>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <div
+                            class="bar-fill"
+                            style="width:61%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DAILY GOAL -->
+
+            <div class="card goal">
+
+                <div class="card-title">
+
+                    <h2>
+                        🎯 Daily Goal
+                    </h2>
+
+                </div>
+
+
+                <div class="goal-circle">
+
+                    <div class="goal-inner">
+
+                        <strong>
+                            75%
+                        </strong>
+
+                        <small>
+                            Complete
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    45 minutes studied
+                </h3>
+
+                <p>
+                    Your daily target is 60 minutes.
+                </p>
+
+
+                <a href="planner.html" class="goal-btn">
+                    Continue Studying →
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTIVITIES + CHALLENGE -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- RECENT ACTIVITY -->
+
+            <div class="card">
+
+                <div class="card-title">
+
+                    <h2>
+                        🕘 Recent Activity
+                    </h2>
+
+                    <a href="planner.html">
+                        Planner →
+                    </a>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <div class="activity-icon">
+                        📐
+                    </div>
+
+                    <div class="activity-text">
+
+                        <strong>
+                            Completed Mathematics
+                        </strong>
+
+                        <small>
+                            Trigonometry practice
+                        </small>
+
+                    </div>
+
+                    <small>
+                        Today
+                    </small>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <div class="activity-icon">
+                        ⚗️
+                    </div>
+
+                    <div class="activity-text">
+
+                        <strong>
+                            Studied Chemistry
+                        </strong>
+
+                        <small>
+                            Atomic Structure
+                        </small>
+
+                    </div>
+
+                    <small>
+                        Yesterday
+                    </small>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <div class="activity-icon">
+                        💻
+                    </div>
+
+                    <div class="activity-text">
+
+                        <strong>
+                            Computer Studies
+                        </strong>
+
+                        <small>
+                            Database Systems
+                        </small>
+
+                    </div>
+
+                    <small>
+                        2 days ago
+                    </small>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <div class="activity-icon">
+                        🧬
+                    </div>
+
+                    <div class="activity-text">
+
+                        <strong>
+                            Biology Revision
+                        </strong>
+
+                        <small>
+                            Reproduction
+                        </small>
+
+                    </div>
+
+                    <small>
+                        3 days ago
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- CHALLENGE -->
+
+            <div class="card challenge">
+
+                <h2>
+                    🧠 Daily Challenge
+                </h2>
+
+                <p>
+                    Test your knowledge with a quick challenge
+                    and increase your learning streak.
+                </p>
+
+                <a href="challenge.html" class="challenge-btn">
+                    Start Challenge →
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h2>
+                    ⚡ Quick Actions
+                </h2>
+
+            </div>
+
+
+            <div class="actions-grid">
+
+
+                <a href="study.html" class="action">
+
+                    <div class="action-icon">
+                        📚
+                    </div>
+
+                    <strong>
+                        Smart Study
+                    </strong>
+
+                    <small>
+                        Explore your subjects
+                    </small>
+
+                </a>
+
+
+                <a href="ai.html" class="action">
+
+                    <div class="action-icon">
+                        🤖
+                    </div>
+
+                    <strong>
+                        ZYNTRA AI
+                    </strong>
+
+                    <small>
+                        Ask your AI assistant
+                    </small>
+
+                </a>
+
+
+                <a href="planner.html" class="action">
+
+                    <div class="action-icon">
+                        📅
+                    </div>
+
+                    <strong>
+                        Study Planner
+                    </strong>
+
+                    <small>
+                        Organize your study
+                    </small>
+
+                </a>
+
+
+                <a href="challenge.html" class="action">
+
+                    <div class="action-icon">
+                        🧠
+                    </div>
+
+                    <strong>
+                        Challenges
+                    </strong>
+
+                    <small>
+                        Test your knowledge
+                    </small>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <br>
+
+
+        <!-- ACHIEVEMENTS -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h2>
+                    🏆 Achievements
+                </h2>
+
+                <a href="profile.html">
+                    View Profile →
+                </a>
+
+            </div>
+
+
+            <div class="achievements">
+
+
+                <div class="achievement">
+
+                    <div class="achievement-icon">
+                        🔥
+                    </div>
+
+                    <strong>
+                        7-Day Streak
+                    </strong>
+
+                    <small>
+                        Keep going
+                    </small>
+
+                </div>
+
+
+                <div class="achievement">
+
+                    <div class="achievement-icon">
+                        🧠
+                    </div>
+
+                    <strong>
+                        Quick Thinker
+                    </strong>
+
+                    <small>
+                        5 challenges
+                    </small>
+
+                </div>
+
+
+                <div class="achievement">
+
+                    <div class="achievement-icon">
+                        📚
+                    </div>
+
+                    <strong>
+                        Book Explorer
+                    </strong>
+
+                    <small>
+                        6 subjects
+                    </small>
+
+                </div>
+
+
+                <div class="achievement">
+
+                    <div class="achievement-icon">
+                        🚀
+                    </div>
+
+                    <strong>
+                        Fast Learner
+                    </strong>
+
+                    <small>
+                        68% progress
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © <span id="year"></span> ZYNTRA.
+        Built for the next generation of learners.
+
+    </footer>
+
+
+    <script>
+
+        /* CURRENT DATE */
+
+        const today = new Date();
+
+        const dateOptions = {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        };
+
+        document.getElementById("todayDate").textContent =
+            today.toLocaleDateString("en-US", dateOptions);
+
+
+        /* CURRENT YEAR */
+
+        document.getElementById("year").textContent =
+            today.getFullYear();
+
+
+        /* SIMPLE CARD ANIMATION */
+
+        const cards =
+            document.querySelectorAll(
+                ".stat-card, .card, .action"
+            );
+
+        cards.forEach(function(card, index) {
+
+            card.style.opacity = "0";
+
+            card.style.transform = "translateY(15px)";
+
+            setTimeout(function() {
+
+                card.style.transition =
+                    "opacity 0.5s ease, transform 0.5s ease";
+
+                card.style.opacity = "1";
+
+                card.style.transform =
+                    "translateY(0)";
+
+            }, index * 70);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+

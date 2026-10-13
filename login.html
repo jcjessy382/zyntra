@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Login</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(139,92,246,.18), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(59,130,246,.15), transparent 35%),
+        #070711;
+    color:white;
+    padding:20px;
+}
+
+.login-box{
+    width:100%;
+    max-width:430px;
+    background:rgba(15,15,30,.88);
+    border:1px solid rgba(139,92,246,.25);
+    border-radius:22px;
+    padding:35px;
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+    backdrop-filter:blur(15px);
+}
+
+.logo{
+    text-align:center;
+    font-size:34px;
+    font-weight:800;
+    margin-bottom:8px;
+    background:linear-gradient(90deg,#8b5cf6,#3b82f6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+    text-align:center;
+    color:#aaa;
+    margin-bottom:30px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#ddd;
+    font-size:14px;
+}
+
+input{
+    width:100%;
+    padding:14px 15px;
+    margin-bottom:20px;
+    border-radius:12px;
+    border:1px solid #292943;
+    outline:none;
+    background:#0d0d1b;
+    color:white;
+    font-size:15px;
+}
+
+input:focus{
+    border-color:#8b5cf6;
+    box-shadow:0 0 0 3px rgba(139,92,246,.12);
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg,#8b5cf6,#3b82f6);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.92;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.message{
+    display:none;
+    margin-top:18px;
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+    font-size:14px;
+}
+
+.error{
+    display:block;
+    background:rgba(239,68,68,.12);
+    color:#ff8a8a;
+    border:1px solid rgba(239,68,68,.25);
+}
+
+.success{
+    display:block;
+    background:rgba(34,197,94,.12);
+    color:#6ee7a0;
+    border:1px solid rgba(34,197,94,.25);
+}
+
+.register{
+    text-align:center;
+    margin-top:22px;
+    color:#aaa;
+    font-size:14px;
+}
+
+.register a{
+    color:#8b5cf6;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.register a:hover{
+    text-decoration:underline;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:18px;
+    color:#777;
+    text-decoration:none;
+    font-size:13px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+
+<div class="logo">ZYNTRA</div>
+
+<div class="subtitle">
+    Welcome back. Continue your learning journey.
+</div>
+
+<form id="loginForm">
+
+    <label for="login">Email or Username</label>
+
+    <input
+        type="text"
+        id="login"
+        name="login"
+        placeholder="Enter your email or username"
+        autocomplete="username"
+        required
+    >
+
+    <label for="password">Password</label>
+
+    <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+        autocomplete="current-password"
+        required
+    >
+
+    <button type="submit" id="loginButton">
+        Login
+    </button>
+
+</form>
+
+<div id="message" class="message"></div>
+
+<div class="register">
+    Don't have an account?
+    <a href="register.html">Create Account</a>
+</div>
+
+<a href="index.html" class="back">← Back to Home</a>
+
+
+</div>
+
+<script>
+
+const loginForm = document.getElementById("loginForm");
+const loginButton = document.getElementById("loginButton");
+const message = document.getElementById("message");
+
+loginForm.addEventListener("submit", async function(event){
+
+    event.preventDefault();
+
+    // Get the actual values from the inputs
+    const login = document.getElementById("login").value.trim();
+    const password = document.getElementById("password").value;
+
+    // Clear previous message
+    message.className = "message";
+    message.textContent = "";
+
+    // Check the values
+    if(!login || !password){
+        message.className = "message error";
+        message.textContent = "Please enter your email/username and password.";
+        return;
+    }
+
+    loginButton.disabled = true;
+    loginButton.textContent = "Logging in...";
+
+    try{
+
+        const response = await fetch("http://localhost:3000/api/login", {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                login: login,
+                email: login,
+                username: login,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+        console.log("Login response:", data);
+
+        if(response.ok){
+
+            // Save the logged-in user
+            const user = data.user || data;
+
+            localStorage.setItem(
+                "zyntraUser",
+                JSON.stringify(user)
+            );
+
+            // Save useful user information separately
+            if(user.username){
+                localStorage.setItem("zyntraUsername", user.username);
+            }
+
+            if(user.name){
+                localStorage.setItem("zyntraName", user.name);
+            }
+
+            if(user.fullName){
+                localStorage.setItem("zyntraName", user.fullName);
+            }
+
+            if(user.email){
+                localStorage.setItem("zyntraEmail", user.email);
+            }
+
+            if(user.grade){
+                localStorage.setItem("zyntraGrade", user.grade);
+            }
+
+            message.className = "message success";
+            message.textContent = "Login successful! Opening Smart Study...";
+
+            setTimeout(function(){
+                window.location.href = "study.html";
+            }, 700);
+
+        }else{
+
+            message.className = "message error";
+
+            message.textContent =
+                data.message ||
+                data.error ||
+                "Invalid email/username or password.";
+
+            loginButton.disabled = false;
+            loginButton.textContent = "Login";
+        }
+
+    }catch(error){
+
+        console.error("Login error:", error);
+
+        message.className = "message error";
+
+        message.textContent =
+            "Cannot connect to ZYNTRA server. Make sure server.js is running.";
+
+        loginButton.disabled = false;
+        loginButton.textContent = "Login";
+    }
+
+});
+
+</script>
+
+</body>
+</html>

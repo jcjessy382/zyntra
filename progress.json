@@ -1,0 +1,157 @@
+{
+  "students": [
+    {
+      "userId": "0dacdd2512a41e5d70c0ad55",
+      "username": "1234@gmail.com",
+      "xp": 0,
+      "questionsCompleted": 0,
+      "correctAnswers": 0,
+      "studyStreak": 0,
+      "lastStudyDate": null,
+      "totalStudyMinutes": 0,
+      "subjects": {
+        "Mathematics": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "Chemistry": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "Physics": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "Biology": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "Computer-Studies": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "English": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        }
+      },
+      "achievements": [],
+      "createdAt": "2026-09-27T08:45:36.863Z",
+      "updatedAt": "2026-09-27T08:45:36.863Z"
+    },
+    {
+      "userId": "bf08e8dcc311619939c70eed",
+      "username": "omondibradox3@gmail.com",
+      "xp": 0,
+      "questionsCompleted": 0,
+      "correctAnswers": 0,
+      "studyStreak": 0,
+      "lastStudyDate": null,
+      "totalStudyMinutes": 0,
+      "subjects": {
+        "Mathematics": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "Chemistry": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "Physics": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "Biology": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "Computer-Studies": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "English": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        }
+      },
+      "achievements": [],
+      "createdAt": "2026-10-11T08:16:18.614Z",
+      "updatedAt": "2026-10-11T08:16:18.614Z"
+    },
+    {
+      "userId": "562d369f4c44e084190d68da",
+      "username": "12345@gmail.com",
+      "xp": 0,
+      "questionsCompleted": 0,
+      "correctAnswers": 0,
+      "studyStreak": 0,
+      "lastStudyDate": null,
+      "totalStudyMinutes": 0,
+      "subjects": {
+        "Mathematics": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "Chemistry": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "Physics": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "Biology": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "Computer-Studies": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        },
+        "English": {
+          "progress": 0,
+          "questions": 0,
+          "correct": 0,
+          "topicsCompleted": []
+        }
+      },
+      "achievements": [],
+      "createdAt": "2026-10-11T09:03:28.111Z",
+      "updatedAt": "2026-10-11T09:03:28.111Z"
+    }
+  ]
+}

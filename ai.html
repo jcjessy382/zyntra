@@ -1,0 +1,1756 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA AI</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --bg:#070711;
+    --bg2:#0d0d1b;
+    --card:#111122;
+    --card2:#17172b;
+    --purple:#8b5cf6;
+    --blue:#3b82f6;
+    --pink:#ec4899;
+    --cyan:#06b6d4;
+    --green:#22c55e;
+    --text:#f8fafc;
+    --muted:#a1a1b5;
+    --border:rgba(255,255,255,.08);
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(139,92,246,.16),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(59,130,246,.12),
+            transparent 35%
+        ),
+        var(--bg);
+
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+    height:70px;
+    width:100%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 5%;
+
+    background:rgba(7,7,17,.82);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--blue),
+            var(--pink)
+        );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.nav-links a{
+    color:#c7c7d8;
+    text-decoration:none;
+
+    padding:10px 13px;
+    border-radius:10px;
+
+    font-size:14px;
+    transition:.25s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:white;
+    background:rgba(139,92,246,.14);
+}
+
+.profile{
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    font-weight:bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+    cursor:pointer;
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main{
+    width:min(1100px,92%);
+    margin:0 auto;
+    padding:45px 0 60px;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.ai-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.ai-icon{
+    width:78px;
+    height:78px;
+
+    margin:0 auto 18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:24px;
+
+    font-size:38px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.25),
+            rgba(59,130,246,.18)
+        );
+
+    border:1px solid rgba(139,92,246,.3);
+
+    box-shadow:
+        0 0 40px rgba(139,92,246,.18);
+}
+
+.ai-header h1{
+    font-size:clamp(30px,5vw,48px);
+    margin-bottom:10px;
+}
+
+.gradient-text{
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--blue),
+            var(--pink)
+        );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.ai-header p{
+    color:var(--muted);
+    max-width:650px;
+    margin:auto;
+    line-height:1.6;
+}
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status{
+    display:flex;
+    justify-content:center;
+    margin:20px 0;
+}
+
+.status-pill{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    background:rgba(34,197,94,.08);
+    border:1px solid rgba(34,197,94,.2);
+
+    color:#86efac;
+
+    font-size:13px;
+}
+
+.status-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--green);
+
+    box-shadow:
+        0 0 10px var(--green);
+}
+
+/* =====================================================
+   QUICK QUESTIONS
+===================================================== */
+
+.quick-section{
+    margin-bottom:22px;
+}
+
+.quick-title{
+    color:#b9b9c9;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.quick-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+}
+
+.quick-btn{
+    border:1px solid var(--border);
+
+    background:rgba(255,255,255,.035);
+
+    color:#ddd;
+
+    padding:10px 14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    transition:.25s;
+}
+
+.quick-btn:hover{
+    border-color:rgba(139,92,246,.5);
+
+    background:
+        rgba(139,92,246,.1);
+
+    transform:translateY(-2px);
+}
+
+/* =====================================================
+   CHAT
+===================================================== */
+
+.chat-container{
+    min-height:520px;
+
+    display:flex;
+    flex-direction:column;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,17,34,.95),
+            rgba(10,10,22,.95)
+        );
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.3);
+}
+
+.chat-top{
+    padding:17px 20px;
+
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.chat-title{
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    font-weight:bold;
+}
+
+.bot-avatar{
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+}
+
+.clear-btn{
+    border:1px solid var(--border);
+
+    background:transparent;
+
+    color:#aaa;
+
+    padding:8px 11px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+}
+
+.clear-btn:hover{
+    color:white;
+    background:rgba(255,255,255,.05);
+}
+
+/* =====================================================
+   MESSAGES
+===================================================== */
+
+.messages{
+    flex:1;
+
+    padding:24px;
+
+    overflow-y:auto;
+
+    min-height:350px;
+    max-height:560px;
+}
+
+.welcome{
+    max-width:700px;
+    margin:25px auto;
+
+    text-align:center;
+}
+
+.welcome-icon{
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+.welcome h2{
+    margin-bottom:9px;
+}
+
+.welcome p{
+    color:var(--muted);
+    line-height:1.6;
+}
+
+/* Message */
+
+.message{
+    display:flex;
+    gap:12px;
+
+    margin-bottom:22px;
+
+    animation:
+        messageIn .25s ease;
+}
+
+@keyframes messageIn{
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.message.user{
+    flex-direction:row-reverse;
+}
+
+.message-avatar{
+    flex-shrink:0;
+
+    width:36px;
+    height:36px;
+
+    border-radius:11px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:16px;
+}
+
+.message.ai .message-avatar{
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+}
+
+.message.user .message-avatar{
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--purple)
+        );
+}
+
+.message-content{
+    max-width:78%;
+}
+
+.message-bubble{
+    padding:13px 16px;
+
+    border-radius:17px;
+
+    line-height:1.6;
+
+    white-space:pre-wrap;
+
+    word-wrap:break-word;
+
+    font-size:14px;
+}
+
+.message.ai .message-bubble{
+    background:var(--card2);
+
+    border:
+        1px solid var(--border);
+
+    border-top-left-radius:5px;
+}
+
+.message.user .message-bubble{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.35),
+            rgba(59,130,246,.3)
+        );
+
+    border:
+        1px solid rgba(139,92,246,.25);
+
+    border-top-right-radius:5px;
+}
+
+.message-time{
+    color:#77778c;
+    font-size:10px;
+    margin-top:5px;
+}
+
+/* =====================================================
+   TYPING
+===================================================== */
+
+.typing{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.typing span{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#aaa;
+
+    animation:
+        typing 1.2s infinite;
+}
+
+.typing span:nth-child(2){
+    animation-delay:.15s;
+}
+
+.typing span:nth-child(3){
+    animation-delay:.3s;
+}
+
+@keyframes typing{
+    0%,60%,100%{
+        transform:translateY(0);
+        opacity:.4;
+    }
+
+    30%{
+        transform:translateY(-5px);
+        opacity:1;
+    }
+}
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.input-area{
+    padding:16px;
+
+    border-top:1px solid var(--border);
+
+    background:rgba(0,0,0,.12);
+}
+
+.input-box{
+    display:flex;
+    align-items:flex-end;
+    gap:10px;
+
+    padding:9px;
+
+    border-radius:16px;
+
+    background:#0b0b18;
+
+    border:1px solid var(--border);
+
+    transition:.25s;
+}
+
+.input-box:focus-within{
+    border-color:
+        rgba(139,92,246,.55);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.08);
+}
+
+#messageInput{
+    flex:1;
+
+    min-height:44px;
+    max-height:140px;
+
+    resize:none;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    color:white;
+
+    padding:12px;
+
+    font-family:inherit;
+
+    font-size:14px;
+}
+
+#messageInput::placeholder{
+    color:#68687b;
+}
+
+.send-btn{
+    width:46px;
+    height:46px;
+
+    flex-shrink:0;
+
+    border:none;
+
+    border-radius:13px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+    transition:.25s;
+}
+
+.send-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(99,102,241,.25);
+}
+
+.send-btn:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.input-hint{
+    text-align:center;
+
+    color:#68687b;
+
+    font-size:10px;
+
+    margin-top:8px;
+}
+
+/* =====================================================
+   INFO CARDS
+===================================================== */
+
+.info-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:22px;
+}
+
+.info-card{
+    padding:18px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:16px;
+
+    background:
+        rgba(255,255,255,.025);
+}
+
+.info-card-icon{
+    font-size:23px;
+    margin-bottom:9px;
+}
+
+.info-card h3{
+    font-size:14px;
+    margin-bottom:5px;
+}
+
+.info-card p{
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:850px){
+
+    .nav-links a{
+        display:none;
+    }
+
+    .nav-links a:first-child,
+    .nav-links a:nth-child(3){
+        display:block;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .navbar{
+        padding:0 4%;
+    }
+
+    .main{
+        width:94%;
+        padding-top:30px;
+    }
+
+    .chat-container{
+        border-radius:18px;
+    }
+
+    .messages{
+        padding:17px;
+    }
+
+    .message-content{
+        max-width:84%;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .quick-buttons{
+        overflow-x:auto;
+        flex-wrap:nowrap;
+        padding-bottom:5px;
+    }
+
+    .quick-btn{
+        white-space:nowrap;
+    }
+
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        ZYNTRA
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="study.html">
+            Study
+        </a>
+
+        <a href="ai.html" class="active">
+            AI
+        </a>
+
+        <a href="community.html">
+            Community
+        </a>
+
+        <a href="planner.html">
+            Planner
+        </a>
+
+        <a href="challenge.html">
+            Challenges
+        </a>
+
+        <a href="fun.html">
+            🎮 Fun
+        </a>
+
+    </div>
+
+    <div
+        class="profile"
+        id="profileCircle"
+        title="Profile"
+    >
+        B
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+    <!-- HEADER -->
+
+    <section class="ai-header">
+
+        <div class="ai-icon">
+            🤖
+        </div>
+
+        <h1>
+            Meet
+            <span class="gradient-text">
+                ZYNTRA AI
+            </span>
+        </h1>
+
+        <p>
+            Your intelligent study companion.
+            Ask questions, understand difficult topics,
+            revise for exams and learn step by step.
+        </p>
+
+    </section>
+
+
+    <!-- STATUS -->
+
+    <div class="status">
+
+        <div class="status-pill">
+
+            <span class="status-dot"></span>
+
+            <span id="statusText">
+                ZYNTRA AI is ready
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUICK QUESTIONS -->
+
+    <section class="quick-section">
+
+        <div class="quick-title">
+            Try a quick question
+        </div>
+
+        <div class="quick-buttons">
+
+            <button
+                class="quick-btn"
+                onclick="askQuick(
+                    'Explain photosynthesis in simple terms.'
+                )"
+            >
+                🌱 Photosynthesis
+            </button>
+
+            <button
+                class="quick-btn"
+                onclick="askQuick(
+                    'Solve 2x + 4 = 10 and explain each step.'
+                )"
+            >
+                📐 Algebra
+            </button>
+
+            <button
+                class="quick-btn"
+                onclick="askQuick(
+                    'Explain Newton\\'s Second Law with an example.'
+                )"
+            >
+                ⚡ Newton's Laws
+            </button>
+
+            <button
+                class="quick-btn"
+                onclick="askQuick(
+                    'Give me a useful study tip for exams.'
+                )"
+            >
+                📚 Study Tip
+            </button>
+
+            <button
+                class="quick-btn"
+                onclick="askQuick(
+                    'Give me a short Computer Studies quiz.'
+                )"
+            >
+                💻 Computer Quiz
+            </button>
+
+            <button
+                class="quick-btn"
+                onclick="askQuick(
+                    'Explain the difference between RAM and ROM.'
+                )"
+            >
+                🖥️ RAM vs ROM
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- CHAT -->
+
+    <section class="chat-container">
+
+        <div class="chat-top">
+
+            <div class="chat-title">
+
+                <div class="bot-avatar">
+                    🤖
+                </div>
+
+                <div>
+                    <div>
+                        ZYNTRA AI
+                    </div>
+
+                    <small
+                        style="
+                        color:#77778c;
+                        font-size:10px;
+                        font-weight:normal;
+                        "
+                    >
+                        Study Assistant
+                    </small>
+                </div>
+
+            </div>
+
+
+            <button
+                class="clear-btn"
+                onclick="clearChat()"
+            >
+                Clear
+            </button>
+
+        </div>
+
+
+        <!-- MESSAGES -->
+
+        <div
+            class="messages"
+            id="messages"
+        >
+
+            <div
+                class="welcome"
+                id="welcomeMessage"
+            >
+
+                <div class="welcome-icon">
+                    🧠
+                </div>
+
+                <h2>
+                    What are you learning today?
+                </h2>
+
+                <p>
+                    Ask me anything about Mathematics,
+                    Chemistry, Physics, Biology,
+                    Computer Studies or English.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- INPUT -->
+
+        <div class="input-area">
+
+            <div class="input-box">
+
+                <textarea
+                    id="messageInput"
+                    placeholder="Ask ZYNTRA AI a question..."
+                    rows="1"
+                    autocomplete="off"
+                ></textarea>
+
+                <button
+                    class="send-btn"
+                    id="sendButton"
+                    onclick="sendMessage()"
+                    title="Send"
+                >
+                    ➤
+                </button>
+
+            </div>
+
+            <div class="input-hint">
+                Press Enter to send • Shift + Enter for a new line
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- INFO -->
+
+    <section class="info-grid">
+
+        <div class="info-card">
+
+            <div class="info-card-icon">
+                📚
+            </div>
+
+            <h3>
+                Learn
+            </h3>
+
+            <p>
+                Get simple explanations for
+                difficult school topics.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-card-icon">
+                🧮
+            </div>
+
+            <h3>
+                Solve
+            </h3>
+
+            <p>
+                Work through mathematical
+                and scientific problems step by step.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-card-icon">
+                🎯
+            </div>
+
+            <h3>
+                Prepare
+            </h3>
+
+            <p>
+                Revise concepts and practice
+                questions before your exams.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   CONFIGURATION
+===================================================== */
+
+const API_URL =
+    "/api/ask";
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const messages =
+    document.getElementById(
+        "messages"
+    );
+
+const input =
+    document.getElementById(
+        "messageInput"
+    );
+
+const sendButton =
+    document.getElementById(
+        "sendButton"
+    );
+
+const statusText =
+    document.getElementById(
+        "statusText"
+    );
+
+const profileCircle =
+    document.getElementById(
+        "profileCircle"
+    );
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+function loadProfile(){
+
+    const username =
+        localStorage.getItem(
+            "zyntraUsername"
+        );
+
+
+    if(
+        username &&
+        username.trim()
+    ){
+
+        profileCircle.textContent =
+            username
+                .trim()
+                .charAt(0)
+                .toUpperCase();
+
+    }
+
+}
+
+
+loadProfile();
+
+
+profileCircle.onclick =
+    function(){
+
+        window.location.href =
+            "profile.html";
+
+    };
+
+
+/* =====================================================
+   TIME
+===================================================== */
+
+function getTime(){
+
+    return new Date()
+        .toLocaleTimeString(
+            [],
+            {
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        );
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   ADD MESSAGE
+===================================================== */
+
+function addMessage(
+    type,
+    text
+){
+
+    const welcome =
+        document.getElementById(
+            "welcomeMessage"
+        );
+
+
+    if(welcome){
+
+        welcome.remove();
+
+    }
+
+
+    const message =
+        document.createElement(
+            "div"
+        );
+
+
+    message.className =
+        "message " +
+        type;
+
+
+    const avatar =
+        document.createElement(
+            "div"
+        );
+
+
+    avatar.className =
+        "message-avatar";
+
+
+    avatar.textContent =
+        type === "user"
+            ? "👤"
+            : "🤖";
+
+
+    const content =
+        document.createElement(
+            "div"
+        );
+
+
+    content.className =
+        "message-content";
+
+
+    const bubble =
+        document.createElement(
+            "div"
+        );
+
+
+    bubble.className =
+        "message-bubble";
+
+
+    bubble.innerHTML =
+        escapeHTML(
+            text
+        );
+
+
+    const time =
+        document.createElement(
+            "div"
+        );
+
+
+    time.className =
+        "message-time";
+
+
+    time.textContent =
+        getTime();
+
+
+    content.appendChild(
+        bubble
+    );
+
+    content.appendChild(
+        time
+    );
+
+
+    message.appendChild(
+        avatar
+    );
+
+    message.appendChild(
+        content
+    );
+
+
+    messages.appendChild(
+        message
+    );
+
+
+    scrollToBottom();
+
+}
+
+
+/* =====================================================
+   TYPING MESSAGE
+===================================================== */
+
+function showTyping(){
+
+    const welcome =
+        document.getElementById(
+            "welcomeMessage"
+        );
+
+
+    if(welcome){
+
+        welcome.remove();
+
+    }
+
+
+    const message =
+        document.createElement(
+            "div"
+        );
+
+
+    message.className =
+        "message ai";
+
+    message.id =
+        "typingMessage";
+
+
+    message.innerHTML = `
+
+        <div class="message-avatar">
+            🤖
+        </div>
+
+        <div class="message-content">
+
+            <div class="message-bubble">
+
+                <div class="typing">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    messages.appendChild(
+        message
+    );
+
+
+    scrollToBottom();
+
+}
+
+
+/* =====================================================
+   REMOVE TYPING
+===================================================== */
+
+function removeTyping(){
+
+    const typing =
+        document.getElementById(
+            "typingMessage"
+        );
+
+
+    if(typing){
+
+        typing.remove();
+
+    }
+
+}
+
+
+/* =====================================================
+   SCROLL
+===================================================== */
+
+function scrollToBottom(){
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+/* =====================================================
+   SEND MESSAGE
+===================================================== */
+
+async function sendMessage(){
+
+    const message =
+        input.value.trim();
+
+
+    if(!message){
+
+        return;
+
+    }
+
+
+    if(
+        sendButton.disabled
+    ){
+
+        return;
+
+    }
+
+
+    addMessage(
+        "user",
+        message
+    );
+
+
+    input.value = "";
+
+    autoResize();
+
+
+    sendButton.disabled =
+        true;
+
+
+    input.disabled =
+        true;
+
+
+    statusText.textContent =
+        "ZYNTRA AI is thinking...";
+
+
+    showTyping();
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL,
+                {
+
+                    method:
+                        "POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+                            message:message
+                        })
+
+                }
+            );
+
+
+        let data;
+
+
+        try{
+
+            data =
+                await response.json();
+
+        }catch(error){
+
+            throw new Error(
+                "The server returned an invalid response."
+            );
+
+        }
+
+
+        removeTyping();
+
+
+        if(
+            !response.ok
+        ){
+
+            throw new Error(
+                data.message ||
+                "AI request failed."
+            );
+
+        }
+
+
+        const answer =
+            data.answer ||
+            data.response ||
+            data.message ||
+            "I could not generate an answer.";
+
+
+        addMessage(
+            "ai",
+            answer
+        );
+
+
+        if(
+            data.source ===
+            "local-fallback"
+        ){
+
+            statusText.textContent =
+                "ZYNTRA AI is using local fallback";
+
+        }
+        else if(
+            data.source ===
+            "local"
+        ){
+
+            statusText.textContent =
+                "ZYNTRA AI is running locally";
+
+        }
+        else{
+
+            statusText.textContent =
+                "ZYNTRA AI is ready";
+
+        }
+
+
+    }catch(error){
+
+        removeTyping();
+
+
+        console.error(
+            "AI error:",
+            error
+        );
+
+
+        addMessage(
+            "ai",
+            "Sorry, I couldn't get an answer right now. Please try again."
+        );
+
+
+        statusText.textContent =
+            "Connection problem — try again";
+
+
+    }finally{
+
+        sendButton.disabled =
+            false;
+
+        input.disabled =
+            false;
+
+        input.focus();
+
+    }
+
+}
+
+
+/* =====================================================
+   QUICK QUESTION
+===================================================== */
+
+function askQuick(
+    question
+){
+
+    input.value =
+        question;
+
+    autoResize();
+
+    sendMessage();
+
+}
+
+
+/* =====================================================
+   CLEAR CHAT
+===================================================== */
+
+function clearChat(){
+
+    messages.innerHTML = `
+
+        <div
+            class="welcome"
+            id="welcomeMessage"
+        >
+
+            <div class="welcome-icon">
+                🧠
+            </div>
+
+            <h2>
+                What are you learning today?
+            </h2>
+
+            <p>
+                Ask me anything about Mathematics,
+                Chemistry, Physics, Biology,
+                Computer Studies or English.
+            </p>
+
+        </div>
+
+    `;
+
+
+    statusText.textContent =
+        "ZYNTRA AI is ready";
+
+}
+
+
+/* =====================================================
+   ENTER TO SEND
+===================================================== */
+
+input.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter" &&
+            !event.shiftKey
+        ){
+
+            event.preventDefault();
+
+            sendMessage();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   AUTO RESIZE TEXTAREA
+===================================================== */
+
+function autoResize(){
+
+    input.style.height =
+        "auto";
+
+
+    input.style.height =
+        Math.min(
+            input.scrollHeight,
+            140
+        ) + "px";
+
+}
+
+
+input.addEventListener(
+    "input",
+    autoResize
+);
+
+
+/* =====================================================
+   INITIAL FOCUS
+===================================================== */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        input.focus();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+

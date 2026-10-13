@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZYNTRA | Functions</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #070711;
+            color: white;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #8b5cf6;
+            filter: blur(180px);
+            opacity: 0.12;
+            top: -200px;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #3b82f6;
+            filter: blur(180px);
+            opacity: 0.10;
+            bottom: -200px;
+            right: -150px;
+            z-index: -1;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            width: 100%;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(7,7,17,0.85);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            color: #cfcfe4;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 90px 20px 60px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(139,92,246,0.12);
+            border: 1px solid rgba(139,92,246,0.3);
+            color: #bca7ff;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg,#ffffff,#a78bfa,#60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #9999b0;
+            font-size: 17px;
+        }
+
+        /* FUNCTION VISUAL */
+
+        .function-visual {
+            width: 250px;
+            height: 250px;
+            margin: 50px auto;
+            border-radius: 50%;
+            border: 2px solid rgba(139,92,246,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow:
+                0 0 50px rgba(139,92,246,0.15),
+                inset 0 0 50px rgba(59,130,246,0.08);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .function-formula {
+            font-size: 34px;
+            font-weight: bold;
+        }
+
+        .function-visual span {
+            position: absolute;
+            color: #8b5cf6;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .symbol1 {
+            top: 20px;
+            left: 90px;
+        }
+
+        .symbol2 {
+            right: 25px;
+            top: 105px;
+        }
+
+        .symbol3 {
+            bottom: 30px;
+            left: 80px;
+        }
+
+        .symbol4 {
+            left: 20px;
+            top: 105px;
+        }
+
+        @keyframes float {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+        }
+
+        /* SECTION */
+
+        .section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #85859b;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 28px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.35s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(139,92,246,0.5);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #9292a8;
+            font-size: 14px;
+        }
+
+        /* FORMULA BOX */
+
+        .formula-box {
+            margin-top: 25px;
+            padding: 30px;
+            border-radius: 20px;
+            background: linear-gradient(
+                135deg,
+                rgba(139,92,246,0.10),
+                rgba(59,130,246,0.08)
+            );
+            border: 1px solid rgba(139,92,246,0.25);
+        }
+
+        .formula {
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(0,0,0,0.25);
+            border-radius: 12px;
+            font-size: 20px;
+            text-align: center;
+            color: #ddd6fe;
+        }
+
+        /* EXAMPLE */
+
+        .example {
+            margin-top: 30px;
+            padding: 30px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 20px;
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .example p {
+            margin: 10px 0;
+            color: #c6c6d8;
+        }
+
+        .answer {
+            color: #86efac;
+            font-weight: bold;
+        }
+
+        /* QUIZ */
+
+        .quiz {
+            max-width: 700px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+        }
+
+        .quiz h3 {
+            margin-bottom: 25px;
+        }
+
+        .quiz-option {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 12px;
+            background: rgba(139,92,246,0.12);
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .quiz-option:hover {
+            background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+            transform: translateY(-2px);
+        }
+
+        #quizResult {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* BUTTONS */
+
+        .buttons {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 13px 24px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            margin: 6px;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139,92,246,0.3);
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #77778c;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            ZYNTRA
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="study.html">Study</a>
+            <a href="math.html">Mathematics</a>
+            <a href="ai.html">AI</a>
+            <a href="planner.html">Planner</a>
+            <a href="profile.html">Profile</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="badge">
+            ƒ ZYNTRA MATHEMATICS • FUNCTIONS
+        </div>
+
+        <h1>
+            Understand. Connect. Master.
+        </h1>
+
+        <p>
+            Learn how functions connect inputs to outputs,
+            understand notation, tables, graphs and equations,
+            and build strong mathematical reasoning skills.
+        </p>
+
+        <div class="function-visual">
+
+            <div class="function-formula">
+                f(x)
+            </div>
+
+            <span class="symbol1">x</span>
+            <span class="symbol2">y</span>
+            <span class="symbol3">+</span>
+            <span class="symbol4">→</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHAT IS A FUNCTION -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>What is a Function?</h2>
+
+            <p>
+                A simple way to understand functions
+            </p>
+
+        </div>
+
+        <div class="example">
+
+            <p>
+                A <strong>function</strong> is a rule that connects
+                each input to exactly one output.
+            </p>
+
+            <p>
+                We often write a function as:
+            </p>
+
+            <div class="formula">
+                f(x) = 2x + 3
+            </div>
+
+            <p>
+                Here, <strong>x</strong> is the input and
+                <strong>f(x)</strong> is the output.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOPICS -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>Functions Topics</h2>
+
+            <p>
+                Build your understanding step by step.
+            </p>
+
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="card-icon">🔢</div>
+
+                <h3>Function Notation</h3>
+
+                <p>
+                    Learn how expressions such as
+                    f(x), g(x) and h(x) represent functions.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">📋</div>
+
+                <h3>Input & Output</h3>
+
+                <p>
+                    Understand how values are placed into
+                    a function and produce outputs.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">📈</div>
+
+                <h3>Graphs</h3>
+
+                <p>
+                    Learn how functions can be represented
+                    using graphs and coordinates.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">🧮</div>
+
+                <h3>Linear Functions</h3>
+
+                <p>
+                    Study functions such as
+                    y = mx + c and understand gradients.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">🔄</div>
+
+                <h3>Composite Functions</h3>
+
+                <p>
+                    Learn how two or more functions
+                    can be combined.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">🎯</div>
+
+                <h3>Domain & Range</h3>
+
+                <p>
+                    Understand the possible inputs
+                    and outputs of a function.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT FORMULAS -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>Important Function Formulas</h2>
+
+            <p>
+                Remember these important relationships.
+            </p>
+
+        </div>
+
+        <div class="formula-box">
+
+            <div class="formula">
+                f(x) = 2x + 3
+            </div>
+
+            <div class="formula">
+                y = mx + c
+            </div>
+
+            <div class="formula">
+                Gradient = Change in y ÷ Change in x
+            </div>
+
+            <div class="formula">
+                f(g(x)) = Composite Function
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WORKED EXAMPLE -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>Worked Example</h2>
+
+            <p>
+                Let's evaluate a simple function.
+            </p>
+
+        </div>
+
+        <div class="example">
+
+            <p>
+                Given:
+            </p>
+
+            <div class="formula">
+                f(x) = 2x + 3
+            </div>
+
+            <p>
+                Find f(4).
+            </p>
+
+            <p>
+                Substitute x = 4:
+            </p>
+
+            <div class="formula">
+                f(4) = 2(4) + 3
+            </div>
+
+            <p>
+                f(4) = 8 + 3
+            </p>
+
+            <p class="answer">
+                Therefore, f(4) = 11
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUICK REVISION -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>Quick Revision</h2>
+
+            <p>
+                Key points to remember.
+            </p>
+
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Input</h3>
+
+                <p>
+                    The value placed into a function.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Output</h3>
+
+                <p>
+                    The value produced by the function.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Domain</h3>
+
+                <p>
+                    The set of possible input values.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Range</h3>
+
+                <p>
+                    The set of possible output values.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUIZ -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>⚡ Function Challenge</h2>
+
+            <p>
+                Test your understanding.
+            </p>
+
+        </div>
+
+        <div class="quiz">
+
+            <h3>
+                If f(x) = 3x + 2, what is f(4)?
+            </h3>
+
+            <button class="quiz-option"
+                onclick="checkAnswer(this, false)">
+                A. 10
+            </button>
+
+            <button class="quiz-option"
+                onclick="checkAnswer(this, false)">
+                B. 12
+            </button>
+
+            <button class="quiz-option"
+                onclick="checkAnswer(this, true)">
+                C. 14
+            </button>
+
+            <button class="quiz-option"
+                onclick="checkAnswer(this, false)">
+                D. 16
+            </button>
+
+            <div id="quizResult"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+        <a href="math.html" class="back-btn">
+            ← Back to Mathematics
+        </a>
+
+        <a href="study.html" class="back-btn">
+            📚 Smart Study
+        </a>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            ZYNTRA Mathematics • Functions
+        </p>
+
+        <small>
+            © 2026 ZYNTRA. Learn Beyond Limits.
+        </small>
+
+    </footer>
+
+
+    <script>
+
+        function checkAnswer(button, correct) {
+
+            let result =
+                document.getElementById("quizResult");
+
+            let buttons =
+                document.querySelectorAll(".quiz-option");
+
+            buttons.forEach(function(btn) {
+
+                btn.disabled = true;
+
+            });
+
+            if (correct) {
+
+                result.textContent =
+                    "✅ Correct! f(4) = 3(4) + 2 = 14";
+
+                result.style.color = "#22c55e";
+
+            } else {
+
+                result.textContent =
+                    "❌ Not quite. The correct answer is 14.";
+
+                result.style.color = "#f87171";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

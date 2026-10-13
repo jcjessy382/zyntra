@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA | Literature</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#070711;
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#8b5cf6;
+    filter:blur(180px);
+    opacity:.12;
+    top:-200px;
+    left:-150px;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#3b82f6;
+    filter:blur(180px);
+    opacity:.10;
+    right:-180px;
+    bottom:-200px;
+    z-index:-1;
+}
+
+/* NAVBAR */
+
+nav{
+    width:100%;
+    padding:20px 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    background:rgba(7,7,17,.78);
+    backdrop-filter:blur(20px);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:3px;
+}
+
+.logo span{
+    color:#8b5cf6;
+}
+
+.nav-links{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.nav-links a{
+    color:#aaaabd;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:white;
+}
+
+/* CONTAINER */
+
+.container{
+    width:86%;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+    display:inline-block;
+    margin-top:35px;
+    padding:11px 20px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(139,92,246,.35);
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:70px 20px 60px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 16px;
+    border:1px solid rgba(139,92,246,.4);
+    border-radius:30px;
+    background:rgba(139,92,246,.10);
+    color:#c4b5fd;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(40px,6vw,70px);
+    line-height:1.05;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:720px;
+    margin:auto;
+    color:#9696aa;
+    font-size:17px;
+    line-height:1.7;
+}
+
+/* BOOK VISUAL */
+
+.book-visual{
+    width:240px;
+    height:170px;
+    margin:40px auto 0;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.book{
+    width:145px;
+    height:110px;
+    border-radius:8px 15px 15px 8px;
+    background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+    transform:rotate(-7deg);
+    box-shadow:0 25px 60px rgba(139,92,246,.35);
+    position:relative;
+    animation:bookFloat 4s ease-in-out infinite;
+}
+
+.book::before{
+    content:"";
+    position:absolute;
+    left:12px;
+    top:0;
+    width:5px;
+    height:100%;
+    background:rgba(255,255,255,.25);
+}
+
+.book::after{
+    content:"L";
+    position:absolute;
+    left:55px;
+    top:17px;
+    font-size:65px;
+    font-weight:900;
+    color:rgba(255,255,255,.9);
+}
+
+@keyframes bookFloat{
+
+    0%,100%{
+        transform:rotate(-7deg) translateY(0);
+    }
+
+    50%{
+        transform:rotate(-7deg) translateY(-10px);
+    }
+
+}
+
+.floating{
+    position:absolute;
+    font-size:28px;
+    font-weight:bold;
+    animation:float 3s ease-in-out infinite;
+}
+
+.float-one{
+    top:5px;
+    left:15px;
+}
+
+.float-two{
+    right:10px;
+    top:30px;
+    animation-delay:1s;
+}
+
+.float-three{
+    bottom:0;
+    left:35px;
+    animation-delay:2s;
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-13px);
+    }
+
+}
+
+/* SECTIONS */
+
+section{
+    margin-bottom:70px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.section-title h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#88889b;
+}
+
+/* CARDS */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    padding:28px;
+    border-radius:20px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);
+    backdrop-filter:blur(15px);
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    width:100px;
+    height:100px;
+    background:#8b5cf6;
+    filter:blur(70px);
+    opacity:.08;
+    top:-40px;
+    right:-40px;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(139,92,246,.5);
+    box-shadow:0 20px 45px rgba(0,0,0,.25);
+}
+
+.icon{
+    font-size:36px;
+    margin-bottom:16px;
+}
+
+.card h3{
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#9999aa;
+    line-height:1.7;
+    font-size:14px;
+}
+
+/* BUTTON */
+
+.topic-button{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 18px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.topic-button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(139,92,246,.35);
+}
+
+/* FEATURED SET BOOK */
+
+.featured{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.14),
+            rgba(59,130,246,.08)
+        );
+
+    border:1px solid rgba(139,92,246,.28);
+    border-radius:25px;
+    padding:35px;
+
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:35px;
+    align-items:center;
+
+    box-shadow:0 25px 70px rgba(0,0,0,.2);
+}
+
+.cover{
+    height:280px;
+    border-radius:15px;
+    background:
+        linear-gradient(
+            145deg,
+            #17122d,
+            #0d1022
+        );
+
+    border:1px solid rgba(255,255,255,.14);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+    padding:25px;
+
+    box-shadow:0 25px 50px rgba(0,0,0,.4);
+
+    transform:rotate(-3deg);
+
+    transition:.4s;
+}
+
+.featured:hover .cover{
+    transform:rotate(0deg) translateY(-5px);
+}
+
+.cover h3{
+    font-size:24px;
+    line-height:1.35;
+}
+
+.cover span{
+    display:block;
+    margin-top:15px;
+    color:#a78bfa;
+    font-size:13px;
+}
+
+.featured-info h2{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.featured-info p{
+    color:#aaaabd;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+/* ELEMENTS */
+
+.element-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.element{
+    padding:22px;
+    border-radius:16px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    transition:.3s;
+}
+
+.element:hover{
+    border-color:rgba(139,92,246,.35);
+    transform:translateY(-3px);
+}
+
+.element strong{
+    display:block;
+    color:#c4b5fd;
+    margin-bottom:8px;
+}
+
+.element p{
+    color:#9999aa;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* ANALYSIS */
+
+.analysis{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.step{
+    text-align:center;
+    padding:25px 18px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    transition:.3s;
+}
+
+.step:hover{
+    transform:translateY(-6px);
+    border-color:rgba(139,92,246,.4);
+}
+
+.step-number{
+    width:45px;
+    height:45px;
+    margin:0 auto 15px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+    font-weight:bold;
+}
+
+.step h3{
+    margin-bottom:8px;
+}
+
+.step p{
+    color:#9999aa;
+    font-size:13px;
+    line-height:1.6;
+}
+
+/* PRACTICE */
+
+.extract{
+    background:rgba(255,255,255,.045);
+    border-left:4px solid #8b5cf6;
+    padding:28px;
+    border-radius:14px;
+    color:#c7c7d5;
+    line-height:1.9;
+    font-style:italic;
+    max-width:850px;
+    margin:auto;
+}
+
+/* REVISION */
+
+.revision{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:12px;
+}
+
+.revision-card{
+    padding:20px 10px;
+    text-align:center;
+    border-radius:15px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.revision-card strong{
+    display:block;
+    color:#c4b5fd;
+    margin-bottom:8px;
+}
+
+.revision-card span{
+    color:#9090a3;
+    font-size:12px;
+}
+
+/* QUIZ */
+
+.quiz{
+    max-width:720px;
+    margin:auto;
+    padding:30px;
+    border-radius:22px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);
+}
+
+.question{
+    margin-bottom:30px;
+}
+
+.question:last-child{
+    margin-bottom:0;
+}
+
+.question h3{
+    margin-bottom:15px;
+    line-height:1.5;
+}
+
+.option{
+    display:block;
+    width:100%;
+    padding:14px;
+    margin:7px 0;
+    text-align:left;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:11px;
+    background:rgba(255,255,255,.04);
+    color:white;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.option:hover{
+    background:rgba(139,92,246,.18);
+    transform:translateX(4px);
+}
+
+.option:disabled{
+    cursor:not-allowed;
+}
+
+.result{
+    margin-top:25px;
+    text-align:center;
+    font-size:19px;
+    font-weight:bold;
+}
+
+/* BOTTOM LINKS */
+
+.bottom-links{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin:50px 0;
+}
+
+.bottom-links a{
+    padding:12px 18px;
+    border-radius:12px;
+    color:white;
+    text-decoration:none;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+    transition:.3s;
+}
+
+.bottom-links a:hover{
+    background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+    transform:translateY(-3px);
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid rgba(255,255,255,.08);
+    text-align:center;
+    padding:30px;
+    color:#77778a;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .revision{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .analysis{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:750px){
+
+    .featured{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .cover{
+        width:210px;
+        margin:auto;
+    }
+
+    .element-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    nav{
+        padding:18px 5%;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .container{
+        width:90%;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .revision{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .analysis{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding-top:50px;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+```
+<div class="logo">
+    ZYN<span>TRA</span>
+</div>
+
+<div class="nav-links">
+
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="study.html">Study</a>
+    <a href="english.html">English</a>
+    <a href="literature.html" class="active">Literature</a>
+    <a href="ai.html">AI</a>
+    <a href="community.html">Community</a>
+    <a href="planner.html">Planner</a>
+    <a href="challenge.html">Challenges</a>
+
+</div>
+```
+
+</nav>
+
+<div class="container">
+
+```
+<a href="english.html" class="back-btn">
+    ← Back to English
+</a>
+
+
+<!-- HERO -->
+
+<div class="hero">
+
+    <div class="badge">
+        📚 ZYNTRA ENGLISH • LITERATURE
+    </div>
+
+    <h1>
+        Read. Analyse. <span>Master Literature.</span>
+    </h1>
+
+    <p>
+        Build strong Literature skills through characters,
+        themes, setting, plot, literary techniques, set books
+        and examination practice.
+    </p>
+
+    <div class="book-visual">
+
+        <div class="floating float-one">A</div>
+        <div class="floating float-two">?</div>
+        <div class="floating float-three">✦</div>
+
+        <div class="book"></div>
+
+    </div>
+
+</div>
+
+
+<!-- FORMS -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>📖 Forms of Literature</h2>
+
+        <p>
+            Understand the major forms before analysing a text.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <div class="icon">📖</div>
+
+            <h3>Prose</h3>
+
+            <p>
+                Literature written in ordinary sentences and
+                paragraphs. Novels and short stories are examples
+                of prose.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🎭</div>
+
+            <h3>Drama</h3>
+
+            <p>
+                Literature written mainly for performance.
+                It uses characters, dialogue, scenes and
+                stage directions.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">📝</div>
+
+            <h3>Poetry</h3>
+
+            <p>
+                Literature that uses carefully selected language,
+                rhythm, imagery and other poetic techniques.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🎓</div>
+
+            <h3>KCSE Set Books</h3>
+
+            <p>
+                Study prescribed texts through summaries,
+                characters, themes, techniques and examination
+                questions.
+            </p>
+
+            <a href="setbooks.html" class="topic-button">
+                Explore Set Books →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURED SET BOOK -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>⭐ Featured Set Book</h2>
+
+        <p>
+            Start your Literature revision with your current
+            set book.
+        </p>
+
+    </div>
+
+
+    <div class="featured">
+
+        <div class="cover">
+
+            <div>
+
+                <h3>
+                    Silent Song<br>
+                    and Other Stories
+                </h3>
+
+                <span>
+                    English Literature
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="featured-info">
+
+            <h2>
+                Silent Song and Other Stories
+            </h2>
+
+            <p>
+                Use ZYNTRA to revise the stories through
+                characters, themes, setting, conflict,
+                literary techniques and examination practice.
+            </p>
+
+            <p>
+                Begin with the book overview and then move
+                into individual stories such as <strong>Ninema</strong>.
+            </p>
+
+            <a href="silent-song.html" class="topic-button">
+                Open Silent Song →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ELEMENTS -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>🧠 Elements of Literature</h2>
+
+        <p>
+            These are the building blocks you should identify
+            when analysing a literary work.
+        </p>
+
+    </div>
+
+
+    <div class="element-grid">
+
+        <div class="element">
+
+            <strong>👤 Characters</strong>
+
+            <p>
+                The people, animals or figures involved in the
+                story. Study their qualities, actions,
+                relationships and development.
+            </p>
+
+        </div>
+
+
+        <div class="element">
+
+            <strong>🌍 Setting</strong>
+
+            <p>
+                The time, place and social environment where
+                events happen.
+            </p>
+
+        </div>
+
+
+        <div class="element">
+
+            <strong>📈 Plot</strong>
+
+            <p>
+                The sequence of events through which the story
+                develops.
+            </p>
+
+        </div>
+
+
+        <div class="element">
+
+            <strong>⚔️ Conflict</strong>
+
+            <p>
+                The struggle between opposing forces,
+                characters, ideas or circumstances.
+            </p>
+
+        </div>
+
+
+        <div class="element">
+
+            <strong>💡 Themes</strong>
+
+            <p>
+                Major ideas explored by the writer, such as
+                education, equality, poverty or leadership.
+            </p>
+
+        </div>
+
+
+        <div class="element">
+
+            <strong>🎨 Style</strong>
+
+            <p>
+                The way the writer uses language and literary
+                techniques to communicate ideas.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TECHNIQUES -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>🎨 Literary Techniques</h2>
+
+        <p>
+            Don't just identify a technique — explain its effect.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+        <div class="card">
+
+            <div class="icon">🔄</div>
+
+            <h3>Repetition</h3>
+
+            <p>
+                Repeating words or ideas to emphasise an
+                important point.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🪞</div>
+
+            <h3>Imagery</h3>
+
+            <p>
+                Language that creates pictures or sensory
+                experiences in the reader's mind.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">💬</div>
+
+            <h3>Dialogue</h3>
+
+            <p>
+                Words spoken by characters that can reveal
+                personality, relationships and conflict.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">⚡</div>
+
+            <h3>Irony</h3>
+
+            <p>
+                A contrast between what is expected and what
+                actually happens or is intended.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🔍</div>
+
+            <h3>Symbolism</h3>
+
+            <p>
+                Using an object, action or image to represent
+                a deeper idea.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🎭</div>
+
+            <h3>Characterisation</h3>
+
+            <p>
+                The methods a writer uses to present and develop
+                characters.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ANALYSIS METHOD -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>⭐ The ZYNTRA Analysis Method</h2>
+
+        <p>
+            Use this structure when answering Literature questions.
+        </p>
+
+    </div>
+
+
+    <div class="analysis">
+
+        <div class="step">
+
+            <div class="step-number">1</div>
+
+            <h3>Identify</h3>
+
+            <p>
+                Identify the character, theme, technique or idea.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">2</div>
+
+            <h3>Evidence</h3>
+
+            <p>
+                Give a relevant event, action or detail from
+                the text.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">3</div>
+
+            <h3>Explain</h3>
+
+            <p>
+                Explain what the evidence shows and why it matters.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">4</div>
+
+            <h3>Link</h3>
+
+            <p>
+                Connect your explanation back to the question.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRACTICE EXTRACT -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>📝 Practice Extract</h2>
+
+        <p>
+            Read the original extract and think like a Literature
+            student.
+        </p>
+
+    </div>
+
+
+    <div class="extract">
+
+        The classroom became quiet as Amani looked at the
+        examination paper. For a moment, fear filled her mind.
+        She remembered the evenings she had spent studying while
+        others played outside. She took a deep breath, picked up
+        her pen and began to write. This time, she decided,
+        she would trust her preparation.
+
+    </div>
+
+</section>
+
+
+<!-- QUICK REVISION -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>⚡ Quick Revision</h2>
+
+        <p>
+            Ask yourself these questions when analysing a story.
+        </p>
+
+    </div>
+
+
+    <div class="revision">
+
+        <div class="revision-card">
+            <strong>Character</strong>
+            <span>Who?</span>
+        </div>
+
+        <div class="revision-card">
+            <strong>Setting</strong>
+            <span>Where & when?</span>
+        </div>
+
+        <div class="revision-card">
+            <strong>Plot</strong>
+            <span>What happens?</span>
+        </div>
+
+        <div class="revision-card">
+            <strong>Theme</strong>
+            <span>What idea?</span>
+        </div>
+
+        <div class="revision-card">
+            <strong>Conflict</strong>
+            <span>What struggle?</span>
+        </div>
+
+        <div class="revision-card">
+            <strong>Style</strong>
+            <span>How?</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>🏆 Literature Challenge</h2>
+
+        <p>
+            Test yourself before moving to the set books.
+        </p>
+
+    </div>
+
+
+    <div class="quiz">
+
+
+        <div class="question">
+
+            <h3>
+                1. What is the setting of a story?
+            </h3>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                A. The main message
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,true)">
+                B. The time and place
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                C. The sequence of events
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                D. The writer's name
+            </button>
+
+        </div>
+
+
+        <div class="question">
+
+            <h3>
+                2. Which element refers to a major idea explored
+                in a literary work?
+            </h3>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                A. Setting
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                B. Plot
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,true)">
+                C. Theme
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                D. Dialogue
+            </button>
+
+        </div>
+
+
+        <div class="question">
+
+            <h3>
+                3. What is dialogue?
+            </h3>
+
+            <button class="option"
+                onclick="checkAnswer(this,true)">
+                A. Words spoken by characters
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                B. The place of a story
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                C. The main conflict
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                D. The ending of a story
+            </button>
+
+        </div>
+
+
+        <div class="question">
+
+            <h3>
+                4. Which technique involves repeating words
+                or ideas?
+            </h3>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                A. Irony
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,true)">
+                B. Repetition
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                C. Setting
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                D. Plot
+            </button>
+
+        </div>
+
+
+        <div class="question">
+
+            <h3>
+                5. What should support a Literature answer?
+            </h3>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                A. Only your opinion
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,true)">
+                B. Relevant evidence from the text
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                C. A random story
+            </button>
+
+            <button class="option"
+                onclick="checkAnswer(this,false)">
+                D. Only the title
+            </button>
+
+        </div>
+
+
+        <div id="result" class="result"></div>
+
+    </div>
+
+</section>
+
+
+<!-- NAVIGATION -->
+
+<div class="bottom-links">
+
+    <a href="english.html">
+        📖 English Hub
+    </a>
+
+    <a href="setbooks.html">
+        🎓 Set Books
+    </a>
+
+    <a href="silent-song.html">
+        📚 Silent Song
+    </a>
+
+    <a href="grammar.html">
+        🔤 Grammar
+    </a>
+
+    <a href="writing.html">
+        ✍️ Writing
+    </a>
+
+    <a href="vocabulary.html">
+        📚 Vocabulary
+    </a>
+
+    <a href="comprehension.html">
+        📖 Comprehension
+    </a>
+
+    <a href="oral.html">
+        🎙️ Oral Skills
+    </a>
+
+</div>
+```
+
+</div>
+
+<footer>
+
+```
+<small>
+    © 2026 ZYNTRA. Built for the next generation.
+</small>
+```
+
+</footer>
+
+<script>
+
+let score = 0;
+let answered = 0;
+
+function checkAnswer(button, correct){
+
+    const question =
+        button.parentElement;
+
+    const buttons =
+        question.querySelectorAll(".option");
+
+    buttons.forEach(function(btn){
+        btn.disabled = true;
+    });
+
+    if(correct){
+
+        score++;
+
+        button.style.background =
+            "rgba(139,92,246,.25)";
+
+        button.style.borderColor =
+            "#8b5cf6";
+
+    }else{
+
+        button.style.background =
+            "rgba(239,68,68,.18)";
+
+        button.style.borderColor =
+            "#ef4444";
+
+    }
+
+    answered++;
+
+    if(answered === 5){
+
+        const result =
+            document.getElementById("result");
+
+        if(score === 5){
+
+            result.textContent =
+                "🏆 Perfect! You scored 5/5.";
+
+        }else if(score >= 3){
+
+            result.textContent =
+                "🔥 Good work! You scored " +
+                score + "/5.";
+
+        }else{
+
+            result.textContent =
+                "📚 Keep revising. You scored " +
+                score + "/5.";
+
+        }
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

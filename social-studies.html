@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Social Studies</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070711;--card:#111124;--border:#292743;--purple:#8b5cf6;--blue:#3b82f6;--text:#f5f3ff;--muted:#aaa7c5}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+header{position:sticky;top:0;z-index:5;background:#0b0b19ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 5%}
+nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:23px;font-weight:900;color:#a78bfa;text-decoration:none;letter-spacing:1px}
+.navlinks{display:flex;gap:9px;flex-wrap:wrap}
+.navlinks a{color:#e9e5ff;text-decoration:none;padding:8px 12px;border-radius:9px;background:#17162a;font-size:13px}
+main{max-width:1200px;margin:auto;padding:25px 5% 55px}
+.hero{text-align:center;padding:35px 10px}
+.tag{display:inline-block;background:#241843;color:#c4b5fd;padding:5px 13px;border-radius:20px;font-size:12px;margin-bottom:12px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.2;margin-bottom:12px}
+.gradient{background:linear-gradient(90deg,#c4b5fd,#60a5fa);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero p,.muted{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.stat,.panel,.topic,.lessonbox,.quizbox{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:17px}
+.stat{text-align:center}.stat strong{display:block;font-size:24px;color:#c4b5fd}.stat span{font-size:12px;color:var(--muted)}
+.progress-track{height:8px;background:#27243b;border-radius:20px;overflow:hidden;margin-top:10px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--blue));transition:width .3s}
+.section-title{font-size:22px;margin:28px 0 13px}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.topic{cursor:pointer;transition:.2s}.topic:hover,.topic.active{border-color:var(--purple);transform:translateY(-2px)}
+.topic .emoji{font-size:26px}.topic h3{font-size:16px;margin:4px 0}.topic p{font-size:13px;color:var(--muted)}.topic small{display:block;color:#c4b5fd;margin-top:8px}
+.lesson-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:14px;margin-top:20px}
+.lesson-list{display:grid;gap:8px;margin-top:12px}
+.lesson-btn{background:#17162a;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:10px;text-align:left;cursor:pointer;width:100%}
+.lesson-btn.active{border-color:var(--purple);background:#241843}.lesson-btn.done{border-color:#166534}
+.lesson-btn small{display:block;color:var(--muted)}
+.lessonbox h2{font-size:23px;margin:8px 0}.lessonbox h3{font-size:17px;color:#c4b5fd;margin:17px 0 6px}
+.lessonbox p{margin:9px 0}.lessonbox ul{padding-left:22px;margin:8px 0}
+.example{background:#19162d;border-left:3px solid var(--purple);padding:12px;border-radius:6px;margin:12px 0}
+.data-table{width:100%;border-collapse:collapse;margin:12px 0}.data-table th,.data-table td{padding:9px;text-align:left;border-bottom:1px solid var(--border)}.data-table th{color:#c4b5fd}
+.table-wrap{overflow-x:auto}
+button{font:inherit}.primary,.secondary{border:0;border-radius:10px;padding:11px 14px;cursor:pointer;font-weight:bold}
+.primary{background:linear-gradient(100deg,var(--purple),var(--blue));color:white}.secondary{background:#24213a;color:white;border:1px solid var(--border)}
+.primary:disabled{opacity:.65;cursor:default}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+.quiz-question{padding:14px;background:#17162a;border:1px solid var(--border);border-radius:12px;margin:12px 0}
+.quiz-question p{font-weight:bold;margin-bottom:8px}.quiz-question label{display:block;padding:6px 0;cursor:pointer}
+.quiz-question input{margin-right:8px;accent-color:var(--purple)}
+#quizResult{margin-top:13px;font-weight:bold}.notice{font-size:13px;color:var(--muted);margin-top:12px}
+footer{text-align:center;color:var(--muted);padding:23px;border-top:1px solid var(--border)}
+@media(max-width:700px){.lesson-layout{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:11px}.stat strong{font-size:21px}main{padding-left:4%;padding-right:4%}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a class="logo" href="index.html">ZYNTRA</a>
+<div class="navlinks"><a href="index.html">Home</a><a href="study.html">Study</a><a href="profile.html">Profile</a></div>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<span class="tag">PEOPLE • PLACES • SOCIETY</span>
+<h1>Explore <span class="gradient">Social Studies</span></h1>
+<p>Learn about communities, citizenship, geography, history, culture, and the environment.</p>
+</section>
+
+<section class="stats">
+<div class="stat"><strong id="completedCount">0</strong><span>Lessons completed</span></div>
+<div class="stat"><strong id="xpCount">0</strong><span>XP earned</span></div>
+<div class="stat"><strong id="progressPercent">0%</strong><span>Progress</span></div>
+</section>
+<div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+
+<h2 class="section-title">Choose a topic</h2>
+<section class="topics" id="topicGrid"></section>
+
+<div class="lesson-layout">
+<section class="panel">
+<h2 class="section-title" style="margin-top:0">Lessons</h2>
+<p class="muted" id="topicDescription">Choose a topic to begin.</p>
+<div class="lesson-list" id="lessonList"></div>
+</section>
+<section class="lessonbox" id="lessonContent">
+<span class="tag">WELCOME TO ZYNTRA</span>
+<h2>Social Studies</h2>
+<p>Select a topic and lesson to start learning.</p>
+<div class="example">Social Studies helps us understand people, their communities, their environment, and how societies change over time.</div>
+<p>Read the notes, complete lessons, and test your knowledge in the quiz below.</p>
+</section>
+</div>
+
+<section class="quizbox" style="margin-top:25px">
+<h2 class="section-title" style="margin-top:0">Social Studies Quiz</h2>
+<p class="muted">Answer all six questions to check your understanding.</p>
+<form id="quizForm"></form>
+<div class="actions"><button class="primary" type="button" id="checkQuiz">Check answers</button><button class="secondary" type="button" id="resetQuiz">Try again</button></div>
+<p id="quizResult" aria-live="polite"></p>
+<p class="notice">Score at least 4 out of 6 to earn 5 bonus XP once per page session.</p>
+</section>
+</main>
+
+<footer>© 2026 ZYNTRA • Learn something new every day.</footer>
+
+<script>
+const topics=[
+{title:"Community and Society",emoji:"🏘️",description:"Understand communities and social relationships.",lessons:[
+{title:"Meaning of Community",content:`
+<h3>What is a community?</h3>
+<p>A community is a group of people who live in the same area or share common interests, responsibilities, or identity.</p>
+<h3>Types of communities</h3>
+<ul><li>Rural communities: often associated with farming and smaller settlements.</li><li>Urban communities: towns and cities with many services and occupations.</li><li>Online communities: people connected through digital platforms.</li></ul>
+<h3>Why communities matter</h3>
+<p>Communities provide support, cooperation, security, shared identity, and opportunities to solve common problems.</p>
+<div class="example">Example: Residents can work together to clean a public area, protect local water sources, or organise community activities.</div>`},
+{title:"Culture and Social Values",content:`
+<h3>Culture</h3>
+<p>Culture includes the language, beliefs, customs, arts, food, traditions, and ways of life shared by a group of people.</p>
+<h3>Social values</h3>
+<ul><li>Respect for other people.</li><li>Honesty and responsibility.</li><li>Cooperation and fairness.</li><li>Peaceful conflict resolution.</li></ul>
+<p>Culture can change through education, technology, migration, trade, and interaction between communities.</p>
+<p>Respecting cultural differences helps people live together peacefully. Not every individual in a cultural group has the same beliefs or practices.</p>`}
+]},
+{title:"Citizenship and Governance",emoji:"⚖️",description:"Explore rights, responsibilities, and leadership.",lessons:[
+{title:"Rights and Responsibilities",content:`
+<h3>Who is a citizen?</h3>
+<p>A citizen is a legally recognised member of a country who has rights and responsibilities under its laws.</p>
+<h3>Examples of rights</h3>
+<ul><li>Equal protection under the law.</li><li>Freedom of expression within legal limits.</li><li>Access to education under applicable laws and policies.</li><li>Fair treatment and protection of dignity.</li></ul>
+<h3>Responsibilities</h3>
+<ul><li>Respect the rights of others.</li><li>Obey the law.</li><li>Protect public property and the environment.</li><li>Participate responsibly in community life.</li></ul>
+<div class="example">Good citizenship means exercising your rights responsibly while respecting the rights of other people.</div>`},
+{title:"Leadership and Government",content:`
+<h3>Meaning of leadership</h3>
+<p>Leadership is the ability to guide, support, and influence people towards shared goals.</p>
+<h3>Qualities of a good leader</h3>
+<ul><li>Honesty and accountability.</li><li>Fairness and respect.</li><li>Good communication.</li><li>Ability to listen and solve problems.</li><li>Willingness to serve others.</li></ul>
+<h3>Levels of government in Kenya</h3>
+<p>Kenya has national and county governments. The Constitution distributes responsibilities between them.</p>
+<p>National government handles matters assigned to it by the Constitution, while county governments manage devolved functions such as specified local services.</p>
+<p>Public participation allows citizens to contribute to decisions affecting their communities.</p>`}
+]},
+{title:"Environment and Resources",emoji:"🌍",description:"Study natural resources and environmental care.",lessons:[
+{title:"Natural Resources",content:`
+<h3>Meaning</h3>
+<p>Natural resources are materials and features obtained from nature that people use to meet their needs.</p>
+<h3>Types</h3>
+<ul><li>Renewable resources: can be replenished naturally, such as sunlight and wind.</li><li>Non-renewable resources: form very slowly, such as coal and many mineral deposits.</li><li>Biological resources: plants, animals, and forests.</li><li>Water and soil: essential resources for life, farming, and industry.</li></ul>
+<h3>Why resources matter</h3>
+<p>They provide food, energy, raw materials, employment, and income.</p>`},
+{title:"Environmental Conservation",content:`
+<h3>Environmental problems</h3>
+<ul><li>Deforestation and habitat loss.</li><li>Water and air pollution.</li><li>Soil erosion.</li><li>Improper waste disposal.</li><li>Climate change.</li></ul>
+<h3>Ways to conserve the environment</h3>
+<ul><li>Plant and protect trees.</li><li>Dispose of waste safely and recycle where possible.</li><li>Protect rivers, wetlands, and wildlife habitats.</li><li>Use water and energy responsibly.</li><li>Adopt sustainable farming practices.</li></ul>
+<div class="example">Sustainable development means meeting present needs while protecting the ability of future generations to meet their own needs.</div>`}
+]},
+{title:"History and Heritage",emoji:"🏛️",description:"Explore the past and learn from historical evidence.",lessons:[
+{title:"Understanding History",content:`
+<h3>What is history?</h3>
+<p>History is the study of past human events and experiences using evidence.</p>
+<h3>Sources of historical information</h3>
+<ul><li>Oral traditions: stories and information passed between generations.</li><li>Written records: letters, books, diaries, and official documents.</li><li>Archaeological evidence: tools, buildings, pottery, and other remains.</li><li>Photographs, recordings, and maps.</li></ul>
+<h3>Why study history?</h3>
+<p>History helps us understand change and continuity, cultural heritage, the causes of events, and how past decisions affect the present.</p>
+<p>Historians compare sources and consider who created them, when they were created, and whether they may contain bias.</p>`},
+{title:"Heritage and Historical Sites",content:`
+<h3>What is heritage?</h3>
+<p>Heritage includes traditions, objects, places, knowledge, and practices inherited from earlier generations.</p>
+<h3>Examples in Kenya</h3>
+<ul><li>Fort Jesus in Mombasa.</li><li>Lamu Old Town.</li><li>Historic buildings, museums, and archaeological sites.</li><li>Traditional music, languages, crafts, and oral histories.</li></ul>
+<h3>Protecting heritage</h3>
+<p>Heritage can be protected through conservation, education, responsible tourism, documentation, and respect for cultural property.</p>
+<p>Preserving heritage helps future generations learn about the experiences and achievements of earlier communities.</p>`}
+]},
+{title:"Geography and Settlement",emoji:"🗺️",description:"Learn about maps, settlement, and population.",lessons:[
+{title:"Maps and Location",content:`
+<h3>What is geography?</h3>
+<p>Geography studies places, environments, people, and the relationships between them.</p>
+<h3>Map skills</h3>
+<ul><li>Title: identifies what the map represents.</li><li>Key or legend: explains symbols.</li><li>Scale: relates map distance to real distance.</li><li>Compass direction: helps locate features.</li><li>Grid references: help identify positions on some maps.</li></ul>
+<div class="example">If a map scale is 1:50,000, then 1 cm on the map represents 50,000 cm on the ground, which is 500 metres.</div>`},
+{title:"Population and Settlement",content:`
+<h3>Population</h3>
+<p>Population is the number of people living in a particular area.</p>
+<h3>Factors affecting settlement</h3>
+<ul><li>Availability of water.</li><li>Fertile soil and suitable land.</li><li>Climate and relief.</li><li>Transport and communication.</li><li>Jobs, schools, hospitals, and security.</li></ul>
+<h3>Rural and urban settlement</h3>
+<p>Rural settlements are generally smaller and may depend more on agriculture. Urban settlements are usually larger and contain more specialised services and occupations.</p>
+<p>Rapid urban growth can increase demand for housing, transport, water, sanitation, and employment.</p>`}
+]},
+{title:"Economy and Development",emoji:"📈",description:"Understand livelihoods, trade, and development.",lessons:[
+{title:"Economic Activities",content:`
+<h3>Meaning</h3>
+<p>Economic activities are activities through which people produce, distribute, or provide goods and services to meet needs and earn a living.</p>
+<ul><li>Primary activities: obtaining resources from nature, such as farming, fishing, and mining.</li><li>Secondary activities: processing raw materials and manufacturing goods.</li><li>Tertiary activities: providing services such as teaching, transport, banking, and healthcare.</li></ul>
+<h3>Trade</h3>
+<p>Trade is the exchange of goods and services. Domestic trade takes place within a country, while international trade occurs between countries.</p>
+<div class="example">Example: A farmer sells maize to a miller. The miller processes it into flour, which a shop sells to customers.</div>`},
+{title:"Development and Quality of Life",content:`
+<h3>What is development?</h3>
+<p>Development involves improvements in people's living conditions, opportunities, and well-being.</p>
+<h3>Indicators of development</h3>
+<ul><li>Access to quality education.</li><li>Access to healthcare and clean water.</li><li>Employment and income opportunities.</li><li>Housing, transport, and reliable infrastructure.</li><li>Safety, equality, and environmental quality.</li></ul>
+<h3>Challenges to development</h3>
+<p>Challenges may include poverty, unemployment, inequality, inadequate services, conflict, and environmental damage.</p>
+<p>Development is most useful when its benefits are inclusive and environmentally sustainable.</p>`}
+]}
+];
+
+const questions=[
+{q:"What is a community?",a:["A group sharing a place or common interests","Only a government office","A type of natural resource"],c:0},
+{q:"Which is an example of responsible citizenship?",a:["Damaging public property","Respecting the rights of others","Ignoring all laws"],c:1},
+{q:"Which is a renewable resource?",a:["Coal","Petroleum","Sunlight"],c:2},
+{q:"Which source can provide historical evidence?",a:["Archaeological remains","Only guesses","Only modern advertisements"],c:0},
+{q:"What does a map key explain?",a:["The country's laws","The symbols used on the map","The age of every resident"],c:1},
+{q:"Which is a tertiary economic activity?",a:["Mining","Growing maize","Teaching"],c:2}
+];
+
+const username=localStorage.getItem("zyntraUser")||"guest";
+const userKey=username.toLowerCase().replace(/[^a-z0-9_-]/g,"_");
+const completedKey="zyntraSocialStudiesCompleted_"+userKey;
+const xpKey="zyntraSocialStudiesXP_"+userKey;
+let completed=JSON.parse(localStorage.getItem(completedKey)||"[]");
+let xp=Number(localStorage.getItem(xpKey)||0);
+let currentTopic=0,currentLesson=0,quizRewarded=false;
+
+const topicGrid=document.getElementById("topicGrid");
+const lessonList=document.getElementById("lessonList");
+const lessonContent=document.getElementById("lessonContent");
+const lessonId=(t,l)=>t+"-"+l;
+const isDone=(t,l)=>completed.includes(lessonId(t,l));
+
+function updateStats(){
+ const total=topics.reduce((sum,t)=>sum+t.lessons.length,0);
+ const percent=Math.round(completed.length/total*100);
+ document.getElementById("completedCount").textContent=completed.length;
+ document.getElementById("xpCount").textContent=xp;
+ document.getElementById("progressPercent").textContent=percent+"%";
+ document.getElementById("progressBar").style.width=percent+"%";
+ topicGrid.querySelectorAll(".topic").forEach((el,i)=>{
+  const count=topics[i].lessons.filter((_,j)=>isDone(i,j)).length;
+  el.querySelector("small").textContent=count+"/"+topics[i].lessons.length+" lessons completed";
+ });
+}
+function renderTopics(){
+ topicGrid.innerHTML="";
+ topics.forEach((t,i)=>{
+  const el=document.createElement("div");
+  el.className="topic"+(i===currentTopic?" active":"");
+  el.tabIndex=0;
+  el.innerHTML=`<div class="emoji">${t.emoji}</div><h3>${t.title}</h3><p>${t.description}</p><small></small>`;
+  el.onclick=()=>{currentTopic=i;currentLesson=0;renderTopics();renderLessons();renderLesson()};
+  el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();el.click()}};
+  topicGrid.appendChild(el);
+ });
+ updateStats();
+}
+function renderLessons(){
+ const t=topics[currentTopic];
+ document.getElementById("topicDescription").textContent=t.description;
+ lessonList.innerHTML="";
+ t.lessons.forEach((lesson,i)=>{
+  const btn=document.createElement("button");
+  btn.className="lesson-btn"+(i===currentLesson?" active":"")+(isDone(currentTopic,i)?" done":"");
+  btn.innerHTML=(isDone(currentTopic,i)?"✓ ":"")+lesson.title+"<small>"+(isDone(currentTopic,i)?"Completed • +10 XP":"Lesson "+(i+1))+"</small>";
+  btn.onclick=()=>{currentLesson=i;renderLessons();renderLesson()};
+  lessonList.appendChild(btn);
+ });
+}
+function renderLesson(){
+ const t=topics[currentTopic],l=t.lessons[currentLesson],done=isDone(currentTopic,currentLesson);
+ lessonContent.innerHTML=`
+ <span class="tag">${t.emoji} ${t.title}</span>
+ <h2>${l.title}</h2><p class="muted">Lesson ${currentLesson+1} of ${t.lessons.length}</p>
+ ${l.content}
+ <div class="actions"><button class="primary" id="completeLesson" ${done?"disabled":""}>${done?"✓ Lesson Completed":"Mark Lesson Complete (+10 XP)"}</button><button class="secondary" id="nextLesson">Next Lesson →</button></div>
+ ${done?'<p class="notice">XP for this lesson has already been awarded.</p>':""}`;
+ document.getElementById("completeLesson").onclick=()=>{
+  if(!isDone(currentTopic,currentLesson)){
+   completed.push(lessonId(currentTopic,currentLesson));xp+=10;
+   localStorage.setItem(completedKey,JSON.stringify(completed));
+   localStorage.setItem(xpKey,String(xp));
+   renderTopics();renderLessons();renderLesson();
+  }
+ };
+ document.getElementById("nextLesson").onclick=()=>{
+  if(currentLesson<topics[currentTopic].lessons.length-1)currentLesson++;
+  else if(currentTopic<topics.length-1){currentTopic++;currentLesson=0}
+  else{alert("Well done! You have reached the final Social Studies lesson.");return}
+  renderTopics();renderLessons();renderLesson();
+ };
+}
+function renderQuiz(){
+ const form=document.getElementById("quizForm");form.innerHTML="";
+ questions.forEach((q,i)=>{
+  const box=document.createElement("div");box.className="quiz-question";
+  const p=document.createElement("p");p.textContent=(i+1)+". "+q.q;box.appendChild(p);
+  q.a.forEach((answer,j)=>{
+   const label=document.createElement("label");
+   const input=document.createElement("input");input.type="radio";input.name="q"+i;input.value=j;
+   label.appendChild(input);label.appendChild(document.createTextNode(answer));box.appendChild(label);
+  });
+  form.appendChild(box);
+ });
+}
+document.getElementById("checkQuiz").onclick=()=>{
+ let score=0,answered=0;
+ questions.forEach((q,i)=>{
+  const selected=document.querySelector('input[name="q'+i+'"]:checked');
+  if(selected){answered++;if(Number(selected.value)===q.c)score++}
+ });
+ const result=document.getElementById("quizResult");
+ if(answered<questions.length){result.textContent="Please answer all six questions first.";return}
+ result.textContent="Your score: "+score+"/"+questions.length+". "+(score===6?"Excellent work!":score>=4?"Good work! Keep practising.":"Review the lessons and try again.");
+ if(score>=4&&!quizRewarded){xp+=5;quizRewarded=true;localStorage.setItem(xpKey,String(xp));result.textContent+=" You earned 5 bonus XP!";updateStats()}
+};
+document.getElementById("resetQuiz").onclick=()=>{renderQuiz();document.getElementById("quizResult").textContent=""};
+renderTopics();renderLessons();renderLesson();renderQuiz();
+</script>
+</body>
+</html>

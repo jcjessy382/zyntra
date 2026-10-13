@@ -1,0 +1,1043 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | English</title>
+
+<style>
+:root {
+    --bg: #070711;
+    --panel: #111126;
+    --panel2: #171733;
+    --purple: #8b5cf6;
+    --blue: #3b82f6;
+    --green: #22c55e;
+    --text: #f5f5ff;
+    --muted: #a6a6c5;
+    --border: rgba(255,255,255,.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 17px 6%;
+    background: rgba(13,13,29,.96);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg,#a78bfa,#60a5fa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    background: var(--panel2);
+    color: white;
+}
+
+.container {
+    width: min(1150px, 92%);
+    margin: 0 auto;
+    padding: 35px 0 60px;
+}
+
+.hero {
+    background: linear-gradient(135deg,rgba(139,92,246,.2),rgba(59,130,246,.13));
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 32px;
+    margin-bottom: 25px;
+}
+
+.eyebrow {
+    color: #c4b5fd;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: clamp(28px,5vw,42px);
+    margin-bottom: 12px;
+}
+
+.hero p, .muted {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 14px;
+    margin-top: 25px;
+}
+
+.stat {
+    background: rgba(7,7,17,.5);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 17px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.stat span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.section-title {
+    font-size: 22px;
+    margin: 30px 0 15px;
+}
+
+.topic-grid {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 15px;
+}
+
+.topic-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    min-width: 0;
+    transition: .2s;
+}
+
+.topic-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(139,92,246,.6);
+}
+
+.topic-icon {
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.topic-card h3 {
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+.topic-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 42px;
+    margin-bottom: 15px;
+}
+
+.status {
+    display: inline-block;
+    font-size: 12px;
+    padding: 6px 9px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.07);
+    color: var(--muted);
+    margin-bottom: 13px;
+}
+
+.status.done {
+    background: rgba(34,197,94,.13);
+    color: #86efac;
+}
+
+.primary-btn, .secondary-btn {
+    border: 0;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.primary-btn {
+    color: white;
+    background: linear-gradient(100deg,var(--purple),var(--blue));
+}
+
+.primary-btn:hover {
+    filter: brightness(1.12);
+}
+
+.secondary-btn {
+    color: white;
+    background: var(--panel2);
+    border: 1px solid var(--border);
+}
+
+.primary-btn:disabled {
+    cursor: default;
+    opacity: .7;
+}
+
+.topic-card button {
+    width: 100%;
+}
+
+.lesson-panel {
+    display: none;
+    margin-top: 30px;
+    padding: 25px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+}
+
+.lesson-panel.active {
+    display: block;
+}
+
+.lesson-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.lesson-header h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.lesson-content {
+    color: #e0e0f4;
+    line-height: 1.8;
+}
+
+.lesson-content h3 {
+    color: #c4b5fd;
+    margin: 22px 0 8px;
+}
+
+.lesson-content p {
+    margin: 10px 0;
+}
+
+.lesson-content ul, .lesson-content ol {
+    padding-left: 23px;
+    margin: 10px 0;
+}
+
+.example {
+    background: rgba(139,92,246,.1);
+    border-left: 3px solid var(--purple);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.lesson-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.lesson-actions button {
+    flex: 1;
+    min-width: 190px;
+}
+
+.quiz {
+    margin-top: 28px;
+    padding-top: 23px;
+    border-top: 1px solid var(--border);
+}
+
+.question {
+    margin: 20px 0;
+}
+
+.question p {
+    font-weight: bold;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.question label {
+    display: block;
+    padding: 10px 12px;
+    margin: 7px 0;
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.question label:hover {
+    border-color: var(--purple);
+}
+
+.question input {
+    margin-right: 8px;
+    accent-color: var(--purple);
+}
+
+#quizResult {
+    margin-top: 15px;
+    line-height: 1.7;
+}
+
+.progress-track {
+    height: 9px;
+    background: rgba(255,255,255,.09);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 13px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg,var(--purple),var(--blue));
+    transition: width .25s;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    background: #1c1c38;
+    border: 1px solid rgba(139,92,246,.6);
+    color: white;
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.4);
+    max-width: 90%;
+    display: none;
+    text-align: center;
+}
+
+.toast.show {
+    display: block;
+}
+
+footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 25px 15px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+@media (max-width: 800px) {
+    .topic-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .topic-grid, .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .hero, .lesson-panel {
+        padding: 20px;
+    }
+
+    .nav-links a {
+        padding: 7px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">ZYNTRA</div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="study.html">Smart Study</a>
+        <a href="english.html">English</a>
+    </div>
+</nav>
+
+<main class="container">
+
+    <section class="hero">
+        <div class="eyebrow">ZYNTRA Learning Centre</div>
+        <h1>English Studies</h1>
+        <p>
+            Improve your grammar, writing, vocabulary, comprehension,
+            oral communication and literature, one topic at a time.
+        </p>
+
+        <div class="stats">
+            <div class="stat">
+                <strong id="completedCount">0/6</strong>
+                <span>Topics completed</span>
+            </div>
+
+            <div class="stat">
+                <strong id="progressPercent">0%</strong>
+                <span>Overall progress</span>
+            </div>
+
+            <div class="stat">
+                <strong id="xpCount">0 XP</strong>
+                <span>English XP earned</span>
+            </div>
+        </div>
+
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </section>
+
+    <h2 class="section-title">Choose a topic</h2>
+
+    <section class="topic-grid">
+
+        <article class="topic-card">
+            <div class="topic-icon">📘</div>
+            <h3>Grammar</h3>
+            <p>Parts of speech, tenses, sentence structure and common errors.</p>
+            <div class="status" id="status-grammar">Not completed</div>
+            <button class="primary-btn" id="btn-grammar" type="button"
+                onclick="openLesson('grammar')">Study Grammar</button>
+        </article>
+
+        <article class="topic-card">
+            <div class="topic-icon">✍️</div>
+            <h3>Writing Skills</h3>
+            <p>Learn to write essays, letters, reports and compositions.</p>
+            <div class="status" id="status-writing-skills">Not completed</div>
+            <button class="primary-btn" id="btn-writing-skills" type="button"
+                onclick="openLesson('writing-skills')">Study Writing Skills</button>
+        </article>
+
+        <article class="topic-card">
+            <div class="topic-icon">📚</div>
+            <h3>Vocabulary</h3>
+            <p>Develop your vocabulary, synonyms, antonyms and word choice.</p>
+            <div class="status" id="status-vocabulary">Not completed</div>
+            <button class="primary-btn" id="btn-vocabulary" type="button"
+                onclick="openLesson('vocabulary')">Study Vocabulary</button>
+        </article>
+
+        <article class="topic-card">
+            <div class="topic-icon">🔎</div>
+            <h3>Comprehension</h3>
+            <p>Understand passages, identify main ideas and answer questions.</p>
+            <div class="status" id="status-comprehension">Not completed</div>
+            <button class="primary-btn" id="btn-comprehension" type="button"
+                onclick="openLesson('comprehension')">Study Comprehension</button>
+        </article>
+
+        <article class="topic-card">
+            <div class="topic-icon">🎙️</div>
+            <h3>Oral Skills</h3>
+            <p>Practise listening, pronunciation, dialogue and communication.</p>
+            <div class="status" id="status-oral-skills">Not completed</div>
+            <button class="primary-btn" id="btn-oral-skills" type="button"
+                onclick="openLesson('oral-skills')">Study Oral Skills</button>
+        </article>
+
+        <article class="topic-card">
+            <div class="topic-icon">📖</div>
+            <h3>Literature</h3>
+            <p>Explore themes, characters, plot, setting and literary devices.</p>
+            <div class="status" id="status-literature">Not completed</div>
+            <button class="primary-btn" id="btn-literature" type="button"
+                onclick="openLesson('literature')">Study Literature</button>
+        </article>
+
+    </section>
+
+    <section class="lesson-panel" id="lessonPanel">
+        <div class="lesson-header">
+            <div>
+                <div class="eyebrow">Current lesson</div>
+                <h2 id="lessonTitle">English Lesson</h2>
+                <p class="muted" id="lessonDescription"></p>
+            </div>
+            <button class="secondary-btn" type="button"
+                onclick="closeLesson()">Close Lesson</button>
+        </div>
+
+        <div class="lesson-content" id="lessonContent"></div>
+
+        <div class="lesson-actions">
+            <button class="primary-btn" id="markCompleteButton" type="button"
+                onclick="completeCurrentLesson()">
+                Mark Topic as Completed (+5 XP)
+            </button>
+
+            <button class="secondary-btn" type="button"
+                onclick="scrollToQuiz()">Take Quick Quiz</button>
+        </div>
+
+        <section class="quiz" id="quizSection">
+            <h3>Quick Grammar Quiz</h3>
+            <p class="muted">Answer all three questions to check your understanding.</p>
+
+            <form id="quizForm">
+                <div class="question">
+                    <p>1. Which word is a noun in this sentence: “The teacher smiled”?</p>
+                    <label><input type="radio" name="q1" value="a"> Smiled</label>
+                    <label><input type="radio" name="q1" value="b"> Teacher</label>
+                    <label><input type="radio" name="q1" value="c"> The</label>
+                </div>
+
+                <div class="question">
+                    <p>2. Choose the correct sentence.</p>
+                    <label><input type="radio" name="q2" value="a"> She go to school every day.</label>
+                    <label><input type="radio" name="q2" value="b"> She going to school every day.</label>
+                    <label><input type="radio" name="q2" value="c"> She goes to school every day.</label>
+                </div>
+
+                <div class="question">
+                    <p>3. What is the past tense of “write”?</p>
+                    <label><input type="radio" name="q3" value="a"> Wrote</label>
+                    <label><input type="radio" name="q3" value="b"> Writtened</label>
+                    <label><input type="radio" name="q3" value="c"> Writing</label>
+                </div>
+
+                <button class="primary-btn" type="submit">Check Answers</button>
+            </form>
+
+            <div id="quizResult" aria-live="polite"></div>
+        </section>
+    </section>
+
+</main>
+
+<footer>
+    ZYNTRA English Studies · Learn, practise and improve.
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+const topics = {
+    "grammar": {
+        title: "Grammar",
+        description: "Understand the rules that make sentences clear and correct.",
+        content: `
+            <h3>1. Parts of Speech</h3>
+            <p>Words are grouped according to the jobs they perform in a sentence.</p>
+            <ul>
+                <li><strong>Noun:</strong> Names a person, place, thing or idea. Example: teacher, Nairobi.</li>
+                <li><strong>Pronoun:</strong> Replaces a noun. Example: he, she, they.</li>
+                <li><strong>Verb:</strong> Expresses an action or state. Example: write, think, is.</li>
+                <li><strong>Adjective:</strong> Describes a noun. Example: clever, beautiful.</li>
+                <li><strong>Adverb:</strong> Modifies a verb, adjective or another adverb. Example: quickly.</li>
+                <li><strong>Preposition:</strong> Shows a relationship. Example: under, beside, in.</li>
+                <li><strong>Conjunction:</strong> Connects words or clauses. Example: and, but, because.</li>
+                <li><strong>Interjection:</strong> Expresses sudden feeling. Example: Wow!</li>
+            </ul>
+
+            <h3>2. Tenses</h3>
+            <p>Tenses show when an action happens.</p>
+            <div class="example">
+                <strong>Present:</strong> She reads every day.<br>
+                <strong>Past:</strong> She read yesterday.<br>
+                <strong>Future:</strong> She will read tomorrow.
+            </div>
+
+            <h3>3. Subject-Verb Agreement</h3>
+            <p>A verb must agree with its subject.</p>
+            <div class="example">
+                Correct: The boy <strong>plays</strong> football.<br>
+                Correct: The boys <strong>play</strong> football.<br>
+                Incorrect: The boy play football.
+            </div>
+
+            <h3>4. Sentence Structure</h3>
+            <p>A sentence normally contains a subject and a predicate. A complete sentence expresses a complete thought.</p>
+            <div class="example">
+                Subject: The students<br>
+                Predicate: completed their assignment.<br>
+                Full sentence: The students completed their assignment.
+            </div>
+        `
+    },
+
+    "writing-skills": {
+        title: "Writing Skills",
+        description: "Organise your ideas and communicate them clearly in writing.",
+        content: `
+            <h3>1. Essay Writing</h3>
+            <p>A good essay has an introduction, a body and a conclusion.</p>
+            <ul>
+                <li><strong>Introduction:</strong> Introduces the topic and captures the reader's attention.</li>
+                <li><strong>Body:</strong> Develops the main ideas in organised paragraphs.</li>
+                <li><strong>Conclusion:</strong> Summarises the main argument or message.</li>
+            </ul>
+
+            <h3>2. Paragraph Writing</h3>
+            <p>A strong paragraph usually has a topic sentence, supporting details and a concluding sentence.</p>
+            <div class="example">
+                <strong>Topic sentence:</strong> Reading improves a student's knowledge.<br>
+                <strong>Supporting detail:</strong> Books introduce new ideas and vocabulary.<br>
+                <strong>Conclusion:</strong> Therefore, regular reading supports learning.
+            </div>
+
+            <h3>3. Formal and Informal Letters</h3>
+            <p>A formal letter is used for official communication, while an informal letter is written to friends or relatives.</p>
+            <ul>
+                <li>Use a suitable address and date.</li>
+                <li>Choose an appropriate salutation.</li>
+                <li>Organise the message into paragraphs.</li>
+                <li>Use a suitable closing.</li>
+            </ul>
+
+            <h3>4. Editing Your Work</h3>
+            <p>Before submitting your writing, check spelling, punctuation, grammar, paragraph organisation and clarity.</p>
+        `
+    },
+
+    "vocabulary": {
+        title: "Vocabulary",
+        description: "Build a wider vocabulary and choose words accurately.",
+        content: `
+            <h3>1. Synonyms</h3>
+            <p>Synonyms are words with similar meanings.</p>
+            <div class="example">
+                Happy — joyful<br>
+                Begin — start<br>
+                Difficult — challenging<br>
+                Rapid — fast
+            </div>
+
+            <h3>2. Antonyms</h3>
+            <p>Antonyms are words with opposite meanings.</p>
+            <div class="example">
+                Ancient — modern<br>
+                Generous — selfish<br>
+                Expand — contract<br>
+                Victory — defeat
+            </div>
+
+            <h3>3. Homophones</h3>
+            <p>Homophones sound alike but have different meanings or spellings.</p>
+            <div class="example">
+                Their — belonging to them<br>
+                There — a place<br>
+                They're — they are
+            </div>
+
+            <h3>4. Using Context</h3>
+            <p>Use the surrounding words and sentences to work out the meaning of an unfamiliar word.</p>
+            <div class="example">
+                “After walking for hours, the hikers were exhausted.”<br>
+                The context suggests that <strong>exhausted</strong> means extremely tired.
+            </div>
+        `
+    },
+
+    "comprehension": {
+        title: "Comprehension",
+        description: "Read carefully, identify main ideas and support answers with evidence.",
+        content: `
+            <h3>1. Read for Meaning</h3>
+            <p>Read the passage once to understand the general message. Read it again to identify important details.</p>
+
+            <h3>2. Identify the Main Idea</h3>
+            <p>The main idea is the central message of a passage. Supporting details explain or provide evidence for that message.</p>
+
+            <h3>3. Understand Different Questions</h3>
+            <ul>
+                <li><strong>Direct questions:</strong> The answer is stated in the passage.</li>
+                <li><strong>Inference questions:</strong> Use clues in the passage to reach a reasonable conclusion.</li>
+                <li><strong>Vocabulary questions:</strong> Explain the meaning of a word as it is used in context.</li>
+                <li><strong>Summary questions:</strong> Present the main points concisely in your own words when required.</li>
+            </ul>
+
+            <h3>4. Answering Effectively</h3>
+            <p>Answer the question directly, use evidence from the passage where appropriate and follow any word-limit instructions.</p>
+
+            <div class="example">
+                Passage: “Miriam planted trees around the school. The trees provided shade and made the compound more attractive.”<br><br>
+                Question: Give one benefit of planting the trees.<br>
+                Answer: They provided shade.
+            </div>
+        `
+    },
+
+    "oral-skills": {
+        title: "Oral Skills",
+        description: "Develop effective speaking, listening and pronunciation skills.",
+        content: `
+            <h3>1. Effective Speaking</h3>
+            <ul>
+                <li>Speak clearly and at a suitable pace.</li>
+                <li>Organise your ideas before speaking.</li>
+                <li>Use suitable vocabulary for your audience.</li>
+                <li>Maintain a confident and respectful tone.</li>
+            </ul>
+
+            <h3>2. Active Listening</h3>
+            <p>Give the speaker your attention, avoid unnecessary interruptions and ask relevant questions when clarification is needed.</p>
+
+            <h3>3. Pronunciation and Stress</h3>
+            <p>Pronunciation concerns how sounds and words are produced. Word stress is the emphasis placed on a syllable.</p>
+            <div class="example">
+                Practise saying unfamiliar words slowly, listen to reliable pronunciation examples and repeat them aloud.
+            </div>
+
+            <h3>4. Non-Verbal Communication</h3>
+            <p>Facial expressions, gestures, posture and eye contact can support spoken communication. Their meaning may vary across situations and cultures.</p>
+
+            <h3>5. Dialogue</h3>
+            <p>A good dialogue involves taking turns, responding to the other speaker and keeping the conversation relevant.</p>
+        `
+    },
+
+    "literature": {
+        title: "Literature",
+        description: "Explore how writers use characters, setting, plot and language.",
+        content: `
+            <h3>1. Plot</h3>
+            <p>Plot is the sequence of events in a story. It may include the introduction, rising action, climax, falling action and resolution.</p>
+
+            <h3>2. Characterisation</h3>
+            <p>Characterisation is how a writer presents a character through actions, speech, thoughts, appearance and the reactions of others.</p>
+
+            <h3>3. Setting</h3>
+            <p>Setting refers to the time and place in which a literary work happens. It can influence characters and events.</p>
+
+            <h3>4. Themes</h3>
+            <p>A theme is a central idea explored in a literary work, such as friendship, justice, responsibility or conflict.</p>
+
+            <h3>5. Literary Devices</h3>
+            <ul>
+                <li><strong>Simile:</strong> Compares things using “like” or “as”. Example: She is as brave as a lion.</li>
+                <li><strong>Metaphor:</strong> Describes one thing as another. Example: Time is a thief.</li>
+                <li><strong>Personification:</strong> Gives human qualities to non-human things. Example: The wind whispered.</li>
+                <li><strong>Imagery:</strong> Language that appeals to the senses.</li>
+                <li><strong>Irony:</strong> A contrast between what is expected and what happens, or between words and intended meaning.</li>
+            </ul>
+
+            <h3>6. Supporting an Interpretation</h3>
+            <p>When analysing a text, state your point, provide a relevant example from the text and explain how the example supports your interpretation.</p>
+        `
+    }
+};
+
+let currentLesson = null;
+let toastTimeout = null;
+
+function getStorageUsername() {
+    const direct = localStorage.getItem("zyntraUsername")
+        || localStorage.getItem("username");
+
+    if (direct && direct !== "guest") {
+        return direct.trim().toLowerCase();
+    }
+
+    const storedUser = localStorage.getItem("zyntraUser");
+
+    if (storedUser) {
+        try {
+            const user = JSON.parse(storedUser);
+
+            if (user && typeof user === "object") {
+                const identity = user.username || user.email || user.id || user.name;
+                if (identity) return String(identity).trim().toLowerCase();
+            }
+        } catch (error) {
+            if (storedUser.trim()) {
+                return storedUser.trim().toLowerCase();
+            }
+        }
+    }
+
+    return "guest";
+}
+
+function completedKey(topicId) {
+    return "zyntraCompleted_english_" + topicId + "_" + getStorageUsername();
+}
+
+function topicRewardKey(topicId) {
+    return "zyntraEnglishTopicReward_" + topicId + "_" + getStorageUsername();
+}
+
+function getEnglishXP() {
+    const key = "zyntraEnglishXP_" + getStorageUsername();
+    return Number(localStorage.getItem(key)) || 0;
+}
+
+function setEnglishXP(value) {
+    localStorage.setItem(
+        "zyntraEnglishXP_" + getStorageUsername(),
+        String(value)
+    );
+}
+
+function getCompletedTopics() {
+    return Object.keys(topics).filter(function(topicId) {
+        return localStorage.getItem(completedKey(topicId)) === "true";
+    });
+}
+
+function updateDashboard() {
+    const completed = getCompletedTopics();
+    const total = Object.keys(topics).length;
+    const percent = Math.round((completed.length / total) * 100);
+
+    document.getElementById("completedCount").textContent =
+        completed.length + "/" + total;
+
+    document.getElementById("progressPercent").textContent = percent + "%";
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("xpCount").textContent = getEnglishXP() + " XP";
+
+    Object.keys(topics).forEach(function(topicId) {
+        const status = document.getElementById("status-" + topicId);
+        const button = document.getElementById("btn-" + topicId);
+        const completedNow =
+            localStorage.getItem(completedKey(topicId)) === "true";
+
+        if (status) {
+            status.textContent = completedNow ? "✓ Completed" : "Not completed";
+            status.classList.toggle("done", completedNow);
+        }
+
+        if (button) {
+            button.textContent = completedNow
+                ? "Review Topic"
+                : "Study " + topics[topicId].title;
+        }
+    });
+
+    if (currentLesson) {
+        updateCompleteButton();
+    }
+}
+
+function openLesson(topicId) {
+    if (!topics[topicId]) {
+        showToast("This topic could not be found.");
+        return;
+    }
+
+    currentLesson = topicId;
+
+    document.getElementById("lessonTitle").textContent =
+        topics[topicId].title;
+
+    document.getElementById("lessonDescription").textContent =
+        topics[topicId].description;
+
+    document.getElementById("lessonContent").innerHTML =
+        topics[topicId].content;
+
+    document.getElementById("lessonPanel").classList.add("active");
+
+    document.getElementById("quizForm").reset();
+    document.getElementById("quizResult").textContent = "";
+
+    updateCompleteButton();
+    document.getElementById("lessonPanel").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+function closeLesson() {
+    document.getElementById("lessonPanel").classList.remove("active");
+    currentLesson = null;
+}
+
+function updateCompleteButton() {
+    const button = document.getElementById("markCompleteButton");
+
+    if (!button || !currentLesson) return;
+
+    const completed =
+        localStorage.getItem(completedKey(currentLesson)) === "true";
+
+    button.disabled = completed;
+    button.textContent = completed
+        ? "✓ Topic Completed"
+        : "Mark Topic as Completed (+5 XP)";
+}
+
+function awardXP(amount) {
+    const newEnglishXP = getEnglishXP() + amount;
+    setEnglishXP(newEnglishXP);
+
+    // Also update the overall ZYNTRA XP counter when it exists.
+    const username = getStorageUsername();
+    const overallKey = "zyntraXP_" + username;
+    const oldOverallXP = Number(localStorage.getItem(overallKey)) || 0;
+    localStorage.setItem(overallKey, String(oldOverallXP + amount));
+}
+
+function completeCurrentLesson() {
+    try {
+        if (!currentLesson || !topics[currentLesson]) {
+            showToast("Open a topic before marking it completed.");
+            return;
+        }
+
+        const key = completedKey(currentLesson);
+        const rewardKey = topicRewardKey(currentLesson);
+
+        if (localStorage.getItem(key) === "true") {
+            updateDashboard();
+            showToast("This topic is already completed.");
+            return;
+        }
+
+        // Save completion first so the status updates immediately.
+        localStorage.setItem(key, "true");
+
+        if (localStorage.getItem(rewardKey) !== "true") {
+            awardXP(5);
+            localStorage.setItem(rewardKey, "true");
+        }
+
+        updateDashboard();
+        showToast("Topic completed successfully! You earned 5 XP.");
+    } catch (error) {
+        console.error("Could not save English topic progress:", error);
+        showToast("Progress could not be saved. Check browser storage and Console.");
+    }
+}
+
+function scrollToQuiz() {
+    document.getElementById("quizSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    if (toastTimeout) clearTimeout(toastTimeout);
+
+    toastTimeout = setTimeout(function() {
+        toast.classList.remove("show");
+    }, 3500);
+}
+
+document.getElementById("quizForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const answers = {
+        q1: "b",
+        q2: "c",
+        q3: "a"
+    };
+
+    let score = 0;
+    let answered = 0;
+
+    Object.keys(answers).forEach(function(question) {
+        const selected = document.querySelector(
+            'input[name="' + question + '"]:checked'
+        );
+
+        if (selected) {
+            answered++;
+            if (selected.value === answers[question]) score++;
+        }
+    });
+
+    const result = document.getElementById("quizResult");
+
+    if (answered < 3) {
+        result.textContent = "Please answer all three questions first.";
+        result.style.color = "#fbbf24";
+        return;
+    }
+
+    result.textContent = "Your score: " + score + "/3. " +
+        (score === 3
+            ? "Excellent work!"
+            : "Keep practising and review the lesson.");
+
+    result.style.color = score === 3 ? "#86efac" : "#fbbf24";
+
+    const quizRewardKey =
+        "zyntraEnglishQuizReward_" + getStorageUsername();
+
+    if (localStorage.getItem(quizRewardKey) !== "true") {
+        const reward = score === 3 ? 10 : 2;
+        awardXP(reward);
+        localStorage.setItem(quizRewardKey, "true");
+        updateDashboard();
+        showToast("Quiz completed! You earned " + reward + " XP.");
+    }
+});
+
+window.addEventListener("storage", updateDashboard);
+
+try {
+    updateDashboard();
+} catch (error) {
+    console.error("Could not initialise English progress:", error);
+    showToast("English page could not load progress. Check the Console.");
+}
+</script>
+
+</body>
+</html>

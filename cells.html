@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZYNTRA - Cells</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .lesson-page {
+            max-width: 1000px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .lesson-hero {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .lesson-badge {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 30px;
+            background: rgba(16, 185, 129, 0.12);
+            color: #34d399;
+            font-weight: bold;
+        }
+
+        .lesson-hero h1 {
+            font-size: 55px;
+            margin: 20px 0 10px;
+        }
+
+        .lesson-hero p {
+            color: #9999ad;
+            font-size: 18px;
+        }
+
+        .lesson-card {
+            margin-top: 25px;
+            padding: 30px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .lesson-card h2 {
+            margin-bottom: 15px;
+        }
+
+        .lesson-card p,
+        .lesson-card li {
+            color: #c5c5d5;
+            line-height: 1.8;
+        }
+
+        .cell-visual {
+            width: 180px;
+            height: 180px;
+            margin: 30px auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            background: rgba(16,185,129,0.08);
+            border: 2px solid rgba(52,211,153,0.3);
+            box-shadow: 0 0 45px rgba(16,185,129,0.15);
+            animation: cellPulse 3s infinite;
+        }
+
+        @keyframes cellPulse {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.06);
+            }
+
+        }
+
+        .organelle {
+            margin-top: 15px;
+            padding: 18px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.04);
+            border-left: 3px solid #10b981;
+        }
+
+        .organelle strong {
+            color: white;
+        }
+
+        .comparison {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison th,
+        .comparison td {
+            padding: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+
+        .comparison th {
+            background: rgba(16,185,129,0.12);
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .quiz-option:hover {
+            background: rgba(16,185,129,0.25);
+        }
+
+        #quizResult {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+
+            .lesson-hero h1 {
+                font-size: 40px;
+            }
+
+            .comparison {
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="lesson-page">
+
+
+    <section class="lesson-hero">
+
+        <div class="lesson-badge">
+            🔬 BIOLOGY • CELLS
+        </div>
+
+        <h1>Discover the Cell</h1>
+
+        <p>
+            Learn the basic structure of cells and understand the functions
+            of important cell organelles.
+        </p>
+
+        <div class="cell-visual">
+            🔬
+        </div>
+
+    </section>
+
+
+    <div class="lesson-card">
+
+        <h2>🧬 What is a Cell?</h2>
+
+        <p>
+            A cell is the basic structural and functional unit of life.
+            All living organisms are made up of cells.
+        </p>
+
+        <p>
+            Some organisms consist of only one cell, while others are
+            made up of many cells.
+        </p>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🔬 Main Cell Organelles</h2>
+
+
+        <div class="organelle">
+
+            <strong>Cell membrane</strong>
+
+            <p>
+                Controls the movement of substances into and out of the cell.
+            </p>
+
+        </div>
+
+
+        <div class="organelle">
+
+            <strong>Cytoplasm</strong>
+
+            <p>
+                The jelly-like substance where many chemical reactions
+                take place.
+            </p>
+
+        </div>
+
+
+        <div class="organelle">
+
+            <strong>Nucleus</strong>
+
+            <p>
+                Contains genetic material and controls many activities
+                of the cell.
+            </p>
+
+        </div>
+
+
+        <div class="organelle">
+
+            <strong>Mitochondria</strong>
+
+            <p>
+                The site of aerobic respiration and releases energy
+                for cell activities.
+            </p>
+
+        </div>
+
+
+        <div class="organelle">
+
+            <strong>Ribosomes</strong>
+
+            <p>
+                Sites where proteins are made.
+            </p>
+
+        </div>
+
+
+        <div class="organelle">
+
+            <strong>Vacuole</strong>
+
+            <p>
+                Stores cell sap in plant cells and helps maintain
+                the shape of the cell.
+            </p>
+
+        </div>
+
+
+        <div class="organelle">
+
+            <strong>Chloroplast</strong>
+
+            <p>
+                Contains chlorophyll and is the site of photosynthesis
+                in plant cells.
+            </p>
+
+        </div>
+
+
+        <div class="organelle">
+
+            <strong>Cell wall</strong>
+
+            <p>
+                Provides support and protection to plant cells.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🌱 Plant Cell vs Animal Cell</h2>
+
+        <table class="comparison">
+
+            <tr>
+                <th>Structure</th>
+                <th>Plant Cell</th>
+                <th>Animal Cell</th>
+            </tr>
+
+            <tr>
+                <td>Cell membrane</td>
+                <td>Present</td>
+                <td>Present</td>
+            </tr>
+
+            <tr>
+                <td>Cytoplasm</td>
+                <td>Present</td>
+                <td>Present</td>
+            </tr>
+
+            <tr>
+                <td>Nucleus</td>
+                <td>Present</td>
+                <td>Present</td>
+            </tr>
+
+            <tr>
+                <td>Cell wall</td>
+                <td>Present</td>
+                <td>Absent</td>
+            </tr>
+
+            <tr>
+                <td>Chloroplasts</td>
+                <td>Present in photosynthetic cells</td>
+                <td>Absent</td>
+            </tr>
+
+            <tr>
+                <td>Large permanent vacuole</td>
+                <td>Usually present</td>
+                <td>Usually absent</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🧠 Why are Cells Important?</h2>
+
+        <p>
+            Cells carry out the processes necessary for life.
+            These include respiration, growth, reproduction,
+            excretion and nutrition.
+        </p>
+
+        <p>
+            In multicellular organisms, cells can become specialised
+            to perform particular functions.
+        </p>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>📝 Quick Revision</h2>
+
+        <ul>
+
+            <li>The nucleus controls many cell activities.</li>
+
+            <li>Mitochondria are involved in aerobic respiration.</li>
+
+            <li>Chloroplasts are involved in photosynthesis.</li>
+
+            <li>The cell membrane controls movement of substances.</li>
+
+            <li>The cell wall supports and protects plant cells.</li>
+
+            <li>Ribosomes are involved in protein synthesis.</li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="lesson-card">
+
+        <h2>🧠 ZYNTRA Quick Challenge</h2>
+
+        <p>
+            Which organelle is the main site of aerobic respiration?
+        </p>
+
+
+        <button class="quiz-option" onclick="checkAnswer('A')">
+            A. Nucleus
+        </button>
+
+
+        <button class="quiz-option" onclick="checkAnswer('B')">
+            B. Chloroplast
+        </button>
+
+
+        <button class="quiz-option" onclick="checkAnswer('C')">
+            C. Mitochondrion
+        </button>
+
+
+        <button class="quiz-option" onclick="checkAnswer('D')">
+            D. Cell wall
+        </button>
+
+
+        <p id="quizResult"></p>
+
+    </div>
+
+
+    <a href="biology.html" class="back-btn">
+        ← Back to Biology
+    </a>
+
+
+</div>
+
+
+<script>
+
+function checkAnswer(answer) {
+
+    let result = document.getElementById("quizResult");
+
+    if (answer === "C") {
+
+        result.textContent =
+            "✅ Correct! The mitochondrion is the main site of aerobic respiration.";
+
+    } else {
+
+        result.textContent =
+            "❌ Not quite. The correct answer is C. Mitochondrion.";
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

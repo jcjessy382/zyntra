@@ -1,0 +1,1421 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA Writing Skills</title>
+
+<style>
+
+:root{
+    --bg:#070711;
+    --card:rgba(255,255,255,.055);
+    --border:rgba(255,255,255,.10);
+    --white:#ffffff;
+    --text:#dcdceb;
+    --muted:#85859b;
+    --purple:#8b5cf6;
+    --blue:#3b82f6;
+    --green:#22c55e;
+    --red:#f87171;
+    --gradient:linear-gradient(135deg,#8b5cf6,#3b82f6);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+    radial-gradient(circle at 15% 20%,rgba(139,92,246,.13),transparent 30%),
+    radial-gradient(circle at 85% 70%,rgba(59,130,246,.10),transparent 30%),
+    var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:72px;
+    padding:0 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(7,7,17,.85);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:3px;
+    background:var(--gradient);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    gap:22px;
+    align-items:center;
+}
+
+.nav-links a{
+    color:var(--muted);
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:white;
+}
+
+/* CONTAINER */
+
+.container{
+    width:92%;
+    max-width:1200px;
+    margin:auto;
+    padding:45px 0 70px;
+}
+
+/* BACK */
+
+.back-btn{
+    display:inline-block;
+    padding:11px 20px;
+    margin-bottom:35px;
+    border-radius:12px;
+    background:var(--gradient);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(139,92,246,.35);
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 15px;
+    border-radius:30px;
+    background:rgba(139,92,246,.12);
+    border:1px solid rgba(139,92,246,.3);
+    color:#c1b2ff;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(42px,6vw,68px);
+    margin-bottom:18px;
+    background:linear-gradient(135deg,#ffffff,#aaa9c7);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:720px;
+    margin:auto;
+    color:var(--muted);
+    line-height:1.8;
+    font-size:16px;
+}
+
+/* WRITING VISUAL */
+
+.writing-visual{
+    max-width:850px;
+    height:190px;
+    margin:35px auto 0;
+    border:1px solid var(--border);
+    border-radius:24px;
+    background:var(--card);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.paper{
+    width:310px;
+    height:130px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:10px;
+    padding:20px;
+    transform:rotate(-3deg);
+    box-shadow:0 15px 35px rgba(0,0,0,.3);
+}
+
+.line{
+    height:6px;
+    background:rgba(255,255,255,.22);
+    border-radius:10px;
+    margin-bottom:11px;
+}
+
+.line.short{
+    width:55%;
+}
+
+.pen{
+    position:absolute;
+    font-size:48px;
+    right:25%;
+    bottom:22px;
+    transform:rotate(-35deg);
+    animation:penFloat 3s ease-in-out infinite;
+}
+
+@keyframes penFloat{
+    0%,100%{
+        transform:translateY(0) rotate(-35deg);
+    }
+
+    50%{
+        transform:translateY(-10px) rotate(-30deg);
+    }
+}
+
+/* SECTION */
+
+.section{
+    margin-bottom:65px;
+}
+
+.section-title{
+    margin-bottom:25px;
+}
+
+.section-title h2{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.section-title p{
+    color:var(--muted);
+}
+
+/* CARDS */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:28px;
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(139,92,246,.35);
+    box-shadow:0 18px 45px rgba(0,0,0,.25);
+}
+
+.icon{
+    width:54px;
+    height:54px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:15px;
+    background:rgba(139,92,246,.12);
+    font-size:26px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    margin-bottom:10px;
+    font-size:19px;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.65;
+    font-size:14px;
+}
+
+/* STRUCTURE */
+
+.structure{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.step{
+    padding:25px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    text-align:center;
+}
+
+.step-number{
+    width:45px;
+    height:45px;
+    margin:0 auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:var(--gradient);
+    color:white;
+    font-weight:bold;
+}
+
+.step h3{
+    margin-bottom:9px;
+}
+
+.step p{
+    color:var(--muted);
+    line-height:1.6;
+    font-size:14px;
+}
+
+/* TIPS */
+
+.tips{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.tip{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:24px;
+}
+
+.tip h3{
+    margin-bottom:10px;
+}
+
+.tip p{
+    color:var(--muted);
+    line-height:1.7;
+}
+
+/* EXAMPLE */
+
+.example{
+    padding:30px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:22px;
+}
+
+.example h3{
+    margin-bottom:15px;
+}
+
+.example p{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+.example-box{
+    margin-top:18px;
+    padding:18px;
+    border-left:3px solid var(--purple);
+    background:rgba(139,92,246,.08);
+    line-height:1.8;
+}
+
+/* WRITING CHALLENGE */
+
+.challenge{
+    max-width:850px;
+    margin:0 auto 70px;
+    padding:35px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:25px;
+}
+
+.challenge h2{
+    margin-bottom:10px;
+}
+
+.challenge p{
+    color:var(--muted);
+    line-height:1.7;
+    margin-bottom:20px;
+}
+
+textarea{
+    width:100%;
+    min-height:180px;
+    resize:vertical;
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:16px;
+    color:white;
+    outline:none;
+    font-size:15px;
+    line-height:1.6;
+}
+
+textarea:focus{
+    border-color:var(--purple);
+    box-shadow:0 0 20px rgba(139,92,246,.12);
+}
+
+.challenge-actions{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:15px;
+}
+
+.primary-btn{
+    border:none;
+    padding:12px 22px;
+    border-radius:12px;
+    background:var(--gradient);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 25px rgba(139,92,246,.35);
+}
+
+.primary-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none;
+}
+
+#challengeResult{
+    margin-top:20px;
+    min-height:25px;
+    font-weight:bold;
+}
+
+/* BOTTOM */
+
+.bottom{
+    text-align:center;
+}
+
+.bottom a{
+    display:inline-block;
+    margin:6px;
+    padding:13px 22px;
+    border-radius:12px;
+    background:var(--gradient);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.bottom a:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 25px rgba(139,92,246,.30);
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:30px;
+    border-top:1px solid var(--border);
+    color:var(--muted);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
+
+    .grid,
+    .structure{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .grid,
+    .structure,
+    .tips{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .writing-visual{
+        height:160px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<header class="navbar">
+
+    <div class="logo">
+        ZYNTRA
+    </div>
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="study.html">
+            Study
+        </a>
+
+        <a href="english.html" class="active">
+            English
+        </a>
+
+        <a href="ai.html">
+            AI
+        </a>
+
+        <a href="community.html">
+            Community
+        </a>
+
+        <a href="planner.html">
+            Planner
+        </a>
+
+        <a href="challenge.html">
+            Challenges
+        </a>
+
+        <a href="progress.html">
+            Progress
+        </a>
+
+    </nav>
+
+</header>
+
+
+<div class="container">
+
+
+<a href="english.html" class="back-btn">
+    ← Back to English
+</a>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <span class="badge">
+        ✍️ ZYNTRA ENGLISH • WRITING
+    </span>
+
+    <h1>
+        Write With Confidence.
+    </h1>
+
+    <p>
+        Learn how to organize ideas, build strong paragraphs,
+        use effective language and produce clear, accurate
+        and engaging pieces of writing.
+    </p>
+
+
+    <div class="writing-visual">
+
+        <div class="paper">
+
+            <div class="line"></div>
+
+            <div class="line"></div>
+
+            <div class="line short"></div>
+
+            <div class="line"></div>
+
+            <div class="line short"></div>
+
+        </div>
+
+        <div class="pen">
+            🖊️
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WRITING TYPES -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            📝 Types of Writing
+        </h2>
+
+        <p>
+            Understand the purpose and structure of different texts.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <div class="card">
+
+            <div class="icon">
+                📖
+            </div>
+
+            <h3>
+                Essay
+            </h3>
+
+            <p>
+                Develop an argument, explain an idea or tell
+                a story using organized paragraphs.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                ✉️
+            </div>
+
+            <h3>
+                Letter
+            </h3>
+
+            <p>
+                Learn the correct format and language for
+                formal and informal letters.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📰
+            </div>
+
+            <h3>
+                Article
+            </h3>
+
+            <p>
+                Present information or opinions in an
+                interesting and organized way.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📋
+            </div>
+
+            <h3>
+                Report
+            </h3>
+
+            <p>
+                Present findings, observations or information
+                clearly and logically.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🎤
+            </div>
+
+            <h3>
+                Speech
+            </h3>
+
+            <p>
+                Address an audience using clear ideas,
+                appropriate language and persuasive techniques.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📚
+            </div>
+
+            <h3>
+                Narrative
+            </h3>
+
+            <p>
+                Tell a story with characters, setting,
+                events and a clear sequence.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ESSAY STRUCTURE -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            🧠 Essay Structure
+        </h2>
+
+        <p>
+            A strong essay is built step by step.
+        </p>
+
+    </div>
+
+
+    <div class="structure">
+
+
+        <div class="step">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <h3>
+                Introduction
+            </h3>
+
+            <p>
+                Introduce the topic and give the reader
+                a clear direction.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <h3>
+                Body
+            </h3>
+
+            <p>
+                Develop your ideas using paragraphs,
+                explanations and examples.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <h3>
+                Conclusion
+            </h3>
+
+            <p>
+                Bring the main ideas together and give
+                the writing a strong ending.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PARAGRAPH -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            🧩 Building a Strong Paragraph
+        </h2>
+
+        <p>
+            Keep each paragraph focused on one main idea.
+        </p>
+
+    </div>
+
+
+    <div class="tips">
+
+
+        <div class="tip">
+
+            <h3>
+                1. Topic Sentence
+            </h3>
+
+            <p>
+                Introduce the main point of the paragraph.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <h3>
+                2. Explanation
+            </h3>
+
+            <p>
+                Explain what the main point means.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <h3>
+                3. Evidence
+            </h3>
+
+            <p>
+                Give an example, fact or supporting detail.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <h3>
+                4. Link
+            </h3>
+
+            <p>
+                Connect the paragraph to the next idea
+                or back to the main argument.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FUNCTIONAL WRITING -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            📋 Functional Writing
+        </h2>
+
+        <p>
+            Know what information belongs in different documents.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <div class="card">
+
+            <div class="icon">
+                ✉️
+            </div>
+
+            <h3>
+                Formal Letter
+            </h3>
+
+            <p>
+                Use a clear purpose, appropriate salutation,
+                organized paragraphs and a suitable closing.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📊
+            </div>
+
+            <h3>
+                Report
+            </h3>
+
+            <p>
+                Use headings and organized information to
+                communicate findings clearly.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📰
+            </div>
+
+            <h3>
+                Article
+            </h3>
+
+            <p>
+                Use an engaging title, introduction,
+                well-developed points and a conclusion.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🎤
+            </div>
+
+            <h3>
+                Speech
+            </h3>
+
+            <p>
+                Consider your audience and use an appropriate
+                greeting, introduction, body and conclusion.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📢
+            </div>
+
+            <h3>
+                Notice
+            </h3>
+
+            <p>
+                Give essential information briefly and
+                clearly, including relevant dates or details.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📅
+            </div>
+
+            <h3>
+                Agenda
+            </h3>
+
+            <p>
+                List the items or activities to be discussed
+                during a meeting.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LANGUAGE TIPS -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            ✨ Writing Tips
+        </h2>
+
+        <p>
+            Small improvements can make your writing much stronger.
+        </p>
+
+    </div>
+
+
+    <div class="tips">
+
+
+        <div class="tip">
+
+            <h3>
+                🎯 Be Clear
+            </h3>
+
+            <p>
+                Make your meaning easy for the reader to understand.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <h3>
+                🔗 Use Connectors
+            </h3>
+
+            <p>
+                Words such as however, therefore, furthermore
+                and because help connect ideas.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <h3>
+                📖 Use Good Vocabulary
+            </h3>
+
+            <p>
+                Choose precise words that communicate your
+                ideas naturally.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <h3>
+                🔎 Proofread
+            </h3>
+
+            <p>
+                Check spelling, punctuation, grammar and
+                sentence structure before finishing.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EXAMPLE -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            💡 Writing Example
+        </h2>
+
+        <p>
+            See how a simple idea can become a developed paragraph.
+        </p>
+
+    </div>
+
+
+    <div class="example">
+
+        <h3>
+            Topic: The importance of education
+        </h3>
+
+        <p>
+            A good paragraph should develop one clear idea
+            rather than listing unrelated points.
+        </p>
+
+        <div class="example-box">
+
+            Education plays an important role in preparing
+            young people for the future. It develops knowledge,
+            skills and the ability to solve problems. For example,
+            students can use what they learn in school to make
+            informed decisions and contribute positively to society.
+            Therefore, education can open opportunities and help
+            individuals reach their goals.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WRITING CHALLENGE -->
+
+<section class="challenge">
+
+    <h2>
+        🚀 ZYNTRA Writing Challenge
+    </h2>
+
+    <p>
+        Write a short paragraph of at least 30 words on:
+        <strong>
+            “Why students should develop good study habits.”
+        </strong>
+    </p>
+
+    <textarea
+        id="writingInput"
+        placeholder="Start writing your paragraph here...">
+    </textarea>
+
+    <div class="challenge-actions">
+
+        <button
+            id="writingButton"
+            class="primary-btn"
+            onclick="checkWriting()">
+            Check My Writing
+        </button>
+
+    </div>
+
+    <div id="challengeResult"></div>
+
+</section>
+
+
+<!-- BOTTOM -->
+
+<div class="bottom">
+
+    <a href="english.html">
+        ← English
+    </a>
+
+    <a href="grammar.html">
+        🔤 Grammar
+    </a>
+
+    <a href="progress.html">
+        📊 My Progress
+    </a>
+
+    <a href="study.html">
+        📚 Smart Study
+    </a>
+
+    <a href="index.html">
+        🏠 Home
+    </a>
+
+</div>
+
+
+</div>
+
+
+<footer>
+
+    <small>
+        © 2026 ZYNTRA. Learn beyond limits.
+    </small>
+
+</footer>
+
+
+<script>
+
+/* =====================================
+   ZYNTRA WRITING CHALLENGE
+   + PROGRESS CONNECTION
+   ===================================== */
+
+
+/* Prevent the same challenge from
+   being counted repeatedly */
+
+let challengeCompleted = false;
+
+
+function checkWriting(){
+
+    const input =
+        document.getElementById("writingInput");
+
+    const result =
+        document.getElementById("challengeResult");
+
+    const button =
+        document.getElementById("writingButton");
+
+    const text =
+        input.value.trim();
+
+
+    /* EMPTY CHECK */
+
+    if(text === ""){
+
+        result.textContent =
+            "✍️ Start writing your paragraph first.";
+
+        result.style.color =
+            "#f87171";
+
+        return;
+    }
+
+
+    /* COUNT WORDS */
+
+    const words =
+        text
+        .split(/\s+/)
+        .filter(Boolean)
+        .length;
+
+
+    /* TOO SHORT */
+
+    if(words < 30){
+
+        result.textContent =
+            "📚 Good start! You have written " +
+            words +
+            " words. Try to write at least 30 words.";
+
+        result.style.color =
+            "#fbbf24";
+
+        return;
+    }
+
+
+    /* PREVENT DUPLICATE COMPLETION */
+
+    if(challengeCompleted){
+
+        result.textContent =
+            "✅ This writing challenge has already been recorded.";
+
+        result.style.color =
+            "#22c55e";
+
+        return;
+    }
+
+
+    /* =====================================
+       WRITING CHALLENGE COMPLETED
+       ===================================== */
+
+    result.textContent =
+        "✅ Excellent! You have written " +
+        words +
+        " words. Your writing challenge is complete.";
+
+    result.style.color =
+        "#22c55e";
+
+
+    /* MARK AS COMPLETED */
+
+    challengeCompleted = true;
+
+
+    /* =====================================
+       GET EXISTING ZYNTRA PROGRESS
+       ===================================== */
+
+    let progress =
+        JSON.parse(
+            localStorage.getItem("zyntraProgress")
+        ) || {
+
+            lessons: 0,
+            quizzes: 0,
+            correctAnswers: 0,
+            streak: 0,
+            achievements: 0
+
+        };
+
+
+    /* =====================================
+       UPDATE PROGRESS
+       ===================================== */
+
+    progress.lessons =
+        Number(progress.lessons || 0) + 1;
+
+
+    progress.quizzes =
+        Number(progress.quizzes || 0) + 1;
+
+
+    progress.correctAnswers =
+        Number(progress.correctAnswers || 0) + 1;
+
+
+    /* =====================================
+       ACHIEVEMENT
+       ===================================== */
+
+    if(progress.achievements === undefined){
+
+        progress.achievements = 0;
+
+    }
+
+
+    /* First completed writing challenge
+       earns one achievement */
+
+    if(progress.achievements < 1){
+
+        progress.achievements = 1;
+
+    }
+
+
+    /* =====================================
+       SAVE TO BROWSER
+       ===================================== */
+
+    localStorage.setItem(
+        "zyntraProgress",
+        JSON.stringify(progress)
+    );
+
+
+    /* DISABLE BUTTON */
+
+    button.disabled = true;
+
+    button.textContent =
+        "✓ Challenge Completed";
+
+
+    /* SHOW PROGRESS MESSAGE */
+
+    result.innerHTML =
+        "✅ Excellent! You have written " +
+        words +
+        " words." +
+        "<br><small style='color:#85859b;'>" +
+        "Writing challenge completed and ZYNTRA progress updated." +
+        "</small>";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Christian Religious Education</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070711;--card:#111124;--border:#292743;--purple:#8b5cf6;--blue:#3b82f6;--green:#22c55e;--muted:#aaa7c5}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#f5f3ff;line-height:1.65}
+header{position:sticky;top:0;z-index:5;background:#090916f5;border-bottom:1px solid var(--border);padding:15px 5%;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px}.logo span{color:var(--purple)}
+nav{display:flex;gap:16px;flex-wrap:wrap}a{color:#c4b5fd;text-decoration:none}a:hover{color:white}
+main{max-width:1100px;margin:auto;padding:25px 18px 60px}
+.hero{padding:45px 22px;text-align:center;border:1px solid var(--border);border-radius:22px;background:linear-gradient(135deg,#251345,#11152f,#101020);margin-bottom:28px}
+.tag{display:inline-block;padding:5px 12px;border-radius:20px;background:#8b5cf626;color:#c4b5fd;font-size:13px}
+h1{font-size:clamp(30px,6vw,46px);margin:12px 0}.hero p{max-width:650px;color:var(--muted);margin:0 auto 20px}
+.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.stat{padding:10px 16px;background:#ffffff0b;border:1px solid var(--border);border-radius:12px}.stat strong{color:#c4b5fd}
+.progress-wrap{text-align:left;margin-top:20px}.progress-label{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:7px}.progress{height:9px;background:#292743;border-radius:20px;overflow:hidden}.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--blue));transition:width .3s}
+.section-title{font-size:25px;margin:28px 0 15px}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.topic{padding:18px;background:var(--card);border:1px solid var(--border);border-radius:16px;cursor:pointer;transition:.2s}
+.topic:hover,.topic.active{border-color:var(--purple);transform:translateY(-2px)}
+.emoji{font-size:27px}.topic h3{margin:7px 0}.topic p{font-size:14px;color:var(--muted)}.topic small{color:#c4b5fd}
+.panel{margin-top:22px;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:18px}
+.panel h2{margin-bottom:10px}.panel h3{color:#c4b5fd;margin:18px 0 8px}.panel p,.panel li{color:#dedbed}.panel ul{padding-left:23px}
+.note{margin:14px 0;padding:13px;border-left:3px solid var(--purple);background:#8b5cf612;border-radius:8px}
+button{border:0;border-radius:10px;padding:11px 16px;background:linear-gradient(135deg,var(--purple),var(--blue));color:white;font-weight:bold;cursor:pointer;font-size:14px}
+button:hover{filter:brightness(1.12)}button:disabled{opacity:.5;cursor:not-allowed}
+.secondary{background:#211d39;border:1px solid var(--border)}
+.lesson-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:15px 0}
+.lesson-button{text-align:left;background:#17172b;border:1px solid var(--border)}.lesson-button.selected{border-color:var(--purple)}.lesson-button.done{border-color:var(--green)}
+.quiz-question{padding:15px 0;border-bottom:1px solid var(--border)}.quiz-question p{font-weight:bold;margin-bottom:8px}.option{display:block;margin:8px 0;color:#dedbed}.option input{margin-right:8px;accent-color:var(--purple)}
+.result{display:none;margin-top:15px;padding:14px;border-radius:10px}
+footer{text-align:center;padding:24px;color:var(--muted);border-top:1px solid var(--border)}
+@media(max-width:550px){header{justify-content:center}nav{justify-content:center}.hero{padding:30px 14px}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">ZYNTRA<span>.</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="study.html">Study</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <span class="tag">CHRISTIAN RELIGIOUS EDUCATION</span>
+  <h1>Faith, Values & Understanding ✝️</h1>
+  <p>Explore biblical teachings, Christian values, the life of Jesus and the importance of faith in everyday life.</p>
+  <div class="stats">
+    <div class="stat">Completed: <strong id="completedCount">0/12</strong></div>
+    <div class="stat">CRE XP: <strong id="xp">0</strong></div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-label"><span>Your progress</span><span id="progressText">0%</span></div>
+    <div class="progress"><div id="progressBar"></div></div>
+  </div>
+</section>
+
+<h2 class="section-title">📖 Choose a Topic</h2>
+<div class="topics">
+  <div class="topic active" data-topic="0"><div class="emoji">🌍</div><h3>1. Creation</h3><p>The biblical account of creation and its lessons.</p><small>Genesis 1–2</small></div>
+  <div class="topic" data-topic="1"><div class="emoji">🌈</div><h3>2. The Fall and Its Consequences</h3><p>Human choices, sin and reconciliation.</p><small>Genesis 3–4</small></div>
+  <div class="topic" data-topic="2"><div class="emoji">🕊️</div><h3>3. Faith and Obedience</h3><p>Abraham, Moses and trust in God.</p><small>Old Testament teachings</small></div>
+  <div class="topic" data-topic="3"><div class="emoji">⭐</div><h3>4. The Life of Jesus</h3><p>His ministry, teachings and miracles.</p><small>New Testament</small></div>
+  <div class="topic" data-topic="4"><div class="emoji">❤️</div><h3>5. Christian Values</h3><p>Love, forgiveness, honesty and service.</p><small>Living responsibly</small></div>
+  <div class="topic" data-topic="5"><div class="emoji">⛪</div><h3>6. The Early Church</h3><p>The apostles and the growth of Christianity.</p><small>Acts of the Apostles</small></div>
+</div>
+
+<section class="panel" id="lessonArea">
+  <h2 id="topicTitle">1. Creation</h2>
+  <p id="topicDescription">Study the biblical account of creation.</p>
+  <h3>Choose a lesson</h3>
+  <div class="lesson-list" id="lessonList"></div>
+  <div id="lessonContent"></div>
+  <button id="completeButton" onclick="completeLesson()">✓ Mark Lesson Complete (+10 XP)</button>
+  <button class="secondary" onclick="nextLesson()">Next Lesson →</button>
+</section>
+
+<section class="panel">
+  <h2>🧠 CRE Quick Quiz</h2>
+  <p>Answer all six questions and check your understanding.</p>
+  <form id="quizForm">
+    <div class="quiz-question"><p>1. Which book of the Bible begins with the account of creation?</p>
+      <label class="option"><input type="radio" name="q1" value="a"> Exodus</label>
+      <label class="option"><input type="radio" name="q1" value="b"> Genesis</label>
+      <label class="option"><input type="radio" name="q1" value="c"> Acts</label>
+    </div>
+    <div class="quiz-question"><p>2. According to Genesis, who built an ark before the flood?</p>
+      <label class="option"><input type="radio" name="q2" value="a"> Noah</label>
+      <label class="option"><input type="radio" name="q2" value="b"> David</label>
+      <label class="option"><input type="radio" name="q2" value="c"> Solomon</label>
+    </div>
+    <div class="quiz-question"><p>3. Who led the Israelites out of Egypt in the biblical account?</p>
+      <label class="option"><input type="radio" name="q3" value="a"> Peter</label>
+      <label class="option"><input type="radio" name="q3" value="b"> Paul</label>
+      <label class="option"><input type="radio" name="q3" value="c"> Moses</label>
+    </div>
+    <div class="quiz-question"><p>4. In which town was Jesus born according to the Gospels?</p>
+      <label class="option"><input type="radio" name="q4" value="a"> Jerusalem</label>
+      <label class="option"><input type="radio" name="q4" value="b"> Bethlehem</label>
+      <label class="option"><input type="radio" name="q4" value="c"> Nazareth</label>
+    </div>
+    <div class="quiz-question"><p>5. Which Christian value means treating others with kindness and care?</p>
+      <label class="option"><input type="radio" name="q5" value="a"> Jealousy</label>
+      <label class="option"><input type="radio" name="q5" value="b"> Dishonesty</label>
+      <label class="option"><input type="radio" name="q5" value="c"> Love</label>
+    </div>
+    <div class="quiz-question"><p>6. Which New Testament book describes the growth of the early Church?</p>
+      <label class="option"><input type="radio" name="q6" value="a"> Acts of the Apostles</label>
+      <label class="option"><input type="radio" name="q6" value="b"> Proverbs</label>
+      <label class="option"><input type="radio" name="q6" value="c"> Leviticus</label>
+    </div>
+    <button type="submit">Check My Answers</button>
+  </form>
+  <div class="result" id="quizResult"></div>
+</section>
+</main>
+
+<footer>ZYNTRA • Learn. Practice. Progress.</footer>
+
+<script>
+const topicsData = [
+{
+title:"1. Creation",
+description:"Explore the biblical account of creation and the responsibilities of human beings.",
+lessons:[
+{title:"The Creation Story",content:`
+<h3>The account in Genesis</h3>
+<p>Genesis 1 describes God creating the heavens and the earth. The account presents an ordered creation, including light, sky, land, vegetation, living creatures and human beings.</p>
+<h3>Genesis 2</h3>
+<p>Genesis 2 gives a further account focusing on the Garden of Eden, the creation of the first human and the relationship between human beings and the environment.</p>
+<h3>Lessons from creation</h3><ul>
+<li>God is presented as the Creator.</li>
+<li>The world is portrayed as having order and purpose.</li>
+<li>Human beings have responsibility for caring for creation.</li>
+<li>People should appreciate life and the natural environment.</li>
+</ul><div class="note"><b>Read:</b> Genesis 1–2. Different Christian traditions may interpret some details differently.</div>`},
+{title:"Human Responsibility",content:`
+<h3>Stewardship of creation</h3>
+<p>In Genesis, human beings are given responsibility for the earth and other living things. Stewardship means caring for something entrusted to you.</p>
+<ul><li>Protect forests, water and wildlife.</li><li>Use natural resources responsibly.</li><li>Respect the dignity of other people.</li><li>Avoid unnecessary waste and environmental damage.</li></ul>
+<p>CRE connects biblical teaching with choices people make in their homes, schools and communities.</p>`}
+]},
+{
+title:"2. The Fall and Its Consequences",
+description:"Learn about disobedience, human responsibility and the need for reconciliation.",
+lessons:[
+{title:"The Fall of Human Beings",content:`
+<h3>The account in Genesis 3</h3>
+<p>Genesis 3 describes Adam and Eve disobeying God's command in the Garden of Eden. This account is commonly called the Fall.</p>
+<h3>Lessons from the account</h3><ul>
+<li>Choices can have consequences.</li>
+<li>People are responsible for their actions.</li>
+<li>Dishonesty can damage trust.</li>
+<li>Reconciliation involves acknowledging wrongs and seeking restoration.</li>
+</ul><div class="note"><b>Read:</b> Genesis 3. Consider how the account teaches responsibility and the consequences of choices.</div>`},
+{title:"Cain and Abel",content:`
+<h3>The story in Genesis 4</h3>
+<p>Cain and Abel are sons of Adam and Eve. The account describes jealousy leading to a serious conflict between the brothers.</p>
+<h3>Lessons</h3><ul>
+<li>Jealousy and uncontrolled anger can harm relationships.</li>
+<li>People should treat others with respect.</li>
+<li>Conflicts should be addressed peacefully.</li>
+<li>Individuals are accountable for their actions.</li>
+</ul>`}
+]},
+{
+title:"3. Faith and Obedience",
+description:"Study examples of trust, leadership and obedience in the Old Testament.",
+lessons:[
+{title:"Abraham's Faith",content:`
+<h3>Abraham</h3>
+<p>In Genesis, Abraham is presented as a person who trusted God's promises. His journey is associated with faith, obedience and covenant.</p>
+<h3>Lessons from Abraham</h3><ul>
+<li>Trust and patience during uncertainty.</li>
+<li>Commitment to one's beliefs.</li>
+<li>Hospitality and care for visitors.</li>
+<li>The importance of keeping promises.</li>
+</ul><div class="note"><b>Read:</b> Genesis 12, 15 and 22.</div>`},
+{title:"Moses and the Exodus",content:`
+<h3>Moses</h3>
+<p>The biblical book of Exodus describes Moses leading the Israelites out of slavery in Egypt. Moses is also associated with receiving God's law.</p>
+<h3>Lessons</h3><ul>
+<li>Courage in challenging circumstances.</li>
+<li>Leadership and responsibility.</li>
+<li>Concern for justice and freedom.</li>
+<li>Cooperation when facing difficulties.</li>
+</ul><div class="note"><b>Read:</b> Exodus 3, 12–14 and 20.</div>`}
+]},
+{
+title:"4. The Life of Jesus",
+description:"Explore the birth, ministry, teachings and significance of Jesus.",
+lessons:[
+{title:"Birth and Ministry",content:`
+<h3>Birth and early life</h3>
+<p>The Gospels of Matthew and Luke describe the birth of Jesus. The Gospels also recount his ministry, including teaching, healing and gathering disciples.</p>
+<h3>Main features of his ministry</h3><ul>
+<li>Teaching about the Kingdom of God.</li>
+<li>Showing compassion to people in need.</li>
+<li>Teaching through parables.</li>
+<li>Calling people to repentance and faith.</li>
+<li>Welcoming people who were often marginalized.</li>
+</ul><div class="note"><b>Read:</b> Matthew 5–7 and Luke 4.</div>`},
+{title:"Death and Resurrection",content:`
+<h3>Christian teaching</h3>
+<p>The Gospels describe the arrest, crucifixion and burial of Jesus. They also report his resurrection. Christians understand these events as central to their faith and hope of salvation.</p>
+<h3>Lessons</h3><ul>
+<li>Love and self-giving service.</li>
+<li>Forgiveness and reconciliation.</li>
+<li>Hope during difficult times.</li>
+<li>Faithfulness to one's convictions.</li>
+</ul><div class="note"><b>Read:</b> Matthew 27–28, Mark 15–16, Luke 23–24 or John 19–20.</div>`}
+]},
+{
+title:"5. Christian Values",
+description:"Understand how Christian teachings guide relationships and daily decisions.",
+lessons:[
+{title:"Love and Forgiveness",content:`
+<h3>The command to love</h3>
+<p>In the Gospels, Jesus teaches love of God and love of one's neighbour. The parable of the Good Samaritan illustrates care for someone in need.</p>
+<h3>Forgiveness</h3>
+<p>Forgiveness involves letting go of revenge and seeking a path towards reconciliation where possible. It does not mean that harmful behaviour must be accepted or that personal safety should be ignored.</p>
+<ul><li>Show compassion to others.</li><li>Help people in need.</li><li>Resolve disagreements peacefully.</li><li>Be willing to admit mistakes.</li></ul><div class="note"><b>Read:</b> Luke 10:25–37 and Matthew 18:21–35.</div>`},
+{title:"Honesty and Service",content:`
+<h3>Honesty</h3><p>Honesty means telling the truth, keeping promises and acting fairly.</p>
+<h3>Service</h3><p>Christian teaching emphasizes serving others rather than seeking status alone.</p>
+<ul><li>Be truthful in schoolwork and relationships.</li><li>Respect other people's property.</li><li>Help others without expecting a reward.</li><li>Stand against unfair treatment.</li><li>Use leadership to benefit the community.</li></ul>`}
+]},
+{
+title:"6. The Early Church",
+description:"Learn about the apostles, Christian fellowship and the spread of Christianity.",
+lessons:[
+{title:"Pentecost and the Apostles",content:`
+<h3>Pentecost</h3>
+<p>Acts 2 describes the coming of the Holy Spirit at Pentecost and the public preaching of the apostles. The event is associated with the beginning of a period of rapid growth for the early Christian community.</p>
+<h3>Features of the early Church</h3><ul>
+<li>Teaching and fellowship.</li>
+<li>Prayer and worship.</li>
+<li>Sharing resources with people in need.</li>
+<li>Preaching the message about Jesus.</li>
+</ul><div class="note"><b>Read:</b> Acts 2.</div>`},
+{title:"Growth and Challenges",content:`
+<h3>The spread of Christianity</h3>
+<p>The book of Acts describes the spread of the Christian message beyond Jerusalem. Peter, Paul and other followers played important roles in this history.</p>
+<h3>Lessons from the early Church</h3><ul>
+<li>Cooperation can strengthen a community.</li>
+<li>Service supports vulnerable people.</li>
+<li>People may face challenges because of their beliefs.</li>
+<li>Dialogue and mutual respect matter in diverse communities.</li>
+</ul><div class="note"><b>Read:</b> Acts 4, 9 and 10.</div>`}
+]}
+];
+
+let currentTopic=0;
+let currentLesson=0;
+
+const userKey=(()=>{
+try{
+const raw=localStorage.getItem("zyntraUser");
+if(!raw)return "guest";
+const user=JSON.parse(raw);
+return String(user.username||user.email||user.name||"guest").replace(/[^a-zA-Z0-9_-]/g,"_");
+}catch(e){return "guest";}
+})();
+
+const completedKey="zyntraCRECompleted_"+userKey;
+const xpKey="zyntraCREXP_"+userKey;
+
+function getCompleted(){
+try{
+const data=JSON.parse(localStorage.getItem(completedKey)||"[]");
+return Array.isArray(data)?data:[];
+}catch(e){return [];}
+}
+function getXP(){return Number(localStorage.getItem(xpKey)||0);}
+function lessonId(t,l){return t+"-"+l;}
+
+function updateProgress(){
+const completed=getCompleted();
+const total=topicsData.reduce((sum,t)=>sum+t.lessons.length,0);
+const percent=Math.round(completed.length/total*100);
+document.getElementById("completedCount").textContent=completed.length+"/"+total;
+document.getElementById("xp").textContent=getXP();
+document.getElementById("progressText").textContent=percent+"%";
+document.getElementById("progressBar").style.width=percent+"%";
+}
+
+function renderTopics(){
+document.querySelectorAll(".topic").forEach(card=>{
+card.classList.toggle("active",Number(card.dataset.topic)===currentTopic);
+});
+}
+
+function renderLessonList(){
+const topic=topicsData[currentTopic];
+const completed=getCompleted();
+document.getElementById("topicTitle").textContent=topic.title;
+document.getElementById("topicDescription").textContent=topic.description;
+document.getElementById("lessonList").innerHTML=topic.lessons.map((lesson,index)=>{
+const done=completed.includes(lessonId(currentTopic,index));
+return `<button class="lesson-button ${done?"done":""} ${index===currentLesson?"selected":""}" onclick="selectLesson(${index})">${done?"✓ ":""}${lesson.title}</button>`;
+}).join("");
+renderLessonContent();
+}
+
+function renderLessonContent(){
+const lesson=topicsData[currentTopic].lessons[currentLesson];
+const done=getCompleted().includes(lessonId(currentTopic,currentLesson));
+document.getElementById("lessonContent").innerHTML=`<h3>${lesson.title}</h3>${lesson.content}`;
+const button=document.getElementById("completeButton");
+button.disabled=done;
+button.textContent=done?"✓ Lesson Completed":"✓ Mark Lesson Complete (+10 XP)";
+}
+
+function selectLesson(index){
+currentLesson=index;
+renderLessonList();
+}
+
+function completeLesson(){
+const completed=getCompleted();
+const id=lessonId(currentTopic,currentLesson);
+if(completed.includes(id))return;
+completed.push(id);
+localStorage.setItem(completedKey,JSON.stringify(completed));
+localStorage.setItem(xpKey,String(getXP()+10));
+renderLessonList();
+updateProgress();
+}
+
+function nextLesson(){
+const topic=topicsData[currentTopic];
+if(currentLesson<topic.lessons.length-1){
+currentLesson++;
+}else if(currentTopic<topicsData.length-1){
+currentTopic++;
+currentLesson=0;
+}else{
+alert("You have reached the final lesson. Great work!");
+return;
+}
+renderTopics();
+renderLessonList();
+document.getElementById("lessonArea").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+document.querySelectorAll(".topic").forEach(card=>{
+card.addEventListener("click",()=>{
+currentTopic=Number(card.dataset.topic);
+currentLesson=0;
+renderTopics();
+renderLessonList();
+document.getElementById("lessonArea").scrollIntoView({behavior:"smooth",block:"start"});
+});
+});
+
+document.getElementById("quizForm").addEventListener("submit",function(event){
+event.preventDefault();
+const answers={q1:"b",q2:"a",q3:"c",q4:"b",q5:"c",q6:"a"};
+let score=0;
+for(const question in answers){
+const selected=this.querySelector(`input[name="${question}"]:checked`);
+if(selected&&selected.value===answers[question])score++;
+}
+const result=document.getElementById("quizResult");
+result.style.display="block";
+result.style.background=score>=5?"#22c55e20":"#8b5cf620";
+result.style.border="1px solid "+(score>=5?"#22c55e":"#8b5cf6");
+result.innerHTML=`<b>Your score: ${score}/6</b><p>${score>=5?"Excellent work! Keep revising.":"Good effort! Review the notes and try again."}</p>`;
+});
+
+renderTopics();
+renderLessonList();
+updateProgress();
+</script>
+</body>
+</html>

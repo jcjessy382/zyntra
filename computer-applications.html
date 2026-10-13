@@ -1,0 +1,546 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Computer Applications</title>
+
+<style>
+*{box-sizing:border-box}
+:root{
+--bg:#070711;
+--card:#111124;
+--border:#292743;
+--purple:#8b5cf6;
+--blue:#3b82f6;
+--text:#f5f3ff;
+--muted:#aaa7c5;
+--green:#22c55e;
+}
+body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:Arial,Helvetica,sans-serif;
+}
+header{
+position:sticky;
+top:0;
+z-index:10;
+background:#0b0b19ee;
+backdrop-filter:blur(12px);
+border-bottom:1px solid var(--border);
+padding:15px 5%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+flex-wrap:wrap;
+}
+.logo{
+font-size:23px;
+font-weight:900;
+background:linear-gradient(90deg,var(--purple),var(--blue));
+-webkit-background-clip:text;
+color:transparent;
+}
+nav{display:flex;gap:15px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:14px}
+nav a:hover{color:white}
+main{max-width:1100px;margin:auto;padding:25px 18px 60px}
+.hero{
+padding:35px 25px;
+border:1px solid var(--border);
+border-radius:22px;
+background:linear-gradient(135deg,#17112f,#10182d);
+}
+.badge{
+display:inline-block;
+padding:7px 12px;
+border-radius:20px;
+background:#8b5cf622;
+color:#c4b5fd;
+font-size:12px;
+}
+h1{font-size:clamp(28px,5vw,43px);margin:15px 0 10px}
+p{line-height:1.65}
+.muted{color:var(--muted)}
+.stats{
+display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:12px;
+margin:20px 0 30px;
+}
+.stat,.panel,.topic-card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:16px;
+padding:18px;
+}
+.stat strong{display:block;font-size:24px;margin-bottom:5px}
+.stat span{font-size:13px;color:var(--muted)}
+.section-title{margin:32px 0 15px;font-size:23px}
+.topic-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:14px;
+}
+.topic-card{cursor:pointer;transition:.2s}
+.topic-card:hover,.topic-card.active{
+border-color:var(--purple);
+transform:translateY(-2px);
+}
+.topic-icon{font-size:28px}
+.topic-card h3{margin:12px 0 7px}
+.topic-card p{font-size:13px;color:var(--muted)}
+button,select{
+border:0;
+border-radius:10px;
+padding:12px 15px;
+font-weight:bold;
+font-size:14px;
+cursor:pointer;
+}
+button{
+background:linear-gradient(100deg,var(--purple),var(--blue));
+color:white;
+}
+button.secondary{
+background:#22213b;
+border:1px solid var(--border);
+}
+button:disabled{opacity:.5;cursor:not-allowed}
+select{
+background:#17172b;
+color:white;
+border:1px solid var(--border);
+width:100%;
+margin:10px 0;
+}
+.lesson-layout{
+display:grid;
+grid-template-columns:260px minmax(0,1fr);
+gap:16px;
+}
+.lesson-list{display:grid;gap:9px}
+.lesson-option{
+width:100%;
+text-align:left;
+background:#17172b;
+border:1px solid var(--border);
+line-height:1.5;
+}
+.lesson-option.active{border-color:var(--purple);background:#21183a}
+.lesson-content h3{font-size:23px}
+.lesson-content h4{margin-bottom:6px;color:#c4b5fd}
+.lesson-content li{margin:9px 0;line-height:1.55}
+.note{
+padding:14px;
+border-radius:12px;
+background:#8b5cf615;
+border:1px solid #8b5cf644;
+margin:15px 0;
+line-height:1.6;
+}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.progress-track{
+height:9px;background:#26243c;border-radius:20px;overflow:hidden;
+}
+.progress-fill{
+height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--blue));
+transition:width .3s;
+}
+.question{
+padding:16px;
+background:#17172b;
+border:1px solid var(--border);
+border-radius:12px;
+margin:13px 0;
+}
+.question label{
+display:block;margin:11px 0;cursor:pointer;line-height:1.5;
+}
+.result{font-weight:bold;margin-top:15px}
+footer{text-align:center;color:var(--muted);padding:25px;font-size:13px}
+@media(max-width:700px){
+.lesson-layout{grid-template-columns:1fr}
+.stats{grid-template-columns:1fr}
+header{align-items:flex-start}
+nav{gap:10px}
+}
+</style>
+</head>
+
+<body>
+<header>
+<div class="logo">ZYNTRA</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="study.html">Study</a>
+<a href="computer.html">Computer Studies</a>
+<a href="profile.html">Profile</a>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<span class="badge">COMPUTER STUDIES</span>
+<h1>Computer Applications 💻</h1>
+<p class="muted">Learn how to use computer programs, create documents, analyse data, make presentations and manage information safely.</p>
+<div class="actions">
+<button onclick="document.getElementById('topics').scrollIntoView({behavior:'smooth'})">Explore Topics</button>
+<button class="secondary" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Take Quiz</button>
+</div>
+</section>
+
+<div class="stats">
+<div class="stat"><strong id="completedCount">0</strong><span>Lessons completed</span></div>
+<div class="stat"><strong id="xpCount">0 XP</strong><span>Experience earned on this page</span></div>
+<div class="stat"><strong id="progressPercent">0%</strong><span>Course progress</span></div>
+</div>
+
+<div class="progress-track">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+<h2 class="section-title" id="topics">Explore the six topics</h2>
+<div class="topic-grid" id="topicGrid"></div>
+
+<h2 class="section-title" id="lessonHeading">Your lessons</h2>
+<div class="lesson-layout">
+<aside class="panel">
+<h3>Choose a lesson</h3>
+<p class="muted">Select a lesson to study.</p>
+<div class="lesson-list" id="lessonList"></div>
+</aside>
+
+<section class="panel lesson-content" id="lessonContent">
+<h3>Welcome to Computer Applications</h3>
+<p class="muted">Choose a topic above or select a lesson to begin.</p>
+</section>
+</div>
+
+<h2 class="section-title" id="quiz">Knowledge Check 🧠</h2>
+<section class="panel">
+<p class="muted">Answer all six questions. Score at least four to earn a 5 XP bonus. The bonus can be earned once on this page.</p>
+<form id="quizForm"></form>
+<button type="button" onclick="checkQuiz()">Check Answers</button>
+<div class="result" id="quizResult" aria-live="polite"></div>
+</section>
+</main>
+
+<footer>ZYNTRA • Learn something useful every day.</footer>
+
+<script>
+const topics = [
+{
+title:"Word Processing",icon:"📝",
+description:"Create and format documents.",
+lessons:[
+{
+title:"Introduction to Word Processing",
+sections:[
+["What is word processing?",["Using software to create, edit, format and print text documents.","Examples include letters, reports, CVs and school assignments."]],
+["Common features",["Typing and editing text.","Changing fonts, size, colour and alignment.","Checking spelling and grammar."]],
+["Remember",["A word processor is designed mainly for working with text documents."]]
+]
+},
+{
+title:"Formatting and Printing Documents",
+sections:[
+["Formatting",["Bold makes text stand out.","Italic slants text.","Underline draws a line beneath text.","Alignment positions text to the left, centre, right or justified."]],
+["Page setup",["Margins control blank space around a page.","Orientation can be portrait or landscape.","Headers and footers appear at the top and bottom of pages."]],
+["Printing",["Preview a document before printing.","Check the printer, page range and number of copies."]]
+]
+}
+]
+},
+{
+title:"Spreadsheets",icon:"📊",
+description:"Organise information and calculate results.",
+lessons:[
+{
+title:"Spreadsheet Basics",
+sections:[
+["Meaning",["A spreadsheet organises information in rows and columns.","A cell is where a row and column meet."]],
+["Important terms",["A row runs horizontally.","A column runs vertically.","A cell reference such as B3 identifies a cell.","A worksheet contains cells; a workbook can contain worksheets."]],
+["Examples",["Microsoft Excel and LibreOffice Calc are spreadsheet applications."]]
+]
+},
+{
+title:"Formulas and Functions",
+sections:[
+["Formulas",["A formula normally starts with an equals sign (=).","Example: =A1+B1 adds the values in two cells."]],
+["Functions",["SUM adds values, for example =SUM(A1:A5).","AVERAGE calculates a mean.","MAX returns the largest value and MIN the smallest."]],
+["Good practice",["Use correct cell references and check your results."]]
+]
+}
+]
+},
+{
+title:"Presentations",icon:"🎤",
+description:"Prepare and deliver visual presentations.",
+lessons:[
+{
+title:"Presentation Software",
+sections:[
+["Purpose",["Presentation software displays information as slides.","Slides can contain text, pictures, charts, audio and video."]],
+["Examples",["Microsoft PowerPoint and LibreOffice Impress."]],
+["Planning",["Use a clear title, logical order and short points."]]
+]
+},
+{
+title:"Designing Effective Slides",
+sections:[
+["Good design",["Use readable fonts and sufficient contrast.","Keep text concise.","Use relevant images and diagrams."]],
+["Transitions and animations",["Transitions control how slides change.","Animations control how objects appear or move."]],
+["Presenting",["Practise beforehand and avoid reading every word from the screen."]]
+]
+}
+]
+},
+{
+title:"Databases",icon:"🗄️",
+description:"Store, organise and retrieve information.",
+lessons:[
+{
+title:"Database Fundamentals",
+sections:[
+["What is a database?",["A database is an organised collection of related information."]],
+["Database terms",["A table stores related data.","A record is one complete entry.","A field stores one type of information.","A primary key uniquely identifies a record."]],
+["Examples",["A school database may store student names, admission numbers and marks."]]
+]
+},
+{
+title:"Searching and Maintaining Data",
+sections:[
+["Queries",["A query retrieves information that matches specified conditions."]],
+["Forms and reports",["Forms help users enter or view records.","Reports present information in a structured format."]],
+["Data quality",["Avoid duplicate records, correct mistakes and protect confidential information."]]
+]
+}
+]
+},
+{
+title:"Internet and Communication",icon:"🌐",
+description:"Use online services and communicate effectively.",
+lessons:[
+{
+title:"Internet and Web Basics",
+sections:[
+["Internet",["The internet connects computer networks around the world."]],
+["Web terms",["A browser opens web pages.","A search engine helps find information.","A URL is a web address.","A website contains related web pages."]],
+["Examples",["Browsers include Chrome, Firefox and Edge."]]
+]
+},
+{
+title:"Digital Communication",
+sections:[
+["Communication tools",["Email, video calls, messaging and online collaboration tools help people communicate."]],
+["Email basics",["To identifies recipients.","Subject summarises the message.","Attachments add files to a message."]],
+["Digital manners",["Be respectful, check facts and avoid sharing other people's private information."]]
+]
+}
+]
+},
+{
+title:"Digital Safety and File Management",icon:"🔐",
+description:"Protect your information and organise files.",
+lessons:[
+{
+title:"Cybersecurity Basics",
+sections:[
+["Protecting devices",["Use strong, unique passwords.","Keep software updated.","Use trusted security tools."]],
+["Recognising threats",["Phishing messages try to trick people into revealing information.","Malware is software designed to cause harm or unwanted activity."]],
+["Safe behaviour",["Do not open suspicious attachments or share passwords. Ask a trusted adult or teacher if something seems unsafe."]]
+]
+},
+{
+title:"Files, Folders and Backups",
+sections:[
+["Organising files",["Use descriptive filenames.","Create folders for related work.","Keep files in appropriate locations."]],
+["File operations",["Create, open, rename, copy, move and delete files as needed."]],
+["Backups",["Keep an additional copy of important work in a safe location. Check that backups can be opened."]]
+]
+}
+]
+}
+];
+
+const questions = [
+{q:"Which application is mainly used to create letters and reports?",options:["Spreadsheet","Word processor","Web browser","Media player"],answer:1,why:"Word processors are designed to create and format text documents."},
+{q:"Which spreadsheet function adds a range of values?",options:["MAX","AVERAGE","SUM","MIN"],answer:2,why:"SUM adds the values in the selected cells."},
+{q:"What is a single page in a presentation called?",options:["Record","Cell","Slide","Field"],answer:2,why:"A presentation is made up of slides."},
+{q:"What uniquely identifies a record in a database table?",options:["Primary key","Font","Transition","Folder"],answer:0,why:"A primary key uniquely identifies each record."},
+{q:"Which tool helps you find information on the web?",options:["Calculator","Search engine","Printer","Spreadsheet"],answer:1,why:"A search engine finds web pages and other online information."},
+{q:"What should you do with a suspicious email attachment?",options:["Open it immediately","Forward it to everyone","Avoid opening it and seek advice","Send your password"],answer:2,why:"Suspicious attachments can contain malware or lead to scams."}
+];
+
+const username = localStorage.getItem("zyntraUser") || "guest";
+const userKey = username.toLowerCase().replace(/[^a-z0-9_-]/g,"_");
+const completedKey = "zyntraComputerApplicationsCompleted_" + userKey;
+const xpKey = "zyntraComputerApplicationsXP_" + userKey;
+const bonusKey = "zyntraComputerApplicationsQuizBonus_" + userKey;
+let completed = JSON.parse(localStorage.getItem(completedKey) || "[]");
+let xp = Number(localStorage.getItem(xpKey) || 0);
+let selectedTopic = 0;
+let selectedLesson = 0;
+
+function saveProgress(){
+localStorage.setItem(completedKey,JSON.stringify(completed));
+localStorage.setItem(xpKey,String(xp));
+updateStats();
+}
+
+function updateStats(){
+const total = topics.reduce((sum,t)=>sum+t.lessons.length,0);
+document.getElementById("completedCount").textContent=completed.length;
+document.getElementById("xpCount").textContent=xp+" XP";
+document.getElementById("progressPercent").textContent=Math.round(completed.length/total*100)+"%";
+document.getElementById("progressFill").style.width=(completed.length/total*100)+"%";
+}
+
+function lessonId(t,l){return t+"-"+l}
+
+function renderTopics(){
+const grid=document.getElementById("topicGrid");
+grid.innerHTML="";
+topics.forEach((topic,index)=>{
+const card=document.createElement("div");
+card.className="topic-card"+(index===selectedTopic?" active":"");
+card.innerHTML=`<div class="topic-icon">${topic.icon}</div><h3>${topic.title}</h3><p>${topic.description}</p><p>${topic.lessons.length} lessons</p>`;
+card.addEventListener("click",()=>{
+selectedTopic=index;
+selectedLesson=0;
+renderTopics();
+renderLessonList();
+renderLesson();
+});
+grid.appendChild(card);
+});
+}
+
+function renderLessonList(){
+const list=document.getElementById("lessonList");
+list.innerHTML="";
+topics[selectedTopic].lessons.forEach((lesson,index)=>{
+const button=document.createElement("button");
+button.className="lesson-option"+(index===selectedLesson?" active":"");
+button.textContent=(completed.includes(lessonId(selectedTopic,index))?"✓ ":"")+lesson.title;
+button.addEventListener("click",()=>{
+selectedLesson=index;
+renderLessonList();
+renderLesson();
+});
+list.appendChild(button);
+});
+}
+
+function renderLesson(){
+const lesson=topics[selectedTopic].lessons[selectedLesson];
+const id=lessonId(selectedTopic,selectedLesson);
+const isDone=completed.includes(id);
+let html=`<span class="badge">${topics[selectedTopic].title}</span><h3>${lesson.title}</h3><p class="muted">Lesson ${selectedLesson+1} of ${topics[selectedTopic].lessons.length}</p>`;
+lesson.sections.forEach(section=>{
+html+=`<h4>${section[0]}</h4><ul>`;
+section[1].forEach(point=>html+=`<li>${point}</li>`);
+html+="</ul>";
+});
+html+=`<div class="note">💡 <strong>Study tip:</strong> Read each section, practise the skill on a computer when possible, and explain what you learned in your own words.</div>`;
+html+=`<div class="actions"><button id="completeBtn" ${isDone?"disabled":""}>${isDone?"Lesson Completed ✓":"Mark Lesson Complete (+10 XP)"}</button><button class="secondary" id="nextBtn">Next Lesson →</button></div>`;
+document.getElementById("lessonContent").innerHTML=html;
+document.getElementById("completeBtn").addEventListener("click",()=>{
+if(!completed.includes(id)){
+completed.push(id);
+xp+=10;
+saveProgress();
+renderLessonList();
+renderLesson();
+}
+});
+document.getElementById("nextBtn").addEventListener("click",()=>{
+if(selectedLesson<topics[selectedTopic].lessons.length-1){
+selectedLesson++;
+}else if(selectedTopic<topics.length-1){
+selectedTopic++;
+selectedLesson=0;
+renderTopics();
+}
+renderLessonList();
+renderLesson();
+document.getElementById("lessonHeading").scrollIntoView({behavior:"smooth"});
+});
+}
+
+function renderQuiz(){
+const form=document.getElementById("quizForm");
+form.innerHTML="";
+questions.forEach((question,index)=>{
+const div=document.createElement("div");
+div.className="question";
+const title=document.createElement("p");
+title.innerHTML=`<strong>${index+1}. ${question.q}</strong>`;
+div.appendChild(title);
+question.options.forEach((option,optionIndex)=>{
+const label=document.createElement("label");
+const radio=document.createElement("input");
+radio.type="radio";
+radio.name="q"+index;
+radio.value=optionIndex;
+radio.style.marginRight="9px";
+label.appendChild(radio);
+label.appendChild(document.createTextNode(option));
+div.appendChild(label);
+});
+form.appendChild(div);
+});
+}
+
+function checkQuiz(){
+let score=0;
+let unanswered=0;
+questions.forEach((question,index)=>{
+const selected=document.querySelector(`input[name="q${index}"]:checked`);
+if(!selected){unanswered++;return;}
+if(Number(selected.value)===question.answer)score++;
+});
+const result=document.getElementById("quizResult");
+if(unanswered){
+result.textContent="Please answer all six questions. You have "+unanswered+" unanswered.";
+result.style.color="#fbbf24";
+return;
+}
+let message=`Your score: ${score}/6. `;
+if(score>=4){
+if(localStorage.getItem(bonusKey)!=="earned"){
+xp+=5;
+localStorage.setItem(bonusKey,"earned");
+localStorage.setItem(xpKey,String(xp));
+message+=" Well done! You earned 5 bonus XP.";
+}else{
+message+=" Great work! Your quiz bonus was already earned.";
+}
+}else{
+message+=" Review the lessons and try again.";
+}
+message+=" ";
+questions.forEach((question,index)=>{
+const selected=document.querySelector(`input[name="q${index}"]:checked`);
+if(Number(selected.value)!==question.answer){
+message+=` Question ${index+1}: ${question.why}`;
+}
+});
+result.textContent=message;
+result.style.color=score>=4?"#86efac":"#fbbf24";
+updateStats();
+}
+
+renderTopics();
+renderLessonList();
+renderLesson();
+renderQuiz();
+updateStats();
+</script>
+</body>
+</html>

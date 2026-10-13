@@ -1,0 +1,3201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA | Video Lessons</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#070711;
+    --bg2:#0d0d1b;
+    --card:#111122;
+    --card2:#16162a;
+    --purple:#8b5cf6;
+    --blue:#3b82f6;
+    --pink:#ec4899;
+    --cyan:#06b6d4;
+    --green:#22c55e;
+    --red:#ef4444;
+    --text:#f5f5f5;
+    --muted:#9ca3af;
+    --border:rgba(255,255,255,.09);
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(139,92,246,.14),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at top right,
+            rgba(59,130,246,.10),
+            transparent 30%
+        ),
+        var(--bg);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 5%;
+
+    background:rgba(7,7,17,.90);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--blue),
+            var(--cyan)
+        );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.nav-links a{
+    color:#cbd5e1;
+    text-decoration:none;
+
+    padding:10px 12px;
+
+    border-radius:10px;
+
+    font-size:14px;
+
+    transition:.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:white;
+    background:rgba(139,92,246,.16);
+}
+
+.admin-btn{
+    border:1px solid rgba(139,92,246,.45);
+
+    background:rgba(139,92,246,.12);
+
+    color:#ddd6fe;
+
+    padding:10px 14px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.admin-btn:hover{
+    background:rgba(139,92,246,.25);
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+    max-width:1200px;
+
+    margin:0 auto;
+
+    padding:55px 20px 25px;
+
+    text-align:center;
+}
+
+.hero h1{
+    font-size:clamp(35px,6vw,58px);
+
+    line-height:1.1;
+
+    margin-bottom:15px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            var(--purple),
+            var(--blue),
+            var(--cyan)
+        );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    max-width:720px;
+
+    margin:auto;
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:16px;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-area{
+    max-width:1100px;
+
+    margin:20px auto;
+
+    padding:0 20px;
+}
+
+.search-box{
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+
+    height:52px;
+
+    padding:
+        0
+        20px
+        0
+        48px;
+
+    border-radius:14px;
+
+    border:1px solid var(--border);
+
+    outline:none;
+
+    background:rgba(255,255,255,.045);
+
+    color:white;
+
+    font-size:15px;
+}
+
+.search-box input::placeholder{
+    color:#6b7280;
+}
+
+.search-box input:focus{
+    border-color:var(--purple);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.12);
+}
+
+.search-icon{
+    position:absolute;
+
+    left:17px;
+
+    top:16px;
+
+    color:var(--muted);
+}
+
+
+/* =====================================================
+   SUBJECTS
+===================================================== */
+
+.subject-area{
+    max-width:1200px;
+
+    margin:25px auto 35px;
+
+    padding:0 20px;
+}
+
+.subject-area h2{
+    font-size:18px;
+
+    margin-bottom:15px;
+}
+
+.subject-buttons{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+.subject-btn{
+    border:1px solid var(--border);
+
+    background:rgba(255,255,255,.04);
+
+    color:#cbd5e1;
+
+    padding:11px 16px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    font-weight:600;
+}
+
+.subject-btn:hover{
+    border-color:
+        rgba(139,92,246,.5);
+
+    color:white;
+
+    transform:translateY(-1px);
+}
+
+.subject-btn.active{
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+    border-color:transparent;
+
+    color:white;
+
+    box-shadow:
+        0 8px 25px
+        rgba(99,102,241,.20);
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status{
+    max-width:1200px;
+
+    margin:0 auto;
+
+    padding:0 20px;
+}
+
+.status-message{
+    display:none;
+
+    padding:14px 17px;
+
+    border-radius:12px;
+
+    margin-bottom:15px;
+
+    font-size:14px;
+}
+
+.status-message.success{
+    display:block;
+
+    background:
+        rgba(34,197,94,.10);
+
+    border:
+        1px solid
+        rgba(34,197,94,.25);
+
+    color:#86efac;
+}
+
+.status-message.error{
+    display:block;
+
+    background:
+        rgba(239,68,68,.10);
+
+    border:
+        1px solid
+        rgba(239,68,68,.25);
+
+    color:#fca5a5;
+}
+
+
+/* =====================================================
+   VIDEO HEADER
+===================================================== */
+
+.video-heading{
+    max-width:1200px;
+
+    margin:0 auto 18px;
+
+    padding:0 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+.video-heading h2{
+    font-size:21px;
+}
+
+.video-count{
+    color:var(--muted);
+
+    font-size:14px;
+}
+
+
+/* =====================================================
+   VIDEO GRID
+===================================================== */
+
+.video-grid{
+    max-width:1200px;
+
+    margin:0 auto;
+
+    padding:
+        0
+        20px
+        70px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:22px;
+}
+
+.video-card{
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:18px;
+
+    transition:.25s;
+}
+
+.video-card:hover{
+    transform:translateY(-5px);
+
+    border-color:
+        rgba(139,92,246,.35);
+
+    box-shadow:
+        0 15px 45px
+        rgba(0,0,0,.25);
+}
+
+.video-wrapper{
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    background:#000;
+
+    position:relative;
+}
+
+.video-wrapper video{
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    background:#000;
+}
+
+.video-info{
+    padding:18px;
+}
+
+.video-subject{
+    display:inline-block;
+
+    padding:6px 10px;
+
+    border-radius:8px;
+
+    background:
+        rgba(139,92,246,.12);
+
+    color:#c4b5fd;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+}
+
+.video-info h3{
+    font-size:18px;
+
+    margin-bottom:8px;
+
+    line-height:1.4;
+}
+
+.video-topic{
+    color:#a5b4fc;
+
+    font-size:13px;
+
+    margin-bottom:9px;
+}
+
+.video-description{
+    color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.6;
+}
+
+.video-date{
+    color:#6b7280;
+
+    font-size:12px;
+
+    margin-top:13px;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+    max-width:700px;
+
+    margin:
+        30px auto
+        70px;
+
+    padding:50px 25px;
+
+    text-align:center;
+
+    border:
+        1px dashed
+        rgba(255,255,255,.12);
+
+    border-radius:18px;
+
+    color:var(--muted);
+}
+
+.empty-icon{
+    font-size:45px;
+
+    margin-bottom:15px;
+}
+
+.empty h3{
+    color:white;
+
+    margin-bottom:8px;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+    max-width:1200px;
+
+    margin:30px auto;
+
+    padding:40px 20px;
+
+    text-align:center;
+
+    color:var(--muted);
+}
+
+.spinner{
+    width:35px;
+
+    height:35px;
+
+    border:
+        3px solid
+        rgba(255,255,255,.1);
+
+    border-top-color:
+        var(--purple);
+
+    border-radius:50%;
+
+    animation:
+        spin .8s linear infinite;
+
+    margin:
+        0 auto
+        15px;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =====================================================
+   ADMIN OVERLAY
+===================================================== */
+
+.admin-overlay{
+    position:fixed;
+
+    inset:0;
+
+    z-index:2000;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.78);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+.admin-overlay.show{
+    display:flex;
+}
+
+.admin-modal{
+    width:min(540px,100%);
+
+    max-height:92vh;
+
+    overflow-y:auto;
+
+    padding:28px;
+
+    border-radius:20px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(22,22,42,.98),
+            rgba(9,9,22,.98)
+        );
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.55);
+}
+
+.admin-header{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.admin-header h2{
+    font-size:22px;
+}
+
+.close-btn{
+    width:36px;
+
+    height:36px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        rgba(255,255,255,.05);
+
+    color:white;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:18px;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-group{
+    margin-bottom:17px;
+}
+
+.form-group label{
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#cbd5e1;
+
+    font-size:14px;
+
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+
+    padding:12px 13px;
+
+    border-radius:10px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:#090916;
+
+    color:white;
+
+    outline:none;
+
+    font-family:inherit;
+}
+
+.form-group select option{
+    background:#090916;
+
+    color:white;
+}
+
+.form-group textarea{
+    min-height:95px;
+
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:
+        var(--purple);
+}
+
+.file-input{
+    padding:10px !important;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.primary-btn{
+    width:100%;
+
+    padding:13px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.2s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-1px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(99,102,241,.25);
+}
+
+.primary-btn:disabled{
+    opacity:.6;
+
+    cursor:not-allowed;
+
+    transform:none;
+}
+
+.admin-login-info{
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    margin-bottom:20px;
+}
+
+.admin-logged{
+    display:none;
+}
+
+.admin-logged.show{
+    display:block;
+}
+
+.admin-actions{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:22px;
+}
+
+.admin-badge{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    color:#86efac;
+
+    font-size:13px;
+}
+
+.logout-btn{
+    border:
+        1px solid
+        rgba(239,68,68,.3);
+
+    background:
+        rgba(239,68,68,.08);
+
+    color:#fca5a5;
+
+    padding:8px 12px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   UPLOAD PROGRESS
+===================================================== */
+
+.progress-container{
+    display:none;
+
+    margin-top:20px;
+}
+
+.progress-info{
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:8px;
+
+    color:#cbd5e1;
+
+    font-size:13px;
+}
+
+.progress-track{
+    height:8px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+
+    width:0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--blue),
+            var(--cyan)
+        );
+
+    transition:
+        width .2s;
+}
+
+.selected-files{
+    margin-top:10px;
+
+    color:#9ca3af;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    max-height:180px;
+
+    overflow-y:auto;
+}
+
+.file-row{
+    margin-top:6px;
+
+    padding:8px 10px;
+
+    background:
+        rgba(255,255,255,.04);
+
+    border-radius:8px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:1000px){
+
+    .video-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:750px){
+
+    .nav-links a{
+        display:none;
+    }
+
+    .navbar{
+        padding:0 18px;
+    }
+
+    .hero{
+        padding-top:40px;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .video-grid{
+        grid-template-columns:1fr;
+    }
+
+    .subject-buttons{
+        display:grid;
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .subject-btn{
+        width:100%;
+    }
+
+    .video-heading{
+        gap:10px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        ZYNTRA
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="study.html">
+            Study
+        </a>
+
+        <a href="ai.html">
+            AI
+        </a>
+
+        <a href="community.html">
+            Community
+        </a>
+
+        <a href="planner.html">
+            Planner
+        </a>
+
+        <a href="challenge.html">
+            Challenges
+        </a>
+
+        <a
+            href="videos.html"
+            class="active"
+        >
+            Videos
+        </a>
+
+    </div>
+
+
+    <button
+        class="admin-btn"
+        onclick="openAdmin()"
+    >
+        🔐 Admin
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <h1>
+        Video Lessons
+    </h1>
+
+    <p>
+        Learn through organized video lessons
+        from ZYNTRA. Choose a subject and
+        start learning.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<section class="search-area">
+
+    <div class="search-box">
+
+        <span class="search-icon">
+            🔎
+        </span>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search lessons, topics or subjects..."
+            oninput="filterVideos()"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SUBJECT FILTERS
+===================================================== -->
+
+<section class="subject-area">
+
+    <h2>
+        📚 Subjects
+    </h2>
+
+    <div class="subject-buttons">
+
+        <button
+            class="subject-btn active"
+            onclick="selectSubject('All',this)"
+        >
+            All
+        </button>
+
+        <button
+            class="subject-btn"
+            onclick="selectSubject('Mathematics',this)"
+        >
+            📐 Mathematics
+        </button>
+
+        <button
+            class="subject-btn"
+            onclick="selectSubject('Chemistry',this)"
+        >
+            🧪 Chemistry
+        </button>
+
+        <button
+            class="subject-btn"
+            onclick="selectSubject('Physics',this)"
+        >
+            ⚡ Physics
+        </button>
+
+        <button
+            class="subject-btn"
+            onclick="selectSubject('Biology',this)"
+        >
+            🧬 Biology
+        </button>
+
+        <button
+            class="subject-btn"
+            onclick="selectSubject('Computer-Studies',this)"
+        >
+            💻 Computer Studies
+        </button>
+
+        <button
+            class="subject-btn"
+            onclick="selectSubject('English',this)"
+        >
+            📖 English
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATUS
+===================================================== -->
+
+<section class="status">
+
+    <div
+        id="statusMessage"
+        class="status-message"
+    ></div>
+
+</section>
+
+
+<!-- =====================================================
+     VIDEO HEADER
+===================================================== -->
+
+<section class="video-heading">
+
+    <h2 id="sectionTitle">
+        All Video Lessons
+    </h2>
+
+    <span
+        class="video-count"
+        id="videoCount"
+    >
+        0 videos
+    </span>
+
+</section>
+
+
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
+<div
+    id="loading"
+    class="loading"
+>
+
+    <div class="spinner"></div>
+
+    Loading video lessons...
+
+</div>
+
+
+<!-- =====================================================
+     VIDEO GRID
+===================================================== -->
+
+<section
+    id="videoGrid"
+    class="video-grid"
+    style="display:none;"
+></section>
+
+
+<!-- =====================================================
+     EMPTY STATE
+===================================================== -->
+
+<section
+    id="emptyState"
+    class="empty"
+    style="display:none;"
+>
+
+    <div class="empty-icon">
+        🎬
+    </div>
+
+    <h3>
+        No videos found
+    </h3>
+
+    <p>
+        There are no video lessons matching
+        your search or selected subject yet.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     ADMIN MODAL
+===================================================== -->
+
+<div
+    id="adminOverlay"
+    class="admin-overlay"
+>
+
+    <div class="admin-modal">
+
+        <div class="admin-header">
+
+            <h2>
+                🔐 ZYNTRA Admin
+            </h2>
+
+            <button
+                class="close-btn"
+                onclick="closeAdmin()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             ADMIN LOGIN
+        ================================================== -->
+
+        <div id="adminLoginPanel">
+
+            <p class="admin-login-info">
+
+                Admin access is required to upload
+                ZYNTRA video lessons. Only the
+                authorized ZYNTRA administrator
+                can upload videos.
+
+            </p>
+
+
+            <form id="adminLoginForm">
+
+                <div class="form-group">
+
+                    <label>
+                        Admin Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        placeholder="Enter admin email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Admin Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Enter admin password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                    id="loginButton"
+                >
+                    🔑 Login as Admin
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- =================================================
+             ADMIN UPLOAD PANEL
+        ================================================== -->
+
+        <div
+            id="adminLoggedPanel"
+            class="admin-logged"
+        >
+
+            <div class="admin-actions">
+
+                <span class="admin-badge">
+                    🟢 Admin authenticated
+                </span>
+
+                <button
+                    class="logout-btn"
+                    onclick="adminLogout()"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+
+            <h3 style="margin-bottom:8px;">
+                🎬 Upload Multiple Video Lessons
+            </h3>
+
+            <p style="
+                color:#9ca3af;
+                font-size:13px;
+                line-height:1.6;
+                margin-bottom:20px;
+            ">
+                Select multiple video files at once.
+                All selected videos will be placed
+                in the subject you choose.
+            </p>
+
+
+            <form id="uploadForm">
+
+
+                <!-- SUBJECT -->
+
+                <div class="form-group">
+
+                    <label>
+                        Subject
+                    </label>
+
+                    <select
+                        id="videoSubject"
+                        name="subject"
+                        required
+                    >
+
+                        <option value="">
+                            Select Subject
+                        </option>
+
+                        <option value="Mathematics">
+                            📐 Mathematics
+                        </option>
+
+                        <option value="Chemistry">
+                            🧪 Chemistry
+                        </option>
+
+                        <option value="Physics">
+                            ⚡ Physics
+                        </option>
+
+                        <option value="Biology">
+                            🧬 Biology
+                        </option>
+
+                        <option value="Computer-Studies">
+                            💻 Computer Studies
+                        </option>
+
+                        <option value="English">
+                            📖 English
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TOPIC -->
+
+                <div class="form-group">
+
+                    <label>
+                        Topic
+                    </label>
+
+                    <input
+                        type="text"
+                        id="videoTopic"
+                        name="topic"
+                        placeholder="e.g. Algebra"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="videoDescription"
+                        name="description"
+                        placeholder="Describe what students will learn..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- FILES -->
+
+                <div class="form-group">
+
+                    <label>
+                        Select Videos
+                    </label>
+
+                    <input
+                        type="file"
+                        id="videoFiles"
+                        name="videos"
+                        class="file-input"
+                        accept=".mp4,.webm,.ogg,.mov,video/mp4,video/webm,video/ogg,video/quicktime"
+                        multiple
+                        required
+                    >
+
+
+                    <div
+                        id="selectedFiles"
+                        class="selected-files"
+                    >
+                        No videos selected.
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                    id="uploadButton"
+                >
+                    🚀 Upload All Videos
+                </button>
+
+
+                <!-- PROGRESS -->
+
+                <div
+                    id="uploadProgress"
+                    class="progress-container"
+                >
+
+                    <div class="progress-info">
+
+                        <span id="progressText">
+                            Preparing upload...
+                        </span>
+
+                        <span id="progressPercent">
+                            0%
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress-track">
+
+                        <div
+                            id="progressBar"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   CONFIGURATION
+===================================================== */
+
+const API_BASE = "";
+
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let allVideos = [];
+
+let selectedSubject = "All";
+
+let adminToken =
+    localStorage.getItem(
+        "zyntraAdminToken"
+    ) || "";
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const videoGrid =
+    document.getElementById(
+        "videoGrid"
+    );
+
+const loading =
+    document.getElementById(
+        "loading"
+    );
+
+const emptyState =
+    document.getElementById(
+        "emptyState"
+    );
+
+const videoCount =
+    document.getElementById(
+        "videoCount"
+    );
+
+const sectionTitle =
+    document.getElementById(
+        "sectionTitle"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const statusMessage =
+    document.getElementById(
+        "statusMessage"
+    );
+
+const adminOverlay =
+    document.getElementById(
+        "adminOverlay"
+    );
+
+const adminLoginPanel =
+    document.getElementById(
+        "adminLoginPanel"
+    );
+
+const adminLoggedPanel =
+    document.getElementById(
+        "adminLoggedPanel"
+    );
+
+
+/* =====================================================
+   OPEN ADMIN
+===================================================== */
+
+function openAdmin(){
+
+    adminOverlay.classList.add(
+        "show"
+    );
+
+    checkAdminStatus();
+
+}
+
+
+/* =====================================================
+   CLOSE ADMIN
+===================================================== */
+
+function closeAdmin(){
+
+    adminOverlay.classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   STATUS MESSAGE
+===================================================== */
+
+function showStatus(
+    message,
+    type="success"
+){
+
+    statusMessage.textContent =
+        message;
+
+    statusMessage.className =
+        "status-message " +
+        type;
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+    setTimeout(
+        function(){
+
+            statusMessage.className =
+                "status-message";
+
+        },
+        5000
+    );
+
+}
+
+
+/* =====================================================
+   CHECK ADMIN STATUS
+===================================================== */
+
+async function checkAdminStatus(){
+
+    if(!adminToken){
+
+        adminLoginPanel.style.display =
+            "block";
+
+        adminLoggedPanel.classList.remove(
+            "show"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/api/admin/status",
+                {
+                    headers:{
+                        "Authorization":
+                            "Bearer " +
+                            adminToken
+                    }
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            response.ok &&
+            data.success
+        ){
+
+            adminLoginPanel.style.display =
+                "none";
+
+            adminLoggedPanel.classList.add(
+                "show"
+            );
+
+        }else{
+
+            adminToken = "";
+
+            localStorage.removeItem(
+                "zyntraAdminToken"
+            );
+
+            adminLoginPanel.style.display =
+                "block";
+
+            adminLoggedPanel.classList.remove(
+                "show"
+            );
+
+        }
+
+    }catch(error){
+
+        console.error(
+            "Admin status error:",
+            error
+        );
+
+        adminLoginPanel.style.display =
+            "block";
+
+        adminLoggedPanel.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ADMIN LOGIN
+===================================================== */
+
+document
+.getElementById(
+    "adminLoginForm"
+)
+.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+
+        const email =
+            document.getElementById(
+                "adminEmail"
+            ).value.trim();
+
+
+        const password =
+            document.getElementById(
+                "adminPassword"
+            ).value;
+
+
+        const button =
+            document.getElementById(
+                "loginButton"
+            );
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "⏳ Logging in...";
+
+
+        try{
+
+            const response =
+                await fetch(
+                    API_BASE +
+                    "/api/admin/login",
+                    {
+                        method:"POST",
+
+                        headers:{
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:JSON.stringify({
+                            email:email,
+                            password:password
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if(!response.ok){
+
+                throw new Error(
+                    data.message ||
+                    "Invalid admin credentials."
+                );
+
+            }
+
+
+            adminToken =
+                data.token;
+
+
+            localStorage.setItem(
+                "zyntraAdminToken",
+                adminToken
+            );
+
+
+            adminLoginPanel.style.display =
+                "none";
+
+
+            adminLoggedPanel.classList.add(
+                "show"
+            );
+
+
+            showStatus(
+                "Admin login successful. You can now upload videos.",
+                "success"
+            );
+
+
+        }catch(error){
+
+            alert(
+                "❌ " +
+                (
+                    error.message ||
+                    "Invalid admin credentials."
+                )
+            );
+
+        }finally{
+
+            button.disabled = false;
+
+            button.textContent =
+                "🔑 Login as Admin";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ADMIN LOGOUT
+===================================================== */
+
+async function adminLogout(){
+
+    try{
+
+        if(adminToken){
+
+            await fetch(
+                API_BASE +
+                "/api/admin/logout",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Authorization":
+                            "Bearer " +
+                            adminToken
+                    }
+                }
+            );
+
+        }
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+
+    adminToken = "";
+
+    localStorage.removeItem(
+        "zyntraAdminToken"
+    );
+
+
+    adminLoginPanel.style.display =
+        "block";
+
+
+    adminLoggedPanel.classList.remove(
+        "show"
+    );
+
+
+    document.getElementById(
+        "adminPassword"
+    ).value = "";
+
+
+    showStatus(
+        "Admin logged out.",
+        "success"
+    );
+
+}
+
+
+/* =====================================================
+   SHOW SELECTED FILES
+===================================================== */
+
+document
+.getElementById(
+    "videoFiles"
+)
+.addEventListener(
+    "change",
+    function(){
+
+        const files =
+            this.files;
+
+
+        const selectedFiles =
+            document.getElementById(
+                "selectedFiles"
+            );
+
+
+        if(
+            !files ||
+            files.length === 0
+        ){
+
+            selectedFiles.innerHTML =
+                "No videos selected.";
+
+            return;
+
+        }
+
+
+        let html = `
+            <strong style="color:white;">
+                ${files.length}
+                ${
+                    files.length === 1
+                    ? "video"
+                    : "videos"
+                }
+                selected
+            </strong>
+        `;
+
+
+        for(
+            let i=0;
+            i<files.length;
+            i++
+        ){
+
+            const file =
+                files[i];
+
+
+            const sizeMB =
+                (
+                    file.size /
+                    1024 /
+                    1024
+                ).toFixed(1);
+
+
+            html += `
+
+                <div class="file-row">
+
+                    🎬
+                    ${escapeHTML(
+                        file.name
+                    )}
+
+                    <span style="
+                        color:#6b7280;
+                    ">
+                        (${sizeMB} MB)
+                    </span>
+
+                </div>
+
+            `;
+
+        }
+
+
+        selectedFiles.innerHTML =
+            html;
+
+    }
+);
+
+
+/* =====================================================
+   MULTIPLE VIDEO UPLOAD
+===================================================== */
+
+document
+.getElementById(
+    "uploadForm"
+)
+.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+
+        if(!adminToken){
+
+            alert(
+                "❌ Admin login required."
+            );
+
+            return;
+
+        }
+
+
+        const filesInput =
+            document.getElementById(
+                "videoFiles"
+            );
+
+
+        const files =
+            filesInput.files;
+
+
+        if(
+            !files ||
+            files.length === 0
+        ){
+
+            alert(
+                "Please select at least one video."
+            );
+
+            return;
+
+        }
+
+
+        const subject =
+            document.getElementById(
+                "videoSubject"
+            ).value;
+
+
+        const topic =
+            document.getElementById(
+                "videoTopic"
+            ).value.trim();
+
+
+        const description =
+            document.getElementById(
+                "videoDescription"
+            ).value.trim();
+
+
+        if(!subject){
+
+            alert(
+                "Please select a subject."
+            );
+
+            return;
+
+        }
+
+
+        if(!topic){
+
+            alert(
+                "Please enter a topic."
+            );
+
+            return;
+
+        }
+
+
+        const uploadButton =
+            document.getElementById(
+                "uploadButton"
+            );
+
+
+        const progressBox =
+            document.getElementById(
+                "uploadProgress"
+            );
+
+
+        const progressBar =
+            document.getElementById(
+                "progressBar"
+            );
+
+
+        const progressText =
+            document.getElementById(
+                "progressText"
+            );
+
+
+        const progressPercent =
+            document.getElementById(
+                "progressPercent"
+            );
+
+
+        const formData =
+            new FormData();
+
+
+        formData.append(
+            "subject",
+            subject
+        );
+
+
+        formData.append(
+            "topic",
+            topic
+        );
+
+
+        formData.append(
+            "description",
+            description
+        );
+
+
+        for(
+            let i=0;
+            i<files.length;
+            i++
+        ){
+
+            formData.append(
+                "videos",
+                files[i]
+            );
+
+        }
+
+
+        uploadButton.disabled =
+            true;
+
+
+        uploadButton.textContent =
+            "⏳ Uploading Videos...";
+
+
+        progressBox.style.display =
+            "block";
+
+
+        progressBar.style.width =
+            "0%";
+
+
+        progressPercent.textContent =
+            "0%";
+
+
+        progressText.textContent =
+            "Preparing upload...";
+
+
+        try{
+
+            const result =
+                await uploadMultipleVideos(
+                    formData,
+                    function(percent){
+
+                        progressBar.style.width =
+                            percent + "%";
+
+
+                        progressPercent.textContent =
+                            percent + "%";
+
+
+                        progressText.textContent =
+                            "Uploading videos...";
+
+                    }
+                );
+
+
+            if(
+                result.status === 401 ||
+                result.status === 403
+            ){
+
+                adminToken = "";
+
+                localStorage.removeItem(
+                    "zyntraAdminToken"
+                );
+
+
+                adminLoginPanel.style.display =
+                    "block";
+
+
+                adminLoggedPanel.classList.remove(
+                    "show"
+                );
+
+
+                throw new Error(
+                    result.data.message ||
+                    "Admin session expired. Please log in again."
+                );
+
+            }
+
+
+            if(
+                result.status < 200 ||
+                result.status >= 300
+            ){
+
+                throw new Error(
+                    result.data.message ||
+                    "Video upload failed."
+                );
+
+            }
+
+
+            const uploaded =
+                result.data.uploaded ||
+                [];
+
+
+            const failed =
+                result.data.failed ||
+                [];
+
+
+            if(
+                failed.length === 0
+            ){
+
+                showStatus(
+                    "✅ Successfully uploaded " +
+                    uploaded.length +
+                    " video" +
+                    (
+                        uploaded.length === 1
+                        ? ""
+                        : "s"
+                    ) +
+                    "!",
+                    "success"
+                );
+
+            }else{
+
+                showStatus(
+                    "⚠️ " +
+                    uploaded.length +
+                    " uploaded, " +
+                    failed.length +
+                    " failed.",
+                    "error"
+                );
+
+            }
+
+
+            document
+            .getElementById(
+                "uploadForm"
+            )
+            .reset();
+
+
+            document
+            .getElementById(
+                "selectedFiles"
+            )
+            .innerHTML =
+                "No videos selected.";
+
+
+            progressBar.style.width =
+                "100%";
+
+
+            progressPercent.textContent =
+                "100%";
+
+
+            progressText.textContent =
+                "Upload complete";
+
+
+            await loadVideos();
+
+
+        }catch(error){
+
+            console.error(
+                "Multiple upload error:",
+                error
+            );
+
+
+            alert(
+                "❌ " +
+                (
+                    error.message ||
+                    "Video upload failed."
+                )
+            );
+
+        }finally{
+
+            uploadButton.disabled =
+                false;
+
+
+            uploadButton.textContent =
+                "🚀 Upload All Videos";
+
+
+            setTimeout(
+                function(){
+
+                    progressBox.style.display =
+                        "none";
+
+                },
+                2500
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   UPLOAD REQUEST WITH PROGRESS
+===================================================== */
+
+function uploadMultipleVideos(
+    formData,
+    progressCallback
+){
+
+    return new Promise(
+        function(resolve,reject){
+
+            const xhr =
+                new XMLHttpRequest();
+
+
+            xhr.open(
+                "POST",
+                API_BASE +
+                "/api/videos/upload-multiple",
+                true
+            );
+
+
+            xhr.setRequestHeader(
+                "Authorization",
+                "Bearer " +
+                adminToken
+            );
+
+
+            xhr.upload.addEventListener(
+                "progress",
+                function(event){
+
+                    if(
+                        event.lengthComputable
+                    ){
+
+                        const percent =
+                            Math.round(
+                                (
+                                    event.loaded /
+                                    event.total
+                                ) * 100
+                            );
+
+
+                        progressCallback(
+                            percent
+                        );
+
+                    }
+
+                }
+            );
+
+
+            xhr.addEventListener(
+                "load",
+                function(){
+
+                    let data = {};
+
+
+                    try{
+
+                        data =
+                            JSON.parse(
+                                xhr.responseText
+                            );
+
+                    }catch(error){
+
+                        data = {
+                            message:
+                                "Invalid server response."
+                        };
+
+                    }
+
+
+                    resolve({
+
+                        status:
+                            xhr.status,
+
+                        data:
+                            data
+
+                    });
+
+                }
+            );
+
+
+            xhr.addEventListener(
+                "error",
+                function(){
+
+                    reject(
+                        new Error(
+                            "Could not connect to the ZYNTRA server."
+                        )
+                    );
+
+                }
+            );
+
+
+            xhr.addEventListener(
+                "abort",
+                function(){
+
+                    reject(
+                        new Error(
+                            "Upload was cancelled."
+                        )
+                    );
+
+                }
+            );
+
+
+            xhr.send(
+                formData
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   LOAD VIDEOS
+===================================================== */
+
+async function loadVideos(){
+
+    loading.style.display =
+        "block";
+
+
+    videoGrid.style.display =
+        "none";
+
+
+    emptyState.style.display =
+        "none";
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/api/videos"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data.message ||
+                "Could not load videos."
+            );
+
+        }
+
+
+        allVideos =
+            Array.isArray(
+                data.videos
+            )
+            ? data.videos
+            : [];
+
+
+        renderVideos();
+
+
+    }catch(error){
+
+        console.error(
+            "Video loading error:",
+            error
+        );
+
+
+        loading.innerHTML = `
+
+            <div style="
+                font-size:40px;
+                margin-bottom:10px;
+            ">
+                ⚠️
+            </div>
+
+            <div>
+                Could not load video lessons.
+            </div>
+
+            <div style="
+                font-size:13px;
+                margin-top:8px;
+            ">
+                Make sure the ZYNTRA backend
+                is running.
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   SELECT SUBJECT
+===================================================== */
+
+function selectSubject(
+    subject,
+    button
+){
+
+    selectedSubject =
+        subject;
+
+
+    document
+    .querySelectorAll(
+        ".subject-btn"
+    )
+    .forEach(
+        function(btn){
+
+            btn.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    if(
+        subject === "All"
+    ){
+
+        sectionTitle.textContent =
+            "All Video Lessons";
+
+    }else{
+
+        sectionTitle.textContent =
+            subjectDisplayName(
+                subject
+            ) +
+            " Video Lessons";
+
+    }
+
+
+    renderVideos();
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function filterVideos(){
+
+    renderVideos();
+
+}
+
+
+/* =====================================================
+   SUBJECT DISPLAY NAME
+===================================================== */
+
+function subjectDisplayName(
+    subject
+){
+
+    const names = {
+
+        "Mathematics":
+            "📐 Mathematics",
+
+        "Chemistry":
+            "🧪 Chemistry",
+
+        "Physics":
+            "⚡ Physics",
+
+        "Biology":
+            "🧬 Biology",
+
+        "Computer-Studies":
+            "💻 Computer Studies",
+
+        "English":
+            "📖 English"
+
+    };
+
+
+    return names[subject] ||
+        subject;
+
+}
+
+
+/* =====================================================
+   VIDEO URL
+===================================================== */
+
+function getVideoUrl(
+    video
+){
+
+    let url =
+        video.videoUrl ||
+        video.url ||
+        "";
+
+
+    if(!url){
+
+        return "";
+
+    }
+
+
+    if(
+        url.startsWith("/") ||
+        url.startsWith("http://") ||
+        url.startsWith("https://")
+    ){
+
+        return url;
+
+    }
+
+
+    return "/" + url;
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "";
+
+    }
+
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(
+    date
+){
+
+    if(!date){
+
+        return "";
+
+    }
+
+
+    try{
+
+        return new Date(
+            date
+        ).toLocaleDateString(
+            undefined,
+            {
+                year:"numeric",
+                month:"short",
+                day:"numeric"
+            }
+        );
+
+    }catch(error){
+
+        return "";
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER VIDEOS
+===================================================== */
+
+function renderVideos(){
+
+    const search =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    const filtered =
+        allVideos.filter(
+            function(video){
+
+                const subject =
+                    video.subject ||
+                    "";
+
+
+                const title =
+                    video.title ||
+                    "";
+
+
+                const topic =
+                    video.topic ||
+                    "";
+
+
+                const description =
+                    video.description ||
+                    "";
+
+
+                const matchesSubject =
+                    selectedSubject === "All" ||
+                    subject === selectedSubject;
+
+
+                const searchableText =
+                    (
+                        title +
+                        " " +
+                        subject +
+                        " " +
+                        topic +
+                        " " +
+                        description
+                    ).toLowerCase();
+
+
+                const matchesSearch =
+                    !search ||
+                    searchableText.includes(
+                        search
+                    );
+
+
+                return (
+                    matchesSubject &&
+                    matchesSearch
+                );
+
+            }
+        );
+
+
+    loading.style.display =
+        "none";
+
+
+    videoCount.textContent =
+        filtered.length +
+        (
+            filtered.length === 1
+            ? " video"
+            : " videos"
+        );
+
+
+    if(
+        filtered.length === 0
+    ){
+
+        videoGrid.innerHTML =
+            "";
+
+        videoGrid.style.display =
+            "none";
+
+        emptyState.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    emptyState.style.display =
+        "none";
+
+
+    videoGrid.style.display =
+        "grid";
+
+
+    videoGrid.innerHTML =
+        filtered
+            .map(
+                createVideoCard
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   CREATE VIDEO CARD
+===================================================== */
+
+function createVideoCard(
+    video
+){
+
+    const title =
+        escapeHTML(
+            video.title ||
+            "Untitled Lesson"
+        );
+
+
+    const subject =
+        video.subject ||
+        "Unknown";
+
+
+    const topic =
+        escapeHTML(
+            video.topic ||
+            "General Lesson"
+        );
+
+
+    const description =
+        escapeHTML(
+            video.description ||
+            "ZYNTRA video lesson."
+        );
+
+
+    const videoUrl =
+        getVideoUrl(
+            video
+        );
+
+
+    const date =
+        formatDate(
+            video.createdAt
+        );
+
+
+    const subjectName =
+        escapeHTML(
+            subjectDisplayName(
+                subject
+            )
+        );
+
+
+    if(!videoUrl){
+
+        return `
+
+            <article class="video-card">
+
+                <div class="video-wrapper">
+
+                    <div style="
+                        width:100%;
+                        height:100%;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        color:#9ca3af;
+                        text-align:center;
+                        padding:20px;
+                    ">
+
+                        ⚠️ Video file unavailable
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-info">
+
+                    <span class="video-subject">
+                        ${subjectName}
+                    </span>
+
+                    <h3>
+                        ${title}
+                    </h3>
+
+                    <div class="video-topic">
+                        ${topic}
+                    </div>
+
+                    <div class="video-description">
+                        ${description}
+                    </div>
+
+                </div>
+
+            </article>
+
+        `;
+
+    }
+
+
+    return `
+
+        <article class="video-card">
+
+            <div class="video-wrapper">
+
+                <video
+                    controls
+                    preload="metadata"
+                    playsinline
+                    src="${escapeHTML(videoUrl)}"
+                >
+                    Your browser does not
+                    support video playback.
+                </video>
+
+            </div>
+
+
+            <div class="video-info">
+
+                <span class="video-subject">
+                    ${subjectName}
+                </span>
+
+
+                <h3>
+                    ${title}
+                </h3>
+
+
+                <div class="video-topic">
+                    📌 ${topic}
+                </div>
+
+
+                <div class="video-description">
+                    ${description}
+                </div>
+
+
+                ${
+                    date
+                    ? `
+                        <div class="video-date">
+                            📅 ${date}
+                        </div>
+                    `
+                    : ""
+                }
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =====================================================
+   CLOSE MODAL OUTSIDE
+===================================================== */
+
+adminOverlay.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target ===
+            adminOverlay
+        ){
+
+            closeAdmin();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ESC KEY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape"
+        ){
+
+            closeAdmin();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   START APPLICATION
+===================================================== */
+
+loadVideos();
+
+checkAdminStatus();
+
+</script>
+
+</body>
+</html>

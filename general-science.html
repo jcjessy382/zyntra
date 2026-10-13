@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | General Science</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070711;--card:#111124;--border:#292743;--purple:#8b5cf6;--blue:#3b82f6;--text:#f5f3ff;--muted:#aaa7c5}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+header{position:sticky;top:0;z-index:5;background:#0b0b19ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 5%}
+nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:23px;font-weight:900;color:#a78bfa;text-decoration:none;letter-spacing:1px}
+.navlinks{display:flex;gap:9px;flex-wrap:wrap}
+.navlinks a{color:#e9e5ff;text-decoration:none;padding:8px 12px;border-radius:9px;background:#17162a;font-size:13px}
+main{max-width:1200px;margin:auto;padding:25px 5% 55px}
+.hero{text-align:center;padding:35px 10px}
+.tag{display:inline-block;background:#241843;color:#c4b5fd;padding:5px 13px;border-radius:20px;font-size:12px;margin-bottom:12px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.2;margin-bottom:12px}
+.gradient{background:linear-gradient(90deg,#c4b5fd,#60a5fa);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero p,.muted{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.stat,.panel,.topic,.lessonbox,.quizbox{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:17px}
+.stat{text-align:center}.stat strong{display:block;font-size:24px;color:#c4b5fd}.stat span{font-size:12px;color:var(--muted)}
+.progress-track{height:8px;background:#27243b;border-radius:20px;overflow:hidden;margin-top:10px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--blue));transition:width .3s}
+.section-title{font-size:22px;margin:28px 0 13px}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.topic{cursor:pointer;transition:.2s}.topic:hover,.topic.active{border-color:var(--purple);transform:translateY(-2px)}
+.topic .emoji{font-size:26px}.topic h3{font-size:16px;margin:4px 0}.topic p{font-size:13px;color:var(--muted)}.topic small{display:block;color:#c4b5fd;margin-top:8px}
+.lesson-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:14px;margin-top:20px}
+.lesson-list{display:grid;gap:8px;margin-top:12px}
+.lesson-btn{background:#17162a;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:10px;text-align:left;cursor:pointer;width:100%}
+.lesson-btn.active{border-color:var(--purple);background:#241843}.lesson-btn.done{border-color:#166534}
+.lesson-btn small{display:block;color:var(--muted)}
+.lessonbox h2{font-size:23px;margin:8px 0}.lessonbox h3{font-size:17px;color:#c4b5fd;margin:17px 0 6px}
+.lessonbox p{margin:9px 0}.lessonbox ul{padding-left:22px;margin:8px 0}
+.example{background:#19162d;border-left:3px solid var(--purple);padding:12px;border-radius:6px;margin:12px 0}
+.data-table{width:100%;border-collapse:collapse;margin:12px 0}.data-table th,.data-table td{padding:9px;text-align:left;border-bottom:1px solid var(--border)}.data-table th{color:#c4b5fd}
+.table-wrap{overflow-x:auto}
+button{font:inherit}.primary,.secondary{border:0;border-radius:10px;padding:11px 14px;cursor:pointer;font-weight:bold}
+.primary{background:linear-gradient(100deg,var(--purple),var(--blue));color:white}.secondary{background:#24213a;color:white;border:1px solid var(--border)}
+.primary:disabled{opacity:.65;cursor:default}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+.quiz-question{padding:14px;background:#17162a;border:1px solid var(--border);border-radius:12px;margin:12px 0}
+.quiz-question p{font-weight:bold;margin-bottom:8px}.quiz-question label{display:block;padding:6px 0;cursor:pointer}
+.quiz-question input{margin-right:8px;accent-color:var(--purple)}
+#quizResult{margin-top:13px;font-weight:bold}.notice{font-size:13px;color:var(--muted);margin-top:12px}
+footer{text-align:center;color:var(--muted);padding:23px;border-top:1px solid var(--border)}
+@media(max-width:700px){.lesson-layout{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:11px}.stat strong{font-size:21px}main{padding-left:4%;padding-right:4%}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a class="logo" href="index.html">ZYNTRA</a>
+<div class="navlinks"><a href="index.html">Home</a><a href="study.html">Study</a><a href="profile.html">Profile</a></div>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<span class="tag">DISCOVER • EXPERIMENT • UNDERSTAND</span>
+<h1>Explore <span class="gradient">General Science</span></h1>
+<p>Discover scientific methods, matter, energy, forces, living things, and the environment.</p>
+</section>
+
+<section class="stats">
+<div class="stat"><strong id="completedCount">0</strong><span>Lessons completed</span></div>
+<div class="stat"><strong id="xpCount">0</strong><span>XP earned</span></div>
+<div class="stat"><strong id="progressPercent">0%</strong><span>Progress</span></div>
+</section>
+<div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+
+<h2 class="section-title">Choose a topic</h2>
+<section class="topics" id="topicGrid"></section>
+
+<div class="lesson-layout">
+<section class="panel">
+<h2 class="section-title" style="margin-top:0">Lessons</h2>
+<p class="muted" id="topicDescription">Choose a topic to begin.</p>
+<div class="lesson-list" id="lessonList"></div>
+</section>
+<section class="lessonbox" id="lessonContent">
+<span class="tag">WELCOME TO ZYNTRA</span>
+<h2>General Science</h2>
+<p>Choose a topic and lesson to begin.</p>
+<div class="example">Science uses observation, evidence, experimentation, and reasoning to explain how the natural world works.</div>
+<p>Read the notes, complete lessons, and test your understanding in the quiz.</p>
+</section>
+</div>
+
+<section class="quizbox" style="margin-top:25px">
+<h2 class="section-title" style="margin-top:0">General Science Quiz</h2>
+<p class="muted">Answer all six questions to check your understanding.</p>
+<form id="quizForm"></form>
+<div class="actions"><button class="primary" type="button" id="checkQuiz">Check answers</button><button class="secondary" type="button" id="resetQuiz">Try again</button></div>
+<p id="quizResult" aria-live="polite"></p>
+<p class="notice">Score at least 4 out of 6 to earn 5 bonus XP once per page session.</p>
+</section>
+</main>
+
+<footer>© 2026 ZYNTRA • Learn something new every day.</footer>
+
+<script>
+const topics=[
+{title:"Scientific Method",emoji:"🔬",description:"Learn how scientists investigate questions.",lessons:[
+{title:"What Is Science?",content:`
+<h3>Meaning of science</h3>
+<p>Science is the systematic study of the natural world through observation, investigation, experimentation, and evidence.</p>
+<h3>Branches of science</h3>
+<ul><li>Biology: the study of living things.</li><li>Chemistry: the study of substances, their properties, and how they change.</li><li>Physics: the study of matter, energy, forces, and their interactions.</li><li>Earth science: the study of Earth and its systems.</li></ul>
+<h3>Why science matters</h3>
+<p>Science helps us develop technology, improve healthcare, understand the environment, and solve practical problems.</p>
+<div class="example">Example: Testing different ways of filtering muddy water helps investigate which method removes the most visible particles.</div>`},
+{title:"Steps of a Scientific Investigation",content:`
+<h3>Common steps</h3>
+<ol><li>Identify a question or problem.</li><li>Research what is already known.</li><li>Form a testable hypothesis.</li><li>Plan a fair investigation.</li><li>Collect and record observations.</li><li>Analyse the results.</li><li>Draw a conclusion and communicate findings.</li></ol>
+<h3>Variables</h3>
+<ul><li>Independent variable: the factor deliberately changed.</li><li>Dependent variable: the factor measured.</li><li>Controlled variables: factors kept the same.</li></ul>
+<div class="example">Example: To investigate how light affects plant growth, change the light exposure, measure growth, and keep other conditions as similar as possible.</div>
+<p>Repeat measurements where possible and record results honestly.</p>`}
+]},
+{title:"Matter and Materials",emoji:"🧪",description:"Explore states of matter and physical changes.",lessons:[
+{title:"States of Matter",content:`
+<h3>What is matter?</h3>
+<p>Matter is anything that has mass and occupies space.</p>
+<h3>Three common states</h3>
+<ul><li>Solid: has a definite shape and volume.</li><li>Liquid: has a definite volume but takes the shape of its container.</li><li>Gas: has no fixed shape or volume and spreads to fill its container.</li></ul>
+<h3>Changes of state</h3>
+<ul><li>Melting: solid to liquid.</li><li>Freezing: liquid to solid.</li><li>Evaporation or boiling: liquid to gas.</li><li>Condensation: gas to liquid.</li><li>Sublimation: solid directly to gas.</li></ul>
+<div class="example">Ice melts into liquid water when it gains enough thermal energy.</div>`},
+{title:"Elements, Compounds and Mixtures",content:`
+<h3>Elements</h3>
+<p>An element is a pure substance made of one type of atom. Examples include iron, oxygen, and copper.</p>
+<h3>Compounds</h3>
+<p>A compound contains two or more elements chemically combined in a fixed ratio. Water (H₂O) is made from hydrogen and oxygen.</p>
+<h3>Mixtures</h3>
+<p>A mixture contains substances physically combined, not chemically bonded together in a fixed ratio.</p>
+<ul><li>Air is a mixture of gases.</li><li>Salt water is a mixture of salt and water.</li><li>Sand and iron filings can be separated using a magnet.</li></ul>
+<p>Mixtures can often be separated by physical methods such as filtration, evaporation, distillation, or magnetic separation.</p>`}
+]},
+{title:"Energy and Heat",emoji:"⚡",description:"Understand energy forms and heat transfer.",lessons:[
+{title:"Forms of Energy",content:`
+<h3>What is energy?</h3>
+<p>Energy is the ability to do work or cause change.</p>
+<h3>Common forms</h3>
+<ul><li>Kinetic energy: energy of movement.</li><li>Potential energy: energy stored due to position or arrangement.</li><li>Thermal energy: associated with the motion and interactions of particles.</li><li>Chemical energy: stored in substances such as food and fuels.</li><li>Electrical energy: associated with electric charges.</li><li>Light and sound energy.</li></ul>
+<h3>Conservation of energy</h3>
+<p>Energy cannot be created or destroyed in an isolated system; it can be transferred or transformed from one form to another.</p>
+<div class="example">A battery-powered torch converts chemical energy into electrical energy and then into light and thermal energy.</div>`},
+{title:"Heat Transfer",content:`
+<h3>Heat and temperature</h3>
+<p>Heat is energy transferred because of a temperature difference. Temperature measures how hot or cold something is.</p>
+<h3>Three methods of heat transfer</h3>
+<ul><li>Conduction: transfer through particles and interactions, especially in solids.</li><li>Convection: transfer by the movement of fluids such as liquids and gases.</li><li>Radiation: transfer by electromagnetic waves; it does not require a material medium.</li></ul>
+<div class="example">A metal spoon warming in hot tea is an example of conduction. Warm air rising is an example of convection. Energy from the Sun reaches Earth by radiation.</div>
+<p>Materials that transfer heat easily are called good thermal conductors. Materials that resist heat transfer are called insulators.</p>`}
+]},
+{title:"Forces and Motion",emoji:"🚀",description:"Discover movement, forces, and friction.",lessons:[
+{title:"Forces",content:`
+<h3>What is a force?</h3>
+<p>A force is a push or pull that can change an object's motion, direction, or shape. Force is measured in newtons (N).</p>
+<h3>Types of forces</h3>
+<ul><li>Gravity: attraction between objects with mass.</li><li>Friction: opposes relative motion between surfaces.</li><li>Air resistance: opposes movement through air.</li><li>Magnetic force: acts between magnets and certain materials.</li><li>Normal contact force: a supporting force from a surface.</li></ul>
+<h3>Balanced and unbalanced forces</h3>
+<p>Balanced forces have zero resultant force. Unbalanced forces produce a non-zero resultant force and can change an object's velocity.</p>
+<div class="example">If a box is pushed with 10 N to the right and experiences 10 N to the left, the resultant force is zero.</div>`},
+{title:"Speed, Distance and Time",content:`
+<h3>Speed</h3>
+<p>Speed describes the distance travelled per unit of time.</p>
+<div class="example"><b>Speed = Distance ÷ Time</b></div>
+<p>If a cyclist travels 120 metres in 20 seconds:</p>
+<p>Speed = 120 ÷ 20 = <b>6 m/s</b>.</p>
+<h3>Distance and time</h3>
+<ul><li>Distance = Speed × Time.</li><li>Time = Distance ÷ Speed.</li></ul>
+<p>Average speed is total distance travelled divided by total time taken.</p>
+<p>Remember to use consistent units. For example, distance in metres and time in seconds give speed in metres per second (m/s).</p>`}
+]},
+{title:"Living Things and Health",emoji:"🌱",description:"Explore life, ecosystems, and healthy living.",lessons:[
+{title:"Characteristics of Living Things",content:`
+<h3>Living organisms</h3>
+<p>Living things show several characteristics commonly summarised as MRS GREN:</p>
+<ul><li>Movement.</li><li>Respiration: chemical processes that release energy from food.</li><li>Sensitivity: responding to stimuli.</li><li>Growth and development.</li><li>Reproduction.</li><li>Excretion: removal of metabolic waste.</li><li>Nutrition: obtaining or making food.</li></ul>
+<h3>Cells</h3>
+<p>Cells are the basic structural and functional units of living organisms. Some organisms consist of one cell, while others have many specialised cells.</p>
+<p>Plants and animals both have cells. Plant cells typically have a cell wall, chloroplasts in photosynthetic cells, and a large permanent vacuole.</p>`},
+{title:"Ecosystems and Health",content:`
+<h3>Ecosystems</h3>
+<p>An ecosystem includes living organisms and the non-living environment with which they interact.</p>
+<ul><li>Producers, such as green plants, make organic food using an energy source.</li><li>Consumers obtain energy by eating other organisms.</li><li>Decomposers break down dead organic matter and recycle nutrients.</li></ul>
+<h3>Food chains</h3>
+<div class="example">Grass → Grasshopper → Frog → Snake<br>Arrows show the direction of energy transfer.</div>
+<h3>Healthy living</h3>
+<p>Good health is supported by a balanced diet, safe water, sanitation, physical activity, adequate rest, and appropriate healthcare.</p>
+<p>Preventing disease can involve handwashing, vaccination where recommended, safe food handling, and reducing exposure to infectious agents.</p>`}
+]},
+{title:"Environment and Conservation",emoji:"🌍",description:"Learn about pollution, resources, and sustainability.",lessons:[
+{title:"Pollution and Its Effects",content:`
+<h3>What is pollution?</h3>
+<p>Pollution is the introduction of harmful substances or energy into the environment.</p>
+<ul><li>Air pollution: smoke, harmful gases, and fine particles.</li><li>Water pollution: sewage, chemicals, and waste entering water bodies.</li><li>Land pollution: litter and poorly managed waste.</li><li>Noise pollution: excessive or unwanted sound.</li></ul>
+<h3>Possible effects</h3>
+<p>Pollution can harm human health, wildlife, soil quality, water supplies, and ecosystems.</p>
+<h3>Reducing pollution</h3>
+<ul><li>Dispose of waste correctly.</li><li>Reduce unnecessary waste and reuse suitable items.</li><li>Use cleaner energy and transport where possible.</li><li>Treat wastewater and control industrial emissions.</li></ul>`},
+{title:"Conservation and Sustainability",content:`
+<h3>Conservation</h3>
+<p>Conservation means protecting and managing natural resources so they remain available and ecosystems continue to function.</p>
+<h3>Practical conservation methods</h3>
+<ul><li>Plant trees and protect forests.</li><li>Conserve water and prevent soil erosion.</li><li>Protect wildlife and natural habitats.</li><li>Recycle suitable materials.</li><li>Use energy efficiently.</li></ul>
+<h3>Renewable and non-renewable resources</h3>
+<p>Renewable resources can be replenished naturally over time, while non-renewable resources form so slowly that supplies are limited on human timescales.</p>
+<div class="example">Solar and wind energy are renewable sources. Coal and petroleum are non-renewable fossil fuels.</div>
+<p>Sustainable choices consider environmental, social, and economic effects over the long term.</p>`}
+]}
+];
+
+const questions=[
+{q:"Which step usually comes first in a scientific investigation?",a:["Draw a conclusion","Identify a question or problem","Publish the results"],c:1},
+{q:"Which state of matter has a fixed volume but takes the shape of its container?",a:["Liquid","Solid","Gas"],c:0},
+{q:"Which is a form of energy?",a:["Kinetic energy","Mass only","Volume only"],c:0},
+{q:"What is the SI unit of force?",a:["Metre","Newton","Second"],c:1},
+{q:"Which process releases energy from food in living cells?",a:["Respiration","Condensation","Filtration"],c:0},
+{q:"Which is an example of environmental conservation?",a:["Dumping waste in a river","Cutting every tree","Protecting forests"],c:2}
+];
+
+const username=localStorage.getItem("zyntraUser")||"guest";
+const userKey=username.toLowerCase().replace(/[^a-z0-9_-]/g,"_");
+const completedKey="zyntraGeneralScienceCompleted_"+userKey;
+const xpKey="zyntraGeneralScienceXP_"+userKey;
+let completed=JSON.parse(localStorage.getItem(completedKey)||"[]");
+let xp=Number(localStorage.getItem(xpKey)||0);
+let currentTopic=0,currentLesson=0,quizRewarded=false;
+
+const topicGrid=document.getElementById("topicGrid");
+const lessonList=document.getElementById("lessonList");
+const lessonContent=document.getElementById("lessonContent");
+const lessonId=(t,l)=>t+"-"+l;
+const isDone=(t,l)=>completed.includes(lessonId(t,l));
+
+function updateStats(){
+ const total=topics.reduce((sum,t)=>sum+t.lessons.length,0);
+ const percent=Math.round(completed.length/total*100);
+ document.getElementById("completedCount").textContent=completed.length;
+ document.getElementById("xpCount").textContent=xp;
+ document.getElementById("progressPercent").textContent=percent+"%";
+ document.getElementById("progressBar").style.width=percent+"%";
+ topicGrid.querySelectorAll(".topic").forEach((el,i)=>{
+  const count=topics[i].lessons.filter((_,j)=>isDone(i,j)).length;
+  el.querySelector("small").textContent=count+"/"+topics[i].lessons.length+" lessons completed";
+ });
+}
+function renderTopics(){
+ topicGrid.innerHTML="";
+ topics.forEach((t,i)=>{
+  const el=document.createElement("div");
+  el.className="topic"+(i===currentTopic?" active":"");
+  el.tabIndex=0;
+  el.innerHTML=`<div class="emoji">${t.emoji}</div><h3>${t.title}</h3><p>${t.description}</p><small></small>`;
+  el.onclick=()=>{currentTopic=i;currentLesson=0;renderTopics();renderLessons();renderLesson()};
+  el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();el.click()}};
+  topicGrid.appendChild(el);
+ });
+ updateStats();
+}
+function renderLessons(){
+ const t=topics[currentTopic];
+ document.getElementById("topicDescription").textContent=t.description;
+ lessonList.innerHTML="";
+ t.lessons.forEach((lesson,i)=>{
+  const btn=document.createElement("button");
+  btn.className="lesson-btn"+(i===currentLesson?" active":"")+(isDone(currentTopic,i)?" done":"");
+  btn.innerHTML=(isDone(currentTopic,i)?"✓ ":"")+lesson.title+"<small>"+(isDone(currentTopic,i)?"Completed • +10 XP":"Lesson "+(i+1))+"</small>";
+  btn.onclick=()=>{currentLesson=i;renderLessons();renderLesson()};
+  lessonList.appendChild(btn);
+ });
+}
+function renderLesson(){
+ const t=topics[currentTopic],l=t.lessons[currentLesson],done=isDone(currentTopic,currentLesson);
+ lessonContent.innerHTML=`
+ <span class="tag">${t.emoji} ${t.title}</span>
+ <h2>${l.title}</h2><p class="muted">Lesson ${currentLesson+1} of ${t.lessons.length}</p>
+ ${l.content}
+ <div class="actions"><button class="primary" id="completeLesson" ${done?"disabled":""}>${done?"✓ Lesson Completed":"Mark Lesson Complete (+10 XP)"}</button><button class="secondary" id="nextLesson">Next Lesson →</button></div>
+ ${done?'<p class="notice">XP for this lesson has already been awarded.</p>':""}`;
+ document.getElementById("completeLesson").onclick=()=>{
+  if(!isDone(currentTopic,currentLesson)){
+   completed.push(lessonId(currentTopic,currentLesson));xp+=10;
+   localStorage.setItem(completedKey,JSON.stringify(completed));
+   localStorage.setItem(xpKey,String(xp));
+   renderTopics();renderLessons();renderLesson();
+  }
+ };
+ document.getElementById("nextLesson").onclick=()=>{
+  if(currentLesson<topics[currentTopic].lessons.length-1)currentLesson++;
+  else if(currentTopic<topics.length-1){currentTopic++;currentLesson=0}
+  else{alert("Congratulations! You have reached the final General Science lesson.");return}
+  renderTopics();renderLessons();renderLesson();
+ };
+}
+function renderQuiz(){
+ const form=document.getElementById("quizForm");form.innerHTML="";
+ questions.forEach((q,i)=>{
+  const box=document.createElement("div");box.className="quiz-question";
+  const p=document.createElement("p");p.textContent=(i+1)+". "+q.q;box.appendChild(p);
+  q.a.forEach((answer,j)=>{
+   const label=document.createElement("label");
+   const input=document.createElement("input");input.type="radio";input.name="q"+i;input.value=j;
+   label.appendChild(input);label.appendChild(document.createTextNode(answer));box.appendChild(label);
+  });
+  form.appendChild(box);
+ });
+}
+document.getElementById("checkQuiz").onclick=()=>{
+ let score=0,answered=0;
+ questions.forEach((q,i)=>{
+  const selected=document.querySelector('input[name="q'+i+'"]:checked');
+  if(selected){answered++;if(Number(selected.value)===q.c)score++}
+ });
+ const result=document.getElementById("quizResult");
+ if(answered<questions.length){result.textContent="Please answer all six questions first.";return}
+ result.textContent="Your score: "+score+"/"+questions.length+". "+(score===6?"Excellent work!":score>=4?"Good work! Keep practising.":"Review the lessons and try again.");
+ if(score>=4&&!quizRewarded){xp+=5;quizRewarded=true;localStorage.setItem(xpKey,String(xp));result.textContent+=" You earned 5 bonus XP!";updateStats()}
+};
+document.getElementById("resetQuiz").onclick=()=>{renderQuiz();document.getElementById("quizResult").textContent=""};
+renderTopics();renderLessons();renderLesson();renderQuiz();
+</script>
+</body>
+</html>

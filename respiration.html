@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA | Biology - Respiration</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    background:
+    radial-gradient(circle at 10% 10%,rgba(236,72,153,.15),transparent 30%),
+    radial-gradient(circle at 90% 20%,rgba(139,92,246,.15),transparent 30%),
+    #070711;
+}
+
+.lesson-page{
+    width:92%;
+    max-width:1100px;
+    margin:50px auto 80px;
+}
+
+.lesson-hero{
+    text-align:center;
+    padding:45px 20px;
+}
+
+.lesson-badge{
+    display:inline-block;
+    padding:8px 17px;
+    border-radius:30px;
+    background:rgba(236,72,153,.12);
+    border:1px solid rgba(236,72,153,.3);
+    color:#f9a8d4;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.lesson-hero h1{
+    font-size:48px;
+    margin:0 0 15px;
+}
+
+.lesson-hero h1 span{
+    background:linear-gradient(135deg,#ec4899,#8b5cf6);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.lesson-hero p{
+    max-width:700px;
+    margin:auto;
+    color:#85859b;
+    line-height:1.7;
+}
+
+.lesson-card{
+    padding:30px;
+    margin-bottom:22px;
+    border-radius:24px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);
+    backdrop-filter:blur(15px);
+}
+
+.lesson-card h2{
+    margin-top:0;
+    font-size:25px;
+}
+
+.lesson-card p{
+    color:#c7c7d5;
+    line-height:1.8;
+}
+
+.lesson-card li{
+    color:#c7c7d5;
+    line-height:1.8;
+    margin-bottom:8px;
+}
+
+.respiration-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin-top:20px;
+}
+
+.respiration-box{
+    padding:23px;
+    border-radius:18px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.respiration-box h3{
+    margin-top:0;
+}
+
+.respiration-box p{
+    font-size:14px;
+}
+
+.equation{
+    text-align:center;
+    padding:25px;
+    margin-top:20px;
+    border-radius:18px;
+    background:rgba(236,72,153,.08);
+    border:1px solid rgba(236,72,153,.2);
+}
+
+.equation strong{
+    font-size:22px;
+    color:#f9a8d4;
+}
+
+.challenge{
+    text-align:center;
+    padding:35px;
+    border-radius:25px;
+    background:linear-gradient(
+        135deg,
+        rgba(236,72,153,.1),
+        rgba(139,92,246,.08)
+    );
+    border:1px solid rgba(236,72,153,.2);
+}
+
+.answer-btn{
+    padding:12px 22px;
+    margin:7px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,#ec4899,#8b5cf6);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.answer-btn:hover{
+    transform:translateY(-2px);
+}
+
+#quizResult{
+    margin-top:18px;
+    font-weight:bold;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:12px 20px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+@media(max-width:750px){
+
+    .respiration-grid{
+        grid-template-columns:1fr;
+    }
+
+    .lesson-hero h1{
+        font-size:38px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+<div class="logo">
+ZYNTRA<span>●</span>
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+<a href="study.html">Study</a>
+<a href="ai.html">AI</a>
+<a href="planner.html">Planner</a>
+<a href="challenge.html">Challenges</a>
+<a href="profile.html">Profile</a>
+
+</nav>
+
+<a href="profile.html" class="nav-button">
+My Profile
+</a>
+
+</header>
+
+
+
+<main class="lesson-page">
+
+
+<section class="lesson-hero">
+
+<div class="lesson-badge">
+🧬 BIOLOGY • RESPIRATION
+</div>
+
+<h1>
+Release <span>energy.</span>
+</h1>
+
+<p>
+Learn how living organisms release energy from food
+for use in their life processes.
+</p>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>🫁 What is Respiration?</h2>
+
+<p>
+Respiration is the process in which energy is released
+from food substances, especially glucose, for use by
+living cells.
+</p>
+
+<p>
+The energy released is used for processes such as
+growth, movement, active transport and maintaining
+body temperature.
+</p>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>⚡ Aerobic Respiration</h2>
+
+<p>
+Aerobic respiration takes place in the presence of
+oxygen. It releases a large amount of energy.
+</p>
+
+<div class="equation">
+
+<p>Word equation:</p>
+
+<strong>
+Glucose + Oxygen → Carbon dioxide + Water + Energy
+</strong>
+
+</div>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>🔬 Anaerobic Respiration</h2>
+
+<p>
+Anaerobic respiration occurs when there is little or
+no oxygen available. It releases less energy than
+aerobic respiration.
+</p>
+
+<div class="respiration-grid">
+
+<div class="respiration-box">
+
+<h3>🧑‍🦱 In Human Muscles</h3>
+
+<p>
+In muscles, anaerobic respiration produces lactic
+acid and releases a small amount of energy.
+</p>
+
+</div>
+
+
+<div class="respiration-box">
+
+<h3>🍞 In Yeast</h3>
+
+<p>
+Yeast carries out anaerobic respiration and produces
+ethanol, carbon dioxide and energy.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>🏭 Where Does Respiration Occur?</h2>
+
+<p>
+Most aerobic respiration occurs in the
+<strong>mitochondria</strong> of cells.
+</p>
+
+<p>
+The mitochondria are sometimes called the
+<strong>powerhouses of the cell</strong> because they
+are major sites of energy release.
+</p>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>🌱 Respiration in Plants</h2>
+
+<p>
+Plants also respire. They use oxygen and release
+carbon dioxide during aerobic respiration.
+</p>
+
+<p>
+Respiration occurs continuously in living plant cells,
+both during the day and at night.
+</p>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>🔄 Aerobic vs Anaerobic Respiration</h2>
+
+<div class="respiration-grid">
+
+<div class="respiration-box">
+
+<h3>Aerobic</h3>
+
+<ul>
+
+<li>Requires oxygen.</li>
+
+<li>Releases a large amount of energy.</li>
+
+<li>Produces carbon dioxide and water.</li>
+
+</ul>
+
+</div>
+
+
+<div class="respiration-box">
+
+<h3>Anaerobic</h3>
+
+<ul>
+
+<li>Does not require oxygen.</li>
+
+<li>Releases less energy.</li>
+
+<li>Produces different products depending on the organism.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="lesson-card">
+
+<h2>📌 Quick Revision</h2>
+
+<ul>
+
+<li>Respiration releases energy from food.</li>
+
+<li>Aerobic respiration requires oxygen.</li>
+
+<li>Aerobic respiration releases more energy.</li>
+
+<li>Anaerobic respiration occurs without oxygen.</li>
+
+<li>Most aerobic respiration occurs in mitochondria.</li>
+
+<li>Yeast produces ethanol and carbon dioxide during anaerobic respiration.</li>
+
+<li>Muscles can produce lactic acid during anaerobic respiration.</li>
+
+</ul>
+
+</section>
+
+
+
+<section class="challenge">
+
+<h2>🧠 ZYNTRA Quick Challenge</h2>
+
+<p>
+Which organelle is the main site of aerobic respiration
+in a cell?
+</p>
+
+<button class="answer-btn"
+onclick="checkAnswer('A')">
+A. Nucleus
+</button>
+
+<button class="answer-btn"
+onclick="checkAnswer('B')">
+B. Ribosome
+</button>
+
+<button class="answer-btn"
+onclick="checkAnswer('C')">
+C. Mitochondrion
+</button>
+
+<button class="answer-btn"
+onclick="checkAnswer('D')">
+D. Vacuole
+</button>
+
+<div id="quizResult"></div>
+
+</section>
+
+
+
+<a href="biology.html" class="back-btn">
+← Back to Biology
+</a>
+
+
+</main>
+
+
+
+<script>
+
+function checkAnswer(answer){
+
+    let result =
+        document.getElementById("quizResult");
+
+    if(answer === "C"){
+
+        result.textContent =
+        "✅ Correct! Aerobic respiration mainly occurs in the mitochondria.";
+
+    }else{
+
+        result.textContent =
+        "❌ Not quite. The correct answer is C. Mitochondrion.";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

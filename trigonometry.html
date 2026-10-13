@@ -1,0 +1,793 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZYNTRA | Trigonometry</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.trig-page {
+    min-height: 100vh;
+    padding: 125px 7% 70px;
+}
+
+/* HERO */
+
+.trig-hero {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 50px;
+    align-items: center;
+    margin-bottom: 70px;
+}
+
+.trig-badge {
+    display: inline-block;
+    padding: 9px 17px;
+    border-radius: 30px;
+    background: rgba(139,92,246,.10);
+    border: 1px solid rgba(139,92,246,.30);
+    color: #c4b5fd;
+    margin-bottom: 20px;
+}
+
+.trig-hero h1 {
+    font-size: clamp(45px, 6vw, 78px);
+    line-height: 1.05;
+    margin: 0 0 20px;
+}
+
+.trig-hero h1 span {
+    background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.trig-hero p {
+    color: #9999ad;
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 650px;
+}
+
+/* VISUAL */
+
+.trig-visual {
+    min-height: 360px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 130px solid transparent;
+    border-right: 130px solid transparent;
+    border-bottom: 210px solid rgba(139,92,246,.18);
+    position: relative;
+    filter: drop-shadow(0 0 30px rgba(139,92,246,.4));
+}
+
+.triangle::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 210px;
+    background: #8b5cf6;
+    transform: rotate(32deg);
+    transform-origin: bottom;
+    left: -3px;
+    top: 0;
+}
+
+.trig-formula {
+    position: absolute;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: 0 0 25px rgba(139,92,246,.8);
+}
+
+.angle {
+    position: absolute;
+    font-size: 28px;
+    color: #a78bfa;
+    font-weight: bold;
+    animation: trigFloat 4s ease-in-out infinite;
+}
+
+.angle-one {
+    top: 35px;
+    left: 30px;
+}
+
+.angle-two {
+    right: 30px;
+    top: 90px;
+    animation-delay: 1s;
+}
+
+.angle-three {
+    bottom: 45px;
+    left: 50px;
+    animation-delay: 2s;
+}
+
+.angle-four {
+    bottom: 30px;
+    right: 60px;
+    animation-delay: 1.5s;
+}
+
+@keyframes trigFloat {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+}
+
+/* SECTION */
+
+.section-heading {
+    margin-bottom: 28px;
+}
+
+.section-heading h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.section-heading p {
+    color: #85859b;
+}
+
+/* TOPICS */
+
+.trig-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 22px;
+}
+
+.trig-card {
+    padding: 28px;
+    border-radius: 22px;
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.09);
+    transition: .3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.trig-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(139,92,246,.5);
+    box-shadow: 0 20px 50px rgba(91,33,182,.18);
+}
+
+.trig-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.trig-card h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.trig-card p {
+    color: #85859b;
+    line-height: 1.6;
+    min-height: 55px;
+}
+
+/* FORMULA */
+
+.formula-section {
+    margin-top: 65px;
+    padding: 40px;
+    border-radius: 26px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.14),
+            rgba(59,130,246,.08)
+        );
+    border: 1px solid rgba(139,92,246,.2);
+    text-align: center;
+}
+
+.formula-section h2 {
+    margin-bottom: 10px;
+}
+
+.formula-section p {
+    color: #85859b;
+}
+
+.big-formula {
+    font-size: clamp(28px,4vw,45px);
+    margin: 25px 0;
+    font-weight: bold;
+    color: white;
+}
+
+.formula-note {
+    color: #a78bfa;
+}
+
+/* EXAMPLES */
+
+.example-section {
+    margin-top: 60px;
+}
+
+.example-box {
+    padding: 35px;
+    border-radius: 24px;
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.09);
+}
+
+.example-box h3 {
+    margin-bottom: 18px;
+}
+
+.example-step {
+    margin: 14px 0;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(139,92,246,.08);
+    color: #d6d6e5;
+}
+
+.answer {
+    color: #a78bfa;
+    font-weight: bold;
+}
+
+/* QUIZ */
+
+.quiz-section {
+    margin-top: 60px;
+}
+
+.quiz-box {
+    padding: 35px;
+    border-radius: 24px;
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.09);
+}
+
+.quiz-option {
+    width: 100%;
+    display: block;
+    text-align: left;
+    margin: 10px 0;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.1);
+    background: rgba(255,255,255,.04);
+    color: white;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.quiz-option:hover {
+    background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+}
+
+#quizResult {
+    margin-top: 18px;
+    font-weight: bold;
+}
+
+/* BACK */
+
+.back-button {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 13px 22px;
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+}
+
+.back-button:hover {
+    background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+}
+
+/* MOBILE */
+
+@media(max-width:900px) {
+
+    .trig-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .trig-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px) {
+
+    .trig-page {
+        padding: 110px 5% 50px;
+    }
+
+    .trig-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="logo">
+        ZYNTRA<span>●</span>
+    </div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="dashboard.html">Dashboard</a>
+
+        <a href="study.html">Study</a>
+
+        <a href="math.html">Mathematics</a>
+
+        <a href="ai.html">AI</a>
+
+        <a href="planner.html">Planner</a>
+
+        <a href="profile.html">Profile</a>
+
+    </nav>
+
+</header>
+
+
+<main class="trig-page">
+
+
+<!-- HERO -->
+
+<section class="trig-hero">
+
+    <div>
+
+        <div class="trig-badge">
+            📐 ZYNTRA TRIGONOMETRY
+        </div>
+
+        <h1>
+            Measure.
+            <span>Calculate.</span>
+            Master.
+        </h1>
+
+        <p>
+            Learn angles, triangles, sine, cosine, tangent
+            and solve real mathematical problems with confidence.
+        </p>
+
+    </div>
+
+
+    <div class="trig-visual">
+
+        <div class="triangle"></div>
+
+        <div class="trig-formula">
+            SOH • CAH • TOA
+        </div>
+
+        <div class="angle angle-one">θ</div>
+        <div class="angle angle-two">sin</div>
+        <div class="angle angle-three">cos</div>
+        <div class="angle angle-four">tan</div>
+
+    </div>
+
+</section>
+
+
+<!-- TOPICS -->
+
+<section>
+
+    <div class="section-heading">
+
+        <h2>
+            Explore Trigonometry
+        </h2>
+
+        <p>
+            Build your understanding step by step.
+        </p>
+
+    </div>
+
+
+    <div class="trig-grid">
+
+
+        <div class="trig-card">
+
+            <div class="trig-icon">
+                📐
+            </div>
+
+            <h3>
+                Angles
+            </h3>
+
+            <p>
+                Learn acute, obtuse, right, reflex
+                and other types of angles.
+            </p>
+
+        </div>
+
+
+        <div class="trig-card">
+
+            <div class="trig-icon">
+                △
+            </div>
+
+            <h3>
+                Right-Angled Triangles
+            </h3>
+
+            <p>
+                Understand the sides and angles
+                of right-angled triangles.
+            </p>
+
+        </div>
+
+
+        <div class="trig-card">
+
+            <div class="trig-icon">
+                sin
+            </div>
+
+            <h3>
+                Sine
+            </h3>
+
+            <p>
+                Learn how to use sine to find
+                unknown sides and angles.
+            </p>
+
+        </div>
+
+
+        <div class="trig-card">
+
+            <div class="trig-icon">
+                cos
+            </div>
+
+            <h3>
+                Cosine
+            </h3>
+
+            <p>
+                Use cosine to solve problems
+                involving sides and angles.
+            </p>
+
+        </div>
+
+
+        <div class="trig-card">
+
+            <div class="trig-icon">
+                tan
+            </div>
+
+            <h3>
+                Tangent
+            </h3>
+
+            <p>
+                Master tangent and apply it
+                to right-angled triangles.
+            </p>
+
+        </div>
+
+
+        <div class="trig-card">
+
+            <div class="trig-icon">
+                🔢
+            </div>
+
+            <h3>
+                Trigonometric Problems
+            </h3>
+
+            <p>
+                Combine formulas and reasoning
+                to solve examination questions.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- FORMULA -->
+
+<section class="formula-section">
+
+    <h2>
+        📚 The Three Main Ratios
+    </h2>
+
+    <p>
+        Remember the famous SOH-CAH-TOA rule.
+    </p>
+
+    <div class="big-formula">
+        sin θ = Opposite / Hypotenuse
+    </div>
+
+    <div class="formula-note">
+        SOH = Sine, Opposite, Hypotenuse
+    </div>
+
+</section>
+
+
+<!-- OTHER FORMULAS -->
+
+<section class="formula-section">
+
+    <h2>
+        Trigonometry Formula Sheet
+    </h2>
+
+    <div class="big-formula">
+        cos θ = Adjacent / Hypotenuse
+    </div>
+
+    <div class="big-formula">
+        tan θ = Opposite / Adjacent
+    </div>
+
+</section>
+
+
+<!-- WORKED EXAMPLE -->
+
+<section class="example-section">
+
+    <div class="section-heading">
+
+        <h2>
+            🧠 Worked Example
+        </h2>
+
+        <p>
+            Let's solve a simple trigonometry problem.
+        </p>
+
+    </div>
+
+
+    <div class="example-box">
+
+        <h3>
+            Example: Find the value of sin θ
+        </h3>
+
+        <div class="example-step">
+            Opposite = 6 cm
+        </div>
+
+        <div class="example-step">
+            Hypotenuse = 10 cm
+        </div>
+
+        <div class="example-step">
+            sin θ = Opposite ÷ Hypotenuse
+        </div>
+
+        <div class="example-step">
+            sin θ = 6 ÷ 10
+        </div>
+
+        <div class="example-step answer">
+            sin θ = 0.6
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- QUICK REVISION -->
+
+<section class="formula-section">
+
+    <h2>
+        ⚡ Quick Revision
+    </h2>
+
+    <p>
+        Opposite ÷ Hypotenuse → Sine
+    </p>
+
+    <p>
+        Adjacent ÷ Hypotenuse → Cosine
+    </p>
+
+    <p>
+        Opposite ÷ Adjacent → Tangent
+    </p>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section class="quiz-section">
+
+    <div class="section-heading">
+
+        <h2>
+            🧠 Trigonometry Challenge
+        </h2>
+
+        <p>
+            Test what you have learned.
+        </p>
+
+    </div>
+
+
+    <div class="quiz-box">
+
+        <h3>
+            Which ratio is Opposite ÷ Hypotenuse?
+        </h3>
+
+
+        <button
+            class="quiz-option"
+            onclick="checkTrig(this, false)">
+
+            A. Cosine
+
+        </button>
+
+
+        <button
+            class="quiz-option"
+            onclick="checkTrig(this, true)">
+
+            B. Sine
+
+        </button>
+
+
+        <button
+            class="quiz-option"
+            onclick="checkTrig(this, false)">
+
+            C. Tangent
+
+        </button>
+
+
+        <button
+            class="quiz-option"
+            onclick="checkTrig(this, false)">
+
+            D. Pythagoras
+
+        </button>
+
+
+        <div id="quizResult"></div>
+
+    </div>
+
+</section>
+
+
+<a href="math.html" class="back-button">
+    ← Back to Mathematics
+</a>
+
+
+</main>
+
+
+<script>
+
+function checkTrig(button, correct) {
+
+    let result =
+        document.getElementById("quizResult");
+
+    let buttons =
+        document.querySelectorAll(".quiz-option");
+
+    buttons.forEach(function(btn) {
+        btn.disabled = true;
+    });
+
+
+    if (correct) {
+
+        result.textContent =
+            "✅ Correct! Sine = Opposite ÷ Hypotenuse.";
+
+        result.style.color =
+            "#22c55e";
+
+    }
+
+    else {
+
+        result.textContent =
+            "❌ Not quite. The correct answer is Sine.";
+
+        result.style.color =
+            "#f87171";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
+

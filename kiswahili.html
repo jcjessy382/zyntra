@@ -1,0 +1,556 @@
+
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Kiswahili</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#070711;--panel:#111124;--purple:#8b5cf6;
+--blue:#3b82f6;--pink:#ec4899;--text:#f5f3ff;
+--muted:#aaa9c4;--border:#292642;--green:#22c55e
+}
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:var(--bg);color:var(--text);min-height:100vh
+}
+header{
+position:sticky;top:0;z-index:10;
+background:rgba(7,7,17,.94);backdrop-filter:blur(14px);
+border-bottom:1px solid var(--border);
+padding:15px 5%;display:flex;align-items:center;
+justify-content:space-between;gap:12px;flex-wrap:wrap
+}
+.logo{font-size:23px;font-weight:900;letter-spacing:2px}
+.logo span{color:var(--purple)}
+nav{display:flex;gap:10px;flex-wrap:wrap}
+a,button{font-family:inherit}
+nav a,.back{
+text-decoration:none;color:white;background:#17172c;
+padding:10px 14px;border-radius:10px;border:1px solid var(--border)
+}
+nav a:hover,.back:hover{background:#292047}
+main{max-width:1150px;margin:auto;padding:28px 20px 60px}
+.hero{
+padding:35px 25px;border:1px solid #42316e;border-radius:22px;
+background:linear-gradient(130deg,#25154b,#11142e 65%,#101024);
+margin-bottom:25px
+}
+.tag{
+display:inline-block;background:#39225e;color:#d8c6ff;
+padding:7px 12px;border-radius:20px;font-size:12px;margin-bottom:14px
+}
+h1{font-size:clamp(28px,5vw,44px);margin-bottom:12px}
+.hero p{color:#d0cde5;line-height:1.7;max-width:720px}
+.stats{
+display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+gap:12px;margin-top:24px
+}
+.stat{background:#ffffff0b;padding:15px;border-radius:13px}
+.stat strong{display:block;font-size:23px;margin-bottom:5px}
+.stat span{font-size:12px;color:var(--muted)}
+.search{
+width:100%;padding:14px 16px;background:#101022;color:white;
+border:1px solid var(--border);border-radius:12px;
+font-size:15px;margin-bottom:22px;outline:none
+}
+.search:focus{border-color:var(--purple)}
+.section-title{
+font-size:22px;margin-bottom:16px;
+display:flex;align-items:center;justify-content:space-between;gap:10px
+}
+.grid{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+gap:16px
+}
+.card{
+background:linear-gradient(145deg,#14142a,#0d0d1b);
+border:1px solid var(--border);border-radius:17px;padding:21px;
+transition:.2s
+}
+.card:hover{transform:translateY(-3px);border-color:#7651c9}
+.card .emoji{font-size:30px;margin-bottom:13px}
+.card h3{font-size:18px;margin-bottom:9px}
+.card p{font-size:13px;color:var(--muted);line-height:1.6;min-height:42px}
+.lesson-count{font-size:12px;color:#c4b5fd;margin:13px 0}
+.btn{
+display:inline-block;border:none;border-radius:10px;
+padding:11px 15px;font-size:14px;font-weight:bold;
+cursor:pointer;color:white;background:linear-gradient(100deg,var(--purple),var(--blue))
+}
+.btn:hover{filter:brightness(1.12)}
+.btn.secondary{background:#25243d;border:1px solid #3a3859}
+.progress-bg{height:7px;background:#29263d;border-radius:20px;overflow:hidden;margin:15px 0}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--blue))}
+#lessonArea{
+display:none;margin-top:28px;background:#111124;
+border:1px solid #403164;border-radius:18px;padding:24px
+}
+#lessonArea h2{font-size:25px;margin-bottom:15px}
+#lessonContent{line-height:1.8;color:#e5e1f6}
+#lessonContent h3{margin:20px 0 8px;color:#c4b5fd}
+#lessonContent ul,#lessonContent ol{padding-left:23px;margin:10px 0}
+#lessonContent p{margin:10px 0}
+.example{background:#1b1933;padding:14px;border-radius:10px;margin:12px 0}
+.question{margin:15px 0;padding:14px;background:#19182d;border-radius:10px}
+.question label{display:block;margin:9px 0;cursor:pointer}
+#feedback{margin-top:12px;font-weight:bold}
+footer{text-align:center;color:var(--muted);padding:25px;font-size:13px}
+.empty{display:none;color:var(--muted);padding:20px}
+@media(max-width:600px){
+header{padding:13px 4%}
+main{padding:20px 14px 40px}
+.stats{grid-template-columns:1fr}
+.hero{padding:25px 18px}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="logo">ZYN<span>TRA</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="study.html">Smart Study</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <span class="tag">📚 SMART STUDY · KISWAHILI</span>
+  <h1>Karibu Kiswahili</h1>
+  <p>
+    Jifunze sarufi, fasihi, ufahamu na uandishi.
+    Chagua mada, soma maelezo, fanya mazoezi na ufuatilie maendeleo yako.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      <strong id="topicCount">6</strong>
+      <span>Mada kuu</span>
+    </div>
+    <div class="stat">
+      <strong id="completedCount">0</strong>
+      <span>Masomo yaliyokamilika</span>
+    </div>
+    <div class="stat">
+      <strong id="xpCount">0 XP</strong>
+      <span>Pointi za Kiswahili</span>
+    </div>
+  </div>
+</section>
+
+<input id="search" class="search" type="search"
+placeholder="🔎 Tafuta mada, mfano: Sarufi, Fasihi, Insha...">
+
+<h2 class="section-title">Mada za Kiswahili <span>🇰🇪</span></h2>
+
+<div class="grid" id="topicGrid"></div>
+<p id="emptyMessage" class="empty">Hakuna mada iliyopatikana.</p>
+
+<section id="lessonArea">
+  <h2 id="lessonTitle">Somo</h2>
+  <div id="lessonContent"></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px">
+    <button class="btn" id="completeBtn" onclick="completeLesson()">✓ Kamilisha Somo (+10 XP)</button>
+    <button class="btn secondary" onclick="closeLesson()">Rudi kwa Mada</button>
+  </div>
+  <p id="feedback"></p>
+</section>
+</main>
+
+<footer>ZYNTRA © 2026 · Jifunze leo, fanikiwa kesho.</footer>
+
+<script>
+const topics = [
+{
+ id:"sarufi",emoji:"📝",title:"Sarufi ya Kiswahili",
+ desc:"Jifunze aina za maneno, ngeli, nyakati na miundo ya sentensi.",
+ lessons:[
+  {
+   id:"aina-maneno",title:"Aina za Maneno",
+   content:`
+   <p>Aina za maneno ni makundi ya maneno kulingana na kazi yake katika sentensi.</p>
+   <h3>Aina kuu za maneno</h3>
+   <ul>
+    <li><b nom="x">Nomino:</b> Hutaja mtu, mahali, kitu au hali. Mfano: mwanafunzi, shule, furaha.</li>
+    <li><b>Vitenzi:</b> Huonyesha tendo au hali. Mfano: soma, cheza, lala.</li>
+    <li><b>Vivumishi:</b> Hueleza sifa ya nomino. Mfano: mtoto mzuri.</li>
+    <li><b>Vielezi:</b> Hufafanua tendo. Mfano: alikimbia haraka.</li>
+    <li><b>Viwakilishi:</b> Husimama badala ya nomino. Mfano: yeye, wao, hiki.</li>
+    <li><b>Viunganishi:</b> Huunganisha maneno au sentensi. Mfano: na, lakini, kwa sababu.</li>
+   </ul>
+   <div class="example">Mfano: <b>Mwanafunzi mwerevu anasoma vizuri.</b><br>
+   Mwanafunzi = nomino; mwerevu = kivumishi; anasoma = kitenzi; vizuri = kielezi.</div>
+   <h3>Jaribio</h3>
+   <p>Katika sentensi “Asha anakimbia haraka”, neno “haraka” ni aina gani ya neno?</p>
+   <div class="question">
+    <label><input type="radio" name="q" value="a"> Nomino</label>
+    <label><input type="radio" name="q" value="b"> Kielezi</label>
+    <label><input type="radio" name="q" value="c"> Kitenzi</label>
+   </div>
+   <button class="btn" onclick="checkAnswer('b','Haraka ni kielezi kwa sababu linafafanua jinsi Asha anavyokimbia.')">Angalia Jibu</button>
+   <div id="answerFeedback"></div>`
+  },
+  {
+   id:"ngeli",title:"Ngeli za Nomino",
+   content:`
+   <p>Ngeli ni makundi ya nomino yanayofuata upatanisho maalumu wa kisarufi.</p>
+   <h3>Mifano ya ngeli</h3>
+   <ul>
+    <li><b>A-WA:</b> mtoto/watoto — Mtoto anacheza. Watoto wanacheza.</li>
+    <li><b>U-I:</b> mti/miti — Mti umeanguka. Miti imeanguka.</li>
+    <li><b>LI-YA:</b> tunda/matunda — Tunda limeiva. Matunda yameiva.</li>
+    <li><b>KI-VI:</b> kiti/viti — Kiti kimevunjika. Viti vimevunjika.</li>
+    <li><b>I-ZI:</b> nyumba/nyumba — Nyumba imejengwa. Nyumba zimejengwa.</li>
+    <li><b>U-ZI:</b> uzi/nyuzi — Uzi umekatika. Nyuzi zimekatika.</li>
+   </ul>
+   <div class="example">Kumbuka: Upatanisho wa kisarufi huonekana katika nomino, vivumishi na vitenzi.</div>
+   <h3>Jaribio</h3><p>Wingi wa “kiti” ni upi?</p>
+   <div class="question">
+    <label><input type="radio" name="q" value="a"> Viti</label>
+    <label><input type="radio" name="q" value="b"> Makiti</label>
+    <label><input type="radio" name="q" value="c"> Vikiti</label>
+   </div>
+   <button class="btn" onclick="checkAnswer('a','Wingi wa kiti ni viti.')">Angalia Jibu</button>
+   <div id="answerFeedback"></div>`
+  },
+  {
+   id:"nyakati",title:"Nyakati za Vitenzi",
+   content:`
+   <p>Nyakati huonyesha wakati tendo linapotendeka.</p>
+   <h3>Mifano</h3>
+   <ul>
+    <li><b>Wakati uliopo:</b> A-na-soma. Mfano: Amina anasoma.</li>
+    <li><b>Wakati uliopita:</b> A-li-soma. Mfano: Amina alisoma.</li>
+    <li><b>Wakati ujao:</b> A-ta-soma. Mfano: Amina atasoma.</li>
+    <li><b>Hali timilifu:</b> A-me-soma. Mfano: Amina amesoma.</li>
+   </ul>
+   <div class="example">Mifano ya viambishi: -na- (uliopo), -li- (uliopita), -ta- (ujao), -me- (timilifu).</div>
+   <h3>Jaribio</h3><p>Sentensi “Wanafunzi watafanya mtihani kesho” iko katika wakati upi?</p>
+   <div class="question">
+    <label><input type="radio" name="q" value="a"> Uliopita</label>
+    <label><input type="radio" name="q" value="b"> Ujao</label>
+    <label><input type="radio" name="q" value="c"> Timilifu</label>
+   </div>
+   <button class="btn" onclick="checkAnswer('b','Watafanya huonyesha wakati ujao.')">Angalia Jibu</button>
+   <div id="answerFeedback"></div>`
+  }
+ ]
+},
+{
+ id:"fasihi",emoji:"📖",title:"Fasihi",
+ desc:"Chunguza fasihi simulizi, fasihi andishi na vipengele vya kazi za fasihi.",
+ lessons:[
+  {
+   id:"fasihi-simulizi",title:"Fasihi Simulizi",
+   content:`
+   <p>Fasihi simulizi ni sanaa inayowasilishwa kwa njia ya mdomo kutoka kwa mtu mmoja hadi mwingine au kizazi kimoja hadi kingine.</p>
+   <h3>Tanzu za fasihi simulizi</h3>
+   <ul>
+    <li>Hadithi</li><li>Ngano</li><li>Vitendawili</li>
+    <li>Methali</li><li>Nyimbo</li><li>Misemo na mafumbo</li>
+   </ul>
+   <h3>Sifa zake</h3>
+   <ul>
+    <li>Hutegemea fanani na hadhira.</li>
+    <li>Inaweza kuambatana na ishara, nyimbo au vitendo.</li>
+    <li>Inaweza kubadilika kulingana na msimulizi na mazingira.</li>
+   </ul>
+   <div class="example"><b>Mfano wa methali:</b> Haraka haraka haina baraka.</div>
+   <h3>Jaribio</h3><p>Ni ipi kati ya hizi ni tanzu ya fasihi simulizi?</p>
+   <div class="question">
+    <label><input type="radio" name="q" value="a"> Riwaya pekee</label>
+    <label><input type="radio" name="q" value="b"> Kitendawili</label>
+    <label><input type="radio" name="q" value="c"> Barua rasmi pekee</label>
+   </div>
+   <button class="btn" onclick="checkAnswer('b','Kitendawili ni utanzu wa fasihi simulizi.')">Angalia Jibu</button>
+   <div id="answerFeedback"></div>`
+  },
+  {
+   id:"vipengele-fasihi",title:"Vipengele vya Fasihi",
+   content:`
+   <p>Unapochambua kazi ya fasihi, zingatia vipengele vifuatavyo:</p>
+   <ul>
+    <li><b>Dhamira:</b> Wazo kuu au suala linalozungumziwa.</li>
+    <li><b>Wahusika:</b> Watu au viumbe wanaoshiriki katika kazi.</li>
+    <li><b>Mandhari:</b> Mahali na wakati matukio yanapotokea.</li>
+    <li><b>Mtindo:</b> Namna mwandishi au fanani anavyowasilisha kazi.</li>
+    <li><b>Muundo:</b> Mpangilio wa sehemu za kazi.</li>
+    <li><b>Maudhui:</b> Mawazo, ujumbe na masuala yanayojadiliwa.</li>
+   </ul>
+   <div class="example">Mfano: Hadithi kuhusu ufisadi inaweza kuwa na dhamira ya uongozi mbaya na matokeo yake kwa jamii.</div>
+   <h3>Jaribio</h3><p>Mahali ambapo matukio ya hadithi hutokea huitwaje?</p>
+   <div class="question">
+    <label><input type="radio" name="q" value="a"> Mandhari</label>
+    <label><input type="radio" name="q" value="b"> Wahusika</label>
+    <label><input type="radio" name="q" value="c"> Mtindo</label>
+   </div>
+   <button class="btn" onclick="checkAnswer('a','Mandhari hueleza mahali na wakati wa matukio.')">Angalia Jibu</button>
+   <div id="answerFeedback"></div>`
+  }
+ ]
+},
+{
+ id:"ufahamu",emoji:"🔎",title:"Ufahamu",
+ desc:"Jifunze kusoma kifungu, kubaini ujumbe na kujibu maswali kwa usahihi.",
+ lessons:[
+  {
+   id:"kusoma-kifungu",title:"Kusoma na Kujibu Maswali",
+   content:`
+   <p>Ufahamu ni uwezo wa kusoma au kusikiliza habari na kuelewa maana yake.</p>
+   <h3>Mbinu za kujibu maswali</h3>
+   <ol>
+    <li>Soma maswali kwanza ili ujue unachotafuta.</li>
+    <li>Soma kifungu kwa makini.</li>
+    <li>Tambua hoja muhimu na maneno muhimu.</li>
+    <li>Jibu swali moja kwa moja kwa kutumia ushahidi wa kifungu.</li>
+    <li>Angalia kama jibu lako linakidhi maelekezo ya swali.</li>
+   </ol>
+   <div class="example"><b>Kifungu:</b> Neema alifika shuleni mapema kila siku. Alitumia muda wa ziada kusoma maktaba na kuwasaidia wenzake kuelewa masomo.<br><br>
+   <b>Swali:</b> Neema alitumiaje muda wake wa ziada?<br>
+   <b>Jibu:</b> Alisoma maktaba na kuwasaidia wenzake.</div>
+   <h3>Jaribio</h3><p>Kulingana na kifungu, Neema aliwasaidia nani?</p>
+   <div class="question">
+    <label><input type="radio" name="q" value="a"> Walimu wake</label>
+    <label><input type="radio" name="q" value="b"> Wenzake</label>
+    <label><input type="radio" name="q" value="c"> Wazazi wake</label>
+   </div>
+   <button class="btn" onclick="checkAnswer('b','Neema aliwasaidia wenzake kuelewa masomo.')">Angalia Jibu</button>
+   <div id="answerFeedback"></div>`
+  }
+ ]
+},
+{
+ id:"insha",emoji:"✍️",title:"Uandishi wa Insha",
+ desc:"Jifunze kupanga mawazo, kuandika aya na kutumia lugha inayofaa.",
+ lessons:[
+  {
+   id:"insha-simulizi",title:"Insha ya Masimulizi",
+   content:`
+   <p>Insha ya masimulizi husimulia tukio au mfululizo wa matukio. Inaweza kuwa ya kweli au ya kubuni.</p>
+   <h3>Muundo wa insha</h3>
+   <ul>
+    <li><b>Mwanzo:</b> Tambulisha wahusika, wakati au mazingira.</li>
+    <li><b>Kiini:</b> Eleza matukio kwa mpangilio unaoeleweka.</li>
+    <li><b>Hitimisho:</b> Malizia kisa kwa namna inayofaa.</li>
+   </ul>
+   <h3>Vidokezo vya uandishi</h3>
+   <ul>
+    <li>Tumia aya zilizopangwa vizuri.</li>
+    <li>Tumia viunganishi kama “baadaye”, “hatimaye” na “ghafla”.</li>
+    <li>Epuka kurudia maneno bila sababu.</li>
+    <li>Kagua tahajia, alama za uandishi na sarufi.</li>
+   </ul>
+   <div class="example"><b>Mazoezi:</b> Andika insha kuhusu siku ambayo hutaisahau. Panga mawazo yako katika mwanzo, kiini na hitimisho.</div>
+   <h3>Jaribio</h3><p>Sehemu inayofunga insha huitwaje?</p>
+   <div class="question">
+    <label><input type="radio" name="q" value="a"> Kichwa</label>
+    <label><input type="radio" name="q" value="b"> Hitimisho</label>
+    <label><input type="radio" name="q" value="c"> Utangulizi pekee</label>
+   </div>
+   <button class="btn" onclick="checkAnswer('b','Hitimisho hufunga na kukamilisha insha.')">Angalia Jibu</button>
+   <div id="answerFeedback"></div>`
+  }
+ ]
+},
+{
+ id:"barua",emoji:"✉️",title:"Barua Rasmi na Barua za Kirafiki",
+ desc:"Elewa tofauti za barua rasmi na zisizo rasmi pamoja na mpangilio wake.",
+ lessons:[
+  {
+   id:"barua-rasmi",title:"Uandishi wa Barua Rasmi",
+   content:`
+   <p>Barua rasmi huandikwa kwa madhumuni ya kikazi, kiofisi au kuwasilisha ombi na malalamiko.</p>
+   <h3>Vipengele vya barua rasmi</h3>
+   <ol>
+    <li>Anwani ya mwandishi.</li>
+    <li>Tarehe.</li>
+    <li>Anwani ya mpokeaji.</li>
+    <li>Salamu.</li>
+    <li>Kichwa cha barua.</li>
+    <li>Utangulizi, kiini na hitimisho.</li>
+    <li>Wako mwaminifu au tamati inayofaa, kisha jina na sahihi.</li>
+   </ol>
+   <h3>Barua ya kirafiki</h3>
+   <p>Barua ya kirafiki huandikwa kwa rafiki au mtu wa karibu. Lugha yake huwa ya kawaida zaidi, lakini bado inapaswa kuwa wazi na yenye mpangilio.</p>
+   <div class="example"><b>Mazoezi:</b> Andika barua kwa mkuu wa shule ukiomba ruhusa ya kuanzisha klabu ya kusoma.</div>
+   <h3>Jaribio</h3><p>Barua ya kuomba nafasi ya kazi kwa kawaida ni aina gani?</p>
+   <div class="question">
+    <label><input type="radio" name="q" value="a"> Barua rasmi</label>
+    <label><input type="radio" name="q" value="b"> Barua ya kirafiki</label>
+    <label><input type="radio" name="q" value="c"> Ujumbe wa kawaida tu</label>
+   </div>
+   <button class="btn" onclick="checkAnswer('a','Barua ya kuomba kazi ni barua rasmi.')">Angalia Jibu</button>
+   <div id="answerFeedback"></div>`
+  }
+ ]
+}
+];
+
+const grid = document.getElementById("topicGrid");
+const search = document.getElementById("search");
+let activeLesson = null;
+
+function getUserKey(){
+  let user = "guest";
+  try{
+    const stored = localStorage.getItem("zyntraUser");
+    if(stored){
+      const parsed = JSON.parse(stored);
+      user = parsed.username || parsed.email || parsed.name || stored;
+    }
+  }catch(e){
+    user = localStorage.getItem("zyntraUser") || "guest";
+  }
+  return String(user).replace(/[^a-zA-Z0-9_-]/g,"_");
+}
+const userKey = getUserKey();
+const progressKey = "zyntraKiswahiliCompleted_" + userKey;
+const xpKey = "zyntraKiswahiliXP_" + userKey;
+
+function getCompleted(){
+  try{return JSON.parse(localStorage.getItem(progressKey) || "[]")}
+  catch(e){return []}
+}
+function getXP(){
+  return Number(localStorage.getItem(xpKey) || 0);
+}
+function renderTopics(){
+  const term = search.value.trim().toLowerCase();
+  const completed = getCompleted();
+  grid.innerHTML = "";
+
+  const filtered = topics.filter(topic =>
+    (topic.title + " " + topic.desc + " " +
+    topic.lessons.map(l=>l.title).join(" "))
+    .toLowerCase().includes(term)
+  );
+
+  filtered.forEach(topic=>{
+    const done = topic.lessons.filter(l=>
+      completed.includes(topic.id + ":" + l.id)
+    ).length;
+    const percent = topic.lessons.length ?
+      Math.round(done/topic.lessons.length*100) : 0;
+
+    const card = document.createElement("article");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="emoji">${topic.emoji}</div>
+      <h3>${topic.title}</h3>
+      <p>${topic.desc}</p>
+      <div class="lesson-count">${topic.lessons.length} ${topic.lessons.length===1?"somo":"masomo"} · ${done} yamekamilika</div>
+      <div class="progress-bg"><div class="progress-fill" style="width:${percent}%"></div></div>
+      <button class="btn" type="button">Fungua Mada →</button>
+    `;
+    card.querySelector("button").addEventListener("click",()=>{
+      openTopic(topic.id);
+    });
+    grid.appendChild(card);
+  });
+
+  document.getElementById("emptyMessage").style.display =
+    filtered.length ? "none" : "block";
+  updateStats();
+}
+function updateStats(){
+  const completed = getCompleted();
+  const total = topics.reduce((n,t)=>n+t.lessons.length,0);
+  document.getElementById("topicCount").textContent = topics.length;
+  document.getElementById("completedCount").textContent =
+    completed.length + "/" + total;
+  document.getElementById("xpCount").textContent = getXP() + " XP";
+}
+function openTopic(topicId){
+  const topic = topics.find(t=>t.id===topicId);
+  if(!topic)return;
+
+  const completed = getCompleted();
+  document.getElementById("lessonTitle").textContent = topic.title;
+  document.getElementById("lessonContent").innerHTML =
+    `<p style="margin-bottom:15px;color:#c4b5fd">${topic.desc}</p>` +
+    `<h3>Chagua somo:</h3>` +
+    topic.lessons.map((lesson,i)=>{
+      const key=topic.id+":"+lesson.id;
+      const done=completed.includes(key);
+      return `<div class="card" style="margin:12px 0;padding:16px">
+        <h3>${i+1}. ${lesson.title} ${done?"✓":""}</h3>
+        <button class="btn" style="margin-top:12px" onclick="showLesson('${topic.id}','${lesson.id}')">Soma Somo →</button>
+      </div>`;
+    }).join("");
+
+  document.getElementById("completeBtn").style.display="none";
+  document.getElementById("feedback").textContent="";
+  document.getElementById("lessonArea").style.display="block";
+  document.getElementById("lessonArea").scrollIntoView({behavior:"smooth"});
+  activeLesson=null;
+}
+function showLesson(topicId,lessonId){
+  const topic=topics.find(t=>t.id===topicId);
+  const lesson=topic && topic.lessons.find(l=>l.id===lessonId);
+  if(!lesson)return;
+
+  activeLesson=topicId+":"+lessonId;
+  document.getElementById("lessonTitle").textContent=lesson.title;
+  document.getElementById("lessonContent").innerHTML=lesson.content;
+  document.getElementById("completeBtn").style.display="inline-block";
+
+  const done=getCompleted().includes(activeLesson);
+  document.getElementById("completeBtn").textContent=
+    done?"✓ Tayari Umekamilisha Somo":"✓ Kamilisha Somo (+10 XP)";
+  document.getElementById("completeBtn").disabled=done;
+  document.getElementById("completeBtn").style.opacity=done?".6":"1";
+  document.getElementById("feedback").textContent=
+    done?"Umeshakamilisha somo hili.": "";
+
+  document.getElementById("lessonArea").scrollIntoView({behavior:"smooth"});
+}
+function checkAnswer(correct,explanation){
+  const selected=document.querySelector('input[name="q"]:checked');
+  const feedback=document.getElementById("answerFeedback");
+  if(!selected){
+    feedback.textContent="Tafadhali chagua jibu kwanza.";
+    feedback.style.color="#fbbf24";
+    return;
+  }
+  if(selected.value===correct){
+    feedback.textContent="✓ Sahihi! "+explanation;
+    feedback.style.color="#4ade80";
+  }else{
+    feedback.textContent="Bado si sahihi. Jaribu tena. Kidokezo: fikiria maelezo ya somo.";
+    feedback.style.color="#fb7185";
+  }
+}
+function completeLesson(){
+  if(!activeLesson)return;
+  let completed=getCompleted();
+  if(completed.includes(activeLesson))return;
+
+  completed.push(activeLesson);
+  localStorage.setItem(progressKey,JSON.stringify(completed));
+  localStorage.setItem(xpKey,String(getXP()+10));
+
+  document.getElementById("completeBtn").textContent="✓ Somo Limekamilika";
+  document.getElementById("completeBtn").disabled=true;
+  document.getElementById("completeBtn").style.opacity=".6";
+  document.getElementById("feedback").textContent=
+    "Hongera! Umepata XP 10 kwa kukamilisha somo.";
+  document.getElementById("feedback").style.color="#4ade80";
+  renderTopics();
+}
+function closeLesson(){
+  document.getElementById("lessonArea").style.display="none";
+  activeLesson=null;
+  renderTopics();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+search.addEventListener("input",renderTopics);
+renderTopics();
+</script>
+</body>
+</html>

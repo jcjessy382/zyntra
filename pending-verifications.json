@@ -1,0 +1,19 @@
+{
+  "verifications": [
+    {
+      "id": 1789744398001,
+      "name": "omondibradox3@gmail.com",
+      "fullName": "omondibradox3@gmail.com",
+      "username": "omondibradox3@gmail.com",
+      "email": "omondibradox3@gmail.com",
+      "grade": "Grade 11",
+      "class": "Grade 11",
+      "passwordHash": "scrypt:a2614fce0a93f77efd5229263bf9a768:da44669f4424f779740db746d5ce4dcbbdd130ef42c53e626565c6597a0d0b38592cc6d64218dff5bd35492dac63c7932cde9f6cfffc1bbf9e97c2522db65586",
+      "codeHash": "caa840c38c41e7ddb0215e684fec57cb8a13348d3f555079e4fd22d329383c8f",
+      "expiresAt": 1789744998001,
+      "attempts": 0,
+      "lastSentAt": 1789744398001,
+      "createdAt": "2026-09-18T15:13:18.001Z"
+    }
+  ]
+}

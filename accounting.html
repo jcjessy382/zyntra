@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Accounting</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070711;--card:#111124;--border:#292743;--purple:#8b5cf6;--blue:#3b82f6;--text:#f5f3ff;--muted:#aaa7c5;--green:#22c55e}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+header{position:sticky;top:0;z-index:10;background:#0b0b19ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:15px 5%}
+nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:23px;font-weight:900;color:#a78bfa;text-decoration:none;letter-spacing:1px}
+.navlinks{display:flex;gap:10px;flex-wrap:wrap}
+.navlinks a{color:#e9e5ff;text-decoration:none;padding:8px 12px;border-radius:9px;background:#17162a;font-size:13px}
+main{max-width:1200px;margin:auto;padding:28px 5% 60px}
+.hero{text-align:center;padding:38px 10px 30px}
+.tag{display:inline-block;background:#241843;color:#c4b5fd;padding:6px 13px;border-radius:20px;font-size:12px;margin-bottom:14px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.2;margin-bottom:12px}
+.gradient{background:linear-gradient(90deg,#c4b5fd,#60a5fa);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero p,.muted{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
+.stat,.panel,.topic,.lessonbox,.quizbox{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px}
+.stat{text-align:center}
+.stat strong{display:block;font-size:25px;color:#c4b5fd}
+.stat span{font-size:12px;color:var(--muted)}
+.progress-track{height:8px;background:#27243b;border-radius:20px;overflow:hidden;margin-top:10px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--blue));transition:width .3s}
+.section-title{font-size:22px;margin:30px 0 14px}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}
+.topic{cursor:pointer;transition:.2s}
+.topic:hover,.topic.active{border-color:var(--purple);transform:translateY(-2px)}
+.topic .emoji{font-size:27px}
+.topic h3{font-size:16px;margin:5px 0}
+.topic p{font-size:13px;color:var(--muted)}
+.topic small{display:block;color:#c4b5fd;margin-top:8px}
+.lesson-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr);gap:15px;margin-top:20px}
+.lesson-list{display:grid;gap:8px;margin-top:13px}
+.lesson-btn{background:#17162a;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:10px;text-align:left;cursor:pointer;width:100%}
+.lesson-btn.active{border-color:var(--purple);background:#241843}
+.lesson-btn.done{border-color:#166534}
+.lesson-btn small{display:block;color:var(--muted)}
+.lessonbox h2{font-size:24px;margin:7px 0}
+.lessonbox h3{font-size:17px;color:#c4b5fd;margin:18px 0 7px}
+.lessonbox p{margin:9px 0}
+.lessonbox ul{padding-left:22px;margin:8px 0}
+.example{background:#19162d;border-left:3px solid var(--purple);padding:12px;border-radius:6px;margin:12px 0;overflow-x:auto}
+.data-table{width:100%;border-collapse:collapse;margin:12px 0;min-width:280px}
+.data-table th,.data-table td{padding:10px;text-align:left;border-bottom:1px solid var(--border)}
+.data-table th{color:#c4b5fd}
+.table-wrap{overflow-x:auto}
+button{font:inherit}
+.primary,.secondary{border:0;border-radius:10px;padding:11px 15px;cursor:pointer;font-weight:bold}
+.primary{background:linear-gradient(100deg,var(--purple),var(--blue));color:white}
+.secondary{background:#24213a;color:white;border:1px solid var(--border)}
+.primary:disabled{opacity:.65;cursor:default}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.quiz-question{padding:15px;background:#17162a;border:1px solid var(--border);border-radius:12px;margin:12px 0}
+.quiz-question p{font-weight:bold;margin-bottom:9px}
+.quiz-question label{display:block;padding:6px 0;cursor:pointer;color:#e4e0f5}
+.quiz-question input{margin-right:8px;accent-color:var(--purple)}
+#quizResult{margin-top:14px;font-weight:bold}
+.notice{color:var(--muted);font-size:13px;margin-top:12px}
+footer{text-align:center;color:var(--muted);padding:24px;border-top:1px solid var(--border)}
+@media(max-width:700px){.lesson-layout{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:12px}.stat strong{font-size:21px}main{padding-left:4%;padding-right:4%}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a class="logo" href="index.html">ZYNTRA</a>
+<div class="navlinks">
+<a href="index.html">Home</a>
+<a href="study.html">Study</a>
+<a href="profile.html">Profile</a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<span class="tag">BUSINESS AND FINANCE</span>
+<h1>Learn <span class="gradient">Accounting</span></h1>
+<p>Understand business transactions, bookkeeping, financial records, and how businesses measure performance.</p>
+</section>
+
+<section class="stats">
+<div class="stat"><strong id="completedCount">0</strong><span>Lessons completed</span></div>
+<div class="stat"><strong id="xpCount">0</strong><span>XP earned</span></div>
+<div class="stat"><strong id="progressPercent">0%</strong><span>Overall progress</span></div>
+</section>
+<div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+
+<h2 class="section-title">Choose a topic</h2>
+<section class="topics" id="topicGrid"></section>
+
+<div class="lesson-layout">
+<section class="panel">
+<h2 class="section-title" style="margin-top:0">Lessons</h2>
+<p class="muted" id="topicDescription">Select a topic to begin.</p>
+<div class="lesson-list" id="lessonList"></div>
+</section>
+<section class="lessonbox" id="lessonContent">
+<span class="tag">YOUR ACCOUNTING CLASS</span>
+<h2>Welcome to Accounting!</h2>
+<p>Select a topic and lesson to begin learning.</p>
+<div class="example">Accounting is the process of recording, classifying, summarising, and interpreting financial transactions.</div>
+<p>Study the notes, work through examples, and complete the lessons to earn XP.</p>
+</section>
+</div>
+
+<section class="quizbox" style="margin-top:25px">
+<h2 class="section-title" style="margin-top:0">Accounting Quiz</h2>
+<p class="muted">Answer all six questions and check your score.</p>
+<form id="quizForm"></form>
+<div class="actions">
+<button class="primary" type="button" id="checkQuiz">Check answers</button>
+<button class="secondary" type="button" id="resetQuiz">Try again</button>
+</div>
+<p id="quizResult" aria-live="polite"></p>
+<p class="notice">Earn 5 bonus XP for a score of at least 4 out of 6, once per page session.</p>
+</section>
+</main>
+
+<footer>© 2026 ZYNTRA • Learn something new every day.</footer>
+
+<script>
+const topics=[
+{
+title:"Introduction to Accounting",emoji:"📘",description:"Learn the purpose and users of accounting.",
+lessons:[
+{title:"Meaning and Purpose of Accounting",content:`
+<h3>What is accounting?</h3>
+<p>Accounting is the systematic process of identifying, measuring, recording, classifying, summarising, and communicating financial information.</p>
+<h3>Objectives of accounting</h3>
+<ul><li>Keep a record of financial transactions.</li><li>Calculate profit or loss.</li><li>Determine the financial position of a business.</li><li>Help owners and managers make decisions.</li><li>Provide information for tax and legal requirements.</li></ul>
+<h3>Bookkeeping and accounting</h3>
+<p><b>Bookkeeping</b> mainly involves recording financial transactions. <b>Accounting</b> includes recording as well as classifying, analysing, interpreting, and reporting financial information.</p>
+<div class="example">Example: A shop records sales each day. At the end of the month, it calculates its profit and reviews its expenses.</div>`},
+{title:"Users of Accounting Information",content:`
+<h3>Internal users</h3>
+<ul><li>Owners: check profit and financial position.</li><li>Managers: plan operations and control costs.</li><li>Employees: may assess job security and the business's performance.</li></ul>
+<h3>External users</h3>
+<ul><li>Investors: decide whether to invest.</li><li>Banks and lenders: assess the ability to repay loans.</li><li>Suppliers: assess whether credit customers can pay.</li><li>Government authorities: assess tax and regulatory compliance.</li><li>Customers: may consider the long-term stability of a supplier.</li></ul>
+<p>Different users need different financial information to make informed decisions.</p>`}
+]},
+{
+title:"Accounting Equation",emoji:"⚖️",description:"Understand assets, liabilities, and owner's equity.",
+lessons:[
+{title:"Assets, Liabilities and Capital",content:`
+<h3>Three key terms</h3>
+<ul><li><b>Assets:</b> resources owned or controlled by a business, such as cash, equipment, and inventory.</li><li><b>Liabilities:</b> amounts the business owes to other parties, such as loans and unpaid supplier bills.</li><li><b>Capital / owner's equity:</b> the owner's residual interest in the business after liabilities are deducted from assets.</li></ul>
+<div class="example"><b>Accounting equation</b><br>Assets = Liabilities + Owner's Equity</div>
+<p>If a business has assets of KSh 100,000 and liabilities of KSh 30,000:</p>
+<p>Owner's equity = 100,000 − 30,000 = <b>KSh 70,000</b>.</p>`},
+{title:"Applying the Accounting Equation",content:`
+<h3>Worked example</h3>
+<p>A business starts with KSh 50,000 cash contributed by its owner. It then borrows KSh 20,000 from a bank.</p>
+<div class="table-wrap"><table class="data-table"><tr><th>Transaction</th><th>Assets</th><th>Liabilities</th><th>Equity</th></tr>
+<tr><td>Owner invests cash</td><td>50,000</td><td>0</td><td>50,000</td></tr>
+<tr><td>Bank loan received</td><td>70,000</td><td>20,000</td><td>50,000</td></tr></table></div>
+<p>After borrowing, both cash (an asset) and the bank loan (a liability) increase by KSh 20,000.</p>
+<p>The equation still balances: 70,000 = 20,000 + 50,000.</p>`}
+]},
+{
+title:"Double-Entry Bookkeeping",emoji:"🔁",description:"Learn debits, credits, and transaction entries.",
+lessons:[
+{title:"The Double-Entry Principle",content:`
+<h3>What is double-entry?</h3>
+<p>Every transaction affects at least two accounts. The total debits must equal the total credits.</p>
+<div class="example"><b>Accounting rule:</b><br>Total debits = Total credits</div>
+<h3>Debit and credit</h3>
+<p>Debit means the left side of an account; credit means the right side. Their effect depends on the account type.</p>
+<div class="table-wrap"><table class="data-table"><tr><th>Account type</th><th>Increase</th><th>Decrease</th></tr>
+<tr><td>Assets</td><td>Debit</td><td>Credit</td></tr>
+<tr><td>Expenses</td><td>Debit</td><td>Credit</td></tr>
+<tr><td>Liabilities</td><td>Credit</td><td>Debit</td></tr>
+<tr><td>Capital / Equity</td><td>Credit</td><td>Debit</td></tr>
+<tr><td>Income / Revenue</td><td>Credit</td><td>Debit</td></tr></table></div>`},
+{title:"Recording Simple Transactions",content:`
+<h3>Example 1: Owner invests cash</h3>
+<p>The owner puts KSh 10,000 into the business.</p>
+<div class="table-wrap"><table class="data-table"><tr><th>Account</th><th>Debit (KSh)</th><th>Credit (KSh)</th></tr>
+<tr><td>Cash</td><td>10,000</td><td>—</td></tr><tr><td>Capital</td><td>—</td><td>10,000</td></tr></table></div>
+<h3>Example 2: Pay rent in cash</h3>
+<p>The business pays rent of KSh 2,000.</p>
+<div class="table-wrap"><table class="data-table"><tr><th>Account</th><th>Debit (KSh)</th><th>Credit (KSh)</th></tr>
+<tr><td>Rent expense</td><td>2,000</td><td>—</td></tr><tr><td>Cash</td><td>—</td><td>2,000</td></tr></table></div>
+<p>In both examples, total debit equals total credit.</p>`}
+]},
+{
+title:"Books of Original Entry",emoji:"📒",description:"Explore journals, cash books, and source documents.",
+lessons:[
+{title:"Source Documents and Journals",content:`
+<h3>Source documents</h3>
+<p>Source documents provide evidence that a transaction took place.</p>
+<ul><li>Receipt: confirms that money was received or paid.</li><li>Invoice: requests payment for goods or services supplied on credit.</li><li>Credit note: records a reduction in the amount owed, often after goods are returned.</li><li>Debit note: may notify a supplier of a claim or adjustment, depending on the accounting system.</li><li>Cheque counterfoil or bank record: helps document payments.</li></ul>
+<h3>Books of original entry</h3>
+<p>These are books in which transactions are first recorded before being posted to ledger accounts.</p>
+<ul><li>Sales journal: credit sales of goods.</li><li>Purchases journal: credit purchases of goods for resale.</li><li>Returns journals: goods returned by customers or to suppliers.</li><li>Cash book: cash and bank receipts and payments.</li><li>General journal: certain adjustments and transactions not entered in specialised journals.</li></ul>`},
+{title:"The Cash Book",content:`
+<h3>Purpose of a cash book</h3>
+<p>A cash book records money received and money paid through cash or bank. It can also serve as a ledger account for cash and bank.</p>
+<div class="table-wrap"><table class="data-table"><tr><th>Receipts side</th><th>Payments side</th></tr>
+<tr><td>Cash sales</td><td>Rent paid</td></tr>
+<tr><td>Money received from customers</td><td>Purchases paid in cash</td></tr>
+<tr><td>Capital introduced in cash</td><td>Wages paid</td></tr>
+<tr><td>Loan received into bank</td><td>Money paid to suppliers</td></tr></table></div>
+<p>Cash received is entered on the debit side of the cash account; cash paid is entered on the credit side.</p>
+<div class="example">Opening cash KSh 5,000 + receipts KSh 2,000 − payments KSh 1,500 = closing cash KSh 5,500.</div>`}
+]},
+{
+title:"Ledgers and Trial Balance",emoji:"📚",description:"Post entries and check arithmetic accuracy.",
+lessons:[
+{title:"Ledger Accounts",content:`
+<h3>What is a ledger?</h3>
+<p>A ledger groups transactions into individual accounts, such as cash, sales, rent, capital, and debtors.</p>
+<p>Transactions recorded in journals or subsidiary books are posted to the relevant ledger accounts.</p>
+<h3>Balancing an account</h3>
+<p>To balance an account, total both sides, calculate the difference, and enter the balancing figure on the smaller side. The balance is then carried forward as appropriate.</p>
+<div class="example"><b>Cash account example</b><br>Debit entries: KSh 8,000<br>Credit entries: KSh 3,000<br>Balance: KSh 5,000 debit.</div>`},
+{title:"The Trial Balance",content:`
+<h3>Meaning</h3>
+<p>A trial balance is a list of ledger account balances at a particular date, arranged into debit and credit columns.</p>
+<h3>Purposes</h3>
+<ul><li>Check the arithmetic equality of debit and credit balances.</li><li>Help prepare financial statements.</li><li>Help identify some posting or calculation errors.</li></ul>
+<div class="example"><b>Example</b><br>Cash: debit KSh 5,000<br>Capital: credit KSh 5,000<br>Total debit = KSh 5,000; total credit = KSh 5,000.</div>
+<p><b>Important:</b> A balanced trial balance does not prove that every transaction is correct. Some errors can leave the totals equal.</p>`}
+]},
+{
+title:"Financial Statements",emoji:"📊",description:"Learn profit or loss and financial position.",
+lessons:[
+{title:"Income Statement",content:`
+<h3>Purpose</h3>
+<p>An income statement summarises income and expenses over a period to show profit or loss.</p>
+<div class="example"><b>Basic calculation</b><br>Profit = Income − Expenses</div>
+<p>For a trading business, a simplified calculation is:</p>
+<ul><li>Net sales = Sales − Sales returns.</li><li>Cost of goods sold = Opening inventory + Net purchases + Direct costs − Closing inventory.</li><li>Gross profit = Net sales − Cost of goods sold.</li><li>Net profit = Gross profit + Other income − Operating expenses.</li></ul>
+<div class="example">Net sales KSh 80,000 − cost of goods sold KSh 50,000 = gross profit KSh 30,000.</div>`},
+{title:"Statement of Financial Position",content:`
+<h3>Meaning</h3>
+<p>A statement of financial position, also called a balance sheet in many school syllabuses, shows assets, liabilities, and equity at a specific date.</p>
+<h3>Main sections</h3>
+<ul><li>Non-current assets: resources held for longer-term use, such as equipment.</li><li>Current assets: items such as inventory, receivables, and cash.</li><li>Equity: the owner's interest in the business.</li><li>Non-current liabilities: longer-term obligations, such as some bank loans.</li><li>Current liabilities: obligations due in the near term, such as trade payables.</li></ul>
+<div class="example"><b>Remember:</b><br>Assets = Equity + Liabilities.</div>
+<p>Financial statements help users understand business performance and financial position.</p>`}
+]}
+];
+
+const quizQuestions=[
+{q:"What is the main purpose of accounting?",a:["To record and communicate financial information","To advertise every product","To manufacture goods"],correct:0},
+{q:"Which of these is an asset?",a:["A bank loan owed","Cash owned by the business","Unpaid rent owed"],correct:1},
+{q:"What is the accounting equation?",a:["Assets = Income − Expenses","Capital = Assets + Liabilities","Assets = Liabilities + Owner's Equity"],correct:2},
+{q:"Under double-entry bookkeeping, total debits should equal:",a:["Total credits","Total sales only","Total expenses only"],correct:0},
+{q:"Rent paid by a business is normally recorded as:",a:["A capital contribution","An expense","A liability in every case"],correct:1},
+{q:"What does a trial balance list?",a:["Only cash sales","Only the business's customers","Ledger balances in debit and credit columns"],correct:2}
+];
+
+const username=localStorage.getItem("zyntraUser")||"guest";
+const safeKey=username.toLowerCase().replace(/[^a-z0-9_-]/g,"_");
+const completedKey="zyntraAccountingCompleted_"+safeKey;
+const xpKey="zyntraAccountingXP_"+safeKey;
+let completed=JSON.parse(localStorage.getItem(completedKey)||"[]");
+let xp=Number(localStorage.getItem(xpKey)||0);
+let currentTopic=0,currentLesson=0,quizRewarded=false;
+
+const topicGrid=document.getElementById("topicGrid");
+const lessonList=document.getElementById("lessonList");
+const lessonContent=document.getElementById("lessonContent");
+
+function lessonId(t,l){return t+"-"+l}
+function isDone(t,l){return completed.includes(lessonId(t,l))}
+function updateStats(){
+ const total=topics.reduce((n,t)=>n+t.lessons.length,0);
+ const percent=Math.round(completed.length/total*100);
+ document.getElementById("completedCount").textContent=completed.length;
+ document.getElementById("xpCount").textContent=xp;
+ document.getElementById("progressPercent").textContent=percent+"%";
+ document.getElementById("progressBar").style.width=percent+"%";
+ topicGrid.querySelectorAll(".topic").forEach((el,i)=>{
+  const done=topics[i].lessons.filter((_,j)=>isDone(i,j)).length;
+  const small=el.querySelector("small");
+  if(small)small.textContent=done+"/"+topics[i].lessons.length+" lessons completed";
+ });
+}
+function renderTopics(){
+ topicGrid.innerHTML="";
+ topics.forEach((t,i)=>{
+  const el=document.createElement("div");
+  el.className="topic"+(i===currentTopic?" active":"");
+  el.tabIndex=0;
+  el.innerHTML=`<div class="emoji">${t.emoji}</div><h3>${t.title}</h3><p>${t.description}</p><small></small>`;
+  el.onclick=()=>{currentTopic=i;currentLesson=0;renderTopics();renderLessons();renderLesson()};
+  el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();el.click()}};
+  topicGrid.appendChild(el);
+ });
+ updateStats();
+}
+function renderLessons(){
+ const t=topics[currentTopic];
+ document.getElementById("topicDescription").textContent=t.description;
+ lessonList.innerHTML="";
+ t.lessons.forEach((lesson,i)=>{
+  const btn=document.createElement("button");
+  btn.className="lesson-btn"+(i===currentLesson?" active":"")+(isDone(currentTopic,i)?" done":"");
+  btn.innerHTML=`${isDone(currentTopic,i)?"✓ ":""}${lesson.title}<small>${isDone(currentTopic,i)?"Completed • +10 XP":"Lesson "+(i+1)}</small>`;
+  btn.onclick=()=>{currentLesson=i;renderLessons();renderLesson()};
+  lessonList.appendChild(btn);
+ });
+}
+function renderLesson(){
+ const t=topics[currentTopic],l=t.lessons[currentLesson],done=isDone(currentTopic,currentLesson);
+ lessonContent.innerHTML=`
+ <span class="tag">${t.emoji} ${t.title}</span>
+ <h2>${l.title}</h2>
+ <p class="muted">Lesson ${currentLesson+1} of ${t.lessons.length}</p>
+ ${l.content}
+ <div class="actions">
+ <button class="primary" id="completeLesson" ${done?"disabled":""}>${done?"✓ Lesson Completed":"Mark Lesson Complete (+10 XP)"}</button>
+ <button class="secondary" id="nextLesson">Next Lesson →</button>
+ </div>
+ ${done?'<p class="notice">You have already earned XP for this lesson.</p>':""}`;
+ document.getElementById("completeLesson").onclick=()=>{
+  if(!isDone(currentTopic,currentLesson)){
+   completed.push(lessonId(currentTopic,currentLesson));
+   xp+=10;
+   localStorage.setItem(completedKey,JSON.stringify(completed));
+   localStorage.setItem(xpKey,String(xp));
+   renderTopics();renderLessons();renderLesson();
+  }
+ };
+ document.getElementById("nextLesson").onclick=()=>{
+  if(currentLesson<topics[currentTopic].lessons.length-1)currentLesson++;
+  else if(currentTopic<topics.length-1){currentTopic++;currentLesson=0}
+  else{alert("Congratulations! You have reached the final Accounting lesson.");return}
+  renderTopics();renderLessons();renderLesson();
+ };
+}
+function renderQuiz(){
+ const form=document.getElementById("quizForm");
+ form.innerHTML="";
+ quizQuestions.forEach((q,i)=>{
+  const div=document.createElement("div");div.className="quiz-question";
+  const p=document.createElement("p");p.textContent=(i+1)+". "+q.q;div.appendChild(p);
+  q.a.forEach((answer,j)=>{
+   const label=document.createElement("label");
+   const input=document.createElement("input");input.type="radio";input.name="q"+i;input.value=j;
+   label.appendChild(input);label.appendChild(document.createTextNode(answer));div.appendChild(label);
+  });
+  form.appendChild(div);
+ });
+}
+document.getElementById("checkQuiz").onclick=()=>{
+ let score=0,answered=0;
+ quizQuestions.forEach((q,i)=>{
+  const chosen=document.querySelector('input[name="q'+i+'"]:checked');
+  if(chosen){answered++;if(Number(chosen.value)===q.correct)score++}
+ });
+ const result=document.getElementById("quizResult");
+ if(answered<quizQuestions.length){result.textContent="Please answer all six questions before checking your score.";return}
+ result.textContent="Your score: "+score+"/"+quizQuestions.length+". "+(score===6?"Excellent work!":score>=4?"Good work! Keep practising.":"Review the notes and try again.");
+ if(!quizRewarded&&score>=4){xp+=5;localStorage.setItem(xpKey,String(xp));quizRewarded=true;result.textContent+=" You earned 5 XP!";updateStats()}
+};
+document.getElementById("resetQuiz").onclick=()=>{
+ renderQuiz();document.getElementById("quizResult").textContent="";
+};
+renderTopics();renderLessons();renderLesson();renderQuiz();
+</script>
+</body>
+</html>

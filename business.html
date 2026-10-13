@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | Business Studies</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070711;--card:#111124;--border:#292743;--purple:#8b5cf6;--blue:#3b82f6;--green:#22c55e;--muted:#aaa7c5}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#f5f3ff;line-height:1.65}
+header{position:sticky;top:0;z-index:5;background:#090916f5;border-bottom:1px solid var(--border);padding:15px 5%;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px}.logo span{color:var(--purple)}
+nav{display:flex;gap:16px;flex-wrap:wrap}a{color:#c4b5fd;text-decoration:none}a:hover{color:white}
+main{max-width:1100px;margin:auto;padding:25px 18px 60px}
+.hero{padding:45px 22px;text-align:center;border:1px solid var(--border);border-radius:22px;background:linear-gradient(135deg,#241044,#11152f,#101020);margin-bottom:28px}
+.tag{display:inline-block;padding:5px 12px;border-radius:20px;background:#8b5cf626;color:#c4b5fd;font-size:13px}
+h1{font-size:clamp(30px,6vw,46px);margin:12px 0}.hero p{max-width:650px;color:var(--muted);margin:0 auto 20px}
+.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.stat{padding:10px 16px;background:#ffffff0b;border:1px solid var(--border);border-radius:12px}.stat strong{color:#c4b5fd}
+.progress-wrap{text-align:left;margin-top:20px}.progress-label{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:7px}.progress{height:9px;background:#292743;border-radius:20px;overflow:hidden}.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--blue));transition:width .3s}
+.section-title{font-size:25px;margin:28px 0 15px}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.topic{padding:18px;background:var(--card);border:1px solid var(--border);border-radius:16px;cursor:pointer;transition:.2s}
+.topic:hover,.topic.active{border-color:var(--purple);transform:translateY(-2px)}
+.emoji{font-size:27px}.topic h3{margin:7px 0}.topic p{font-size:14px;color:var(--muted)}.topic small{color:#c4b5fd}
+.panel{margin-top:22px;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:18px}
+.panel h2{margin-bottom:10px}.panel h3{color:#c4b5fd;margin:18px 0 8px}.panel p,.panel li{color:#dedbed}.panel ul{padding-left:23px}
+.note{margin:14px 0;padding:13px;border-left:3px solid var(--purple);background:#8b5cf612;border-radius:8px}
+button{border:0;border-radius:10px;padding:11px 16px;background:linear-gradient(135deg,var(--purple),var(--blue));color:white;font-weight:bold;cursor:pointer;font-size:14px}
+button:hover{filter:brightness(1.12)}button:disabled{opacity:.5;cursor:not-allowed}
+.secondary{background:#211d39;border:1px solid var(--border)}
+.lesson-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:15px 0}
+.lesson-button{text-align:left;background:#17172b;border:1px solid var(--border)}.lesson-button.selected{border-color:var(--purple)}.lesson-button.done{border-color:var(--green)}
+.quiz-question{padding:15px 0;border-bottom:1px solid var(--border)}.quiz-question p{font-weight:bold;margin-bottom:8px}.option{display:block;margin:8px 0;color:#dedbed}.option input{margin-right:8px;accent-color:var(--purple)}
+.result{display:none;margin-top:15px;padding:14px;border-radius:10px}
+footer{text-align:center;padding:24px;color:var(--muted);border-top:1px solid var(--border)}
+@media(max-width:550px){header{justify-content:center}nav{justify-content:center}.hero{padding:30px 14px}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">ZYNTRA<span>.</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="study.html">Study</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <span class="tag">COMMERCE • BUSINESS STUDIES</span>
+  <h1>Build Your Business Mind 💼</h1>
+  <p>Learn how businesses operate, how money is managed, and how trade supports individuals and communities.</p>
+  <div class="stats">
+    <div class="stat">Completed: <strong id="completedCount">0/12</strong></div>
+    <div class="stat">Business XP: <strong id="xp">0</strong></div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-label"><span>Your progress</span><span id="progressText">0%</span></div>
+    <div class="progress"><div id="progressBar"></div></div>
+  </div>
+</section>
+
+<h2 class="section-title">📚 Choose a Topic</h2>
+<div class="topics" id="topics">
+  <div class="topic active" data-topic="0"><div class="emoji">🏪</div><h3>1. Business and Its Environment</h3><p>Meaning, objectives and types of business.</p><small>Business foundations</small></div>
+  <div class="topic" data-topic="1"><div class="emoji">🤝</div><h3>2. Forms of Business Units</h3><p>Sole proprietorships, partnerships and companies.</p><small>Business ownership</small></div>
+  <div class="topic" data-topic="2"><div class="emoji">📈</div><h3>3. Entrepreneurship</h3><p>Starting, managing and growing an enterprise.</p><small>Business opportunities</small></div>
+  <div class="topic" data-topic="3"><div class="emoji">💰</div><h3>4. Money and Banking</h3><p>Money, financial institutions and banking services.</p><small>Financial knowledge</small></div>
+  <div class="topic" data-topic="4"><div class="emoji">🛒</div><h3>5. Trade</h3><p>Home trade, international trade and retailing.</p><small>Buying and selling</small></div>
+  <div class="topic" data-topic="5"><div class="emoji">🧾</div><h3>6. Business Documents</h3><p>Invoices, receipts, orders and statements.</p><small>Business records</small></div>
+</div>
+
+<section class="panel" id="lessonArea">
+  <h2 id="topicTitle">1. Business and Its Environment</h2>
+  <p id="topicDescription">Understand the foundations of business.</p>
+  <h3>Choose a lesson</h3>
+  <div class="lesson-list" id="lessonList"></div>
+  <div id="lessonContent"></div>
+  <button id="completeButton" onclick="completeLesson()">✓ Mark Lesson Complete (+10 XP)</button>
+  <button class="secondary" onclick="nextLesson()">Next Lesson →</button>
+</section>
+
+<section class="panel">
+  <h2>🧠 Business Studies Quick Quiz</h2>
+  <p>Answer all six questions, then check your score.</p>
+  <form id="quizForm">
+    <div class="quiz-question"><p>1. What is a business?</p>
+      <label class="option"><input type="radio" name="q1" value="a"> An activity involving production or exchange of goods and services</label>
+      <label class="option"><input type="radio" name="q1" value="b"> Only an activity done by government</label>
+      <label class="option"><input type="radio" name="q1" value="c"> A place where only farming happens</label>
+    </div>
+    <div class="quiz-question"><p>2. Who owns a sole proprietorship?</p>
+      <label class="option"><input type="radio" name="q2" value="a"> A group of shareholders only</label>
+      <label class="option"><input type="radio" name="q2" value="b"> One individual</label>
+      <label class="option"><input type="radio" name="q2" value="c"> Every customer</label>
+    </div>
+    <div class="quiz-question"><p>3. Who is an entrepreneur?</p>
+      <label class="option"><input type="radio" name="q3" value="a"> A person who never takes decisions</label>
+      <label class="option"><input type="radio" name="q3" value="b"> A person who only buys goods for personal use</label>
+      <label class="option"><input type="radio" name="q3" value="c"> A person who organizes a business and takes calculated risks</label>
+    </div>
+    <div class="quiz-question"><p>4. Which is a function of money?</p>
+      <label class="option"><input type="radio" name="q4" value="a"> Medium of exchange</label>
+      <label class="option"><input type="radio" name="q4" value="b"> Preventing all trade</label>
+      <label class="option"><input type="radio" name="q4" value="c"> Replacing every product</label>
+    </div>
+    <div class="quiz-question"><p>5. Trade is mainly concerned with:</p>
+      <label class="option"><input type="radio" name="q5" value="a"> Storing information only</label>
+      <label class="option"><input type="radio" name="q5" value="b"> Buying and selling goods and services</label>
+      <label class="option"><input type="radio" name="q5" value="c"> Producing rainfall</label>
+    </div>
+    <div class="quiz-question"><p>6. Which document normally shows goods sold, quantities and prices owed?</p>
+      <label class="option"><input type="radio" name="q6" value="a"> Map</label>
+      <label class="option"><input type="radio" name="q6" value="b"> Timetable</label>
+      <label class="option"><input type="radio" name="q6" value="c"> Invoice</label>
+    </div>
+    <button type="submit">Check My Answers</button>
+  </form>
+  <div class="result" id="quizResult"></div>
+</section>
+</main>
+<footer>ZYNTRA • Learn. Practice. Progress.</footer>
+
+<script>
+const topicsData = [
+{
+title:"1. Business and Its Environment",
+description:"Learn what business means and why businesses exist.",
+lessons:[
+{title:"Meaning and Objectives",content:`
+<h3>What is business?</h3>
+<p>Business includes activities involved in producing and distributing goods and services to satisfy human wants. Many businesses aim to earn profit while serving customers.</p>
+<h3>Common objectives</h3><ul>
+<li>Making profit and remaining financially sustainable.</li>
+<li>Satisfying customers' needs.</li>
+<li>Expanding sales and market share.</li>
+<li>Creating employment.</li>
+<li>Providing useful goods and services.</li>
+</ul><div class="note"><b>Exam tip:</b> When asked for objectives, state each objective and explain it briefly.</div>`},
+{title:"Goods and Services",content:`
+<h3>Goods</h3><p>Goods are tangible items that people can see and touch, such as books, desks and food.</p>
+<h3>Services</h3><p>Services are activities provided to satisfy wants, such as teaching, transport, banking and medical care.</p>
+<h3>Basic business terms</h3><ul><li>Consumer: a person who uses goods or services.</li><li>Producer: a person or organization that makes goods or provides services.</li><li>Market: an arrangement through which buyers and sellers exchange goods or services.</li></ul>`}
+]},
+{
+title:"2. Forms of Business Units",
+description:"Compare the common ways businesses are owned and organized.",
+lessons:[
+{title:"Sole Proprietorship",content:`
+<h3>Meaning</h3><p>A sole proprietorship is a business owned and controlled by one person.</p>
+<h3>Advantages</h3><ul><li>Easy to establish in many cases.</li><li>Owner makes decisions quickly.</li><li>Owner receives the remaining profit.</li><li>Business affairs may be handled privately.</li></ul>
+<h3>Limitations</h3><ul><li>Capital may be limited.</li><li>Owner may carry unlimited personal liability for business debts.</li><li>Business continuity can depend heavily on the owner.</li></ul>`},
+{title:"Partnerships and Companies",content:`
+<h3>Partnership</h3><p>A partnership is a business owned by two or more people who agree to run it together, subject to applicable law and the partnership agreement.</p>
+<h3>Company</h3><p>A company is a business organization formed under company law. A limited company generally has a legal identity separate from its owners.</p>
+<ul><li>Partnerships can combine skills and capital.</li><li>Companies may raise capital through shares, depending on their type.</li><li>Legal requirements and liability differ between business forms.</li></ul>`}
+]},
+{
+title:"3. Entrepreneurship",
+description:"Understand how entrepreneurs identify opportunities and manage business risks.",
+lessons:[
+{title:"Meaning and Qualities",content:`
+<h3>Who is an entrepreneur?</h3><p>An entrepreneur identifies an opportunity and organizes resources to establish or develop a business, taking calculated risks.</p>
+<h3>Useful qualities</h3><ul><li>Creativity and initiative.</li><li>Good communication.</li><li>Planning and decision-making.</li><li>Persistence and adaptability.</li><li>Financial awareness.</li></ul>`},
+{title:"Starting a Business",content:`
+<h3>Basic steps</h3><ul><li>Identify a customer need or business opportunity.</li><li>Research potential customers and competitors.</li><li>Estimate start-up costs and available capital.</li><li>Prepare a business plan and pricing strategy.</li><li>Check applicable registration, tax and licensing requirements.</li><li>Promote the business and keep accurate records.</li></ul>
+<div class="note"><b>Remember:</b> Test demand and costs before committing substantial money.</div>`}
+]},
+{
+title:"4. Money and Banking",
+description:"Explore the functions of money and the services provided by financial institutions.",
+lessons:[
+{title:"Functions of Money",content:`
+<h3>What is money?</h3><p>Money is anything generally accepted as payment for goods and services and settlement of debts.</p>
+<h3>Functions</h3><ul><li>Medium of exchange.</li><li>Measure of value or unit of account.</li><li>Store of value.</li><li>Standard of deferred payment.</li></ul>
+<h3>Characteristics of good money</h3><p>It should generally be durable, portable, divisible, recognizable and acceptable.</p>`},
+{title:"Banks and Their Services",content:`
+<h3>What do banks do?</h3><ul><li>Accept deposits from customers.</li><li>Provide payment and money-transfer services.</li><li>Offer loans subject to eligibility and terms.</li><li>Keep account records and provide statements.</li></ul>
+<h3>Responsible money management</h3><ul><li>Keep account details and passwords private.</li><li>Check transaction messages and account statements.</li><li>Compare charges and terms before borrowing.</li><li>Never share a PIN or one-time verification code.</li></ul>`}
+]},
+{
+title:"5. Trade",
+description:"Study buying and selling, home trade and international trade.",
+lessons:[
+{title:"Home Trade",content:`
+<h3>Meaning</h3><p>Home trade takes place within the boundaries of one country.</p>
+<h3>Retail trade</h3><p>Retailers sell goods in relatively small quantities to final consumers.</p>
+<h3>Wholesale trade</h3><p>Wholesalers commonly buy goods in bulk from producers and resell them to retailers or other businesses.</p>
+<ul><li>Retailers provide convenience and a variety of goods.</li><li>Wholesalers help with bulk storage and distribution.</li></ul>`},
+{title:"International Trade",content:`
+<h3>Meaning</h3><p>International trade is the exchange of goods and services between countries.</p>
+<ul><li>Exports are goods or services sold to other countries.</li><li>Imports are goods or services bought from other countries.</li><li>Trade can increase product choice and create markets for producers.</li><li>Challenges can include transport costs, exchange-rate changes and trade restrictions.</li></ul>
+<div class="note"><b>Memory aid:</b> Export = sent out for sale; import = brought in for purchase.</div>`}
+]},
+{
+title:"6. Business Documents",
+description:"Learn the purpose of documents used when buying, selling and paying for goods.",
+lessons:[
+{title:"Orders, Invoices and Receipts",content:`
+<h3>Common documents</h3><ul>
+<li><b>Enquiry:</b> requests information about goods, prices or terms.</li>
+<li><b>Quotation:</b> gives prices and terms offered by a seller.</li>
+<li><b>Order:</b> requests specified goods or services.</li>
+<li><b>Invoice:</b> lists goods or services supplied and the amount payable.</li>
+<li><b>Receipt:</b> acknowledges that payment has been received.</li>
+<li><b>Credit note:</b> may reduce the amount a customer owes, for example after returned goods.</li>
+</ul>`},
+{title:"Statements and Records",content:`
+<h3>Business records</h3><p>A statement of account summarizes transactions and the balance between a seller and a customer over a period.</p>
+<ul><li>Keep copies of invoices and receipts.</li><li>Record cash received and paid.</li><li>Check totals and dates for accuracy.</li><li>Use records to monitor debts and business performance.</li></ul>
+<div class="note"><b>Exam reminder:</b> A receipt confirms payment; an invoice usually requests or records an amount payable.</div>`}
+]}
+];
+
+let currentTopic = 0;
+let currentLesson = 0;
+
+const userKey = (() => {
+try {
+const raw = localStorage.getItem("zyntraUser");
+if (!raw) return "guest";
+const user = JSON.parse(raw);
+return String(user.username || user.email || user.name || "guest").replace(/[^a-zA-Z0-9_-]/g,"_");
+} catch(e) { return "guest"; }
+})();
+
+const completedKey = "zyntraBusinessCompleted_" + userKey;
+const xpKey = "zyntraBusinessXP_" + userKey;
+
+function getCompleted(){
+try{
+const data=JSON.parse(localStorage.getItem(completedKey)||"[]");
+return Array.isArray(data)?data:[];
+}catch(e){return [];}
+}
+function getXP(){return Number(localStorage.getItem(xpKey)||0);}
+function lessonId(t,l){return t+"-"+l;}
+
+function updateProgress(){
+const completed=getCompleted();
+const total=topicsData.reduce((sum,t)=>sum+t.lessons.length,0);
+const percent=Math.round(completed.length/total*100);
+document.getElementById("completedCount").textContent=completed.length+"/"+total;
+document.getElementById("xp").textContent=getXP();
+document.getElementById("progressText").textContent=percent+"%";
+document.getElementById("progressBar").style.width=percent+"%";
+}
+
+function renderTopics(){
+document.querySelectorAll(".topic").forEach(card=>{
+card.classList.toggle("active",Number(card.dataset.topic)===currentTopic);
+});
+}
+
+function renderLessonList(){
+const topic=topicsData[currentTopic];
+const completed=getCompleted();
+document.getElementById("topicTitle").textContent=topic.title;
+document.getElementById("topicDescription").textContent=topic.description;
+document.getElementById("lessonList").innerHTML=topic.lessons.map((lesson,index)=>{
+const done=completed.includes(lessonId(currentTopic,index));
+return `<button class="lesson-button ${done?"done":""} ${index===currentLesson?"selected":""}" onclick="selectLesson(${index})">${done?"✓ ":""}${lesson.title}</button>`;
+}).join("");
+renderLessonContent();
+}
+
+function renderLessonContent(){
+const lesson=topicsData[currentTopic].lessons[currentLesson];
+const done=getCompleted().includes(lessonId(currentTopic,currentLesson));
+document.getElementById("lessonContent").innerHTML=`<h3>${lesson.title}</h3>${lesson.content}`;
+const button=document.getElementById("completeButton");
+button.disabled=done;
+button.textContent=done?"✓ Lesson Completed":"✓ Mark Lesson Complete (+10 XP)";
+}
+
+function selectLesson(index){
+currentLesson=index;
+renderLessonList();
+}
+
+function completeLesson(){
+const completed=getCompleted();
+const id=lessonId(currentTopic,currentLesson);
+if(completed.includes(id))return;
+completed.push(id);
+localStorage.setItem(completedKey,JSON.stringify(completed));
+localStorage.setItem(xpKey,String(getXP()+10));
+renderLessonList();
+updateProgress();
+}
+
+function nextLesson(){
+const topic=topicsData[currentTopic];
+if(currentLesson<topic.lessons.length-1){
+currentLesson++;
+}else if(currentTopic<topicsData.length-1){
+currentTopic++;
+currentLesson=0;
+}else{
+alert("You have reached the final lesson. Great work!");
+return;
+}
+renderTopics();
+renderLessonList();
+document.getElementById("lessonArea").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+document.querySelectorAll(".topic").forEach(card=>{
+card.addEventListener("click",()=>{
+currentTopic=Number(card.dataset.topic);
+currentLesson=0;
+renderTopics();
+renderLessonList();
+document.getElementById("lessonArea").scrollIntoView({behavior:"smooth",block:"start"});
+});
+});
+
+document.getElementById("quizForm").addEventListener("submit",function(event){
+event.preventDefault();
+const answers={q1:"a",q2:"b",q3:"c",q4:"a",q5:"b",q6:"c"};
+let score=0;
+for(const question in answers){
+const selected=this.querySelector(`input[name="${question}"]:checked`);
+if(selected&&selected.value===answers[question])score++;
+}
+const result=document.getElementById("quizResult");
+result.style.display="block";
+result.style.background=score>=5?"#22c55e20":"#8b5cf620";
+result.style.border="1px solid "+(score>=5?"#22c55e":"#8b5cf6");
+result.innerHTML=`<b>Your score: ${score}/6</b><p>${score>=5?"Excellent work! Keep revising.":"Good effort! Review the notes and try again."}</p>`;
+});
+
+renderTopics();
+renderLessonList();
+updateProgress();
+</script>
+</body>
+</html>

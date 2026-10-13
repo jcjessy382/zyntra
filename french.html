@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTRA | French</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070711;--card:#111124;--border:#292743;--purple:#8b5cf6;--blue:#3b82f6;--text:#f5f3ff;--muted:#aaa7c5;--green:#22c55e}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:10;background:#0b0b19ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:15px 5%}
+nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:23px;font-weight:900;color:#a78bfa;text-decoration:none;letter-spacing:1px}
+.navlinks{display:flex;gap:10px;flex-wrap:wrap}
+.navlinks a{color:#e9e5ff;text-decoration:none;padding:8px 12px;border-radius:9px;background:#17162a;font-size:13px}
+.navlinks a:hover{background:#302351}
+main{max-width:1200px;margin:auto;padding:28px 5% 60px}
+.hero{text-align:center;padding:38px 10px 30px}
+.tag{display:inline-block;background:#241843;color:#c4b5fd;padding:6px 13px;border-radius:20px;font-size:12px;margin-bottom:14px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.2;margin-bottom:12px}
+.gradient{background:linear-gradient(90deg,#c4b5fd,#60a5fa);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero p,.muted{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
+.stat,.panel,.topic,.lessonbox,.quizbox{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px}
+.stat{text-align:center}
+.stat strong{display:block;font-size:25px;color:#c4b5fd}
+.stat span{font-size:12px;color:var(--muted)}
+.progress-track{height:8px;background:#27243b;border-radius:20px;overflow:hidden;margin-top:10px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--blue));transition:width .3s}
+.section-title{font-size:22px;margin:30px 0 14px}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}
+.topic{cursor:pointer;transition:.2s}
+.topic:hover,.topic.active{border-color:var(--purple);transform:translateY(-2px)}
+.topic .emoji{font-size:27px}
+.topic h3{font-size:16px;margin:5px 0}
+.topic p{font-size:13px;color:var(--muted)}
+.topic small{display:block;color:#c4b5fd;margin-top:8px}
+.lesson-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr);gap:15px;margin-top:20px}
+.lesson-list{display:grid;gap:8px;margin-top:13px}
+.lesson-btn{background:#17162a;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:10px;text-align:left;cursor:pointer;width:100%}
+.lesson-btn.active{border-color:var(--purple);background:#241843}
+.lesson-btn.done{border-color:#166534}
+.lesson-btn small{display:block;color:var(--muted)}
+.lessonbox h2{font-size:24px;margin:7px 0}
+.lessonbox h3{font-size:17px;color:#c4b5fd;margin:18px 0 7px}
+.lessonbox p{margin:9px 0}
+.lessonbox ul{padding-left:22px;margin:8px 0}
+.word-table{width:100%;border-collapse:collapse;margin:12px 0}
+.word-table th,.word-table td{padding:10px;text-align:left;border-bottom:1px solid var(--border)}
+.word-table th{color:#c4b5fd}
+.example{background:#19162d;border-left:3px solid var(--purple);padding:12px;border-radius:6px;margin:12px 0}
+button{font:inherit}
+.primary,.secondary{border:0;border-radius:10px;padding:11px 15px;cursor:pointer;font-weight:bold}
+.primary{background:linear-gradient(100deg,var(--purple),var(--blue));color:white}
+.secondary{background:#24213a;color:white;border:1px solid var(--border)}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.quiz-question{padding:15px;background:#17162a;border:1px solid var(--border);border-radius:12px;margin:12px 0}
+.quiz-question p{font-weight:bold;margin-bottom:9px}
+.quiz-question label{display:block;padding:6px 0;cursor:pointer;color:#e4e0f5}
+.quiz-question input{margin-right:8px;accent-color:var(--purple)}
+#quizResult{margin-top:14px;font-weight:bold}
+.notice{color:var(--muted);font-size:13px;margin-top:12px}
+footer{text-align:center;color:var(--muted);padding:24px;border-top:1px solid var(--border)}
+@media(max-width:700px){.lesson-layout{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:12px}.stat strong{font-size:21px}main{padding-left:4%;padding-right:4%}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a class="logo" href="index.html">ZYNTRA</a>
+<div class="navlinks">
+<a href="index.html">Home</a>
+<a href="study.html">Study</a>
+<a href="profile.html">Profile</a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<span class="tag">LANGUAGE LEARNING</span>
+<h1>Learn <span class="gradient">French</span></h1>
+<p>Build your French vocabulary, understand grammar, and practise everyday conversations.</p>
+</section>
+
+<section class="stats">
+<div class="stat"><strong id="completedCount">0</strong><span>Lessons completed</span></div>
+<div class="stat"><strong id="xpCount">0</strong><span>XP earned</span></div>
+<div class="stat"><strong id="progressPercent">0%</strong><span>Overall progress</span></div>
+</section>
+<div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+
+<h2 class="section-title">Choose a topic</h2>
+<section class="topics" id="topicGrid"></section>
+
+<div class="lesson-layout">
+<section class="panel">
+<h2 class="section-title" style="margin-top:0">Lessons</h2>
+<p class="muted" id="topicDescription">Select a topic to begin.</p>
+<div class="lesson-list" id="lessonList"></div>
+</section>
+
+<section class="lessonbox" id="lessonContent">
+<span class="tag">YOUR FRENCH CLASS</span>
+<h2>Bienvenue !</h2>
+<p>Welcome to ZYNTRA French. Select a topic and lesson to start learning.</p>
+<div class="example">
+<strong>Bonjour !</strong><br>
+Hello / Good morning!
+</div>
+<p>Choose a lesson on the left to see notes and examples.</p>
+</section>
+</div>
+
+<section class="quizbox" style="margin-top:25px">
+<h2 class="section-title" style="margin-top:0">Quick French Quiz</h2>
+<p class="muted">Answer all six questions, then check your score.</p>
+<form id="quizForm"></form>
+<div class="actions">
+<button class="primary" type="button" id="checkQuiz">Check answers</button>
+<button class="secondary" type="button" id="resetQuiz">Try again</button>
+</div>
+<p id="quizResult" aria-live="polite"></p>
+<p class="notice">Quiz XP is awarded once per page session. Review the lesson notes to improve your score.</p>
+</section>
+</main>
+<footer>© 2026 ZYNTRA • Learn something new every day.</footer>
+
+<script>
+const topics = [
+{
+title:"Greetings and Introductions",emoji:"👋",description:"Greet people and introduce yourself.",
+lessons:[
+{title:"Basic Greetings",content:`
+<h3>Essential greetings</h3>
+<table class="word-table"><tr><th>French</th><th>English</th></tr>
+<tr><td>Bonjour</td><td>Hello / Good morning</td></tr>
+<tr><td>Bonsoir</td><td>Good evening</td></tr>
+<tr><td>Salut</td><td>Hi / Bye (informal)</td></tr>
+<tr><td>Au revoir</td><td>Goodbye</td></tr>
+<tr><td>À bientôt</td><td>See you soon</td></tr>
+<tr><td>Merci</td><td>Thank you</td></tr>
+<tr><td>S'il vous plaît</td><td>Please (polite)</td></tr>
+<tr><td>Excusez-moi</td><td>Excuse me</td></tr></table>
+<div class="example">A: Bonjour !<br>B: Bonjour ! Comment allez-vous ?<br>A: Je vais bien, merci.</div>`},
+{title:"Introducing Yourself",content:`
+<h3>Useful expressions</h3>
+<ul><li>Je m'appelle… — My name is…</li><li>Je suis élève. — I am a student.</li><li>J'habite à Nairobi. — I live in Nairobi.</li><li>J'ai quinze ans. — I am fifteen years old.</li><li>Enchanté(e). — Nice to meet you.</li></ul>
+<div class="example">Bonjour ! Je m'appelle Alex. Je suis élève. J'habite au Kenya. Enchanté !</div>
+<p>Remember: French uses <b>avoir</b> (to have) when stating your age.</p>`}
+]},
+{
+title:"Numbers and Time",emoji:"🔢",description:"Count, tell the time, and discuss dates.",
+lessons:[
+{title:"Numbers 0–20",content:`
+<h3>French numbers</h3>
+<table class="word-table"><tr><th>Number</th><th>French</th><th>Number</th><th>French</th></tr>
+<tr><td>0</td><td>zéro</td><td>11</td><td>onze</td></tr>
+<tr><td>1</td><td>un</td><td>12</td><td>douze</td></tr>
+<tr><td>2</td><td>deux</td><td>13</td><td>treize</td></tr>
+<tr><td>3</td><td>trois</td><td>14</td><td>quatorze</td></tr>
+<tr><td>4</td><td>quatre</td><td>15</td><td>quinze</td></tr>
+<tr><td>5</td><td>cinq</td><td>16</td><td>seize</td></tr>
+<tr><td>6</td><td>six</td><td>17</td><td>dix-sept</td></tr>
+<tr><td>7</td><td>sept</td><td>18</td><td>dix-huit</td></tr>
+<tr><td>8</td><td>huit</td><td>19</td><td>dix-neuf</td></tr>
+<tr><td>9</td><td>neuf</td><td>20</td><td>vingt</td></tr>
+<tr><td>10</td><td>dix</td><td></td><td></td></tr></table>`},
+{title:"Days and Time",content:`
+<h3>Days of the week</h3>
+<p>lundi — Monday; mardi — Tuesday; mercredi — Wednesday; jeudi — Thursday; vendredi — Friday; samedi — Saturday; dimanche — Sunday.</p>
+<h3>Telling the time</h3>
+<ul><li>Quelle heure est-il ? — What time is it?</li><li>Il est une heure. — It is one o'clock.</li><li>Il est trois heures. — It is three o'clock.</li><li>Il est midi. — It is midday.</li><li>Il est minuit. — It is midnight.</li></ul>
+<div class="example">Aujourd'hui, c'est lundi. — Today is Monday.</div>`}
+]},
+{
+title:"Family and People",emoji:"👨‍👩‍👧",description:"Talk about your family and describe people.",
+lessons:[
+{title:"Family Vocabulary",content:`
+<h3>La famille — The family</h3>
+<table class="word-table"><tr><th>French</th><th>English</th></tr>
+<tr><td>la mère</td><td>mother</td></tr><tr><td>le père</td><td>father</td></tr>
+<tr><td>les parents</td><td>parents</td></tr><tr><td>le frère</td><td>brother</td></tr>
+<tr><td>la sœur</td><td>sister</td></tr><tr><td>la grand-mère</td><td>grandmother</td></tr>
+<tr><td>le grand-père</td><td>grandfather</td></tr><tr><td>l'ami / l'amie</td><td>friend</td></tr></table>
+<div class="example">J'ai un frère et deux sœurs. — I have one brother and two sisters.</div>`},
+{title:"Describing People",content:`
+<h3>Adjectives</h3>
+<ul><li>grand / grande — tall or big</li><li>petit / petite — short or small</li><li>gentil / gentille — kind</li><li>intelligent / intelligente — intelligent</li><li>jeune — young</li><li>sympathique — friendly</li></ul>
+<p>Many French adjectives change their ending to agree with the person or noun being described.</p>
+<div class="example">Il est gentil. — He is kind.<br>Elle est gentille. — She is kind.</div>`}
+]},
+{
+title:"French Grammar",emoji:"📘",description:"Learn pronouns, articles, and basic verbs.",
+lessons:[
+{title:"Subject Pronouns",content:`
+<h3>Les pronoms sujets</h3>
+<table class="word-table"><tr><th>French</th><th>English</th></tr>
+<tr><td>je</td><td>I</td></tr><tr><td>tu</td><td>you (informal singular)</td></tr>
+<tr><td>il</td><td>he / it</td></tr><tr><td>elle</td><td>she / it</td></tr>
+<tr><td>nous</td><td>we</td></tr><tr><td>vous</td><td>you (plural or polite)</td></tr>
+<tr><td>ils</td><td>they (masculine or mixed group)</td></tr><tr><td>elles</td><td>they (all-female group)</td></tr></table>
+<p>French verbs change form depending on the subject.</p>`},
+{title:"The Verbs Être and Avoir",content:`
+<h3>Être — to be</h3>
+<p>Je suis (I am), tu es (you are), il/elle est (he/she is), nous sommes (we are), vous êtes (you are), ils/elles sont (they are).</p>
+<h3>Avoir — to have</h3>
+<p>J'ai (I have), tu as (you have), il/elle a (he/she has), nous avons (we have), vous avez (you have), ils/elles ont (they have).</p>
+<div class="example">Je suis élève. — I am a student.<br>Nous avons un livre. — We have a book.</div>`}
+]},
+{
+title:"Food and Shopping",emoji:"🥖",description:"Name food, ask prices, and shop politely.",
+lessons:[
+{title:"Food and Drinks",content:`
+<h3>Les aliments</h3>
+<table class="word-table"><tr><th>French</th><th>English</th></tr>
+<tr><td>le pain</td><td>bread</td></tr><tr><td>le riz</td><td>rice</td></tr>
+<tr><td>l'eau</td><td>water</td></tr><tr><td>le lait</td><td>milk</td></tr>
+<tr><td>la pomme</td><td>apple</td></tr><tr><td>la banane</td><td>banana</td></tr>
+<tr><td>les légumes</td><td>vegetables</td></tr><tr><td>le poulet</td><td>chicken</td></tr>
+<tr><td>le poisson</td><td>fish</td></tr></table>
+<div class="example">Je voudrais de l'eau, s'il vous plaît. — I would like some water, please.</div>`},
+{title:"Shopping Expressions",content:`
+<h3>Useful phrases</h3>
+<ul><li>Combien ça coûte ? — How much does it cost?</li><li>Je voudrais… — I would like…</li><li>C'est trop cher. — It is too expensive.</li><li>Je cherche… — I am looking for…</li><li>Où est le marché ? — Where is the market?</li><li>Merci beaucoup. — Thank you very much.</li></ul>
+<div class="example">Client : Bonjour, combien coûte ce livre ?<br>Vendeur : Il coûte cinq euros.<br>Client : Merci !</div>`}
+]},
+{
+title:"School and Everyday Life",emoji:"🎒",description:"Describe school subjects and daily routines.",
+lessons:[
+{title:"At School",content:`
+<h3>À l'école</h3>
+<table class="word-table"><tr><th>French</th><th>English</th></tr>
+<tr><td>l'école</td><td>school</td></tr><tr><td>la classe</td><td>classroom / class</td></tr>
+<tr><td>le professeur</td><td>teacher</td></tr><tr><td>l'élève</td><td>student / pupil</td></tr>
+<tr><td>le livre</td><td>book</td></tr><tr><td>le cahier</td><td>exercise book</td></tr>
+<tr><td>le stylo</td><td>pen</td></tr><tr><td>les mathématiques</td><td>mathematics</td></tr>
+<tr><td>l'histoire</td><td>history</td></tr><tr><td>les sciences</td><td>science</td></tr></table>
+<div class="example">J'étudie le français à l'école. — I study French at school.</div>`},
+{title:"Daily Routine",content:`
+<h3>Les activités quotidiennes</h3>
+<ul><li>Je me réveille. — I wake up.</li><li>Je me lève. — I get up.</li><li>Je prends le petit-déjeuner. — I eat breakfast.</li><li>Je vais à l'école. — I go to school.</li><li>J'étudie. — I study.</li><li>Je rentre à la maison. — I return home.</li><li>Je me couche. — I go to bed.</li></ul>
+<p>Use <b>je</b> to describe your own routine. The verb form may change with other subjects.</p>
+<div class="example">Le matin, je me réveille et je vais à l'école.</div>`}
+]}
+];
+
+const quizQuestions=[
+{q:"What does 'Bonjour' mean?",a:["Goodbye","Hello / Good morning","Good night"],correct:1},
+{q:"How do you say 'thank you' in French?",a:["Merci","Pardon","Bonsoir"],correct:0},
+{q:"What does 'Je m'appelle Marie' mean?",a:["I live in Marie","I am Marie's friend","My name is Marie"],correct:2},
+{q:"Which word means 'mother'?",a:["Le père","La mère","Le frère"],correct:1},
+{q:"What does 'Je suis élève' mean?",a:["I am a student","I have a book","I am hungry"],correct:0},
+{q:"Which phrase asks 'How much does it cost?'",a:["Comment allez-vous ?","Quelle heure est-il ?","Combien ça coûte ?"],correct:2}
+];
+
+const username=localStorage.getItem("zyntraUser")||"guest";
+const safeKey=username.toLowerCase().replace(/[^a-z0-9_-]/g,"_");
+const completedKey="zyntraFrenchCompleted_"+safeKey;
+const xpKey="zyntraFrenchXP_"+safeKey;
+let completed=JSON.parse(localStorage.getItem(completedKey)||"[]");
+let xp=Number(localStorage.getItem(xpKey)||0);
+let currentTopic=0,currentLesson=0,quizRewarded=false;
+
+const topicGrid=document.getElementById("topicGrid");
+const lessonList=document.getElementById("lessonList");
+const lessonContent=document.getElementById("lessonContent");
+
+function lessonId(t,l){return t+"-"+l}
+function isDone(t,l){return completed.includes(lessonId(t,l))}
+function updateStats(){
+ const total=topics.reduce((n,t)=>n+t.lessons.length,0);
+ const percent=Math.round(completed.length/total*100);
+ document.getElementById("completedCount").textContent=completed.length;
+ document.getElementById("xpCount").textContent=xp;
+ document.getElementById("progressPercent").textContent=percent+"%";
+ document.getElementById("progressBar").style.width=percent+"%";
+ topicGrid.querySelectorAll(".topic").forEach((el,i)=>{
+  const done=topics[i].lessons.filter((_,j)=>isDone(i,j)).length;
+  const small=el.querySelector("small");
+  if(small)small.textContent=done+"/"+topics[i].lessons.length+" lessons completed";
+ });
+}
+function renderTopics(){
+ topicGrid.innerHTML="";
+ topics.forEach((t,i)=>{
+  const el=document.createElement("div");
+  el.className="topic"+(i===currentTopic?" active":"");
+  el.tabIndex=0;
+  el.innerHTML=`<div class="emoji">${t.emoji}</div><h3>${t.title}</h3><p>${t.description}</p><small></small>`;
+  el.onclick=()=>{currentTopic=i;currentLesson=0;renderTopics();renderLessons();renderLesson()};
+  el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();el.click()}};
+  topicGrid.appendChild(el);
+ });
+ updateStats();
+}
+function renderLessons(){
+ const t=topics[currentTopic];
+ document.getElementById("topicDescription").textContent=t.description;
+ lessonList.innerHTML="";
+ t.lessons.forEach((lesson,i)=>{
+  const btn=document.createElement("button");
+  btn.className="lesson-btn"+(i===currentLesson?" active":"")+(isDone(currentTopic,i)?" done":"");
+  btn.innerHTML=`${isDone(currentTopic,i)?"✓ ":""}${lesson.title}<small>${isDone(currentTopic,i)?"Completed • +10 XP":"Lesson "+(i+1)}</small>`;
+  btn.onclick=()=>{currentLesson=i;renderLessons();renderLesson()};
+  lessonList.appendChild(btn);
+ });
+}
+function renderLesson(){
+ const t=topics[currentTopic],l=t.lessons[currentLesson],done=isDone(currentTopic,currentLesson);
+ lessonContent.innerHTML=`
+ <span class="tag">${t.emoji} ${t.title}</span>
+ <h2>${l.title}</h2>
+ <p class="muted">Lesson ${currentLesson+1} of ${t.lessons.length}</p>
+ ${l.content}
+ <div class="actions">
+ <button class="primary" id="completeLesson" ${done?"disabled":""}>${done?"✓ Lesson Completed":"Mark Lesson Complete (+10 XP)"}</button>
+ <button class="secondary" id="nextLesson">Next Lesson →</button>
+ </div>
+ ${done?'<p class="notice">You have already earned XP for this lesson.</p>':""}`;
+ document.getElementById("completeLesson").onclick=()=>{
+  if(!isDone(currentTopic,currentLesson)){
+   completed.push(lessonId(currentTopic,currentLesson));
+   xp+=10;
+   localStorage.setItem(completedKey,JSON.stringify(completed));
+   localStorage.setItem(xpKey,String(xp));
+   renderTopics();renderLessons();renderLesson();
+  }
+ };
+ document.getElementById("nextLesson").onclick=()=>{
+  if(currentLesson<topics[currentTopic].lessons.length-1)currentLesson++;
+  else if(currentTopic<topics.length-1){currentTopic++;currentLesson=0}
+  else{alert("Congratulations! You have reached the final French lesson.");return}
+  renderTopics();renderLessons();renderLesson();
+ };
+}
+function renderQuiz(){
+ const form=document.getElementById("quizForm");
+ form.innerHTML="";
+ quizQuestions.forEach((q,i)=>{
+  const div=document.createElement("div");div.className="quiz-question";
+  const p=document.createElement("p");p.textContent=(i+1)+". "+q.q;div.appendChild(p);
+  q.a.forEach((answer,j)=>{
+   const label=document.createElement("label");
+   const input=document.createElement("input");input.type="radio";input.name="q"+i;input.value=j;
+   label.appendChild(input);label.appendChild(document.createTextNode(answer));div.appendChild(label);
+  });
+  form.appendChild(div);
+ });
+}
+document.getElementById("checkQuiz").onclick=()=>{
+ let score=0,answered=0;
+ quizQuestions.forEach((q,i)=>{
+  const chosen=document.querySelector('input[name="q'+i+'"]:checked');
+  if(chosen){answered++;if(Number(chosen.value)===q.correct)score++}
+ });
+ const result=document.getElementById("quizResult");
+ if(answered<quizQuestions.length){result.textContent="Please answer all six questions before checking your score.";return}
+ result.textContent="Your score: "+score+"/"+quizQuestions.length+". "+(score===6?"Excellent! Très bien !":score>=4?"Good work! Keep practising.":"Keep learning and try again!");
+ if(!quizRewarded&&score>=4){xp+=5;localStorage.setItem(xpKey,String(xp));quizRewarded=true;result.textContent+=" You earned 5 XP!";updateStats()}
+};
+document.getElementById("resetQuiz").onclick=()=>{
+ renderQuiz();document.getElementById("quizResult").textContent="";
+};
+renderTopics();renderLessons();renderLesson();renderQuiz();
+</script>
+</body>
+</html>
