@@ -260,6 +260,7 @@ loginForm.addEventListener("submit", async function(event){
                 "zyntraUser",
                 JSON.stringify(user)
             );
+            localStorage.setItem("zyntraLoggedIn", "true");
 
             // Save useful user information separately
             if(user.username){
